@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA0E85CB-BD69-4702-BB07-EA41BD17907D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AppInternacao</RootNamespace>
+    <AssemblyName>AppInternacao</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4897F7D3E09840C023C1BD574BED92A225741492</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>AppInternacao_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\CRUD.cs" />
+    <Compile Include="DAL\LISTAOBJETOS.cs" />
+    <Compile Include="DAL\SQLDBCONNECTION.cs" />
+    <Compile Include="Enum\Acao.cs" />
+    <Compile Include="Enum\Procedure.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCBarCodeProntuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCBarCodeProntuario.Designer.cs">
+      <DependentUpon>UCBarCodeProntuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCDiagnosticoEnfermagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCDiagnosticoEnfermagem.Designer.cs">
+      <DependentUpon>UCDiagnosticoEnfermagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCEvolucaoEnfermagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCEvolucaoEnfermagem.Designer.cs">
+      <DependentUpon>UCEvolucaoEnfermagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCHistoricoEnfermagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCHistoricoEnfermagem.Designer.cs">
+      <DependentUpon>UCHistoricoEnfermagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCPrescricaoEnfermagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCPrescricaoEnfermagem.Designer.cs">
+      <DependentUpon>UCPrescricaoEnfermagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCQuartoLeito.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCQuartoLeito.Designer.cs">
+      <DependentUpon>UCQuartoLeito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCSaeAdulto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCSaeAdulto.Designer.cs">
+      <DependentUpon>UCSaeAdulto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCPaciente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCPaciente.Designer.cs">
+      <DependentUpon>UCPaciente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\DBConn.cs" />
+    <Compile Include="FrmSae\UCTimeLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCTimeLine.Designer.cs">
+      <DependentUpon>UCTimeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Leito.cs" />
+    <Compile Include="Model\Main.cs" />
+    <Compile Include="Model\Paciente.cs" />
+    <Compile Include="Model\Quarto.cs" />
+    <Compile Include="Model\SaeClinicaMedicaAdulto.cs" />
+    <Compile Include="Model\Setor.cs" />
+    <Compile Include="Presenter\LeitoPresenter.cs" />
+    <Compile Include="Presenter\PacientePresenter.cs" />
+    <Compile Include="Presenter\PresenterMain.cs" />
+    <Compile Include="Presenter\QuartoPresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Sessao.cs" />
+    <Compile Include="View\ILeito.cs" />
+    <Compile Include="View\IMain.cs" />
+    <Compile Include="View\IPaciente.cs" />
+    <Compile Include="View\IQuarto.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCBarCodeProntuario.resx">
+      <DependentUpon>UCBarCodeProntuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCDiagnosticoEnfermagem.resx">
+      <DependentUpon>UCDiagnosticoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCEvolucaoEnfermagem.resx">
+      <DependentUpon>UCEvolucaoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCHistoricoEnfermagem.resx">
+      <DependentUpon>UCHistoricoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCPrescricaoEnfermagem.resx">
+      <DependentUpon>UCPrescricaoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
+      <DependentUpon>UCQuartoLeito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCSaeAdulto.resx">
+      <DependentUpon>UCSaeAdulto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCPaciente.resx">
+      <DependentUpon>UCPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCTimeLine.resx">
+      <DependentUpon>UCTimeLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save_Icon_icon-icons.com_69139.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PhotoPrint_6314.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CrachaLayOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Childish-Cross_24996.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_people_outline_128_28591.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heartbeat_icon-icons.com_56347.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_account_child_128_28130.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\people_virus_spreading_corona_covid_icon_141669.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leito.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file-edit_114433.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation_warning_15590.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_close_error_15565.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_accept_15562.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeTela.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sinalizadorV1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sinalizadorVer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-excluir-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recycling_recyclebin_empty_delete_trash_1771.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_40623.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-80_icon-icons.com_57340.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\liberar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_accounts_15362.png" />
+    <None Include="Resources\key_password_lock_800.png" />
+    <None Include="Resources\toddler.png" />
+    <None Include="Resources\hospital_doctor_10739.png" />
+    <None Include="Resources\Saeico01.png" />
+    <None Include="Resources\nurse_person_woman_people_1697.png" />
+    <None Include="Resources\vector-scan-barcode-4-transparent.png" />
+    <None Include="Resources\tag_user_card_16777.png" />
+    <None Include="Resources\infoflat_105980.png" />
+    <None Include="Resources\homeflat_106039.png" />
+    <None Include="Resources\ok_accept_155621.png" />
+    <None Include="Resources\next6_89384.png" />
+    <None Include="Resources\TimiLineStep.png" />
+    <None Include="Resources\userExit.png" />
+    <None Include="Resources\emblemdownloads.png" />
+    <None Include="Resources\Cabecalho01.png" />
+    <None Include="Resources\Cabecalho011.png" />
+    <None Include="Resources\back4_89388.png" />
+    <None Include="Resources\Barcodescanner_5125.png" />
+    <None Include="Resources\barcode_scanner.png" />
+    <None Include="Resources\48_113667.png" />
+    <None Include="Resources\baby.png" />
+    <None Include="Resources\ClinicaMedica.png" />
+    <None Include="Resources\crianca.png" />
+    <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
+    <None Include="Resources\Error-80_icon-icons.com_573261.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
