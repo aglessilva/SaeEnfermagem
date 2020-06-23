@@ -29,29 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewPaciente = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prontuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textPesquisa = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panelScreen = new System.Windows.Forms.Panel();
-            this.panelDropDown = new System.Windows.Forms.Panel();
-            this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
             this.panelButtons = new System.Windows.Forms.Panel();
-            this.buttonLimpar = new System.Windows.Forms.Button();
+            this.panelDropDown = new System.Windows.Forms.Panel();
+            this.panelScreen = new System.Windows.Forms.Panel();
+            this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
+            this.btnAlterarSenha = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnPaciente = new System.Windows.Forms.Button();
             this.btnGerenciamentoLeito = new System.Windows.Forms.Button();
-            this.btnCMAdulto = new System.Windows.Forms.Button();
+            this.btnAdmUsuario = new System.Windows.Forms.Button();
             this.btnUrgenciaEmergencia = new System.Windows.Forms.Button();
             this.btnClinicaObstetrica = new System.Windows.Forms.Button();
             this.btnClinicaCirurgica = new System.Windows.Forms.Button();
@@ -62,17 +54,16 @@
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.btnSair = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panelTitle.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
             this.panelMenu.SuspendLayout();
-            this.panelScreen.SuspendLayout();
-            this.panelDropDown.SuspendLayout();
             this.panelButtons.SuspendLayout();
+            this.panelDropDown.SuspendLayout();
+            this.panelScreen.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -95,105 +86,10 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewPaciente);
-            this.splitContainer1.Panel2.Controls.Add(this.buttonLimpar);
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1092, 524);
             this.splitContainer1.SplitterDistance = 811;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // dataGridViewPaciente
-            // 
-            this.dataGridViewPaciente.AllowUserToAddRows = false;
-            this.dataGridViewPaciente.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewPaciente.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewPaciente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewPaciente.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridViewPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPaciente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Nome,
-            this.Prontuario});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 69);
-            this.dataGridViewPaciente.MultiSelect = false;
-            this.dataGridViewPaciente.Name = "dataGridViewPaciente";
-            this.dataGridViewPaciente.ReadOnly = true;
-            this.dataGridViewPaciente.RowHeadersVisible = false;
-            this.dataGridViewPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPaciente.Size = new System.Drawing.Size(277, 453);
-            this.dataGridViewPaciente.TabIndex = 1;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "Id";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // Nome
-            // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // Prontuario
-            // 
-            this.Prontuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Prontuario.DataPropertyName = "Prontuario";
-            this.Prontuario.HeaderText = "Prontuario";
-            this.Prontuario.Name = "Prontuario";
-            this.Prontuario.ReadOnly = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.textPesquisa);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(277, 43);
-            this.panel1.TabIndex = 2;
-            // 
-            // textPesquisa
-            // 
-            this.textPesquisa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textPesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textPesquisa.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textPesquisa.Location = new System.Drawing.Point(0, 23);
-            this.textPesquisa.MaxLength = 30;
-            this.textPesquisa.Name = "textPesquisa";
-            this.textPesquisa.Size = new System.Drawing.Size(277, 20);
-            this.textPesquisa.TabIndex = 0;
-            this.textPesquisa.WordWrap = false;
-            this.textPesquisa.TextChanged += new System.EventHandler(this.textPesquisa_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Pesquisa: Prontuário ou  Nome ";
             // 
             // panelTitle
             // 
@@ -233,6 +129,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.panelMenu.Controls.Add(this.panel1);
             this.panelMenu.Controls.Add(this.panelButtons);
             this.panelMenu.Controls.Add(this.panelDropDown);
             this.panelMenu.Controls.Add(this.btnAddSae);
@@ -242,14 +139,16 @@
             this.panelMenu.Size = new System.Drawing.Size(169, 524);
             this.panelMenu.TabIndex = 2;
             // 
-            // panelScreen
+            // panelButtons
             // 
-            this.panelScreen.Controls.Add(this.splitContainer1);
-            this.panelScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScreen.Location = new System.Drawing.Point(169, 37);
-            this.panelScreen.Name = "panelScreen";
-            this.panelScreen.Size = new System.Drawing.Size(1092, 524);
-            this.panelScreen.TabIndex = 0;
+            this.panelButtons.Controls.Add(this.btnAdmUsuario);
+            this.panelButtons.Controls.Add(this.btnPaciente);
+            this.panelButtons.Controls.Add(this.btnGerenciamentoLeito);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelButtons.Location = new System.Drawing.Point(0, 37);
+            this.panelButtons.Name = "panelButtons";
+            this.panelButtons.Size = new System.Drawing.Size(169, 100);
+            this.panelButtons.TabIndex = 6;
             // 
             // panelDropDown
             // 
@@ -261,50 +160,69 @@
             this.panelDropDown.Controls.Add(this.btnClinicaMedica);
             this.panelDropDown.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDropDown.Location = new System.Drawing.Point(0, 37);
-            this.panelDropDown.MaximumSize = new System.Drawing.Size(169, 181);
+            this.panelDropDown.MaximumSize = new System.Drawing.Size(169, 175);
             this.panelDropDown.MinimumSize = new System.Drawing.Size(169, 0);
             this.panelDropDown.Name = "panelDropDown";
             this.panelDropDown.Size = new System.Drawing.Size(169, 0);
             this.panelDropDown.TabIndex = 10;
+            // 
+            // panelScreen
+            // 
+            this.panelScreen.Controls.Add(this.splitContainer1);
+            this.panelScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelScreen.Location = new System.Drawing.Point(169, 37);
+            this.panelScreen.Name = "panelScreen";
+            this.panelScreen.Size = new System.Drawing.Size(1092, 524);
+            this.panelScreen.TabIndex = 0;
             // 
             // timerCollapsed
             // 
             this.timerCollapsed.Interval = 15;
             this.timerCollapsed.Tick += new System.EventHandler(this.timerCollapsed_Tick);
             // 
-            // panelButtons
+            // btnAlterarSenha
             // 
-            this.panelButtons.Controls.Add(this.btnPaciente);
-            this.panelButtons.Controls.Add(this.btnGerenciamentoLeito);
-            this.panelButtons.Controls.Add(this.btnCMAdulto);
-            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelButtons.Location = new System.Drawing.Point(0, 37);
-            this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(169, 140);
-            this.panelButtons.TabIndex = 6;
+            this.btnAlterarSenha.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlterarSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAlterarSenha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlterarSenha.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAlterarSenha.FlatAppearance.BorderSize = 0;
+            this.btnAlterarSenha.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAlterarSenha.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnAlterarSenha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlterarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlterarSenha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAlterarSenha.Image = global::AppInternacao.Properties.Resources.internet_lock_locked_padlock_password_secure_security_icon_127100;
+            this.btnAlterarSenha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlterarSenha.Location = new System.Drawing.Point(1, 3);
+            this.btnAlterarSenha.Name = "btnAlterarSenha";
+            this.btnAlterarSenha.Size = new System.Drawing.Size(169, 29);
+            this.btnAlterarSenha.TabIndex = 12;
+            this.btnAlterarSenha.Text = "Alterar Senha de Acesso";
+            this.btnAlterarSenha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAlterarSenha.UseVisualStyleBackColor = false;
             // 
-            // buttonLimpar
+            // btnLogout
             // 
-            this.buttonLimpar.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLimpar.BackgroundImage = global::AppInternacao.Properties.Resources.Childish_Cross_24996;
-            this.buttonLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonLimpar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.buttonLimpar.FlatAppearance.BorderSize = 0;
-            this.buttonLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.buttonLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.buttonLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLimpar.Location = new System.Drawing.Point(0, 43);
-            this.buttonLimpar.Name = "buttonLimpar";
-            this.buttonLimpar.Size = new System.Drawing.Size(277, 26);
-            this.buttonLimpar.TabIndex = 2;
-            this.buttonLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLimpar.UseVisualStyleBackColor = false;
-            this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnLogout.Image = global::AppInternacao.Properties.Resources._1485969916_8_shutdown_78906;
+            this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogout.Location = new System.Drawing.Point(3, 39);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(169, 29);
+            this.btnLogout.TabIndex = 11;
+            this.btnLogout.Text = "Sair / Fechar";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.UseVisualStyleBackColor = false;
             // 
             // btnPaciente
             // 
@@ -318,13 +236,13 @@
             this.btnPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaciente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnPaciente.Image = global::AppInternacao.Properties.Resources.Saeico01;
+            this.btnPaciente.Image = global::AppInternacao.Properties.Resources.ic_account_child_128_28130;
             this.btnPaciente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaciente.Location = new System.Drawing.Point(0, 49);
+            this.btnPaciente.Location = new System.Drawing.Point(0, 35);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(169, 29);
             this.btnPaciente.TabIndex = 2;
-            this.btnPaciente.Text = "Cadastrar Paciente";
+            this.btnPaciente.Text = "Admin Pacientes / Leitos";
             this.btnPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPaciente.UseVisualStyleBackColor = false;
             this.btnPaciente.Click += new System.EventHandler(this.btnPaciente_Click);
@@ -343,7 +261,7 @@
             this.btnGerenciamentoLeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnGerenciamentoLeito.Image = global::AppInternacao.Properties.Resources.summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411;
             this.btnGerenciamentoLeito.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 8);
+            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 1);
             this.btnGerenciamentoLeito.Name = "btnGerenciamentoLeito";
             this.btnGerenciamentoLeito.Size = new System.Drawing.Size(169, 29);
             this.btnGerenciamentoLeito.TabIndex = 5;
@@ -352,28 +270,28 @@
             this.btnGerenciamentoLeito.UseVisualStyleBackColor = false;
             this.btnGerenciamentoLeito.Click += new System.EventHandler(this.btnGerenciamentoLeito_Click);
             // 
-            // btnCMAdulto
+            // btnAdmUsuario
             // 
-            this.btnCMAdulto.BackColor = System.Drawing.Color.Transparent;
-            this.btnCMAdulto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCMAdulto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCMAdulto.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnCMAdulto.FlatAppearance.BorderSize = 0;
-            this.btnCMAdulto.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnCMAdulto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnCMAdulto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCMAdulto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCMAdulto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnCMAdulto.Image = global::AppInternacao.Properties.Resources.people_virus_spreading_corona_covid_icon_141669;
-            this.btnCMAdulto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCMAdulto.Location = new System.Drawing.Point(0, 88);
-            this.btnCMAdulto.Name = "btnCMAdulto";
-            this.btnCMAdulto.Size = new System.Drawing.Size(169, 29);
-            this.btnCMAdulto.TabIndex = 4;
-            this.btnCMAdulto.Text = "Clinica Médica Adulto";
-            this.btnCMAdulto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCMAdulto.UseVisualStyleBackColor = false;
-            this.btnCMAdulto.Click += new System.EventHandler(this.btnCMAdulto_Click);
+            this.btnAdmUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdmUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAdmUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdmUsuario.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAdmUsuario.FlatAppearance.BorderSize = 0;
+            this.btnAdmUsuario.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAdmUsuario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnAdmUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdmUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdmUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAdmUsuario.Image = global::AppInternacao.Properties.Resources.people_47795;
+            this.btnAdmUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 69);
+            this.btnAdmUsuario.Name = "btnAdmUsuario";
+            this.btnAdmUsuario.Size = new System.Drawing.Size(169, 29);
+            this.btnAdmUsuario.TabIndex = 11;
+            this.btnAdmUsuario.Text = "Administrar Usuários";
+            this.btnAdmUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdmUsuario.UseVisualStyleBackColor = false;
+            this.btnAdmUsuario.Click += new System.EventHandler(this.btnAdmUsuario_Click);
             // 
             // btnUrgenciaEmergencia
             // 
@@ -389,7 +307,7 @@
             this.btnUrgenciaEmergencia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnUrgenciaEmergencia.Image = global::AppInternacao.Properties.Resources.hospital_doctor_10739;
             this.btnUrgenciaEmergencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUrgenciaEmergencia.Location = new System.Drawing.Point(0, 146);
+            this.btnUrgenciaEmergencia.Location = new System.Drawing.Point(0, 145);
             this.btnUrgenciaEmergencia.Name = "btnUrgenciaEmergencia";
             this.btnUrgenciaEmergencia.Size = new System.Drawing.Size(169, 29);
             this.btnUrgenciaEmergencia.TabIndex = 12;
@@ -411,7 +329,7 @@
             this.btnClinicaObstetrica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClinicaObstetrica.Image = global::AppInternacao.Properties.Resources.toddler;
             this.btnClinicaObstetrica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClinicaObstetrica.Location = new System.Drawing.Point(0, 111);
+            this.btnClinicaObstetrica.Location = new System.Drawing.Point(0, 109);
             this.btnClinicaObstetrica.Name = "btnClinicaObstetrica";
             this.btnClinicaObstetrica.Size = new System.Drawing.Size(169, 29);
             this.btnClinicaObstetrica.TabIndex = 11;
@@ -433,7 +351,7 @@
             this.btnClinicaCirurgica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClinicaCirurgica.Image = global::AppInternacao.Properties.Resources.ClinicaMedica;
             this.btnClinicaCirurgica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClinicaCirurgica.Location = new System.Drawing.Point(0, 76);
+            this.btnClinicaCirurgica.Location = new System.Drawing.Point(0, 73);
             this.btnClinicaCirurgica.Name = "btnClinicaCirurgica";
             this.btnClinicaCirurgica.Size = new System.Drawing.Size(169, 29);
             this.btnClinicaCirurgica.TabIndex = 10;
@@ -455,7 +373,7 @@
             this.btnClinicaPediatrica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClinicaPediatrica.Image = global::AppInternacao.Properties.Resources.crianca;
             this.btnClinicaPediatrica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClinicaPediatrica.Location = new System.Drawing.Point(0, 41);
+            this.btnClinicaPediatrica.Location = new System.Drawing.Point(0, 37);
             this.btnClinicaPediatrica.Name = "btnClinicaPediatrica";
             this.btnClinicaPediatrica.Size = new System.Drawing.Size(169, 29);
             this.btnClinicaPediatrica.TabIndex = 9;
@@ -477,7 +395,7 @@
             this.btnClinicaMedica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnClinicaMedica.Image = global::AppInternacao.Properties.Resources.ic_people_outline_128_28591;
             this.btnClinicaMedica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClinicaMedica.Location = new System.Drawing.Point(0, 6);
+            this.btnClinicaMedica.Location = new System.Drawing.Point(0, 1);
             this.btnClinicaMedica.Name = "btnClinicaMedica";
             this.btnClinicaMedica.Size = new System.Drawing.Size(169, 29);
             this.btnClinicaMedica.TabIndex = 8;
@@ -598,6 +516,16 @@
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAlterarSenha);
+            this.panel1.Controls.Add(this.btnLogout);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 447);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(169, 77);
+            this.panel1.TabIndex = 13;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,41 +542,29 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Shown += new System.EventHandler(this.FrmMain_Shown);
-            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panelTitle.ResumeLayout(false);
             this.panelTitle.PerformLayout();
             this.panelCabecalho.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
-            this.panelScreen.ResumeLayout(false);
-            this.panelDropDown.ResumeLayout(false);
             this.panelButtons.ResumeLayout(false);
+            this.panelDropDown.ResumeLayout(false);
+            this.panelScreen.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textPesquisa;
+        public System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnPaciente;
-        private System.Windows.Forms.DataGridView dataGridViewPaciente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prontuario;
-        private System.Windows.Forms.Button buttonLimpar;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelScreen;
-        private System.Windows.Forms.Button btnCMAdulto;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnGerenciamentoLeito;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnNovo;
@@ -662,6 +578,10 @@
         private System.Windows.Forms.Button btnAddSae;
         private System.Windows.Forms.Timer timerCollapsed;
         private System.Windows.Forms.Panel panelButtons;
+        private System.Windows.Forms.Button btnAdmUsuario;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnAlterarSenha;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

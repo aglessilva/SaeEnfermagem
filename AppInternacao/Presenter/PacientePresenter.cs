@@ -80,6 +80,23 @@ namespace AppInternacao.Presenter
         }
 
 
+        public void Pesquisar(Paciente obj)
+        {
+            try
+            {
+                if (null == obj)
+                    obj = new Paciente();
+
+                objeto = new LISTAOBJETOS();
+                view.pacientes = objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+            }
+            catch (Exception exPesquisa)
+            {
+                throw exPesquisa;
+            }
+        }
+
+
         /// <summary>
         /// Carrega a Sessao com os dados do Paciente
         /// </summary>

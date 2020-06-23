@@ -10,24 +10,21 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UCHistoricoEnfermagem : UserControl
+    public partial class UC02DiagnosticoEnfermagem : UserControl
     {
-       // public static Button ButtonSalvarEnfermagem;
-        public UCHistoricoEnfermagem()
+        public UC02DiagnosticoEnfermagem()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            
         }
 
-        private void UCHistoricoEnfermagem_Load(object sender, EventArgs e)
+        private void UCDiagnostico_Load(object sender, EventArgs e)
         {
-            UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
+            UCTimeLine.ButtonSaeAvanca.Click += ButtonSaeAvanca_Click;
         }
 
         private void ButtonSaeAvanca_Click(object sender, EventArgs e)
         {
-
             Dispose(true);
         }
     }

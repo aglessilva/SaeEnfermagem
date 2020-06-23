@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppInternacao.Presenter;
+using System;
 using System.Windows.Forms;
-using AppInternacao.Model;
-using AppInternacao.Presenter;
-using AppInternacao.View;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UCBarCodeProntuario : UserControl
+    public partial class UC00BarCodeProntuario : UserControl
     {
-        public UCBarCodeProntuario()
+        public UC00BarCodeProntuario()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
@@ -81,7 +72,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exL)
             {
-                throw exL;
+                MessageBox.Show("Erro na identificação do codigo de barras do paciente\n" + exL.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }

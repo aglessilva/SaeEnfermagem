@@ -34,13 +34,13 @@ namespace AppInternacao.FrmSae
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlQuartoLeito = new System.Windows.Forms.TabControl();
             this.tabPageQuartos = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -68,13 +68,12 @@ namespace AppInternacao.FrmSae
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridViewLeito = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isDisponivel = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.textBoxPesquisaLeito = new System.Windows.Forms.TextBox();
             this.panelLeito = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxTotalLeitos = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxlLeitoQtd = new System.Windows.Forms.TextBox();
             this.textBoxNomeLeito = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxIdLeito = new System.Windows.Forms.TextBox();
@@ -84,8 +83,11 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.textBoxlLeitoQtd = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isDisponivel = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabControlQuartoLeito.SuspendLayout();
             this.tabPageQuartos.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,7 +113,7 @@ namespace AppInternacao.FrmSae
             this.tabControlQuartoLeito.Multiline = true;
             this.tabControlQuartoLeito.Name = "tabControlQuartoLeito";
             this.tabControlQuartoLeito.SelectedIndex = 0;
-            this.tabControlQuartoLeito.Size = new System.Drawing.Size(716, 537);
+            this.tabControlQuartoLeito.Size = new System.Drawing.Size(777, 537);
             this.tabControlQuartoLeito.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlQuartoLeito.TabIndex = 0;
             // 
@@ -122,7 +124,7 @@ namespace AppInternacao.FrmSae
             this.tabPageQuartos.Location = new System.Drawing.Point(4, 22);
             this.tabPageQuartos.Name = "tabPageQuartos";
             this.tabPageQuartos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageQuartos.Size = new System.Drawing.Size(708, 511);
+            this.tabPageQuartos.Size = new System.Drawing.Size(769, 511);
             this.tabPageQuartos.TabIndex = 0;
             this.tabPageQuartos.Text = "Quartos";
             this.tabPageQuartos.ToolTipText = "Gerenciamento de Quartos";
@@ -135,7 +137,7 @@ namespace AppInternacao.FrmSae
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(702, 505);
+            this.groupBox1.Size = new System.Drawing.Size(763, 505);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro de Quartos";
@@ -146,7 +148,7 @@ namespace AppInternacao.FrmSae
             this.panelGridPesquisaQuarto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGridPesquisaQuarto.Location = new System.Drawing.Point(3, 74);
             this.panelGridPesquisaQuarto.Name = "panelGridPesquisaQuarto";
-            this.panelGridPesquisaQuarto.Size = new System.Drawing.Size(696, 428);
+            this.panelGridPesquisaQuarto.Size = new System.Drawing.Size(757, 428);
             this.panelGridPesquisaQuarto.TabIndex = 12;
             // 
             // groupBox2
@@ -157,7 +159,7 @@ namespace AppInternacao.FrmSae
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(696, 428);
+            this.groupBox2.Size = new System.Drawing.Size(757, 428);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pesquisa de Quartos";
@@ -189,20 +191,20 @@ namespace AppInternacao.FrmSae
             this.dataGridViewQuartos.AllowUserToAddRows = false;
             this.dataGridViewQuartos.AllowUserToDeleteRows = false;
             this.dataGridViewQuartos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewQuartos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewQuartos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewQuartos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewQuartos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewQuartos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewQuartos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewQuartos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewQuartos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewQuartos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -211,14 +213,14 @@ namespace AppInternacao.FrmSae
             this.TotalLeito,
             this.Editar,
             this.Excluir});
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewQuartos.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewQuartos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewQuartos.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewQuartos.Location = new System.Drawing.Point(6, 55);
             this.dataGridViewQuartos.Name = "dataGridViewQuartos";
@@ -301,7 +303,7 @@ namespace AppInternacao.FrmSae
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(696, 58);
+            this.panel1.Size = new System.Drawing.Size(757, 58);
             this.panel1.TabIndex = 11;
             // 
             // textBoxId
@@ -411,7 +413,7 @@ namespace AppInternacao.FrmSae
             this.tabPageLeito.Location = new System.Drawing.Point(4, 22);
             this.tabPageLeito.Name = "tabPageLeito";
             this.tabPageLeito.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLeito.Size = new System.Drawing.Size(708, 511);
+            this.tabPageLeito.Size = new System.Drawing.Size(769, 511);
             this.tabPageLeito.TabIndex = 1;
             this.tabPageLeito.Text = "Leitos";
             // 
@@ -422,7 +424,7 @@ namespace AppInternacao.FrmSae
             this.gLeito.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gLeito.Location = new System.Drawing.Point(3, 3);
             this.gLeito.Name = "gLeito";
-            this.gLeito.Size = new System.Drawing.Size(702, 505);
+            this.gLeito.Size = new System.Drawing.Size(763, 505);
             this.gLeito.TabIndex = 0;
             this.gLeito.TabStop = false;
             this.gLeito.Text = "Cadastro de Leitos";
@@ -435,7 +437,7 @@ namespace AppInternacao.FrmSae
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 74);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(696, 428);
+            this.groupBox3.Size = new System.Drawing.Size(757, 428);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Pesquisa de Leitos";
@@ -467,20 +469,20 @@ namespace AppInternacao.FrmSae
             this.dataGridViewLeito.AllowUserToAddRows = false;
             this.dataGridViewLeito.AllowUserToDeleteRows = false;
             this.dataGridViewLeito.AllowUserToResizeRows = false;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewLeito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewLeito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewLeito.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewLeito.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewLeito.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLeito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLeito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewLeito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLeito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -488,74 +490,32 @@ namespace AppInternacao.FrmSae
             this.isDisponivel,
             this.dataGridViewImageColumn3,
             this.dataGridViewImageColumn4});
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewLeito.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewLeito.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewLeito.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewLeito.Location = new System.Drawing.Point(6, 55);
             this.dataGridViewLeito.Name = "dataGridViewLeito";
             this.dataGridViewLeito.ReadOnly = true;
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewLeito.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLeito.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewLeito.RowHeadersVisible = false;
             this.dataGridViewLeito.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewLeito.Size = new System.Drawing.Size(386, 370);
             this.dataGridViewLeito.TabIndex = 8;
             this.dataGridViewLeito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLeito_CellContentClick);
             this.dataGridViewLeito.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewLeito_RowsAdded);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NomeLeito";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Leito";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // isDisponivel
-            // 
-            this.isDisponivel.HeaderText = "Disp";
-            this.isDisponivel.Name = "isDisponivel";
-            this.isDisponivel.ReadOnly = true;
-            this.isDisponivel.Width = 30;
-            // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "";
-            this.dataGridViewImageColumn3.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
-            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.ReadOnly = true;
-            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn3.Width = 30;
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "";
-            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
-            this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.ReadOnly = true;
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn4.Width = 30;
             // 
             // textBoxPesquisaLeito
             // 
@@ -569,6 +529,8 @@ namespace AppInternacao.FrmSae
             // 
             // panelLeito
             // 
+            this.panelLeito.Controls.Add(this.label5);
+            this.panelLeito.Controls.Add(this.textBoxTotalLeitos);
             this.panelLeito.Controls.Add(this.label4);
             this.panelLeito.Controls.Add(this.textBoxlLeitoQtd);
             this.panelLeito.Controls.Add(this.textBoxNomeLeito);
@@ -579,8 +541,46 @@ namespace AppInternacao.FrmSae
             this.panelLeito.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLeito.Location = new System.Drawing.Point(3, 16);
             this.panelLeito.Name = "panelLeito";
-            this.panelLeito.Size = new System.Drawing.Size(696, 58);
+            this.panelLeito.Size = new System.Drawing.Size(757, 58);
             this.panelLeito.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(516, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Total Leitos";
+            // 
+            // textBoxTotalLeitos
+            // 
+            this.textBoxTotalLeitos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxTotalLeitos.Enabled = false;
+            this.textBoxTotalLeitos.Location = new System.Drawing.Point(488, 22);
+            this.textBoxTotalLeitos.Name = "textBoxTotalLeitos";
+            this.textBoxTotalLeitos.Size = new System.Drawing.Size(22, 20);
+            this.textBoxTotalLeitos.TabIndex = 9;
+            this.textBoxTotalLeitos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(612, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Restantes";
+            // 
+            // textBoxlLeitoQtd
+            // 
+            this.textBoxlLeitoQtd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxlLeitoQtd.Enabled = false;
+            this.textBoxlLeitoQtd.Location = new System.Drawing.Point(584, 22);
+            this.textBoxlLeitoQtd.Name = "textBoxlLeitoQtd";
+            this.textBoxlLeitoQtd.Size = new System.Drawing.Size(22, 20);
+            this.textBoxlLeitoQtd.TabIndex = 7;
+            this.textBoxlLeitoQtd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxNomeLeito
             // 
@@ -676,24 +676,49 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn5.Width = 30;
             // 
-            // textBoxlLeitoQtd
+            // dataGridViewTextBoxColumn1
             // 
-            this.textBoxlLeitoQtd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxlLeitoQtd.Enabled = false;
-            this.textBoxlLeitoQtd.Location = new System.Drawing.Point(477, 24);
-            this.textBoxlLeitoQtd.Name = "textBoxlLeitoQtd";
-            this.textBoxlLeitoQtd.Size = new System.Drawing.Size(22, 20);
-            this.textBoxlLeitoQtd.TabIndex = 7;
-            this.textBoxlLeitoQtd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
-            // label4
+            // dataGridViewTextBoxColumn3
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(505, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Leitos restantes";
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NomeLeito";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Leito";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // isDisponivel
+            // 
+            this.isDisponivel.Description = "Disponibilidade de Leitos";
+            this.isDisponivel.HeaderText = "Disp";
+            this.isDisponivel.Name = "isDisponivel";
+            this.isDisponivel.ReadOnly = true;
+            this.isDisponivel.ToolTipText = "Disponibilidade de Leitos";
+            this.isDisponivel.Width = 30;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "";
+            this.dataGridViewImageColumn3.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
+            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.ReadOnly = true;
+            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn3.Width = 30;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "";
+            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
+            this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.ReadOnly = true;
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn4.Width = 30;
             // 
             // UCQuartoLeito
             // 
@@ -703,7 +728,7 @@ namespace AppInternacao.FrmSae
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.Controls.Add(this.tabControlQuartoLeito);
             this.Name = "UCQuartoLeito";
-            this.Size = new System.Drawing.Size(716, 537);
+            this.Size = new System.Drawing.Size(777, 537);
             this.Load += new System.EventHandler(this.UCQuartoLeito_Load);
             this.tabControlQuartoLeito.ResumeLayout(false);
             this.tabPageQuartos.ResumeLayout(false);
@@ -759,11 +784,6 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.TextBox textBoxPesquisaLeito;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn5;
         private System.Windows.Forms.Button buttonLimpar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewImageColumn isDisponivel;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDSETOR;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeQuarto;
@@ -773,5 +793,12 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Button button1;
         private TextBox textBoxlLeitoQtd;
         private Label label4;
+        private Label label5;
+        private TextBox textBoxTotalLeitos;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewImageColumn isDisponivel;
+        private DataGridViewImageColumn dataGridViewImageColumn3;
+        private DataGridViewImageColumn dataGridViewImageColumn4;
     }
 }

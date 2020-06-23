@@ -29,5 +29,11 @@
         SP_GET_QUARTOS_BYNAME = 12,
 
         SP_BAIXAR_PACIENTE = 13,
+
+        SP_ADD_HISTORICO_ENFERMAGEM = 14,
+
+        SP_GET_HISTORICO_ENFERMAGEM = 15,
+
+        SP_ADD_USUARIO = 16,
     }
 }

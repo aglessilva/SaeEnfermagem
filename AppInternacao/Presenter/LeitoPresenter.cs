@@ -53,10 +53,9 @@ namespace AppInternacao.Presenter
                 objeto = new LISTAOBJETOS();
                 crud = new CRUD();
                 ret = crud.Executar(new Leito() { Id = leito.Id }, Procedure.SP_DEL_LEITO, Acao.Excluir);
-                Carregar();
 
-                if (ret.HasValue)
-                    ret = 2; // 2 é Codigo de exclusão de registro
+                if (ret == 2 )
+                    Carregar();
             }
             catch (Exception exEx)
             {

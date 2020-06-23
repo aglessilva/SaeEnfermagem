@@ -243,12 +243,12 @@ namespace AppInternacao.FrmSae
                     if ((bool)obj.IsDisponibilidade)
                     {
                         row.Cells[2].Value = Properties.Resources.sinalizadorVer;
-                        row.Cells[2].ToolTipText = "Indicação de leito DISPONIVEL";
+                        row.Cells[2].ToolTipText = "Leito DISPONIVEL";
                     }
                     else
                     {
                         row.Cells[2].Value = Properties.Resources.sinalizadorV1;
-                        row.Cells[2].ToolTipText = "Indicação de leito INDISPONIVEL";
+                        row.Cells[2].ToolTipText = "Leito INDISPONIVEL";
 
                     }
                 }
@@ -355,6 +355,7 @@ namespace AppInternacao.FrmSae
                 return;
             Quarto item = (Quarto)comboBoxQuarto.SelectedItem;
             textBoxlLeitoQtd.Text = (item.TotalLeito - lstObjLeito?.Count(c => c.IdQuarto.Equals(item.Id))).ToString();
+            textBoxTotalLeitos.Text = item.TotalLeito.ToString();
         }
     }
 } 

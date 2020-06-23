@@ -1,6 +1,6 @@
 ﻿namespace AppInternacao.FrmSae
 {
-    partial class UCBarCodeProntuario
+    partial class UC00BarCodeProntuario
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxProntuario = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.gDadosPaciente = new System.Windows.Forms.GroupBox();
-            this.lblNome = new System.Windows.Forms.Label();
-            this.lblProntuario = new System.Windows.Forms.Label();
-            this.lblIdade = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pbOk = new System.Windows.Forms.PictureBox();
             this.lblNaoLocaizado = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.pbOk = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.textBoxProntuario = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.gDadosPaciente = new System.Windows.Forms.GroupBox();
             this.lblLeito = new System.Windows.Forms.Label();
+            this.lblIdade = new System.Windows.Forms.Label();
+            this.lblProntuario = new System.Windows.Forms.Label();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblObs = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.gDadosPaciente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOk)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gDadosPaciente.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,29 +74,41 @@
             this.panel1.Size = new System.Drawing.Size(372, 181);
             this.panel1.TabIndex = 0;
             // 
-            // textBoxProntuario
+            // lblNaoLocaizado
             // 
-            this.textBoxProntuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.textBoxProntuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxProntuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxProntuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBoxProntuario.Location = new System.Drawing.Point(79, 87);
-            this.textBoxProntuario.MaxLength = 18;
-            this.textBoxProntuario.Name = "textBoxProntuario";
-            this.textBoxProntuario.Size = new System.Drawing.Size(248, 25);
-            this.textBoxProntuario.TabIndex = 0;
-            this.textBoxProntuario.TextChanged += new System.EventHandler(this.textBoxProntuario_TextChanged);
+            this.lblNaoLocaizado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNaoLocaizado.AutoSize = true;
+            this.lblNaoLocaizado.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblNaoLocaizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaoLocaizado.ForeColor = System.Drawing.Color.Red;
+            this.lblNaoLocaizado.Location = new System.Drawing.Point(37, 122);
+            this.lblNaoLocaizado.Name = "lblNaoLocaizado";
+            this.lblNaoLocaizado.Size = new System.Drawing.Size(12, 15);
+            this.lblNaoLocaizado.TabIndex = 2;
+            this.lblNaoLocaizado.Text = "-";
+            this.lblNaoLocaizado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNaoLocaizado.Visible = false;
             // 
-            // panel2
+            // pbOk
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(372, 40);
-            this.panel2.TabIndex = 1;
+            this.pbOk.Image = global::AppInternacao.Properties.Resources.ok_accept_15562;
+            this.pbOk.Location = new System.Drawing.Point(334, 96);
+            this.pbOk.Name = "pbOk";
+            this.pbOk.Size = new System.Drawing.Size(18, 18);
+            this.pbOk.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOk.TabIndex = 5;
+            this.pbOk.TabStop = false;
+            this.pbOk.Visible = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panel4.Location = new System.Drawing.Point(40, 115);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(310, 1);
+            this.panel4.TabIndex = 3;
             // 
             // panel3
             // 
@@ -107,37 +119,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(372, 39);
             this.panel3.TabIndex = 2;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.panel4.Location = new System.Drawing.Point(40, 115);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(310, 1);
-            this.panel4.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(64, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Informe o código de barras do prontuário do paciente";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.vector_scan_barcode_4_transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 55);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(61, 60);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // btnLimpar
             // 
@@ -163,6 +144,30 @@
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(372, 40);
+            this.panel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(64, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(297, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Informe o código de barras do prontuário do paciente";
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -173,6 +178,29 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            // 
+            // textBoxProntuario
+            // 
+            this.textBoxProntuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.textBoxProntuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxProntuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxProntuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.textBoxProntuario.Location = new System.Drawing.Point(79, 87);
+            this.textBoxProntuario.MaxLength = 18;
+            this.textBoxProntuario.Name = "textBoxProntuario";
+            this.textBoxProntuario.Size = new System.Drawing.Size(248, 25);
+            this.textBoxProntuario.TabIndex = 0;
+            this.textBoxProntuario.TextChanged += new System.EventHandler(this.textBoxProntuario_TextChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.vector_scan_barcode_4_transparent;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 55);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(61, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // gDadosPaciente
             // 
@@ -187,31 +215,22 @@
             this.gDadosPaciente.Controls.Add(this.label4);
             this.gDadosPaciente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gDadosPaciente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gDadosPaciente.Location = new System.Drawing.Point(245, 371);
+            this.gDadosPaciente.Location = new System.Drawing.Point(196, 371);
             this.gDadosPaciente.Name = "gDadosPaciente";
-            this.gDadosPaciente.Size = new System.Drawing.Size(369, 129);
+            this.gDadosPaciente.Size = new System.Drawing.Size(461, 129);
             this.gDadosPaciente.TabIndex = 1;
             this.gDadosPaciente.TabStop = false;
             this.gDadosPaciente.Text = "Paciente Localizado";
             this.gDadosPaciente.Visible = false;
             // 
-            // lblNome
+            // lblLeito
             // 
-            this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(85, 26);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(13, 16);
-            this.lblNome.TabIndex = 0;
-            this.lblNome.Text = "-";
-            // 
-            // lblProntuario
-            // 
-            this.lblProntuario.AutoSize = true;
-            this.lblProntuario.Location = new System.Drawing.Point(85, 76);
-            this.lblProntuario.Name = "lblProntuario";
-            this.lblProntuario.Size = new System.Drawing.Size(13, 16);
-            this.lblProntuario.TabIndex = 2;
-            this.lblProntuario.Text = "-";
+            this.lblLeito.AutoSize = true;
+            this.lblLeito.Location = new System.Drawing.Point(85, 52);
+            this.lblLeito.Name = "lblLeito";
+            this.lblLeito.Size = new System.Drawing.Size(13, 16);
+            this.lblLeito.TabIndex = 9;
+            this.lblLeito.Text = "-";
             // 
             // lblIdade
             // 
@@ -222,23 +241,23 @@
             this.lblIdade.TabIndex = 3;
             this.lblIdade.Text = "-";
             // 
-            // label4
+            // lblProntuario
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 16);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Idade:";
+            this.lblProntuario.AutoSize = true;
+            this.lblProntuario.Location = new System.Drawing.Point(85, 76);
+            this.lblProntuario.Name = "lblProntuario";
+            this.lblProntuario.Size = new System.Drawing.Size(13, 16);
+            this.lblProntuario.TabIndex = 2;
+            this.lblProntuario.Text = "-";
             // 
-            // label5
+            // lblNome
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 75);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 16);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Prontuário:";
+            this.lblNome.AutoSize = true;
+            this.lblNome.Location = new System.Drawing.Point(85, 26);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(13, 16);
+            this.lblNome.TabIndex = 0;
+            this.lblNome.Text = "-";
             // 
             // label6
             // 
@@ -249,34 +268,6 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Nome:";
             // 
-            // pbOk
-            // 
-            this.pbOk.Image = global::AppInternacao.Properties.Resources.ok_accept_15562;
-            this.pbOk.Location = new System.Drawing.Point(330, 84);
-            this.pbOk.Name = "pbOk";
-            this.pbOk.Size = new System.Drawing.Size(28, 28);
-            this.pbOk.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOk.TabIndex = 5;
-            this.pbOk.TabStop = false;
-            this.pbOk.Visible = false;
-            // 
-            // lblNaoLocaizado
-            // 
-            this.lblNaoLocaizado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNaoLocaizado.AutoSize = true;
-            this.lblNaoLocaizado.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblNaoLocaizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaoLocaizado.ForeColor = System.Drawing.Color.Red;
-            this.lblNaoLocaizado.Location = new System.Drawing.Point(37, 122);
-            this.lblNaoLocaizado.Name = "lblNaoLocaizado";
-            this.lblNaoLocaizado.Size = new System.Drawing.Size(12, 15);
-            this.lblNaoLocaizado.TabIndex = 2;
-            this.lblNaoLocaizado.Text = "-";
-            this.lblNaoLocaizado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblNaoLocaizado.Visible = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -286,14 +277,23 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Leito:";
             // 
-            // lblLeito
+            // label5
             // 
-            this.lblLeito.AutoSize = true;
-            this.lblLeito.Location = new System.Drawing.Point(85, 52);
-            this.lblLeito.Name = "lblLeito";
-            this.lblLeito.Size = new System.Drawing.Size(13, 16);
-            this.lblLeito.TabIndex = 9;
-            this.lblLeito.Text = "-";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 16);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Prontuário:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(35, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 16);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Idade:";
             // 
             // lblObs
             // 
@@ -320,14 +320,14 @@
             this.Load += new System.EventHandler(this.UCBarCodeProntuario_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gDadosPaciente.ResumeLayout(false);
             this.gDadosPaciente.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

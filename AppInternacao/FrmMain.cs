@@ -38,14 +38,22 @@ namespace AppInternacao
 
         private void OpenUc()
         {
-            panelMenu.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
-            panelButtons.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
-            panelDropDown.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
+            if (!isCollapsed)
+                timerCollapsed.Start();
 
-            splitContainer1.Panel1.Controls.Clear();
-            if (!splitContainer1.Panel1.Controls.OfType<Control>().Any(f => f is UserControl))
-            {
-                splitContainer1.Panel1.Controls.Add(userControl);
+            //panelMenu.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
+            //panelButtons.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
+            //panelDropDown.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
+
+            var tt = splitContainer1.Panel1.Controls.OfType<UserControl>().ToList();
+
+            if (!tt.Any(cnt => cnt.Name.Equals(userControl.Name)))
+            { 
+                splitContainer1.Panel1.Controls.Clear();
+                if (!splitContainer1.Panel1.Controls.OfType<Control>().Any(f => f is UserControl))
+                {
+                    splitContainer1.Panel1.Controls.Add(userControl);
+                }
             }
         }
 
@@ -57,9 +65,6 @@ namespace AppInternacao
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            panelMenu.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = true; });
-            panelButtons.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = true; });
-            panelDropDown.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = true; });
             if (splitContainer1.Panel1.Controls.Count == 0)
             {
                 Application.Exit();
@@ -68,6 +73,12 @@ namespace AppInternacao
 
             Control control = splitContainer1.Panel1.Controls[0];
             control.Dispose();
+
+            if (splitContainer1.Panel2.Controls.Count > 0)
+            {
+                control = splitContainer1.Panel2.Controls[0];
+                control.Dispose();
+            }
         }
 
         private void btnPaciente_Click(object sender, EventArgs e)
@@ -82,26 +93,13 @@ namespace AppInternacao
             {
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
-                dataGridViewPaciente.AutoGenerateColumns = false;
             }
             catch (Exception exM)
             {
                 Alert(0,exM);
             }
         }
-
-        private void textPesquisa_TextChanged(object sender, EventArgs e)
-        {
-            if (textPesquisa.Text.Length >= 5)
-            {
-            }
-        }
-
-        private void buttonLimpar_Click(object sender, EventArgs e)
-        {
-            textPesquisa.Text = string.Empty;
-            dataGridViewPaciente.DataSource = null;
-        }
+       
 
         private void btnGerenciamentoLeito_Click(object sender, EventArgs e)
         {
@@ -137,6 +135,11 @@ namespace AppInternacao
                 case 4:
                     {
                         MessageBox.Show("Informação já cadastrada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        break;
+                    }
+                case 200:
+                    {
+                        MessageBox.Show("Não é possível excluir esse registro!!!\nPois o mesmo está associado a outra informação em uso no momento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         break;
                     }
                 default:
@@ -210,8 +213,19 @@ namespace AppInternacao
 
         private void btnClinicaMedica_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed)
+                timerCollapsed.Start();
 
             userControl = new FrmSae.UCTimeLine();
+            OpenUc();
+        }
+
+        private void btnAdmUsuario_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed)
+                timerCollapsed.Start();
+
+            userControl = new FrmSae.UCUsuario();
             OpenUc();
         }
     }

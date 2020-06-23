@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace AppInternacao.FrmSae
+﻿namespace AppInternacao.FrmSae
 {
-    partial class UCPrescricaoEnfermagem
+    partial class UC03PrescricaoEnfermagem
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -19,8 +17,6 @@ namespace AppInternacao.FrmSae
             {
                 components.Dispose();
             }
-
-            UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
             base.Dispose(disposing);
         }
 
@@ -38,20 +34,19 @@ namespace AppInternacao.FrmSae
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(368, 137);
+            this.label1.Location = new System.Drawing.Point(344, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PRESCRIÇÃO";
+            this.label1.Size = new System.Drawing.Size(261, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "PRESCRIÇÃO / PLANEJAMENTO DE ENFERMAGE";
             // 
-            // UCPrescricao
+            // UC03PrescricaoEnfermagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Name = "UCPrescricao";
-            this.Size = new System.Drawing.Size(837, 552);
-            this.Load += new System.EventHandler(this.UCPrescricao_Load);
+            this.Name = "UC03PrescricaoEnfermagem";
+            this.Size = new System.Drawing.Size(856, 552);
             this.ResumeLayout(false);
             this.PerformLayout();
 

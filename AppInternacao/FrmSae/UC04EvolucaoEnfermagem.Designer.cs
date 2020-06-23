@@ -2,7 +2,7 @@
 
 namespace AppInternacao.FrmSae
 {
-    partial class UCHistoricoEnfermagem
+    partial class UC04EvolucaoEnfermagem
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -19,9 +19,9 @@ namespace AppInternacao.FrmSae
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);
 
             UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
+            base.Dispose(disposing);
         }
 
         #region Código gerado pelo Designer de Componentes
@@ -38,20 +38,20 @@ namespace AppInternacao.FrmSae
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(368, 122);
+            this.label1.Location = new System.Drawing.Point(368, 137);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 13);
+            this.label1.Size = new System.Drawing.Size(162, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "HISTORICO DE ENFERMAGEM";
+            this.label1.Text = "EVOLUÇÃO DE ENFERMAGEM";
             // 
-            // UCHistoricoEnfermagem
+            // UC04EvolucaoEnfermagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
-            this.Name = "UCHistoricoEnfermagem";
-            this.Size = new System.Drawing.Size(894, 552);
-            this.Load += new System.EventHandler(this.UCHistoricoEnfermagem_Load);
+            this.Name = "UC04EvolucaoEnfermagem";
+            this.Size = new System.Drawing.Size(837, 552);
+            this.Load += new System.EventHandler(this.UCPrescricao_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

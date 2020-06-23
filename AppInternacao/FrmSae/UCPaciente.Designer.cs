@@ -33,9 +33,9 @@ namespace AppInternacao.FrmSae
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxProntuario = new System.Windows.Forms.TextBox();
@@ -50,6 +50,15 @@ namespace AppInternacao.FrmSae
             this.textBoxIdPaciente = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridViewPaciente = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prontuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Liberar = new System.Windows.Forms.DataGridViewImageColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -62,26 +71,26 @@ namespace AppInternacao.FrmSae
             this.textBoxProntuarioCracha = new System.Windows.Forms.TextBox();
             this.textBoxDataCracha = new System.Windows.Forms.TextBox();
             this.textBoxNomeCrachar = new System.Windows.Forms.TextBox();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Idade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prontuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Liberar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxPesquisaPaciente = new System.Windows.Forms.TextBox();
+            this.buttonLimpar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxIdLeito = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBarcodeCracha)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxIdLeito);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.textBoxProntuario);
             this.groupBox1.Controls.Add(this.comboBoxLeito);
             this.groupBox1.Controls.Add(this.label2);
@@ -96,7 +105,7 @@ namespace AppInternacao.FrmSae
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(924, 87);
+            this.groupBox1.Size = new System.Drawing.Size(924, 340);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro resumido de paciente";
@@ -104,7 +113,7 @@ namespace AppInternacao.FrmSae
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(577, 18);
+            this.label4.Location = new System.Drawing.Point(4, 249);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(223, 13);
             this.label4.TabIndex = 12;
@@ -115,7 +124,7 @@ namespace AppInternacao.FrmSae
             this.textBoxProntuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxProntuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxProntuario.Enabled = false;
-            this.textBoxProntuario.Location = new System.Drawing.Point(580, 32);
+            this.textBoxProntuario.Location = new System.Drawing.Point(7, 270);
             this.textBoxProntuario.Name = "textBoxProntuario";
             this.textBoxProntuario.Size = new System.Drawing.Size(220, 20);
             this.textBoxProntuario.TabIndex = 10;
@@ -125,16 +134,16 @@ namespace AppInternacao.FrmSae
             this.comboBoxLeito.DisplayMember = "NomeLeito";
             this.comboBoxLeito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLeito.FormattingEnabled = true;
-            this.comboBoxLeito.Location = new System.Drawing.Point(425, 31);
+            this.comboBoxLeito.Location = new System.Drawing.Point(7, 206);
             this.comboBoxLeito.Name = "comboBoxLeito";
-            this.comboBoxLeito.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxLeito.Size = new System.Drawing.Size(220, 21);
             this.comboBoxLeito.TabIndex = 9;
             this.comboBoxLeito.ValueMember = "Id";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(422, 16);
+            this.label2.Location = new System.Drawing.Point(5, 184);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 8;
@@ -143,7 +152,7 @@ namespace AppInternacao.FrmSae
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(337, 18);
+            this.label1.Location = new System.Drawing.Point(6, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 7;
@@ -152,7 +161,7 @@ namespace AppInternacao.FrmSae
             // lblRotulo
             // 
             this.lblRotulo.AutoSize = true;
-            this.lblRotulo.Location = new System.Drawing.Point(3, 16);
+            this.lblRotulo.Location = new System.Drawing.Point(6, 26);
             this.lblRotulo.Name = "lblRotulo";
             this.lblRotulo.Size = new System.Drawing.Size(35, 13);
             this.lblRotulo.TabIndex = 6;
@@ -161,7 +170,7 @@ namespace AppInternacao.FrmSae
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 58);
+            this.radioButton2.Location = new System.Drawing.Point(7, 129);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(62, 17);
             this.radioButton2.TabIndex = 3;
@@ -172,7 +181,7 @@ namespace AppInternacao.FrmSae
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(74, 58);
+            this.radioButton1.Location = new System.Drawing.Point(7, 152);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(73, 17);
             this.radioButton1.TabIndex = 2;
@@ -183,7 +192,7 @@ namespace AppInternacao.FrmSae
             // textBoxIdade
             // 
             this.textBoxIdade.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxIdade.Location = new System.Drawing.Point(340, 32);
+            this.textBoxIdade.Location = new System.Drawing.Point(9, 93);
             this.textBoxIdade.MaxLength = 2;
             this.textBoxIdade.Name = "textBoxIdade";
             this.textBoxIdade.Size = new System.Drawing.Size(51, 20);
@@ -195,15 +204,15 @@ namespace AppInternacao.FrmSae
             // 
             this.textBoxPaciente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxPaciente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxPaciente.Location = new System.Drawing.Point(6, 32);
+            this.textBoxPaciente.Location = new System.Drawing.Point(9, 51);
             this.textBoxPaciente.Name = "textBoxPaciente";
-            this.textBoxPaciente.Size = new System.Drawing.Size(298, 20);
+            this.textBoxPaciente.Size = new System.Drawing.Size(395, 20);
             this.textBoxPaciente.TabIndex = 0;
             this.textBoxPaciente.TextChanged += new System.EventHandler(this.textBoxPaciente_TextChanged);
             // 
             // textBoxIdPaciente
             // 
-            this.textBoxIdPaciente.Location = new System.Drawing.Point(6, 95);
+            this.textBoxIdPaciente.Location = new System.Drawing.Point(436, 22);
             this.textBoxIdPaciente.Name = "textBoxIdPaciente";
             this.textBoxIdPaciente.Size = new System.Drawing.Size(23, 20);
             this.textBoxIdPaciente.TabIndex = 13;
@@ -218,20 +227,18 @@ namespace AppInternacao.FrmSae
             this.dataGridViewPaciente.AllowUserToAddRows = false;
             this.dataGridViewPaciente.AllowUserToDeleteRows = false;
             this.dataGridViewPaciente.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewPaciente.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewPaciente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPaciente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPaciente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPaciente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -243,24 +250,105 @@ namespace AppInternacao.FrmSae
             this.Prontuario,
             this.Editar,
             this.Liberar});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPaciente.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPaciente.Location = new System.Drawing.Point(8, 121);
+            this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPaciente.Name = "dataGridViewPaciente";
             this.dataGridViewPaciente.ReadOnly = true;
             this.dataGridViewPaciente.RowHeadersVisible = false;
             this.dataGridViewPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPaciente.Size = new System.Drawing.Size(405, 490);
+            this.dataGridViewPaciente.Size = new System.Drawing.Size(924, 243);
             this.dataGridViewPaciente.TabIndex = 16;
             this.dataGridViewPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPaciente_CellContentClick);
             this.dataGridViewPaciente.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewPaciente_RowsAdded);
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 5;
+            // 
+            // IdLeito
+            // 
+            this.IdLeito.DataPropertyName = "IdLeito";
+            this.IdLeito.HeaderText = "IdLeito";
+            this.IdLeito.Name = "IdLeito";
+            this.IdLeito.ReadOnly = true;
+            this.IdLeito.Visible = false;
+            // 
+            // Nome
+            // 
+            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Idade
+            // 
+            this.Idade.DataPropertyName = "Idade";
+            this.Idade.HeaderText = "Idade";
+            this.Idade.Name = "Idade";
+            this.Idade.ReadOnly = true;
+            this.Idade.Visible = false;
+            this.Idade.Width = 10;
+            // 
+            // Sexo
+            // 
+            this.Sexo.DataPropertyName = "Sexo";
+            this.Sexo.HeaderText = "Sexo";
+            this.Sexo.Name = "Sexo";
+            this.Sexo.ReadOnly = true;
+            this.Sexo.Width = 35;
+            // 
+            // NomeLeito
+            // 
+            this.NomeLeito.DataPropertyName = "NomeLeito";
+            this.NomeLeito.HeaderText = "Leito";
+            this.NomeLeito.Name = "NomeLeito";
+            this.NomeLeito.ReadOnly = true;
+            this.NomeLeito.Width = 60;
+            // 
+            // Prontuario
+            // 
+            this.Prontuario.DataPropertyName = "Prontuario";
+            this.Prontuario.HeaderText = "Prontuário";
+            this.Prontuario.Name = "Prontuario";
+            this.Prontuario.ReadOnly = true;
+            // 
+            // Editar
+            // 
+            this.Editar.Description = "Editar registro";
+            this.Editar.HeaderText = "";
+            this.Editar.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
+            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Editar.ToolTipText = "Editar Registro!";
+            this.Editar.Width = 30;
+            // 
+            // Liberar
+            // 
+            this.Liberar.Description = "Liberar leito";
+            this.Liberar.HeaderText = "";
+            this.Liberar.Image = global::AppInternacao.Properties.Resources.liberar;
+            this.Liberar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Liberar.Name = "Liberar";
+            this.Liberar.ReadOnly = true;
+            this.Liberar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Liberar.ToolTipText = "Liberar Leito!";
+            this.Liberar.Width = 30;
             // 
             // label3
             // 
@@ -308,7 +396,7 @@ namespace AppInternacao.FrmSae
             this.panel1.Controls.Add(this.textBoxProntuarioCracha);
             this.panel1.Controls.Add(this.textBoxDataCracha);
             this.panel1.Controls.Add(this.textBoxNomeCrachar);
-            this.panel1.Location = new System.Drawing.Point(445, 92);
+            this.panel1.Location = new System.Drawing.Point(445, 8);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(479, 328);
             this.panel1.TabIndex = 15;
@@ -402,98 +490,80 @@ namespace AppInternacao.FrmSae
             this.textBoxNomeCrachar.Size = new System.Drawing.Size(271, 13);
             this.textBoxNomeCrachar.TabIndex = 24;
             // 
-            // Id
+            // groupBox2
             // 
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 5;
+            this.groupBox2.Controls.Add(this.textBoxIdPaciente);
+            this.groupBox2.Controls.Add(this.buttonLimpar);
+            this.groupBox2.Controls.Add(this.textBoxPesquisaPaciente);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 340);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(924, 56);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Pesquisa por Nome do paciente";
             // 
-            // IdLeito
+            // textBoxPesquisaPaciente
             // 
-            this.IdLeito.DataPropertyName = "IdLeito";
-            this.IdLeito.HeaderText = "IdLeito";
-            this.IdLeito.Name = "IdLeito";
-            this.IdLeito.ReadOnly = true;
-            this.IdLeito.Visible = false;
+            this.textBoxPesquisaPaciente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPesquisaPaciente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxPesquisaPaciente.Location = new System.Drawing.Point(9, 21);
+            this.textBoxPesquisaPaciente.Name = "textBoxPesquisaPaciente";
+            this.textBoxPesquisaPaciente.Size = new System.Drawing.Size(395, 20);
+            this.textBoxPesquisaPaciente.TabIndex = 1;
+            this.textBoxPesquisaPaciente.TextChanged += new System.EventHandler(this.textBoxPesquisaPaciente_TextChanged);
             // 
-            // Nome
+            // buttonLimpar
             // 
-            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
+            this.buttonLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.buttonLimpar.BackgroundImage = global::AppInternacao.Properties.Resources.Childish_Cross_24996;
+            this.buttonLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.buttonLimpar.FlatAppearance.BorderSize = 0;
+            this.buttonLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.buttonLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.buttonLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLimpar.Location = new System.Drawing.Point(404, 21);
+            this.buttonLimpar.Name = "buttonLimpar";
+            this.buttonLimpar.Size = new System.Drawing.Size(26, 20);
+            this.buttonLimpar.TabIndex = 10;
+            this.buttonLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLimpar.UseVisualStyleBackColor = false;
+            this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
             // 
-            // Idade
+            // panel2
             // 
-            this.Idade.DataPropertyName = "Idade";
-            this.Idade.HeaderText = "Idade";
-            this.Idade.Name = "Idade";
-            this.Idade.ReadOnly = true;
-            this.Idade.Visible = false;
-            this.Idade.Width = 10;
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.dataGridViewPaciente);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 396);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(924, 243);
+            this.panel2.TabIndex = 18;
             // 
-            // Sexo
+            // textBoxIdLeito
             // 
-            this.Sexo.DataPropertyName = "Sexo";
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.Name = "Sexo";
-            this.Sexo.ReadOnly = true;
-            this.Sexo.Width = 35;
-            // 
-            // NomeLeito
-            // 
-            this.NomeLeito.DataPropertyName = "NomeLeito";
-            this.NomeLeito.HeaderText = "Leito";
-            this.NomeLeito.Name = "NomeLeito";
-            this.NomeLeito.ReadOnly = true;
-            this.NomeLeito.Width = 60;
-            // 
-            // Prontuario
-            // 
-            this.Prontuario.DataPropertyName = "Prontuario";
-            this.Prontuario.HeaderText = "Prontuário";
-            this.Prontuario.Name = "Prontuario";
-            this.Prontuario.ReadOnly = true;
-            // 
-            // Editar
-            // 
-            this.Editar.Description = "Editar registro";
-            this.Editar.HeaderText = "";
-            this.Editar.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
-            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Editar.ToolTipText = "Editar Registro!";
-            this.Editar.Width = 30;
-            // 
-            // Liberar
-            // 
-            this.Liberar.Description = "Liberar leito";
-            this.Liberar.HeaderText = "";
-            this.Liberar.Image = global::AppInternacao.Properties.Resources.liberar;
-            this.Liberar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Liberar.Name = "Liberar";
-            this.Liberar.ReadOnly = true;
-            this.Liberar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Liberar.ToolTipText = "Liberar Leito!";
-            this.Liberar.Width = 30;
+            this.textBoxIdLeito.Location = new System.Drawing.Point(245, 206);
+            this.textBoxIdLeito.Name = "textBoxIdLeito";
+            this.textBoxIdLeito.Size = new System.Drawing.Size(23, 20);
+            this.textBoxIdLeito.TabIndex = 14;
+            this.textBoxIdLeito.Visible = false;
             // 
             // UCPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Controls.Add(this.textBoxIdPaciente);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridViewPaciente);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Name = "UCPaciente";
-            this.Size = new System.Drawing.Size(924, 611);
+            this.Size = new System.Drawing.Size(924, 639);
             this.Load += new System.EventHandler(this.UCPaciente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -503,6 +573,9 @@ namespace AppInternacao.FrmSae
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBarcodeCracha)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,5 +618,10 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.DataGridViewTextBoxColumn Prontuario;
         private System.Windows.Forms.DataGridViewImageColumn Editar;
         private System.Windows.Forms.DataGridViewImageColumn Liberar;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBoxPesquisaPaciente;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonLimpar;
+        private System.Windows.Forms.TextBox textBoxIdLeito;
     }
 }

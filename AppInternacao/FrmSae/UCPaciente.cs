@@ -28,7 +28,7 @@ namespace AppInternacao.FrmSae
                         Idade = string.IsNullOrWhiteSpace(textBoxIdade.Text) ? 0 : Convert.ToInt32(textBoxIdade.Text), 
                         Prontuario = string.IsNullOrWhiteSpace(textBoxProntuario.Text) ? 0 : Convert.ToInt64(textBoxProntuario.Text),
                         Sexo = radioButton1.Checked ? 'M' : 'F',
-                        IdLeito = comboBoxLeito.SelectedItem == null ? 0 : Convert.ToInt32(comboBoxLeito.SelectedValue),
+                        IdLeito = comboBoxLeito.SelectedItem == null ? Convert.ToInt32(textBoxIdLeito.Text) : Convert.ToInt32(comboBoxLeito.SelectedValue),
                         Nome =  textBoxPaciente.Text
                     };
             set
@@ -37,6 +37,7 @@ namespace AppInternacao.FrmSae
                 textBoxPaciente.Text = value.Nome;
                 textBoxIdade.Text = value.Idade.ToString();
                 comboBoxLeito.SelectedValue = value.IdLeito;
+                textBoxIdLeito.Text = value.IdLeito.ToString();
                 textBoxLeitoCracha.Text = value.NomeLeito;
                 textBoxProntuarioCracha.Text = textBoxProntuario.Text = value.Prontuario.ToString();
 
@@ -72,7 +73,7 @@ namespace AppInternacao.FrmSae
                 {
                     radioButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
                     errorProvider1.SetError(radioButton, "preencha este campo");
-                    errorProvider1.SetIconPadding(radioButton, 75);
+                    errorProvider1.SetIconPadding(radioButton,3);
                     return false;
                 }
                 else
@@ -103,11 +104,10 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                if (paciente.Id == 0)
-                    GeraProntuario();
-
                 if (validaCampos())
                 {
+                    if (paciente.Id == 0)
+                        GeraProntuario();
                     //textBoxLeitoCracha.Text = comboBoxLeito.Text;
                     PacientePresenter = new PacientePresenter(this);
                     FrmMain.Alert(PacientePresenter.Salvar());
@@ -134,7 +134,6 @@ namespace AppInternacao.FrmSae
 
             PacientePresenter = new PacientePresenter(this);
             PacientePresenter.Carregar();
-
         }
 
         private void MyNovo_Click(object sender, EventArgs e)
@@ -226,6 +225,34 @@ namespace AppInternacao.FrmSae
             {
                 throw new Exception("Erro ao tentar Listar pacientes: " + exG.Message);
             }
+        }
+
+        private void textBoxPesquisaPaciente_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBoxPesquisaPaciente.Text.Length > 3)
+                {
+                    PacientePresenter = new PacientePresenter(this);
+                    PacientePresenter.Pesquisar(new Paciente() { Nome = textBoxPesquisaPaciente.Text.Trim() });
+                }
+                else if (textBoxPesquisaPaciente.Text.Length == 0)
+                {
+                    PacientePresenter = new PacientePresenter(this);
+                    PacientePresenter.Pesquisar(new Paciente());
+                }
+                else
+                    return;
+            }
+            catch (Exception exPes)
+            {
+                throw new Exception("Ocorreu um erro na pesquisa\n" + exPes.Message);
+            }
+        }
+
+        private void buttonLimpar_Click(object sender, EventArgs e)
+        {
+            textBoxPesquisaPaciente.Text = string.Empty;
         }
     }
 }

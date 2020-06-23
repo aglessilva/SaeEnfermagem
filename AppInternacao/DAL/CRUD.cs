@@ -150,6 +150,15 @@ namespace AppInternacao.Model
                                         }
                                 }
                             }
+                            else
+                            {
+                                var valor = Convert.ToInt32(item.GetValue(obejto, null));
+                                if (valor > 0)
+                                {
+                                    Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Int));
+                                    Comando.Parameters["@" + item.Name].Value = Convert.ToInt32(valor);
+                                }
+                            }
                         }
                     }
 
@@ -179,6 +188,12 @@ namespace AppInternacao.Model
 
                 if (acao == Acao.Verificar)
                     retorno = (int?)Comando.ExecuteScalar();
+                else if (acao == Acao.Excluir)
+                {
+                    Comando.Parameters.Add(new SqlParameter("@RETORNO", SqlDbType.Int)).Direction = ParameterDirection.ReturnValue;
+                    Comando.ExecuteNonQuery();
+                    retorno = Convert.ToInt32(Comando.Parameters["@RETORNO"].Value);
+                }
                 else
                     retorno = Comando.ExecuteNonQuery();
             }

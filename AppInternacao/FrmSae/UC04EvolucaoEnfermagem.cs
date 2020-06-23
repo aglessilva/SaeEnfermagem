@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UCEvolucaoEnfermagem : UserControl
+    public partial class UC04EvolucaoEnfermagem : UserControl
     {
-        public UCEvolucaoEnfermagem()
+        public UC04EvolucaoEnfermagem()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
         }
 
-        private void UCEvolucaoEnfermagem_Load(object sender, EventArgs e)
+        private void UCPrescricao_Load(object sender, EventArgs e)
         {
-            UCTimeLine.ButtonSaeAvanca.Click += ButtonSaeAvanca_Click;
+            UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
         }
 
         private void ButtonSaeAvanca_Click(object sender, EventArgs e)
