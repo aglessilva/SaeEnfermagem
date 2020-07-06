@@ -73,6 +73,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _48_113667 {
+            get {
+                object obj = ResourceManager.GetObject("48_113667", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baby {
             get {
                 object obj = ResourceManager.GetObject("baby", resourceCulture);
@@ -103,9 +113,39 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Barcode_27025 {
+            get {
+                object obj = ResourceManager.GetObject("Barcode_27025", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barcodeflat_105982 {
+            get {
+                object obj = ResourceManager.GetObject("barcodeflat_105982", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cabecalho02 {
             get {
                 object obj = ResourceManager.GetObject("Cabecalho02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cameraslrhd_106078 {
+            get {
+                object obj = ResourceManager.GetObject("cameraslrhd_106078", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,19 +173,9 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap closeTela {
+        internal static System.Drawing.Bitmap Cracha {
             get {
-                object obj = ResourceManager.GetObject("closeTela", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CrachaLayOut {
-            get {
-                object obj = ResourceManager.GetObject("CrachaLayOut", resourceCulture);
+                object obj = ResourceManager.GetObject("Cracha", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,6 +253,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap home_01 {
+            get {
+                object obj = ResourceManager.GetObject("home 01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hospital_doctor_10739 {
             get {
                 object obj = ResourceManager.GetObject("hospital_doctor_10739", resourceCulture);
@@ -246,6 +286,16 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap ic_people_outline_128_28591 {
             get {
                 object obj = ResourceManager.GetObject("ic_people_outline_128_28591", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_securityprotectlockshield43_4021443_113114 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder-securityprotectlockshield43-4021443_113114", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +333,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap key_silhouette_security_tool_interface_symbol_of_password_icon_icons_com_54503 {
+            get {
+                object obj = ResourceManager.GetObject("key-silhouette-security-tool-interface-symbol-of-password_icon-icons.com_54503", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap leito {
             get {
                 object obj = ResourceManager.GetObject("leito", resourceCulture);
@@ -293,9 +353,39 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LeitoDisable {
+            get {
+                object obj = ResourceManager.GetObject("LeitoDisable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LeitoEnable {
+            get {
+                object obj = ResourceManager.GetObject("LeitoEnable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap liberar {
             get {
                 object obj = ResourceManager.GetObject("liberar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loginFrm2 {
+            get {
+                object obj = ResourceManager.GetObject("loginFrm2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,6 +483,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap private_company {
+            get {
+                object obj = ResourceManager.GetObject("private_company", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Saeico01 {
             get {
                 object obj = ResourceManager.GetObject("Saeico01", resourceCulture);
@@ -406,6 +506,16 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap Save_Icon_icon_icons_com_69139 {
             get {
                 object obj = ResourceManager.GetObject("Save_Icon_icon-icons.com_69139", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Search_find_magnifier_248 {
+            get {
+                object obj = ResourceManager.GetObject("Search_find_magnifier_248", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,6 +583,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Undergo_Insomnia_icon_icons_com_54126 {
+            get {
+                object obj = ResourceManager.GetObject("Undergo_Insomnia_icon-icons.com_54126", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap User_80_icon_icons_com_57249 {
             get {
                 object obj = ResourceManager.GetObject("User-80_icon-icons.com_57249", resourceCulture);
@@ -483,19 +603,9 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_accounts_15362 {
+        internal static System.Drawing.Bitmap user_black_close_up_shape_icon_icons_com_56876 {
             get {
-                object obj = ResourceManager.GetObject("user_accounts_15362", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap User_Group_80_icon_icons_com_57247 {
-            get {
-                object obj = ResourceManager.GetObject("User_Group-80_icon-icons.com_57247", resourceCulture);
+                object obj = ResourceManager.GetObject("user-black-close-up-shape_icon-icons.com_56876", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

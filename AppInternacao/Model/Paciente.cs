@@ -12,7 +12,7 @@
         public long Prontuario { get; set; }
         public string Nome { get; set; }
         public int Idade { get; set; }
-        public int IdLeito { get; set; }
+        public byte[] Foto { get; set; }
         public string NomeLeito { get; set; }
         public bool? IsBaixado { get; set; }
     }

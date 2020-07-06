@@ -46,29 +46,33 @@ namespace AppInternacao.Model
 
         private SqlCommand PopulaPropriedades<T>(T obejto, Procedure procedure)
         {
-            SqlCommand comando = null;
+            SqlCommand Comando = null;
             try
             {
                 Type propriedade = typeof(T);
                 PropertyInfo[] ColecaoPropriedade = propriedade.GetProperties();
 
-                comando = ComandoSQL(procedure);
+                Comando = ComandoSQL(procedure);
 
-                comando.Parameters.Add(new SqlParameter("@IDCLIENTE", SqlDbType.Int));
-                comando.Parameters["@IDCLIENTE"].Value = Sessao.CodigoCliente;
+                Comando.Parameters.Add(new SqlParameter("@IDCLIENTE", SqlDbType.Int));
+                Comando.Parameters["@IDCLIENTE"].Value = Sessao.CodigoCliente;
 
+                TypeCode tipoPropriedade;
                 foreach (PropertyInfo item in ColecaoPropriedade)
                 {
                     if (item.GetValue(obejto, null) != null)
                     {
-                        TypeCode tipo = Type.GetTypeCode(item.GetValue(obejto, null).GetType());
+                        tipoPropriedade = Type.GetTypeCode(item.GetValue(obejto, null).GetType());
+                        Type tipo = item.PropertyType;
+
+                        if (!tipo.IsEnum)
                         {
-                            switch (tipo)
+                            switch (tipoPropriedade)
                             {
                                 case TypeCode.Single:
                                     {
-                                        comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Money));
-                                        comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null) == null ? null : item.GetValue(obejto, null);
+                                        Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Money));
+                                        Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null) == null ? null : item.GetValue(obejto, null);
                                         break;
                                     }
 
@@ -77,8 +81,8 @@ namespace AppInternacao.Model
                                         string valor = (string)item.GetValue(obejto, null);
                                         if (!string.IsNullOrEmpty(valor))
                                         {
-                                            comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.NVarChar));
-                                            comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.NVarChar));
+                                            Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                         }
                                         break;
                                     }
@@ -87,8 +91,8 @@ namespace AppInternacao.Model
                                         int? valor = (int?)item.GetValue(obejto, null);
                                         if (valor > 0)
                                         {
-                                            comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Int));
-                                            comando.Parameters["@" + item.Name].Value = Convert.ToInt32(valor);
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Int));
+                                            Comando.Parameters["@" + item.Name].Value = Convert.ToInt32(valor);
                                         }
                                         break;
                                     }
@@ -98,8 +102,8 @@ namespace AppInternacao.Model
                                         DateTime? _data = (DateTime?)item.GetValue(obejto, null);
                                         if (_data != null)
                                         {
-                                            comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.DateTime));
-                                            comando.Parameters["@" + item.Name].Value = _data;
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.DateTime));
+                                            Comando.Parameters["@" + item.Name].Value = _data;
                                         }
                                         break;
                                     }
@@ -109,11 +113,20 @@ namespace AppInternacao.Model
                                         decimal? valor = (decimal?)item.GetValue(obejto, null);
                                         if (valor != null)
                                         {
-                                            if (valor > 0)
-                                            {
-                                                comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Decimal));
-                                                comando.Parameters["@" + item.Name].Value = valor;
-                                            }
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Decimal));
+                                            Comando.Parameters["@" + item.Name].Value = valor;
+                                        }
+                                        break;
+                                    }
+
+                                case TypeCode.Int64:
+                                    {
+                                        long valor = (long?)item.GetValue(obejto, null) == null ? 0 : (long)item.GetValue(obejto, null);
+
+                                        if (valor > 0)
+                                        {
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Decimal));
+                                            Comando.Parameters["@" + item.Name].Value = valor;
                                         }
                                         break;
                                     }
@@ -123,11 +136,8 @@ namespace AppInternacao.Model
                                         double? valor = (double?)item.GetValue(obejto, null);
                                         if (valor != null)
                                         {
-                                            if (valor > 0)
-                                            {
-                                                comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.BigInt));
-                                                comando.Parameters["@" + item.Name].Value = valor;
-                                            }
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.BigInt));
+                                            Comando.Parameters["@" + item.Name].Value = valor;
                                         }
                                         break;
                                     }
@@ -137,42 +147,48 @@ namespace AppInternacao.Model
                                         bool? consistencia = (bool?)item.GetValue(obejto, null);
                                         if (consistencia != null)
                                         {
-                                            comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Bit));
-                                            comando.Parameters["@" + item.Name].Value = consistencia;
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Bit));
+                                            Comando.Parameters["@" + item.Name].Value = Convert.ToInt16(consistencia);
                                         }
                                         break;
                                     }
 
                                 case TypeCode.Char:
                                     {
-                                        string valor = item.GetValue(obejto, null).ToString().Replace(@"\","");
+                                        string valor = item.GetValue(obejto, null).ToString().Replace(@"\", "");
 
                                         if (Regex.Replace(valor.ToString(), @"[0-9]", "") != "\0")
                                         {
-                                            comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Char));
-                                            comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Char));
+                                            Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                         }
-                                            break;
+
+                                        break;
                                     }
-                                case TypeCode.Int64:
+                                case TypeCode.Object:
                                     {
-                                        long? valor = (long?)item.GetValue(obejto, null);
+                                        byte[] valor = (byte[])item.GetValue(obejto, null);
+
                                         if (valor != null)
                                         {
-                                            if (valor > 0)
-                                            {
-                                                comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.BigInt));
-                                                comando.Parameters["@" + item.Name].Value = valor;
-                                            }
+                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.VarBinary));
+                                            Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                         }
                                         break;
                                     }
                                 default:
                                     {
-                                        comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.NVarChar));
-                                        comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                         break;
                                     }
+                            }
+                        }
+                        else
+                        {
+                            var valor = Convert.ToInt32(item.GetValue(obejto, null));
+                            if (valor > 0)
+                            {
+                                Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Int));
+                                Comando.Parameters["@" + item.Name].Value = Convert.ToInt32(valor);
                             }
                         }
                     }
@@ -185,10 +201,10 @@ namespace AppInternacao.Model
             }
 
              
-            return comando;
+            return Comando;
         }
 
-        public List<T> ListaGenerica<T>(Procedure _procedure, T obj)
+        protected internal  List<T> ListaGenerica<T>(Procedure _procedure, T obj)
         {
             List<T> Lista = new List<T>();
             try
@@ -215,17 +231,17 @@ namespace AppInternacao.Model
                             for (int w = 0; w < dr.FieldCount; w++)
                             {
                                 if (dr.GetName(w).Equals(item.Name, StringComparison.OrdinalIgnoreCase))
-                                    if (!tipo.IsEnum)
-                                    {
-                                        if(item.GetValue(obj, null) != null)
-                                            if (Type.GetTypeCode(item.GetValue(obj, null).GetType()) == TypeCode.Char)
-                                                properties[i].SetValue(result, Convert.ToChar(dr[item.Name]), null);
-                                            else
-                                                properties[i].SetValue(result, dr[item.Name] == DBNull.Value ? null : dr[item.Name], null);
+                                // if (!tipo.IsEnum)
+                                {
+                                    if (item.GetValue(obj, null) != null)
+                                        if (Type.GetTypeCode(item.GetValue(obj, null).GetType()) == TypeCode.Char)
+                                            properties[i].SetValue(result, Convert.ToChar(dr[item.Name]), null);
                                         else
                                             properties[i].SetValue(result, dr[item.Name] == DBNull.Value ? null : dr[item.Name], null);
-                                        break;
-                                    }
+                                    else
+                                        properties[i].SetValue(result, dr[item.Name] == DBNull.Value ? null : dr[item.Name], null);
+                                    break;
+                                }
                             }
                             i++;
                            
@@ -282,6 +298,10 @@ namespace AppInternacao.Model
                                             else
                                                 properties[i].SetValue(result, dr[item.Name] == DBNull.Value ? null : dr[item.Name], null);
                                             break;
+                                        }
+                                        else
+                                        {
+                                            properties[i].SetValue(result, dr[item.Name] == DBNull.Value ? null : dr[item.Name], null);
                                         }
                                 }
                                 i++;

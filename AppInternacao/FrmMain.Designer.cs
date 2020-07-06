@@ -35,35 +35,36 @@
             this.panelCabecalho = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.panelDropDown = new System.Windows.Forms.Panel();
             this.panelScreen = new System.Windows.Forms.Panel();
             this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
             this.btnAlterarSenha = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnAdmUsuario = new System.Windows.Forms.Button();
             this.btnPaciente = new System.Windows.Forms.Button();
             this.btnGerenciamentoLeito = new System.Windows.Forms.Button();
-            this.btnAdmUsuario = new System.Windows.Forms.Button();
             this.btnUrgenciaEmergencia = new System.Windows.Forms.Button();
             this.btnClinicaObstetrica = new System.Windows.Forms.Button();
             this.btnClinicaCirurgica = new System.Windows.Forms.Button();
             this.btnClinicaPediatrica = new System.Windows.Forms.Button();
             this.btnClinicaMedica = new System.Windows.Forms.Button();
             this.btnAddSae = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
-            this.btnSair = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
             this.panelTitle.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
             this.panelMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panelButtons.SuspendLayout();
             this.panelDropDown.SuspendLayout();
             this.panelScreen.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -94,9 +95,9 @@
             // panelTitle
             // 
             this.panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.panelTitle.Controls.Add(this.pictureBox1);
             this.panelTitle.Controls.Add(this.panelCabecalho);
             this.panelTitle.Controls.Add(this.label2);
-            this.panelTitle.Controls.Add(this.btnSair);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Name = "panelTitle";
@@ -119,7 +120,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.75F);
             this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label2.Location = new System.Drawing.Point(836, 9);
+            this.label2.Location = new System.Drawing.Point(832, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(384, 18);
             this.label2.TabIndex = 0;
@@ -138,6 +139,16 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(169, 524);
             this.panelMenu.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAlterarSenha);
+            this.panel1.Controls.Add(this.btnLogout);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 447);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(169, 77);
+            this.panel1.TabIndex = 13;
             // 
             // panelButtons
             // 
@@ -198,9 +209,11 @@
             this.btnAlterarSenha.Name = "btnAlterarSenha";
             this.btnAlterarSenha.Size = new System.Drawing.Size(169, 29);
             this.btnAlterarSenha.TabIndex = 12;
+            this.btnAlterarSenha.TabStop = false;
             this.btnAlterarSenha.Text = "Alterar Senha de Acesso";
             this.btnAlterarSenha.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlterarSenha.UseVisualStyleBackColor = false;
+            this.btnAlterarSenha.Click += new System.EventHandler(this.btnAlterarSenha_Click);
             // 
             // btnLogout
             // 
@@ -216,13 +229,38 @@
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLogout.Image = global::AppInternacao.Properties.Resources._1485969916_8_shutdown_78906;
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogout.Location = new System.Drawing.Point(3, 39);
+            this.btnLogout.Location = new System.Drawing.Point(1, 39);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(169, 29);
             this.btnLogout.TabIndex = 11;
             this.btnLogout.Text = "Sair / Fechar";
             this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnAdmUsuario
+            // 
+            this.btnAdmUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdmUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAdmUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdmUsuario.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAdmUsuario.FlatAppearance.BorderSize = 0;
+            this.btnAdmUsuario.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAdmUsuario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnAdmUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdmUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdmUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAdmUsuario.Image = global::AppInternacao.Properties.Resources.people_47795;
+            this.btnAdmUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 69);
+            this.btnAdmUsuario.Name = "btnAdmUsuario";
+            this.btnAdmUsuario.Size = new System.Drawing.Size(169, 29);
+            this.btnAdmUsuario.TabIndex = 11;
+            this.btnAdmUsuario.TabStop = false;
+            this.btnAdmUsuario.Text = "Administrar Usuários";
+            this.btnAdmUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdmUsuario.UseVisualStyleBackColor = false;
+            this.btnAdmUsuario.Click += new System.EventHandler(this.btnAdmUsuario_Click);
             // 
             // btnPaciente
             // 
@@ -242,7 +280,8 @@
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(169, 29);
             this.btnPaciente.TabIndex = 2;
-            this.btnPaciente.Text = "Admin Pacientes / Leitos";
+            this.btnPaciente.TabStop = false;
+            this.btnPaciente.Text = "Incluir Pacientes";
             this.btnPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPaciente.UseVisualStyleBackColor = false;
             this.btnPaciente.Click += new System.EventHandler(this.btnPaciente_Click);
@@ -265,33 +304,11 @@
             this.btnGerenciamentoLeito.Name = "btnGerenciamentoLeito";
             this.btnGerenciamentoLeito.Size = new System.Drawing.Size(169, 29);
             this.btnGerenciamentoLeito.TabIndex = 5;
+            this.btnGerenciamentoLeito.TabStop = false;
             this.btnGerenciamentoLeito.Text = "Administração de  Leito";
             this.btnGerenciamentoLeito.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGerenciamentoLeito.UseVisualStyleBackColor = false;
             this.btnGerenciamentoLeito.Click += new System.EventHandler(this.btnGerenciamentoLeito_Click);
-            // 
-            // btnAdmUsuario
-            // 
-            this.btnAdmUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdmUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAdmUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdmUsuario.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnAdmUsuario.FlatAppearance.BorderSize = 0;
-            this.btnAdmUsuario.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnAdmUsuario.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnAdmUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdmUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdmUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnAdmUsuario.Image = global::AppInternacao.Properties.Resources.people_47795;
-            this.btnAdmUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 69);
-            this.btnAdmUsuario.Name = "btnAdmUsuario";
-            this.btnAdmUsuario.Size = new System.Drawing.Size(169, 29);
-            this.btnAdmUsuario.TabIndex = 11;
-            this.btnAdmUsuario.Text = "Administrar Usuários";
-            this.btnAdmUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdmUsuario.UseVisualStyleBackColor = false;
-            this.btnAdmUsuario.Click += new System.EventHandler(this.btnAdmUsuario_Click);
             // 
             // btnUrgenciaEmergencia
             // 
@@ -423,10 +440,22 @@
             this.btnAddSae.Name = "btnAddSae";
             this.btnAddSae.Size = new System.Drawing.Size(169, 37);
             this.btnAddSae.TabIndex = 9;
+            this.btnAddSae.TabStop = false;
             this.btnAddSae.Text = "Adcionar Novo SAE";
             this.btnAddSae.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddSae.UseVisualStyleBackColor = false;
             this.btnAddSae.Click += new System.EventHandler(this.btnAddSae_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.loginFrm2;
+            this.pictureBox1.Location = new System.Drawing.Point(1216, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // btnSalvar
             // 
@@ -446,6 +475,7 @@
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(85, 29);
             this.btnSalvar.TabIndex = 3;
+            this.btnSalvar.TabStop = false;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalvar.UseVisualStyleBackColor = false;
@@ -468,6 +498,7 @@
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(85, 29);
             this.btnNovo.TabIndex = 4;
+            this.btnNovo.TabStop = false;
             this.btnNovo.Text = "Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNovo.UseVisualStyleBackColor = false;
@@ -490,41 +521,10 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(85, 29);
             this.btnImprimir.TabIndex = 3;
+            this.btnImprimir.TabStop = false;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = false;
-            // 
-            // btnSair
-            // 
-            this.btnSair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSair.BackColor = System.Drawing.Color.Transparent;
-            this.btnSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSair.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSair.FlatAppearance.BorderSize = 0;
-            this.btnSair.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSair.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSair.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSair.Image = global::AppInternacao.Properties.Resources.closeTela;
-            this.btnSair.Location = new System.Drawing.Point(1226, 6);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(32, 25);
-            this.btnSair.TabIndex = 3;
-            this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSair.UseVisualStyleBackColor = false;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAlterarSenha);
-            this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 447);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(169, 77);
-            this.panel1.TabIndex = 13;
             // 
             // FrmMain
             // 
@@ -548,10 +548,11 @@
             this.panelTitle.PerformLayout();
             this.panelCabecalho.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panelButtons.ResumeLayout(false);
             this.panelDropDown.ResumeLayout(false);
             this.panelScreen.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -560,7 +561,6 @@
         public System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnPaciente;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Panel panelMenu;
@@ -582,6 +582,7 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnAlterarSenha;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

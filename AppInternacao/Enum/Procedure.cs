@@ -34,6 +34,12 @@
 
         SP_GET_HISTORICO_ENFERMAGEM = 15,
 
-        SP_ADD_USUARIO = 16,
+        SP_ADD_UPDT_USUARIO = 16,
+
+        SP_UPDT_SENHA_USUARIO = 17,
+
+        SP_AUTENTICAR_USUARIO = 18,
+
+        SP_GET_USUARIOS = 19,
     }
 }

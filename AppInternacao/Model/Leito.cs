@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AppInternacao.Model
+﻿namespace AppInternacao.Model
 {
     public class Leito
     {
@@ -12,10 +6,12 @@ namespace AppInternacao.Model
         {
             NomeLeito = string.Empty;
         }
-       public int Id { get; set; }
-       public int IdCliente { get; set; }
-       public int IdQuarto { get; set; }
-       public string NomeLeito { get; set; }
-       public bool? IsDisponibilidade { get; set; }
+        public int Id { get; set; }
+        public int IdCliente { get; set; }
+        public int IdQuarto { get; set; }
+        public string NomeLeito { get; set; }
+        public string Nome { get; set; }
+        public long Prontuario { get; set; }
+        public bool? IsDisponibilidade { get; set; }
     }
 }

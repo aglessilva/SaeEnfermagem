@@ -4,6 +4,7 @@ using AppInternacao.View;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,17 +12,19 @@ namespace AppInternacao.FrmSae
 {
     public partial class UCQuartoLeito : UserControl, IQuarto, ILeito
     {
-
+        RadioButton pictureBoxLeito = null;
+        ToolTip toolTip = null;
         QuartoPresenter presenterQuarto = null;
         LeitoPresenter presenterLeito = null;
         Leito obj = null;
         private List<Leito> lstObjLeito;
-
+        private List<Quarto> lstObjetoQuarto;
+        private Quarto[] lstPesquisaQuarto;
         public Quarto QuartoLeito
         {
             get => new Quarto()
             {
-                Id = string.IsNullOrWhiteSpace(textBoxId.Text) ?  0 :  Convert.ToInt32(textBoxId.Text),
+                Id = string.IsNullOrWhiteSpace(textBoxId.Text) ? 0 : Convert.ToInt32(textBoxId.Text),
                 NomeQuarto = textBoxNomeQuarto.Text,
                 IdSetor = comboBoxSetor.SelectedItem == null ? 0 : Convert.ToInt32(comboBoxSetor.SelectedValue),
                 TotalLeito = comboBoxQtdLeitos.SelectedItem == null ? 0 : Convert.ToInt32(comboBoxQtdLeitos.SelectedItem)
@@ -30,11 +33,25 @@ namespace AppInternacao.FrmSae
             {
                 textBoxId.Text = value?.Id.ToString();
                 textBoxNomeQuarto.Text = value.NomeQuarto;
-                comboBoxSetor.SelectedValue = value.IdSetor == 0 ? 0 : value.IdSetor ;
+                comboBoxSetor.SelectedValue = value.IdSetor == 0 ? 0 : value.IdSetor;
                 comboBoxQtdLeitos.SelectedItem = value.TotalLeito > 0 ? value.TotalLeito.ToString() : "1";
             }
         }
-        public List<Quarto> QuartoLeitos { set { dataGridViewQuartos.DataSource = null;  dataGridViewQuartos.DataSource = value; comboBoxQuarto.DataSource = value; } }
+        public List<Quarto> QuartoLeitos
+        {
+            set
+            {
+                lstObjetoQuarto = value;
+                lstPesquisaQuarto = new Quarto[lstObjetoQuarto.Count + 1];
+                lstObjetoQuarto.Insert(0, new Quarto() { Id = 0, NomeQuarto = "Todos", TotalLeito = 0 });
+                lstObjetoQuarto.CopyTo(lstPesquisaQuarto);
+
+                dataGridViewQuartos.DataSource = null;
+                dataGridViewQuartos.DataSource = lstObjetoQuarto.Where(q => q.Id > 0).ToList();
+                comboBoxQuarto.DataSource = lstObjetoQuarto;
+                comboBoxPesquisaQuarto.DataSource = lstPesquisaQuarto.Where(w => w.Id >= 0).ToList();
+            }
+        }
         public List<Setor> Setores
         {
             set
@@ -51,15 +68,23 @@ namespace AppInternacao.FrmSae
                 IdQuarto = comboBoxQuarto.SelectedItem == null ? 0 : Convert.ToInt32(comboBoxQuarto.SelectedValue),
                 NomeLeito = textBoxNomeLeito.Text
             };
-            set {
+            set
+            {
                 textBoxIdLeito.Text = value.Id.ToString();
                 textBoxNomeLeito.Text = value.NomeLeito;
+                textBoxIdLeitoQuarto.Text = value.IdQuarto == 0 ? string.Empty : value.IdQuarto.ToString();
                 comboBoxQuarto.SelectedValue = value.IdQuarto;
-
             }
         }
         public List<Leito> leitos { set { dataGridViewLeito.DataSource = value; lstObjLeito = value; } }
-        public List<Quarto> Quartos { set { comboBoxQuarto.DataSource = value; } }
+        public List<Quarto> Quartos {
+            set
+            {
+                List<Quarto> lstQuarto = value;
+                lstQuarto.Insert(0, new Quarto() { Id = 0, NomeQuarto = "Todos", TotalLeito = 0 });
+                comboBoxQuarto.DataSource = lstQuarto;
+            }
+        }
 
         public UCQuartoLeito()
         {
@@ -102,7 +127,7 @@ namespace AppInternacao.FrmSae
                 y = ret.ToList().TrueForAll(v => v);
             }
 
-            if(x == 1)
+            if (x == 1)
             {
                 bool[] ret = { true, true, true };
 
@@ -138,6 +163,12 @@ namespace AppInternacao.FrmSae
 
         private void UCQuartoLeito_Load(object sender, EventArgs e)
         {
+            new ToolTip() { UseAnimation = true, IsBalloon = false, }.SetToolTip(buttonLimpar, "Limpar Pesquisa");
+            new ToolTip() { UseAnimation = true, IsBalloon = false, }.SetToolTip(button1, "Limpar Pesquisa");
+            
+
+            comboBoxQuarto.SelectedIndexChanged -= comboBoxQuarto_SelectedIndexChanged;
+            comboBoxPesquisaQuarto.SelectedIndexChanged -= comboBoxPesquisaQuarto_SelectedIndexChanged;
             FrmMain.mySalvar.Click += MySalvar_Click;
             FrmMain.myNovo.Click += MyNovo_Click;
             presenterQuarto = new QuartoPresenter(this);
@@ -145,6 +176,78 @@ namespace AppInternacao.FrmSae
 
             presenterLeito = new LeitoPresenter(this);
             presenterLeito.Carregar();
+            comboBoxQuarto.SelectedIndexChanged += comboBoxQuarto_SelectedIndexChanged;
+            comboBoxPesquisaQuarto.SelectedIndexChanged += comboBoxPesquisaQuarto_SelectedIndexChanged;
+            PopulaOcupacoes();
+            textBoxNomeQuarto.Focus();
+        }
+
+        void PopulaOcupacoes(int _id = 0)
+        {
+            flowLayoutPanelImgLeito.Controls.Clear();
+            List<Leito> lst = _id == 0 ? lstObjLeito : lstObjLeito.Where(l => l.IdQuarto == _id).ToList();
+
+            lst.ForEach(l =>
+            {
+
+                pictureBoxLeito = new RadioButton();
+                pictureBoxLeito.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+                pictureBoxLeito.ForeColor = Color.DarkSlateGray;
+                toolTip = new ToolTip() { IsBalloon = true, UseAnimation = true };
+                pictureBoxLeito.Appearance = Appearance.Button;
+                pictureBoxLeito.FlatStyle = button1.FlatStyle;
+                pictureBoxLeito.FlatAppearance.MouseOverBackColor = button1.FlatAppearance.MouseOverBackColor;
+                pictureBoxLeito.FlatAppearance.BorderSize = button1.FlatAppearance.BorderSize;
+                pictureBoxLeito.FlatAppearance.CheckedBackColor = button1.FlatAppearance.MouseOverBackColor;
+                pictureBoxLeito.Size = new System.Drawing.Size(165, 134);
+                pictureBoxLeito.Margin = new Padding(20);
+                pictureBoxLeito.Cursor = Cursors.Hand;
+
+                if ((bool)l.IsDisponibilidade)
+                {
+                    pictureBoxLeito.Image = Properties.Resources.LeitoEnable;
+                    pictureBoxLeito.Tag = l;
+                    pictureBoxLeito.Text = l.NomeLeito;
+                    toolTip.SetToolTip(pictureBoxLeito, $"{l.NomeLeito} - Leito Disponivel");
+                }
+                else
+                {
+                    pictureBoxLeito.Image = Properties.Resources.LeitoDisable;
+                    pictureBoxLeito.Tag = l;
+                    pictureBoxLeito.Text = l.NomeLeito;
+                    pictureBoxLeito.Click += DesassociarLeitoPaciente;
+                    toolTip.SetToolTip(pictureBoxLeito, $"{l.NomeLeito} - Leito Inidiponivel\nPaciente: {l.Nome}");
+                }
+
+                flowLayoutPanelImgLeito.Controls.Add(pictureBoxLeito);
+            });
+
+        }
+
+        private void DesassociarLeitoPaciente(object sender, EventArgs e)
+        {
+            var senderRadio = (RadioButton)sender;
+            obj = (Leito)senderRadio.Tag;
+            obj = lstObjLeito.FirstOrDefault(p => p.Prontuario == obj.Prontuario);
+            string msg = $"Tem certeza que deseja liberar o Leito {obj.NomeLeito}\nocupado pelo paciente {obj.Nome} ?";
+            if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                dataGridViewLeito.DataSource = null;
+                obj.Nome = string.Empty;
+                obj.IsDisponibilidade = true;
+                obj.Prontuario = 0;
+                presenterLeito.Salvar(obj);
+                AtualizaUserControls();
+            }
+            obj = null;
+        }
+
+        private void AtualizaUserControls()
+        {
+            SplitterPanel split = Parent.Parent.Controls.OfType<SplitterPanel>().LastOrDefault();
+            UCListaPaciente uC = (UCListaPaciente)split.Controls[0];
+            uC.Carregar();
+            PopulaOcupacoes();
         }
 
         private void MyNovo_Click(object sender, EventArgs e)
@@ -166,7 +269,7 @@ namespace AppInternacao.FrmSae
         private void MySalvar_Click(object sender, EventArgs e)
         {
             TabPage tab = tabControlQuartoLeito.SelectedTab;
-            
+
             if (tab.Name.Equals("tabPageQuartos"))
             {
                 if (Valida(0))
@@ -185,7 +288,40 @@ namespace AppInternacao.FrmSae
                     Leito = new Leito();
                     textBoxlLeitoQtd.Text = string.Empty;
                     FrmMain.Alert(presenterLeito.Salvar());
+                    PopulaOcupacoes();
                 }
+            }
+
+            if (tab.Name.Equals("tabPageInernacao"))
+            {
+                Paciente paciente = Sessao.Paciente;
+                if (paciente != null)
+                {
+                    RadioButton radioButton = flowLayoutPanelImgLeito.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked == true);
+
+                    if (radioButton == null)
+                    {
+                        MessageBox.Show("Selecione um Leito com a situação 'Disponivel' e tente novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return;
+                    }
+
+                    obj = (Leito)radioButton.Tag;
+                    string msg = $"Tem certeza que deseja associar o paciente {paciente.Nome} ao  leito {obj.NomeLeito} ?";
+
+                    if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        obj.IsDisponibilidade = false;
+                        obj.Prontuario = paciente.Prontuario;
+                        obj.Nome = string.Empty;
+                        presenterLeito.Salvar(obj);
+                        AtualizaUserControls();
+                    }
+                }
+                else
+                    MessageBox.Show("Selecione um paciente na lista ao lado, e tente novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+
+                Sessao.Paciente = null;
+                paciente = null;
             }
         }
 
@@ -194,29 +330,29 @@ namespace AppInternacao.FrmSae
             try
             {
 
-            if (e.ColumnIndex == 4)
-            {
-                var sendGrid = (DataGridView)sender;
-                if (sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn && e.RowIndex >= 0)
+                if (e.ColumnIndex == 4)
                 {
+                    var sendGrid = (DataGridView)sender;
+                    if (sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn && e.RowIndex >= 0)
+                    {
                         Quarto obj = (Quarto)dataGridViewQuartos.Rows[e.RowIndex].DataBoundItem;
                         QuartoLeito = obj;
+                    }
                 }
-            }
 
-            if (e.ColumnIndex == 5)
-            {
-                var ob = (Quarto)dataGridViewQuartos.Rows[e.RowIndex].DataBoundItem;
-                if (MessageBox.Show($"Deseja excluir o quarto {ob.NomeQuarto} ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (e.ColumnIndex == 5)
                 {
-                    presenterQuarto = new QuartoPresenter(this);
-                    FrmMain.Alert(presenterQuarto.Excluir(ob.Id));
+                    var ob = (Quarto)dataGridViewQuartos.Rows[e.RowIndex].DataBoundItem;
+                    if (MessageBox.Show($"Deseja excluir o quarto {ob.NomeQuarto} ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        presenterQuarto = new QuartoPresenter(this);
+                        FrmMain.Alert(presenterQuarto.Excluir(ob.Id));
+                    }
                 }
-            }
             }
             catch (SqlException exSqEx)
             {
-               if(exSqEx.Number == 547)
+                if (exSqEx.Number == 547)
                 {
                     MessageBox.Show("Existem leitos associados para este registro\nExclua os leitos deste quarto antes de remover o quarto " + QuartoLeito.NomeQuarto, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -229,7 +365,7 @@ namespace AppInternacao.FrmSae
 
         private void dataGridViewLeito_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (tabControlQuartoLeito.SelectedTab != tabPageLeito)
+            if (tabControlQuartoLeito.SelectedTab != tabPageLeito && tabControlQuartoLeito.SelectedTab != tabPageInernacao)
                 return;
             try
             {
@@ -249,7 +385,6 @@ namespace AppInternacao.FrmSae
                     {
                         row.Cells[2].Value = Properties.Resources.sinalizadorV1;
                         row.Cells[2].ToolTipText = "Leito INDISPONIVEL";
-
                     }
                 }
             }
@@ -258,6 +393,7 @@ namespace AppInternacao.FrmSae
                 throw new Exception("Ocorreu um Erro ao tentar Listar os Leitos\nERRO:" + exGrid.Message);
             }
         }
+
 
         private void dataGridViewLeito_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -291,7 +427,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exG)
             {
-                throw new Exception("Erro ao tentar listar os Leitos:\n" + exG.Message );
+                throw new Exception("Erro ao tentar listar os Leitos:\n" + exG.Message);
             }
         }
 
@@ -302,7 +438,7 @@ namespace AppInternacao.FrmSae
                 if (textBoxPesquisaQuarto.Text.Length >= 3)
                 {
                     presenterQuarto = new QuartoPresenter(this);
-                    presenterQuarto.Carregar(new Quarto{ NomeQuarto = textBoxPesquisaQuarto.Text.Trim() });
+                    presenterQuarto.Carregar(new Quarto { NomeQuarto = textBoxPesquisaQuarto.Text.Trim() });
                 }
 
                 if (textBoxPesquisaQuarto.Text.Length == 0)
@@ -357,5 +493,27 @@ namespace AppInternacao.FrmSae
             textBoxlLeitoQtd.Text = (item.TotalLeito - lstObjLeito?.Count(c => c.IdQuarto.Equals(item.Id))).ToString();
             textBoxTotalLeitos.Text = item.TotalLeito.ToString();
         }
+
+        private void comboBoxPesquisaQuarto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Quarto item = (Quarto)comboBoxPesquisaQuarto.SelectedItem;
+            PopulaOcupacoes(item.Id);
+        }
+
+        private void tabControlQuartoLeito_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            SplitterPanel split = Parent.Parent.Controls.OfType<SplitterPanel>().LastOrDefault();
+
+            if (e.TabPageIndex != 2)
+                split.Controls[0].Hide();
+            else
+                split.Controls[0].Show();
+
+            if (e.TabPageIndex == 0)
+                textBoxNomeQuarto.Focus();
+            if (e.TabPageIndex == 1)
+                textBoxNomeLeito.Focus();
+
+        }
     }
-} 
+}

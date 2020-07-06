@@ -12,6 +12,8 @@ namespace AppInternacao.Model
         public string Login { get; set; }
         public string Senha { get; set; }
         public Perfil Perfil { get; set; }
-        public bool Ativo { get; set; }
+        public bool? Ativo { get; set; }
+        public bool? AlterarSenha { get; set; }
+
     }
 }

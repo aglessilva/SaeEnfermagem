@@ -144,6 +144,17 @@ namespace AppInternacao.Model
                                            
                                             break;
                                         }
+                                    case TypeCode.Object:
+                                        {
+                                            byte[] valor = (byte[])item.GetValue(obejto, null);
+
+                                            if (valor != null)
+                                            {
+                                                Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.VarBinary));
+                                                Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
+                                            }
+                                            break;
+                                        }
                                     default:
                                         {
                                             break;

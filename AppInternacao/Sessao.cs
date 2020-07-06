@@ -5,7 +5,6 @@ namespace AppInternacao
 {
     public static class Sessao
     {
-        public static string teste = "";
         public static string Dominio { get => Environment.UserDomainName;}
 
         public static string Cliente { get; set; }
@@ -14,6 +13,7 @@ namespace AppInternacao
         public static int CodigoCliente { get; internal set; }
 
         public static Paciente Paciente { get; internal set; }
+        public static Usuario Usuario { get; internal set; }
     }
 
 

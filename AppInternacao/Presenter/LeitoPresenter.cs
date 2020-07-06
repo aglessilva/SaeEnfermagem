@@ -2,6 +2,7 @@
 using AppInternacao.Model;
 using AppInternacao.View;
 using System;
+using System.Collections.Generic;
 
 namespace AppInternacao.Presenter
 {
@@ -26,14 +27,29 @@ namespace AppInternacao.Presenter
         }
 
 
-
         public int? Salvar()
         {
             int? ret = null;
             try
             {
                 crud = new CRUD();
-                objeto = new LISTAOBJETOS();
+                ret = crud.Executar(leito, Procedure.SP_ADD_UPD_LEITO, Acao.Inserir);
+                Carregar();
+            }
+            catch (Exception exS)
+            {
+                throw exS;
+            }
+
+            return ret;
+        }
+
+        public int? Salvar(Leito leito)
+        {
+            int? ret = null;
+            try
+            {
+                crud = new CRUD();
                 ret = crud.Executar(leito, Procedure.SP_ADD_UPD_LEITO, Acao.Inserir);
                 Carregar();
             }
@@ -50,7 +66,6 @@ namespace AppInternacao.Presenter
             int? ret = 0;
             try
             {
-                objeto = new LISTAOBJETOS();
                 crud = new CRUD();
                 ret = crud.Executar(new Leito() { Id = leito.Id }, Procedure.SP_DEL_LEITO, Acao.Excluir);
 
@@ -74,7 +89,8 @@ namespace AppInternacao.Presenter
 
                 objeto = new LISTAOBJETOS();
                 view.leitos = objeto.ListaGenerica(Procedure.SP_GET_LEITO, Obj );
-                view.Quartos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS,new Quarto());
+                List<Quarto> lst = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
+                view.Quartos = lst;
             }
             catch (Exception exC)
             {

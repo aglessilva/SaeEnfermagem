@@ -1,18 +1,13 @@
-﻿using System;
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
+using AppInternacao.Presenter;
+using AppInternacao.View;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AppInternacao.Enum;
-using AppInternacao.View;
-using AppInternacao.Model;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography;
-using AppInternacao.Presenter;
+using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
@@ -31,7 +26,7 @@ namespace AppInternacao.FrmSae
                     Telefone = Regex.Replace(mskTelefone.Text, @"[^0-9$]", string.Empty).Trim(),
                     Email = textBoxEmail.Text,
                     Login = textBoxLogin.Text,
-                    Senha = CriptoGrafaSenha(),
+                    Senha = Funcoes.CriptoGrafaSenha(textBoxSenha.Text.Trim()),
                     Ativo = rdoAtivo.Checked ? true : false,
                     Perfil = (Perfil)comboBoxPerfil.SelectedItem
                 };
@@ -44,30 +39,51 @@ namespace AppInternacao.FrmSae
                 mskTelefone.Text = value.Telefone;
                 textBoxEmail.Text = value.Email;
                 textBoxEmail.Enabled = false;
-                rdoAtivo.Checked = value.Ativo;
-                rdoInativo.Checked = !rdoAtivo.Checked;
+                if (value.Ativo == null)
+                {
+                    rdoAtivo.Checked =  false;
+                    rdoInativo.Checked = false;
+                }
+                else
+                {
+                    rdoAtivo.Checked = (bool)value.Ativo;
+                    rdoInativo.Checked = !rdoAtivo.Checked;
+                }
                 comboBoxPerfil.SelectedItem = (Perfil)value.Perfil;
             }
 
         }
-
         public UCUsuario()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            dataGridViewUsuarios.AutoGenerateColumns = false;
+        }
+
+        void Carregar()
+        {
+            usuarioPresenter = new UsuarioPresenter();
+            var lista = usuarioPresenter.Carregar();
+            dataGridViewUsuarios.DataSource = usuarioPresenter.Carregar();
         }
 
         private void UCUsuario_Load(object sender, EventArgs e)
         {
+            new ToolTip().SetToolTip(btnImparPesquisa, "Limpar Pesquisa");
             FrmMain.mySalvar.Click += new EventHandler(Salvar);
             FrmMain.myNovo.Click += MyNovo_Click;
             textBoxNome.Focus();
-
-            Perfil perfil = Perfil.Admin;
-
-            List<Perfil> list = new List<Perfil>() { Perfil.Admin, Perfil.Enfermeiros, Perfil.Medicos };
-            if (perfil.HasFlag(Perfil.Enfermeiros))
+            try
+            {
+                Carregar();
+                List<Perfil> list = new List<Perfil>() { Perfil.Nenhum, Perfil.Administrador, Perfil.Enfermeiros, Perfil.Medicos };
                 comboBoxPerfil.DataSource = list;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu erro ao tentar inicializar o formiulário.\nErro: {ex.Message}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private void MyNovo_Click(object sender, EventArgs e)
@@ -77,27 +93,49 @@ namespace AppInternacao.FrmSae
             comboBoxPerfil.SelectedIndex = 0;
             rdoInativo.Checked = rdoAtivo.Checked = false;
         }
-
-        private string CriptoGrafaSenha()
-        {
-            MD5 md5Hasher = MD5.Create();
-            byte[] valorCriptografado = md5Hasher.ComputeHash(Encoding.Default.GetBytes(textBoxSenha.Text));
-
-            StringBuilder strBuilder = new StringBuilder();
-
-            for (int i = 0; i < valorCriptografado.Length; i++)
-            {
-                strBuilder.Append(valorCriptografado[i].ToString("x2"));
-            }
-            return strBuilder.ToString();
-        }
-
+      
         private void Salvar(object sender, EventArgs e)
         {
             try
             {
+                if (!ValidaCampos())
+                    return;
+                bool ret = Funcoes.ValidaCpf(Regex.Replace(mskCpf.Text, @"[^0-9$]", string.Empty));
+                if (!ret)
+                {
+                    errorProviderFields.SetError(mskCpf, "CPF inválido");
+                    errorProviderFields.SetIconPadding(mskCpf, 3);
+                    return;
+                }
+                else
+                    errorProviderFields.SetError(mskCpf, null);
+
                 usuarioPresenter = new UsuarioPresenter(this);
-                FrmMain.Alert(usuarioPresenter.Salvar());
+                int retorno = (int)usuarioPresenter.Salvar();
+                if (retorno == 1)
+                {
+                    if (usuario.Id == 0)
+                    {
+                        Usuario objUsuario = usuario;
+                        objUsuario.Senha = textBoxSenha.Text.Trim();
+                        retorno = Funcoes.EnviarEmail(objUsuario, true);
+
+                        if (retorno == 0)
+                            MessageBox.Show($"Usuário cadastrado com sucesso!\nEnviamos para o email {usuario.Email} as informações de acesso ao sistema SAE", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (retorno == 1)
+                            MessageBox.Show($"Envio de email cancelado!\nO serviço de email não consegui enviar as informas para o email {usuario.Email}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        if (retorno == 2)
+                            MessageBox.Show($"Ocorreu um Erro!\nOcorreu um erro na tentativa de enviar o e-mail para {usuario.Email}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        objUsuario = null;
+                    }
+                    else
+                        FrmMain.Alert(retorno);
+
+                    Carregar();
+                }
                 MyNovo_Click(null, null);
             }
             catch (Exception exSalvar)
@@ -109,7 +147,20 @@ namespace AppInternacao.FrmSae
 
         private void mskCpf_Leave(object sender, EventArgs e)
         {
-            string[] arrayNome = textBoxNome.Text.Split(' ');
+            string[] arrayNome = textBoxNome.Text.Split(' ').Where(n => !string.IsNullOrWhiteSpace(n)).ToArray();
+
+            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
+            {
+                MessageBox.Show("Informe o nome do usuário","Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (arrayNome.Count() < 2)
+            {
+                MessageBox.Show("Informe o sobrenome do usuário", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             string _doc = Regex.Replace(mskCpf.Text, @"[^0-9$]", string.Empty);
             if(_doc.Length == 11)
             {
@@ -118,7 +169,95 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+
+        private bool ValidaCampos()
+        {
+            RadioButton radioButton = null;
+            try
+            {
+                var lista = gUsuario.Controls.OfType<TextBox>().Where(t => t is TextBox).ToList();
+
+                lista.RemoveAll(t => !t.Enabled);
+
+                foreach (TextBox item in lista)
+                {
+                    if (string.IsNullOrEmpty(item.Text) || item.Text.Equals("0"))
+                    {
+                        errorProviderFields.SetError(item, "preencha este campo");
+                        errorProviderFields.SetIconPadding(item, 3);
+                    }
+                    else
+                        errorProviderFields.SetError(item, null);
+                }
+
+                var listaMsk = gUsuario.Controls.OfType<MaskedTextBox>().Where(t => t is MaskedTextBox).ToList();
+
+                foreach (MaskedTextBox item in listaMsk)
+                {
+                    if (item.Name == "mskCpf")
+                    {
+                        //999.999.999-99
+                        if (!Regex.IsMatch(item.Text.Trim(), @"(^\d{3}.\d{3}.\d{3}-\d{2}$)"))
+                        {
+                            errorProviderFields.SetError(item, "preencha este campo");
+                            errorProviderFields.SetIconPadding(item, 3);
+                        }
+                        else
+
+                            errorProviderFields.SetError(item, null);
+                    }
+                    else
+                    {
+                        if (!Regex.IsMatch(item.Text.Trim(), @"^\(\d{2}\)\s\d{4,5}-\d{4}$"))
+                        {
+                            errorProviderFields.SetError(item, "preencha este campo");
+                            errorProviderFields.SetIconPadding(item, 3);
+                        }
+                        else
+                            errorProviderFields.SetError(item, null);
+                    }
+                }
+
+
+                if (gUsuario.Controls.OfType<RadioButton>().Where(t => t is RadioButton).ToList().Count(c => c.Checked) == 0)
+                {
+                    radioButton = gUsuario.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
+                    errorProviderFields.SetError(radioButton, "preencha este campo");
+                    errorProviderFields.SetIconPadding(radioButton, 3);
+                    return false;
+                }
+                else
+                {
+                    radioButton = gUsuario.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
+                    errorProviderFields.SetError(radioButton, null);
+                }
+
+                bool retorno = (lista.TrueForAll(x => !string.IsNullOrWhiteSpace(x.Text) && !x.Text.Equals("0"))
+                                && listaMsk.TrueForAll(x => !string.IsNullOrWhiteSpace(x.Text) && !x.Text.Equals("0")));
+
+                return retorno;
+            }
+            catch (Exception exValidacamp)
+            {
+
+                MessageBox.Show("Ocorreu um erro na validação de campo\n" + exValidacamp.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var sendGrid = (DataGridView)sender;
+            if (e.ColumnIndex == 5)
+            {
+                if (sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn && e.RowIndex >= 0)
+                {
+                    usuario = (Usuario)sendGrid.Rows[e.RowIndex].DataBoundItem;
+                }
+            }
+        }
+
+        private void btnImparPesquisa_Click(object sender, EventArgs e)
         {
             textBoxPesquisaUsario.Text = string.Empty;
         }

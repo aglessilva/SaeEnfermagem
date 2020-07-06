@@ -15,7 +15,7 @@ namespace AppInternacao
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());
-            //Application.Run(new Form01());
+            //Application.Run(new frmLogin());
         }
     }
 

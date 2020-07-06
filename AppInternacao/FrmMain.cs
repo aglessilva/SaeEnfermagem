@@ -2,6 +2,7 @@
 using AppInternacao.Presenter;
 using AppInternacao.View;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace AppInternacao
         private bool isCollapsed = true;
         public static Button mySalvar;
         public static Button myNovo;
+        public static Button myImprimir;
 
         public Main Main { get => new Main() { Dominio = Environment.UserDomainName };
             set
@@ -31,8 +33,7 @@ namespace AppInternacao
             InitializeComponent();
             mySalvar = btnSalvar;
             myNovo = btnNovo;
-
-            new ToolTip().SetToolTip(btnSair, "Fechar Formulário / Sair");
+            myImprimir = btnImprimir;
         }
 
 
@@ -41,20 +42,39 @@ namespace AppInternacao
             if (!isCollapsed)
                 timerCollapsed.Start();
 
-            //panelMenu.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
-            //panelButtons.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
-            //panelDropDown.Controls.OfType<Button>().ToList().ForEach(n => { n.Enabled = false; });
-
             var tt = splitContainer1.Panel1.Controls.OfType<UserControl>().ToList();
 
             if (!tt.Any(cnt => cnt.Name.Equals(userControl.Name)))
-            { 
+            {
+                if (tt.Count > 0)
+                    tt[0].Dispose();
+               
                 splitContainer1.Panel1.Controls.Clear();
                 if (!splitContainer1.Panel1.Controls.OfType<Control>().Any(f => f is UserControl))
                 {
                     splitContainer1.Panel1.Controls.Add(userControl);
+                    btnAddSae.Enabled = true;
                 }
             }
+        }
+
+        private void OpenUCLateral()
+        {
+            var tt = splitContainer1.Panel2.Controls.OfType<UserControl>().ToList();
+
+            if (!tt.Any(cnt => cnt.Name.Equals(userControl.Name)))
+            {
+                if (tt.Count > 0)
+                    tt[0].Dispose();
+
+                splitContainer1.Panel2.Controls.Clear();
+                if (!splitContainer1.Panel2.Controls.OfType<Control>().Any(f => f is UserControl))
+                {
+                    splitContainer1.Panel2.Controls.Add(userControl);
+                    splitContainer1.Panel2.Controls[0].Hide();
+                }
+            }
+
         }
 
 
@@ -79,10 +99,13 @@ namespace AppInternacao
                 control = splitContainer1.Panel2.Controls[0];
                 control.Dispose();
             }
+            else
+                btnAddSae.Enabled = false;
         }
 
         private void btnPaciente_Click(object sender, EventArgs e)
         {
+            CloseUC();
             userControl = new FrmSae.UCPaciente();
             OpenUc();
         }
@@ -93,6 +116,15 @@ namespace AppInternacao
             {
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
+
+                // TODO: DESCOMENTAR ESSE BLOCO PARA PARA REALIZAR LOGIN E PRENCHER A SESSÃO DO USUARIO LOGADO
+                //if((bool)Sessao.Usuario.AlterarSenha)
+                //{
+                //    CloseUC();
+                //    userControl = new FrmSae.UCAlterarSenha();
+                //    panelCabecalho.Enabled = panelMenu.Enabled = false;
+                //    OpenUc();
+                //}
             }
             catch (Exception exM)
             {
@@ -103,12 +135,16 @@ namespace AppInternacao
 
         private void btnGerenciamentoLeito_Click(object sender, EventArgs e)
         {
+            CloseUC();
             userControl = new FrmSae.UCQuartoLeito();
             OpenUc();
+            userControl = new FrmSae.UCListaPaciente();
+            OpenUCLateral();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            CloseUC();
             userControl = new FrmSae.UCTimeLine();
             OpenUc();
         }
@@ -135,6 +171,11 @@ namespace AppInternacao
                 case 4:
                     {
                         MessageBox.Show("Informação já cadastrada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        break;
+                    }
+                case 5:
+                    {
+                        MessageBox.Show("Senha Alterada com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                 case 200:
@@ -177,9 +218,9 @@ namespace AppInternacao
             }
         }
 
-        void BloquearSistema()
+        public void BloquearSistema(bool isAlterSenha = false)
         {
-           splitContainer1.Enabled = panelCabecalho.Enabled = panelMenu.Enabled = false;
+            splitContainer1.Enabled = panelCabecalho.Enabled = panelMenu.Enabled = isAlterSenha;
         }
 
         private void btnAddSae_Click(object sender, EventArgs e)
@@ -216,6 +257,7 @@ namespace AppInternacao
             if (!isCollapsed)
                 timerCollapsed.Start();
 
+            CloseUC();
             userControl = new FrmSae.UCTimeLine();
             OpenUc();
         }
@@ -225,8 +267,44 @@ namespace AppInternacao
             if (!isCollapsed)
                 timerCollapsed.Start();
 
+            CloseUC();
             userControl = new FrmSae.UCUsuario();
             OpenUc();
+        }
+
+        private void CloseUC()
+        {
+            List<UserControl> lstcontrols = splitContainer1.Panel1.Controls.OfType<UserControl>().ToList();
+
+            foreach (UserControl item in lstcontrols)
+            {
+                item.Dispose();
+            };
+
+            lstcontrols = splitContainer1.Panel2.Controls.OfType<UserControl>().ToList();
+
+            foreach (UserControl item in lstcontrols)
+            {
+                item.Dispose();
+            };
+        }
+
+        private void btnAlterarSenha_Click(object sender, EventArgs e)
+        {
+            CloseUC();
+            userControl = new FrmSae.UCAlterarSenha();
+            OpenUc();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (splitContainer1.Panel1.Controls.OfType<UserControl>().ToList().Count > 0)
+                CloseUC();
+            else
+            {
+                Sessao.Usuario = null;
+                Application.Exit();
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using AppInternacao.Model;
 using AppInternacao.View;
 using System;
-
+using System.Collections.Generic;
 
 namespace AppInternacao.Presenter
 {
@@ -10,7 +10,6 @@ namespace AppInternacao.Presenter
     public class UsuarioPresenter
     {
         CRUD crud = null;
-        LISTAOBJETOS objeto = null;
         Usuario usuario = null;
         private readonly IUsuario view = null;
 
@@ -19,19 +18,40 @@ namespace AppInternacao.Presenter
             view = _view;
         }
 
-        public int? Salvar()
+        public UsuarioPresenter(){}
+
+        public int? Salvar(Usuario _usuario =  null)
         {
             try
             {
                 crud = new CRUD();
-                usuario = view.usuario;
-                return crud.Executar(usuario, Procedure.SP_ADD_USUARIO, Acao.Inserir);
+                if (_usuario == null)
+                    usuario = view.usuario;
+                else
+                    usuario = _usuario;
+
+                return crud.Executar(usuario, Procedure.SP_ADD_UPDT_USUARIO, Acao.Inserir);
             }
             catch (Exception exSalvar)
             {
                 throw new Exception("Erro ao tentar salvar usuario\n" + exSalvar.Message);
             }
         }
-      
+
+        public List<Usuario> Carregar(Usuario _usuario = null)
+        {
+            try
+            {
+                crud = new CRUD();
+                if (_usuario == null)
+                    _usuario = new Usuario();
+
+                return crud.ListaGenerica(Procedure.SP_GET_USUARIOS, _usuario);
+            }
+            catch (Exception exGetuser)
+            {
+                throw exGetuser;
+            }
+        }
     }
 }

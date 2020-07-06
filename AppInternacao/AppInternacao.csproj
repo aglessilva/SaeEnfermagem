@@ -88,6 +88,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -169,6 +170,18 @@
     <Compile Include="FrmSae\UC01ListaHistoricoEnfermagem.Designer.cs">
       <DependentUpon>UC01ListaHistoricoEnfermagem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSae\UCAlterarSenha.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCAlterarSenha.Designer.cs">
+      <DependentUpon>UCAlterarSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCListaPaciente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCListaPaciente.Designer.cs">
+      <DependentUpon>UCListaPaciente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSae\UCQuartoLeito.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -200,8 +213,10 @@
     <Compile Include="FrmSae\UCUsuario.Designer.cs">
       <DependentUpon>UCUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funcoes.cs" />
     <Compile Include="Model\HistoricoEnfermagem.cs" />
     <Compile Include="Model\Leito.cs" />
+    <Compile Include="Model\Login.cs" />
     <Compile Include="Model\Main.cs" />
     <Compile Include="Model\Paciente.cs" />
     <Compile Include="Model\Quarto.cs" />
@@ -210,6 +225,7 @@
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Presenter\HistoricoEnfermagemPresenter.cs" />
     <Compile Include="Presenter\LeitoPresenter.cs" />
+    <Compile Include="Presenter\LoginPresenter.cs" />
     <Compile Include="Presenter\PacientePresenter.cs" />
     <Compile Include="Presenter\PresenterMain.cs" />
     <Compile Include="Presenter\QuartoPresenter.cs" />
@@ -224,6 +240,7 @@
     <Compile Include="Sessao.cs" />
     <Compile Include="View\IHistoricoEnfermagem.cs" />
     <Compile Include="View\ILeito.cs" />
+    <Compile Include="View\ILogin.cs" />
     <Compile Include="View\IMain.cs" />
     <Compile Include="View\IPaciente.cs" />
     <Compile Include="View\IQuarto.cs" />
@@ -257,6 +274,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UC01ListaHistoricoEnfermagem.resx">
       <DependentUpon>UC01ListaHistoricoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCAlterarSenha.resx">
+      <DependentUpon>UCAlterarSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCListaPaciente.resx">
+      <DependentUpon>UCListaPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
@@ -369,6 +392,21 @@
     <None Include="Resources\liberar.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\NovoCracha.jpg" />
+    <None Include="Resources\loginFrm2.png" />
+    <None Include="Resources\key-silhouette-security-tool-interface-symbol-of-password_icon-icons.com_54503.png" />
+    <None Include="Resources\user-black-close-up-shape_icon-icons.com_56876.png" />
+    <None Include="Resources\iconfinder-securityprotectlockshield43-4021443_113114.png" />
+    <None Include="Resources\loginFrm1.png" />
+    <None Include="Resources\loginFrm.png" />
+    <None Include="Resources\iconfinder-securityprotectlockshield26-4021460_113100.png" />
+    <None Include="Resources\Undergo_Insomnia_icon-icons.com_54126.png" />
+    <None Include="Resources\home 01.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\private_company.png" />
+    <None Include="Resources\Search_find_magnifier_248.png" />
+    <None Include="Resources\LeitoDisable.png" />
+    <None Include="Resources\LeitoEnable.png" />
     <None Include="Resources\internet_lock_locked_padlock_password_secure_security_icon_127100.png" />
     <None Include="Resources\people_47795.png" />
     <None Include="Resources\User-80_icon-icons.com_57249.png" />
@@ -396,6 +434,12 @@
     <None Include="Resources\crianca.png" />
     <None Include="Resources\Cabecalho02.png" />
     <None Include="Resources\1485969916-8-shutdown_78906.png" />
+    <None Include="Resources\cameraslrhd_106078.png" />
+    <None Include="Resources\48_1136671.png" />
+    <None Include="Resources\Cracha.png" />
+    <None Include="Resources\Cracha1.png" />
+    <None Include="Resources\barcodeflat_105982.png" />
+    <None Include="Resources\Barcode_27025.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
     <None Include="Resources\Error-80_icon-icons.com_573261.png" />
   </ItemGroup>

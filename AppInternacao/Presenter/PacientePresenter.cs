@@ -2,6 +2,7 @@
 using AppInternacao.Model;
 using AppInternacao.View;
 using System;
+using System.Collections.Generic;
 
 namespace AppInternacao.Presenter
 {
@@ -47,7 +48,7 @@ namespace AppInternacao.Presenter
             try
             {
                 crud = new CRUD();
-                ret = crud.Executar(new Paciente() { Id = obj.Id, IdLeito = obj.IdLeito }, Procedure.SP_BAIXAR_PACIENTE, Acao.Inserir);
+                ret = crud.Executar(new Paciente() { Id = obj.Id, Foto = obj.Foto }, Procedure.SP_BAIXAR_PACIENTE, Acao.Inserir);
                 if (ret > 1)
                     ret = 1;
                 // apos o inserte, recarregar o gride
@@ -71,7 +72,6 @@ namespace AppInternacao.Presenter
 
                 objeto = new LISTAOBJETOS();
                 view.pacientes =  objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
-                view.leitos = objeto.ListaGenerica(Procedure.SP_GET_LEITO, new Leito() { IsDisponibilidade = true });
             }
             catch (Exception exC)
             {
@@ -79,6 +79,21 @@ namespace AppInternacao.Presenter
             }
         }
 
+        public List<Paciente> GetPacientes(Paciente obj = null)
+        {
+            try
+            {
+                if (null == obj)
+                    obj = new Paciente();
+
+                objeto = new LISTAOBJETOS();
+                return objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+            }
+            catch (Exception exC)
+            {
+                throw exC;
+            }
+        }
 
         public void Pesquisar(Paciente obj)
         {

@@ -1,4 +1,6 @@
-﻿namespace AppInternacao.FrmSae
+﻿using System;
+
+namespace AppInternacao.FrmSae
 {
     partial class UCUsuario
     {
@@ -17,6 +19,7 @@
             {
                 components.Dispose();
             }
+            FrmMain.mySalvar.Click -= new EventHandler(Salvar);
             base.Dispose(disposing);
         }
 
@@ -28,9 +31,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCUsuario));
             this.gUsuario = new System.Windows.Forms.GroupBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -59,36 +64,37 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.gPesquisausuario = new System.Windows.Forms.GroupBox();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.textBoxPesquisaUsario = new System.Windows.Forms.TextBox();
-            this.dataGridViewPaciente = new System.Windows.Forms.DataGridView();
+            this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
+            this.errorProviderFields = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Idade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prontuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Liberar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPerfil = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btnImparPesquisa = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.gUsuario.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.gPesquisausuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFields)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gUsuario
             // 
             this.gUsuario.BackColor = System.Drawing.SystemColors.Control;
+            this.gUsuario.Controls.Add(this.label8);
             this.gUsuario.Controls.Add(this.panel11);
             this.gUsuario.Controls.Add(this.panel8);
             this.gUsuario.Controls.Add(this.textBoxIdUsuario);
@@ -115,7 +121,7 @@
             this.gUsuario.Dock = System.Windows.Forms.DockStyle.Top;
             this.gUsuario.Location = new System.Drawing.Point(0, 0);
             this.gUsuario.Name = "gUsuario";
-            this.gUsuario.Size = new System.Drawing.Size(849, 217);
+            this.gUsuario.Size = new System.Drawing.Size(849, 185);
             this.gUsuario.TabIndex = 0;
             this.gUsuario.TabStop = false;
             this.gUsuario.Text = "Cadastro de Usuários";
@@ -138,7 +144,8 @@
             // 
             // textBoxIdUsuario
             // 
-            this.textBoxIdUsuario.Location = new System.Drawing.Point(6, 174);
+            this.textBoxIdUsuario.Enabled = false;
+            this.textBoxIdUsuario.Location = new System.Drawing.Point(185, 150);
             this.textBoxIdUsuario.Name = "textBoxIdUsuario";
             this.textBoxIdUsuario.Size = new System.Drawing.Size(42, 20);
             this.textBoxIdUsuario.TabIndex = 40;
@@ -185,11 +192,11 @@
             // 
             this.comboBoxPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxPerfil.FormattingEnabled = true;
-            this.comboBoxPerfil.Location = new System.Drawing.Point(423, 64);
+            this.comboBoxPerfil.Location = new System.Drawing.Point(423, 65);
             this.comboBoxPerfil.Name = "comboBoxPerfil";
-            this.comboBoxPerfil.Size = new System.Drawing.Size(215, 28);
+            this.comboBoxPerfil.Size = new System.Drawing.Size(215, 24);
             this.comboBoxPerfil.TabIndex = 5;
             // 
             // panel7
@@ -208,7 +215,7 @@
             this.textBoxSenha.Enabled = false;
             this.textBoxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSenha.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxSenha.Location = new System.Drawing.Point(432, 104);
+            this.textBoxSenha.Location = new System.Drawing.Point(432, 106);
             this.textBoxSenha.MaxLength = 10;
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.PasswordChar = '*';
@@ -257,12 +264,12 @@
             this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxLogin.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.textBoxLogin.Enabled = false;
-            this.textBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxLogin.Location = new System.Drawing.Point(56, 104);
+            this.textBoxLogin.Location = new System.Drawing.Point(56, 109);
             this.textBoxLogin.MaxLength = 20;
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(308, 19);
+            this.textBoxLogin.Size = new System.Drawing.Size(308, 14);
             this.textBoxLogin.TabIndex = 6;
             // 
             // label4
@@ -296,24 +303,24 @@
             this.textBoxEmail.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxEmail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxEmail.Location = new System.Drawing.Point(55, 64);
+            this.textBoxEmail.Location = new System.Drawing.Point(55, 69);
             this.textBoxEmail.MaxLength = 40;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(308, 19);
+            this.textBoxEmail.Size = new System.Drawing.Size(308, 14);
             this.textBoxEmail.TabIndex = 4;
             // 
             // mskTelefone
             // 
             this.mskTelefone.BackColor = System.Drawing.SystemColors.Control;
             this.mskTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskTelefone.Location = new System.Drawing.Point(661, 27);
+            this.mskTelefone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskTelefone.Location = new System.Drawing.Point(661, 29);
             this.mskTelefone.Mask = "(99) 99999-9999";
             this.mskTelefone.Name = "mskTelefone";
-            this.mskTelefone.Size = new System.Drawing.Size(151, 19);
-            this.mskTelefone.TabIndex = 2;
+            this.mskTelefone.Size = new System.Drawing.Size(151, 14);
+            this.mskTelefone.TabIndex = 3;
             // 
             // label3
             // 
@@ -328,12 +335,12 @@
             // 
             this.mskCpf.BackColor = System.Drawing.SystemColors.Control;
             this.mskCpf.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mskCpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskCpf.Location = new System.Drawing.Point(432, 27);
+            this.mskCpf.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskCpf.Location = new System.Drawing.Point(432, 29);
             this.mskCpf.Mask = "999.999.999-99";
             this.mskCpf.Name = "mskCpf";
-            this.mskCpf.Size = new System.Drawing.Size(136, 19);
-            this.mskCpf.TabIndex = 1;
+            this.mskCpf.Size = new System.Drawing.Size(136, 14);
+            this.mskCpf.TabIndex = 2;
             this.mskCpf.Leave += new System.EventHandler(this.mskCpf_Leave);
             // 
             // label2
@@ -376,57 +383,27 @@
             this.textBoxNome.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxNome.Location = new System.Drawing.Point(56, 24);
+            this.textBoxNome.Location = new System.Drawing.Point(56, 30);
             this.textBoxNome.MaxLength = 50;
             this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(308, 19);
-            this.textBoxNome.TabIndex = 0;
+            this.textBoxNome.Size = new System.Drawing.Size(308, 14);
+            this.textBoxNome.TabIndex = 1;
             // 
             // gPesquisausuario
             // 
-            this.gPesquisausuario.Controls.Add(this.btnSalvar);
+            this.gPesquisausuario.Controls.Add(this.btnImparPesquisa);
             this.gPesquisausuario.Controls.Add(this.pictureBox1);
             this.gPesquisausuario.Controls.Add(this.panel9);
             this.gPesquisausuario.Controls.Add(this.textBoxPesquisaUsario);
             this.gPesquisausuario.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gPesquisausuario.Location = new System.Drawing.Point(0, 217);
+            this.gPesquisausuario.Location = new System.Drawing.Point(0, 185);
             this.gPesquisausuario.Name = "gPesquisausuario";
             this.gPesquisausuario.Size = new System.Drawing.Size(849, 60);
             this.gPesquisausuario.TabIndex = 1;
             this.gPesquisausuario.TabStop = false;
             this.gPesquisausuario.Text = "Pesquisar Usuário por Nome";
-            // 
-            // btnSalvar
-            // 
-            this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
-            this.btnSalvar.BackgroundImage = global::AppInternacao.Properties.Resources.Childish_Cross_24996;
-            this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSalvar.FlatAppearance.BorderSize = 0;
-            this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSalvar.Location = new System.Drawing.Point(562, 24);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(29, 24);
-            this.btnSalvar.TabIndex = 11;
-            this.btnSalvar.UseVisualStyleBackColor = false;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.preview_search_find_locate_1551;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
             // 
             // panel9
             // 
@@ -434,7 +411,7 @@
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Location = new System.Drawing.Point(19, 50);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(572, 1);
+            this.panel9.Size = new System.Drawing.Size(345, 1);
             this.panel9.TabIndex = 21;
             // 
             // panel10
@@ -449,60 +426,71 @@
             // 
             this.textBoxPesquisaUsario.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxPesquisaUsario.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPesquisaUsario.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBoxPesquisaUsario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPesquisaUsario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxPesquisaUsario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPesquisaUsario.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxPesquisaUsario.Location = new System.Drawing.Point(51, 24);
+            this.textBoxPesquisaUsario.Location = new System.Drawing.Point(51, 34);
             this.textBoxPesquisaUsario.MaxLength = 18;
             this.textBoxPesquisaUsario.Name = "textBoxPesquisaUsario";
-            this.textBoxPesquisaUsario.Size = new System.Drawing.Size(501, 25);
+            this.textBoxPesquisaUsario.Size = new System.Drawing.Size(313, 14);
             this.textBoxPesquisaUsario.TabIndex = 10;
             // 
-            // dataGridViewPaciente
+            // dataGridViewUsuarios
             // 
-            this.dataGridViewPaciente.AllowUserToAddRows = false;
-            this.dataGridViewPaciente.AllowUserToDeleteRows = false;
-            this.dataGridViewPaciente.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewPaciente.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewPaciente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPaciente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPaciente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewUsuarios.AllowUserToAddRows = false;
+            this.dataGridViewUsuarios.AllowUserToDeleteRows = false;
+            this.dataGridViewUsuarios.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.IdLeito,
             this.Nome,
-            this.Idade,
-            this.Sexo,
-            this.NomeLeito,
-            this.Prontuario,
-            this.Editar,
-            this.Liberar});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewPaciente.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 277);
-            this.dataGridViewPaciente.Name = "dataGridViewPaciente";
-            this.dataGridViewPaciente.ReadOnly = true;
-            this.dataGridViewPaciente.RowHeadersVisible = false;
-            this.dataGridViewPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPaciente.Size = new System.Drawing.Size(849, 278);
-            this.dataGridViewPaciente.TabIndex = 12;
+            this.Cpf,
+            this.Telefone,
+            this.TipoPerfil,
+            this.Editar});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewUsuarios.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewUsuarios.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewUsuarios.Location = new System.Drawing.Point(0, 245);
+            this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
+            this.dataGridViewUsuarios.ReadOnly = true;
+            this.dataGridViewUsuarios.RowHeadersVisible = false;
+            this.dataGridViewUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(849, 310);
+            this.dataGridViewUsuarios.TabIndex = 12;
+            this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuarios_CellContentClick);
+            // 
+            // errorProviderFields
+            // 
+            this.errorProviderFields.ContainerControl = this;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(387, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 13);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Perfil:";
             // 
             // Id
             // 
@@ -512,14 +500,6 @@
             this.Id.Visible = false;
             this.Id.Width = 5;
             // 
-            // IdLeito
-            // 
-            this.IdLeito.DataPropertyName = "IdLeito";
-            this.IdLeito.HeaderText = "IdLeito";
-            this.IdLeito.Name = "IdLeito";
-            this.IdLeito.ReadOnly = true;
-            this.IdLeito.Visible = false;
-            // 
             // Nome
             // 
             this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -528,67 +508,35 @@
             this.Nome.Name = "Nome";
             this.Nome.ReadOnly = true;
             // 
-            // Idade
+            // Cpf
             // 
-            this.Idade.DataPropertyName = "Idade";
-            this.Idade.HeaderText = "Idade";
-            this.Idade.Name = "Idade";
-            this.Idade.ReadOnly = true;
-            this.Idade.Visible = false;
-            this.Idade.Width = 10;
+            this.Cpf.DataPropertyName = "Cpf";
+            this.Cpf.HeaderText = "Cpf";
+            this.Cpf.Name = "Cpf";
+            this.Cpf.ReadOnly = true;
+            this.Cpf.Width = 150;
             // 
-            // Sexo
+            // Telefone
             // 
-            this.Sexo.DataPropertyName = "Sexo";
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.Name = "Sexo";
-            this.Sexo.ReadOnly = true;
-            this.Sexo.Width = 35;
+            this.Telefone.DataPropertyName = "Telefone";
+            this.Telefone.HeaderText = "Telefone";
+            this.Telefone.Name = "Telefone";
+            this.Telefone.ReadOnly = true;
+            this.Telefone.Width = 150;
             // 
-            // NomeLeito
+            // TipoPerfil
             // 
-            this.NomeLeito.DataPropertyName = "NomeLeito";
-            this.NomeLeito.HeaderText = "Leito";
-            this.NomeLeito.Name = "NomeLeito";
-            this.NomeLeito.ReadOnly = true;
-            this.NomeLeito.Width = 60;
-            // 
-            // Prontuario
-            // 
-            this.Prontuario.DataPropertyName = "Prontuario";
-            this.Prontuario.HeaderText = "Prontuário";
-            this.Prontuario.Name = "Prontuario";
-            this.Prontuario.ReadOnly = true;
-            // 
-            // Editar
-            // 
-            this.Editar.Description = "Editar registro";
-            this.Editar.HeaderText = "";
-            this.Editar.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
-            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Editar.ToolTipText = "Editar Registro!";
-            this.Editar.Width = 30;
-            // 
-            // Liberar
-            // 
-            this.Liberar.Description = "Liberar leito";
-            this.Liberar.HeaderText = "";
-            this.Liberar.Image = global::AppInternacao.Properties.Resources.liberar;
-            this.Liberar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Liberar.Name = "Liberar";
-            this.Liberar.ReadOnly = true;
-            this.Liberar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Liberar.ToolTipText = "Liberar Leito!";
-            this.Liberar.Width = 30;
+            this.TipoPerfil.DataPropertyName = "Perfil";
+            this.TipoPerfil.HeaderText = "Perfil";
+            this.TipoPerfil.Name = "TipoPerfil";
+            this.TipoPerfil.ReadOnly = true;
+            this.TipoPerfil.Width = 150;
             // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.Description = "Editar registro";
             this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::AppInternacao.Properties.Resources.file_edit_114433;
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
@@ -596,11 +544,53 @@
             this.dataGridViewImageColumn1.ToolTipText = "Editar Registro!";
             this.dataGridViewImageColumn1.Width = 30;
             // 
+            // Editar
+            // 
+            this.Editar.Description = "Editar registro";
+            this.Editar.HeaderText = "";
+            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
+            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Editar.ToolTipText = "Editar Registro!";
+            this.Editar.Width = 30;
+            // 
+            // btnImparPesquisa
+            // 
+            this.btnImparPesquisa.BackColor = System.Drawing.Color.Transparent;
+            this.btnImparPesquisa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnImparPesquisa.BackgroundImage")));
+            this.btnImparPesquisa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnImparPesquisa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImparPesquisa.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnImparPesquisa.FlatAppearance.BorderSize = 0;
+            this.btnImparPesquisa.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnImparPesquisa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnImparPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImparPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImparPesquisa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnImparPesquisa.Location = new System.Drawing.Point(335, 24);
+            this.btnImparPesquisa.Name = "btnImparPesquisa";
+            this.btnImparPesquisa.Size = new System.Drawing.Size(29, 24);
+            this.btnImparPesquisa.TabIndex = 11;
+            this.btnImparPesquisa.UseVisualStyleBackColor = false;
+            this.btnImparPesquisa.Click += new System.EventHandler(this.btnImparPesquisa_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(17, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // dataGridViewImageColumn2
             // 
             this.dataGridViewImageColumn2.Description = "Liberar leito";
             this.dataGridViewImageColumn2.HeaderText = "";
-            this.dataGridViewImageColumn2.Image = global::AppInternacao.Properties.Resources.liberar;
+            this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
@@ -613,7 +603,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Controls.Add(this.dataGridViewPaciente);
+            this.Controls.Add(this.dataGridViewUsuarios);
             this.Controls.Add(this.gPesquisausuario);
             this.Controls.Add(this.gUsuario);
             this.Name = "UCUsuario";
@@ -626,9 +616,10 @@
             this.panel4.ResumeLayout(false);
             this.gPesquisausuario.ResumeLayout(false);
             this.gPesquisausuario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderFields)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -665,20 +656,19 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.TextBox textBoxPesquisaUsario;
-        private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.DataGridView dataGridViewPaciente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdLeito;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Idade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomeLeito;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prontuario;
-        private System.Windows.Forms.DataGridViewImageColumn Editar;
-        private System.Windows.Forms.DataGridViewImageColumn Liberar;
+        private System.Windows.Forms.Button btnImparPesquisa;
+        private System.Windows.Forms.DataGridView dataGridViewUsuarios;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ErrorProvider errorProviderFields;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cpf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoPerfil;
+        private System.Windows.Forms.DataGridViewImageColumn Editar;
     }
 }
