@@ -42,6 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSaiFechar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,6 +51,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSaiFechar);
             this.groupBox1.Controls.Add(this.btnAlterarSenha);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.textBoxConfirmarSenha);
@@ -80,9 +82,9 @@
             this.btnAlterarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.btnAlterarSenha.ForeColor = System.Drawing.Color.White;
             this.btnAlterarSenha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlterarSenha.Location = new System.Drawing.Point(132, 143);
+            this.btnAlterarSenha.Location = new System.Drawing.Point(221, 143);
             this.btnAlterarSenha.Name = "btnAlterarSenha";
-            this.btnAlterarSenha.Size = new System.Drawing.Size(215, 40);
+            this.btnAlterarSenha.Size = new System.Drawing.Size(130, 40);
             this.btnAlterarSenha.TabIndex = 44;
             this.btnAlterarSenha.TabStop = false;
             this.btnAlterarSenha.Text = "Alterar Senha";
@@ -211,6 +213,28 @@
             this.panel3.Size = new System.Drawing.Size(250, 382);
             this.panel3.TabIndex = 1;
             // 
+            // btnSaiFechar
+            // 
+            this.btnSaiFechar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnSaiFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaiFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaiFechar.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnSaiFechar.FlatAppearance.BorderSize = 0;
+            this.btnSaiFechar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSaiFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnSaiFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaiFechar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnSaiFechar.ForeColor = System.Drawing.Color.White;
+            this.btnSaiFechar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaiFechar.Location = new System.Drawing.Point(85, 143);
+            this.btnSaiFechar.Name = "btnSaiFechar";
+            this.btnSaiFechar.Size = new System.Drawing.Size(130, 40);
+            this.btnSaiFechar.TabIndex = 45;
+            this.btnSaiFechar.TabStop = false;
+            this.btnSaiFechar.Text = "Sair e Fechar";
+            this.btnSaiFechar.UseVisualStyleBackColor = false;
+            this.btnSaiFechar.Click += new System.EventHandler(this.btnSaiFechar_Click);
+            // 
             // UCAlterarSenha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,5 +270,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnAlterarSenha;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSaiFechar;
     }
 }

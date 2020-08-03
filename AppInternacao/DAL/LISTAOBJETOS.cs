@@ -18,15 +18,18 @@ namespace AppInternacao.Model
         #region METODOS DE LISTAGEM DE OBJETOS DE BANCO
         public LISTAOBJETOS() { }
 
-        protected SqlCommand ComandoSQL(Procedure procedure)
+        protected SqlCommand ComandoSQL(Procedure procedure )
         {
             try
             {
                 cmd = new SqlCommand();
 
                 cmd.Connection = DBCONN(cmd);
-                cmd.CommandText = procedure.ToString();
-                cmd.CommandType = CommandType.StoredProcedure;
+                if (procedure != Procedure.VAZIO)
+                {
+                    cmd.CommandText = procedure.ToString();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                }
             }
 
             catch (SqlException sqlEx)

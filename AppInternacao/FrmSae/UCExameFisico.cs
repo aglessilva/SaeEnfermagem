@@ -3,22 +3,33 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace AppInternacao.FrmSae
 {
 
-    public partial class UCSaeAdulto : UserControl
+    public partial class UCExameFisico : UserControl
     {
-        
+        ExameFisico saePaciente = null;
 
-        public UCSaeAdulto()
+
+        List<object> pressaoArterial = new List<object>()
+            {
+             new {Codigo = 0, Titulo = "Selecione", Valor = "0"},
+            new {Codigo = 1, Titulo = "Ótima", Valor = "< 120 X < 80"},
+            new {Codigo = 2, Titulo ="Normal", Valor = "120 a 129 X 80 a 84" },
+            new {Codigo = 3, Titulo = "Normal Alto",Valor = "130 a 139 X 85 a 89" },
+            new {Codigo = 4, Titulo = "Estágio 1", Valor = "140 a 159 X 90 a 99" },
+            new {Codigo = 5, Titulo = "Estágio 2", Valor = "160 a 179 X 100 a 109" },
+            new {Codigo = 6, Titulo = "Estágio 3", Valor = ">= 180 X >= 110" }
+        };
+
+        public UCExameFisico()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
         }
 
-        public UCSaeAdulto(long _prountuario)
+        public UCExameFisico(long _prountuario)
         {
             InitializeComponent();
             textProntuario.Text = _prountuario.ToString();
@@ -29,12 +40,12 @@ namespace AppInternacao.FrmSae
 
         public void Button1_Click(object sender, EventArgs e)
         {
-            SaeClinicaMedicaAdulto saePaciente = new SaeClinicaMedicaAdulto();
+           saePaciente = new ExameFisico();
 
             try
             {
                 // *** GRUPO PACIENTE ****
-                Salvar(this);
+                ExameFisico exeme = Salvar(this);
 
             }
             catch (Exception)
@@ -44,18 +55,18 @@ namespace AppInternacao.FrmSae
             }
 
         }
-        private SaeClinicaMedicaAdulto Salvar(Control control)
+        private ExameFisico Salvar(Control control)
         {
             string valuesRadio = string.Empty;
-            string[] msg = { " Controle de Cateteres e Sonda ", " Sistema Neurológico ", " Pupilas ", " Status Térmico ", " Oxigenação "," Pele ", " GASTROINTESTINAL ", " Regulação Abdominal ", " Regulação Vascular ", " Úcera por Compressão ", " DIAGNOSTICO DE ENFERMAGEM " };
-            bool[] validar = { false, false, false, false, false, false, false, false, false, false, false, false};
+            string[] msg = { " Controle de Cateteres e Sonda ", " Sistema Neurológico ", " Pupilas ", " Status Térmico ", " Oxigenação "," Pele ", " GASTROINTESTINAL ", " Regulação Abdominal ", " Regulação Vascular ", " Úcera por Compressão " };
+            bool[] validar = { false, false, false, false, false, false, false, false, false, false};
 
-            SaeClinicaMedicaAdulto saePaciente = new SaeClinicaMedicaAdulto();
+            ExameFisico saePaciente = new ExameFisico();
             try
             {
                 saePaciente.Cliente.Prontuario = Convert.ToInt64(textProntuario.Text);
-                saePaciente.PA = mskPA.Text;
-                saePaciente.DataSae = DateTime.Now;
+               // saePaciente.PA = mskPA.Text;
+                saePaciente.DataExameFisico = DateTime.Now;
                 saePaciente.Alergia = textAglergias.Text;
                 RadioButton radio = null;
 
@@ -105,7 +116,7 @@ namespace AppInternacao.FrmSae
                             radio = itemControl.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
                             if(radio != null)
                             {
-                                saePaciente.SituacaoTermica.Status = radio.Tag.ToString();
+                                saePaciente.SituacaoTermica = radio.Tag.ToString();
                                 validar[3] = true;
                             }
                           //  saePaciente.SituacaoTermica.Temperatura = string.IsNullOrWhiteSpace(Regex.Replace(mskStatusTermico1.Text, @"[^0-9$]", "")) ? Regex.Replace(mskStatusTermico2.Text, @"[^0-9$]", "") : Regex.Replace(mskStatusTermico1.Text, @"[^0-9$]", "");
@@ -210,16 +221,6 @@ namespace AppInternacao.FrmSae
                                 validar[9] = true;
                             }
                         }
-
-                        if (itemControl.Name.Equals("gDiagnosticoEnfermagem"))
-                        {
-                            List<string> lst = new List<string>();
-                            itemControl.Controls.OfType<CheckBox>().Where(r => r.Checked).ToList().ForEach(de => { lst.Add(de.Tag.ToString());});
-
-                            saePaciente.Diagnostico = string.Join(" ", lst.AsQueryable());
-                            validar[10] = lst.Count > 0;
-                        }
-
                     }
                 }
 
@@ -242,10 +243,23 @@ namespace AppInternacao.FrmSae
         {
             FrmMain.mySalvar.Click += new EventHandler(Button1_Click);
             textData.Text = DateTime.Now.ToShortDateString();
-
+            new ToolTip() { IsBalloon = true, UseAnimation = true, UseFading = true }.SetToolTip(textBoxPas, "Pressão Arterial Astólica");
+            new ToolTip() { IsBalloon = true, UseAnimation = true, UseFading = true }.SetToolTip(textBoxPad, "Pressão Arterial Diastólica");
+            comboBoxPressaoArterial.ValueMember = "Codigo";
+            comboBoxPressaoArterial.DisplayMember = "Titulo";
+            comboBoxPressaoArterial.DataSource = pressaoArterial;
             try
             {
-            
+                textPaciente.Text = Sessao.Paciente.Nome;
+                textProntuario.Text = Sessao.Paciente.Prontuario.ToString();
+                textLeito.Text = Sessao.Paciente.NomeLeito;
+                textIdade.Text = Sessao.Paciente.Idade.ToString();
+                textBoxSetor.Text = Sessao.Paciente.NomeSetor;
+                textBoxQuarto.Text = Sessao.Paciente.NomeQuarto;
+                rdoMasculino.Checked = Sessao.Paciente.Sexo == 'M';
+                rdoFerminino.Checked = Sessao.Paciente.Sexo == 'F';
+                textBoxEnfermeira.Text = Sessao.Usuario == null ? string.Empty : Sessao.Usuario.Nome;
+               
             }
             catch (Exception exl)
             {
@@ -253,6 +267,20 @@ namespace AppInternacao.FrmSae
             }
         }
 
-       
+        private void comboBoxPressaoArterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dynamic item = comboBoxPressaoArterial.SelectedItem;
+            string param = item.Valor;
+            if (!param.Equals("0"))
+            {
+                textBoxPas.Text = param.Split('X')[0];
+                textBoxPad.Text = param.Split('X')[1];
+            }
+            else
+            {
+                textBoxPas.Text = string.Empty;
+                textBoxPad.Text = string.Empty;
+            }
+        }
     }
 }

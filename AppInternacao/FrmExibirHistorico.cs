@@ -11,28 +11,22 @@ using System.Windows.Forms;
 
 namespace AppInternacao
 {
-    public partial class Form01 : Form
+    public partial class FrmExibirHistorico : Form
     {
-        public Form01()
+        public FrmExibirHistorico()
         {
             InitializeComponent();
         }
 
-       
-
-       
-
-      
-       
-
-        private void panelDropDown_MouseLeave(object sender, EventArgs e)
-        {
-          
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            richTextBoxExExibirHistorico.Rtf = Sessao.Paciente.HistoricoEnfermagem;
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
+            Dispose();
         }
     }
 }

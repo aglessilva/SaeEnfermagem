@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
@@ -20,8 +21,6 @@ namespace AppInternacao.FrmSae
 
         void OpnUC_Sae(int frm = 0)
         {
-           
-
                 //ctrl.Controls[1].Controls.RemoveAt(0);
 
             if (pFrmSae.Controls.Count > 0)
@@ -39,10 +38,18 @@ namespace AppInternacao.FrmSae
 
             if (frm == 1)
             {
-                lblTitulo.Text = "Histórico de Enfermagem";
-                userControl = new UC01HistoricoEnfermagem();
-                var item = Parent.Parent.Controls;
-                item[1].Controls.Add(new UC01ListaHistoricoEnfermagem());
+                if (Sessao.Paciente.HistoricoEnfermagem != null)
+                {
+                    lblTitulo.Text = "Exame Físico";
+                    userControl = new UCExameFisico();
+                    ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
+                    ctrl.Controls[1].Controls.Add(new UCExibirHistorico());
+                }
+                else
+                {
+                    lblTitulo.Text = "Histórico de Enfermagem";
+                    userControl = new UC01HistoricoEnfermagem();
+                }
             }
 
             if (frm == 2)
@@ -70,6 +77,8 @@ namespace AppInternacao.FrmSae
             }
 
            
+          
+
             pFrmSae.Controls.Add(userControl);
         }
 

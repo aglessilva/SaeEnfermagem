@@ -1,5 +1,6 @@
 ﻿using AppInternacao.Presenter;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
@@ -25,6 +26,19 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(textBoxProntuario.Text))
+                    return;
+
+                if(!Regex.IsMatch(textBoxProntuario.Text, @"(^\d{1,18}$)"))
+                {
+                    MessageBox.Show($"Neste campo é permitido somente caracteres numéricos\nDados inconsistentes: {textBoxProntuario.Text}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    textBoxProntuario.Text = string.Empty;
+                    textBoxProntuario.Focus();
+                    return;
+                }
+
+                textBoxProntuario.Text = Regex.Replace(textBoxProntuario.Text.Trim(), @"[^0-9$]", string.Empty);
+
                 if (textBoxProntuario.Text.Length == 18)
                 {
                     PacientePresenter = new PacientePresenter();
@@ -79,8 +93,15 @@ namespace AppInternacao.FrmSae
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            textBoxProntuario.Text = string.Empty;
             gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
+            textBoxProntuario.Text = string.Empty;
+            textBoxProntuario.Focus();
+        }
+
+        private void textBoxProntuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+                e.Handled = true;
         }
     }
 }

@@ -31,20 +31,20 @@
             this.components = new System.ComponentModel.Container();
             this.timerStepSae = new System.Windows.Forms.Timer(this.components);
             this.pBaseTimeline = new System.Windows.Forms.Panel();
-            this.timerStepBack = new System.Windows.Forms.Timer(this.components);
-            this.pFrmSae = new System.Windows.Forms.Panel();
             this.btnStepVoltar = new System.Windows.Forms.Button();
             this.btnStep = new System.Windows.Forms.Button();
             this.pStep = new System.Windows.Forms.Panel();
-            this.pByStep = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.pByStep = new System.Windows.Forms.Panel();
+            this.timerStepBack = new System.Windows.Forms.Timer(this.components);
+            this.pFrmSae = new System.Windows.Forms.Panel();
             this.pBaseTimeline.SuspendLayout();
             this.pStep.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerStepSae
             // 
-            this.timerStepSae.Interval = 20;
+            this.timerStepSae.Interval = 15;
             this.timerStepSae.Tick += new System.EventHandler(this.timerStepSae_Tick);
             // 
             // pBaseTimeline
@@ -58,19 +58,6 @@
             this.pBaseTimeline.Name = "pBaseTimeline";
             this.pBaseTimeline.Size = new System.Drawing.Size(891, 72);
             this.pBaseTimeline.TabIndex = 6;
-            // 
-            // timerStepBack
-            // 
-            this.timerStepBack.Interval = 20;
-            this.timerStepBack.Tick += new System.EventHandler(this.timerStepBack_Tick);
-            // 
-            // pFrmSae
-            // 
-            this.pFrmSae.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pFrmSae.Location = new System.Drawing.Point(0, 72);
-            this.pFrmSae.Name = "pFrmSae";
-            this.pFrmSae.Size = new System.Drawing.Size(891, 438);
-            this.pFrmSae.TabIndex = 7;
             // 
             // btnStepVoltar
             // 
@@ -135,6 +122,18 @@
             this.pStep.Size = new System.Drawing.Size(485, 63);
             this.pStep.TabIndex = 5;
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(179, 48);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(11, 13);
+            this.lblTitulo.TabIndex = 6;
+            this.lblTitulo.Text = "-";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitulo.Visible = false;
+            // 
             // pByStep
             // 
             this.pByStep.BackColor = System.Drawing.Color.Transparent;
@@ -145,19 +144,18 @@
             this.pByStep.Size = new System.Drawing.Size(22, 22);
             this.pByStep.TabIndex = 5;
             // 
-            // lblTitulo
+            // timerStepBack
             // 
-            this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(179, 48);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(11, 13);
-            this.lblTitulo.TabIndex = 6;
-            this.lblTitulo.Text = "-";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTitulo.Visible = false;
+            this.timerStepBack.Interval = 15;
+            this.timerStepBack.Tick += new System.EventHandler(this.timerStepBack_Tick);
+            // 
+            // pFrmSae
+            // 
+            this.pFrmSae.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pFrmSae.Location = new System.Drawing.Point(0, 72);
+            this.pFrmSae.Name = "pFrmSae";
+            this.pFrmSae.Size = new System.Drawing.Size(891, 438);
+            this.pFrmSae.TabIndex = 7;
             // 
             // UCTimeLine
             // 

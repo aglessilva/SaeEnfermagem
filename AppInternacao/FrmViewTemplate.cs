@@ -1,0 +1,210 @@
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AppInternacao
+{
+    public partial class FrmViewTemplate : Form
+    {
+        DataTable dataTable;
+        int somaTotalGlasgow = 0;
+        RadioButton radioBtn = null, radioButtonEvent = null;
+        TextBox TextBox = null;
+
+        public FrmViewTemplate(DataTable _dataTable)
+        {
+            InitializeComponent();
+            DataView dv = _dataTable.DefaultView;
+            dv.Sort = "IdItem asc";
+            dataTable = dv.ToTable();
+            radioButtonEvent = new RadioButton();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
+            Dispose(true);
+        }
+
+
+        private void FrmViewTemplate_Load(object sender, EventArgs e)
+        {
+            Area area;
+            RadioButton radioButton = null;
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                area = (Area)item[3];
+                radioButton = new RadioButton() { Text = item[5].ToString(), Tag = item[4].ToString(), AutoSize = true, Checked = false };
+
+                switch (area)
+                {
+                    case Area.SistemaNeurologico:
+                        {
+                            if (!pSistemaNeurologico.Visible)
+                                pSistemaNeurologico.Visible = true;
+
+                            flpSistemaNerologico.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.Pupilas:
+                        {
+                            if (!pPuplias.Visible)
+                                pPuplias.Visible = true;
+
+                            flpPupilas.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.RegulacaoTermica:
+                        {
+                            if (!pRegulacaoTermica.Visible)
+                                pRegulacaoTermica.Visible = true;
+
+                            if (new int[] { 18, 19 }.Any(s => s.Equals(Convert.ToInt32(item.ItemArray[4]))))
+                            {
+                                flpRegulacaotermica.Controls.Add(radioButton);
+                                if(TextBox == null)
+                                    TextBox = new TextBox() { Text = "ºC", Width = 40, TextAlign = HorizontalAlignment.Right };
+                            }
+                            else
+                                flpRegulacaotermica.Controls.Add(radioButton);
+
+                            break;
+                        }
+                    case Area.Oxigenacao:
+                        {
+                            if (!pOxigenacao.Visible)
+                                pOxigenacao.Visible = true;
+
+                            flpOxigenacao.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.Pele:
+                        {
+                            if (!pPele.Visible)
+                                pPele.Visible = true;
+
+                            flpPele.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.SistemaGastrointestinal:
+                        {
+                            if (!pSistemaGastrointestinal.Visible)
+                                pSistemaGastrointestinal.Visible = true;
+
+                            if (new int[] { 40, 41, 42 }.Any(s => s.Equals(Convert.ToInt32(item.ItemArray[4]))))
+                            {
+                                if (Convert.ToInt32(item.ItemArray[4]) == 40)
+                                    pGavagem.Visible = true;
+
+                                if (Convert.ToInt32(item.ItemArray[4]) == 41)
+                                    pEvacuacoes.Visible = true;
+
+                                if (Convert.ToInt32(item.ItemArray[4]) == 42)
+                                    pFlatos.Visible = true;
+                            }
+                            else
+                                flpSistemaGastroIntestinal.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.SistemaVascular:
+                        {
+                            if (!pSistemaVascular.Visible)
+                                pSistemaVascular.Visible = true;
+
+                            flpSistemaVascular.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.SistemaAbdominal:
+                        {
+                            if (!pSistemaAbdominal.Visible)
+                                pSistemaAbdominal.Visible = true;
+
+                            flpSistemaAbdominal.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.SistemaUrinario:
+                        {
+                            if (!pSistemaUrinario.Visible)
+                                pSistemaUrinario.Visible = true;
+
+                            flpsistemaUrinario.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.LesaoCompressao:
+                        {
+                            if (!pLesaoCompressao.Visible)
+                                pLesaoCompressao.Visible = true;
+
+                            flpLesao.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.GloboPinard:
+                        {
+                            if (!pPinard.Visible)
+                                pPinard.Visible = true;
+
+                            flpPinard.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.ComaGlasgow:
+                        {
+                            if (!pglasgow.Visible)
+                                pFormGlasgow.Visible = pglasgow.Visible = true;
+                            break;
+                        }
+                    case Area.ControleCateteres:
+                        {
+                            if (!pCateteres.Visible)
+                                pCateteres.Visible = true;
+
+                            flpCateteres.Controls.Add(radioButton);
+                            break;
+                        }
+                    case Area.PressaoArterial:
+                        {
+                            if (!pPressao.Visible)
+                                pPressao.Visible = true;
+
+                            if (Convert.ToInt32(item.ItemArray[4]) == 88)
+                                richTextBox1.Visible = true;
+                            else if (Convert.ToInt32(item.ItemArray[4]) == 87)
+                                pPA.Visible = true;
+                            else
+                                flpPressao.Controls.Add(radioButton);
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+           if(TextBox != null )
+                flpRegulacaotermica.Controls.Add(TextBox);
+        }
+
+        private void RadioBtn_Click(object sender, EventArgs e)
+        {
+            radioBtn = gAberturaOcular.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            somaTotalGlasgow = radioBtn == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioBtn.Tag);
+
+            radioBtn = gRespostaVerbal.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            somaTotalGlasgow = radioBtn == null ? 0 + somaTotalGlasgow : somaTotalGlasgow  + Convert.ToInt32(radioBtn.Tag);
+
+            radioBtn = gRespostaMotora.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            somaTotalGlasgow = radioBtn == null ? 0 + somaTotalGlasgow : somaTotalGlasgow  + Convert.ToInt32(radioBtn.Tag);
+
+            lblSomaGlasgow.Text = $"Total de: {somaTotalGlasgow}";
+            somaTotalGlasgow = 0;
+            radioBtn = null;
+        }
+    }
+}

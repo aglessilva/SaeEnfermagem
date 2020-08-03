@@ -7,5 +7,6 @@ namespace AppInternacao.View
     {
         Paciente paciente { get; set; }
         List<Paciente> pacientes { set; }
+        List<EstruturaFisica> estruturaFisicas { set; }
     }
 }

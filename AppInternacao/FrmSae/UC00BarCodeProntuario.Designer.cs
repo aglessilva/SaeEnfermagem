@@ -171,7 +171,6 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Image = global::AppInternacao.Properties.Resources.tag_user_card_16777;
             this.pictureBox2.Location = new System.Drawing.Point(3, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(66, 43);
@@ -191,6 +190,7 @@
             this.textBoxProntuario.Size = new System.Drawing.Size(248, 25);
             this.textBoxProntuario.TabIndex = 0;
             this.textBoxProntuario.TextChanged += new System.EventHandler(this.textBoxProntuario_TextChanged);
+            this.textBoxProntuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProntuario_KeyPress);
             // 
             // pictureBox1
             // 
@@ -307,7 +307,7 @@
             this.lblObs.Text = "-";
             this.lblObs.Visible = false;
             // 
-            // UCBarCodeProntuario
+            // UC00BarCodeProntuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -315,7 +315,7 @@
             this.Controls.Add(this.lblObs);
             this.Controls.Add(this.gDadosPaciente);
             this.Controls.Add(this.panel1);
-            this.Name = "UCBarCodeProntuario";
+            this.Name = "UC00BarCodeProntuario";
             this.Size = new System.Drawing.Size(798, 553);
             this.Load += new System.EventHandler(this.UCBarCodeProntuario_Load);
             this.panel1.ResumeLayout(false);

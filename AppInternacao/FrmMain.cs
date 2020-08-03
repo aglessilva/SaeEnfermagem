@@ -117,14 +117,14 @@ namespace AppInternacao
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
 
-                // TODO: DESCOMENTAR ESSE BLOCO PARA PARA REALIZAR LOGIN E PRENCHER A SESSÃO DO USUARIO LOGADO
-                //if((bool)Sessao.Usuario.AlterarSenha)
-                //{
-                //    CloseUC();
-                //    userControl = new FrmSae.UCAlterarSenha();
-                //    panelCabecalho.Enabled = panelMenu.Enabled = false;
-                //    OpenUc();
-                //}
+            //TODO: DESCOMENTAR ESSE BLOCO PARA PARA REALIZAR LOGIN E PRENCHER A SESSÃO DO USUARIO LOGADO
+                if ((bool)Sessao.Usuario.AlterarSenha)
+                {
+                    CloseUC();
+                    userControl = new FrmSae.UCAlterarSenha();
+                    panelCabecalho.Enabled = panelMenu.Enabled = false;
+                    OpenUc();
+                }
             }
             catch (Exception exM)
             {
@@ -303,8 +303,20 @@ namespace AppInternacao
             else
             {
                 Sessao.Usuario = null;
+                Sessao.Cliente = null;
+                Sessao.Paciente = null;
+                Sessao.CodigoCliente = 0;
+                Close();
+                Dispose(true);
                 Application.Exit();
             }
+        }
+
+        private void btnTempalte_Click(object sender, EventArgs e)
+        {
+            CloseUC();
+            userControl = new FrmSae.UCNomeTemplate();
+            OpenUc();
         }
     }
 }

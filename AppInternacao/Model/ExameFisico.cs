@@ -2,32 +2,33 @@
 
 namespace AppInternacao.Model
 {
-    public class SaeClinicaMedicaAdulto
+    public class ExameFisico
     {
-        public SaeClinicaMedicaAdulto()
+        public ExameFisico()
         {
             Sonda = new CateterSonda();
-            SituacaoTermica = new StatuTermico();
+           // SituacaoTermica = new StatuTermico();
             Abdominal = new ResgulacaoAbdominal();
             GastroIntestinal = new SistemaGastroIntestinal();
             Cliente = new Paciente();
         }
-       
-        public DateTime DataSae { get; set; }
+        public int Id { get; set; }
+        public int IdUsuario { get; set; }
+        public DateTime DataExameFisico { get; set; }
         public string PA { get; set; }
         public Paciente Cliente { get; set; }
         public CateterSonda Sonda { get; set; }
         public string Alergia { get; set; }
         public string SistemaNeurologico { get; set; }
         public string Pupilas { get; set; }
-        public StatuTermico SituacaoTermica { get; set; }
+        public string SituacaoTermica { get; set; }
         public string Oxigenacao { get; set; }
         public string Pele { get; set; }
         public SistemaGastroIntestinal GastroIntestinal { get; set; }
         public ResgulacaoAbdominal Abdominal { get; set; }
         public string Vascular { get; set; }
         public string Ucera { get; set; }
-        public string Diagnostico { get; set; }
+        public string Observacao { get; set; }
     }
 
     public class CateterSonda
@@ -39,17 +40,6 @@ namespace AppInternacao.Model
         }
         public string CateterCentral { get; set; }
         public string CateterPeriferico { get; set; }
-    }
-
-    public class StatuTermico
-    {
-        public StatuTermico()
-        {
-            Temperatura = string.Empty;
-            Status = string.Empty;
-        }
-        public string Temperatura { get; set; }
-        public string Status { get; set; }
     }
 
     public class SistemaGastroIntestinal

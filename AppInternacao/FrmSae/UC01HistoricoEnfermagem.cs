@@ -1,50 +1,14 @@
 ﻿using AppInternacao.Model;
 using AppInternacao.Presenter;
-using AppInternacao.View;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UC01HistoricoEnfermagem : UserControl, IHistoricoEnfermagem
+    public partial class UC01HistoricoEnfermagem : UserControl
     {
-        HistoricoEnfermagemPresenter historicoEnfermagemPresenter = null;
-        bool isNewHistoricoEnfermagem = false;
-        int totalLength = 0;
-
-        public HistoricoEnfermagem historicoEnfermagem
-        {
-            get => new HistoricoEnfermagem()
-            {
-                Historico = richTextBoxExHistoricoEnfermagem.Rtf,
-                IdPaciente = Sessao.Paciente.Id
-            };
-          
-        }
-
-        public List<HistoricoEnfermagem> historicoEnfermagems
-        {
-            set
-            {
-                if (value.Count == 0)
-                {
-                    OpenTemplateHistoricoEnfermagem();
-                }
-                else
-                {
-                    if (value.Count > 1)
-                        richTextBoxExHistoricoEnfermagem.Rtf = value[value.Count - 1].Historico;
-                    else
-                        richTextBoxExHistoricoEnfermagem.Rtf = value[0].Historico;
-                }
-
-                totalLength = richTextBoxExHistoricoEnfermagem.Text.Length;
-            }
-        }
-
-        // public static Button ButtonSalvarEnfermagem;
+        PacientePresenter pacientePresenter = null;
         public UC01HistoricoEnfermagem()
         {
             InitializeComponent();
@@ -58,7 +22,7 @@ namespace AppInternacao.FrmSae
 
                 using (StreamReader reader = new StreamReader(originalfilename))
                 {
-                    richTextBoxExHistoricoEnfermagem.Rtf = reader.ReadToEnd();
+                    richTextBoxExHistoricoEnfermagem.Rtf = reader.ReadToEnd().Replace("#", Sessao.Paciente.Nome);
                 }
 
             }
@@ -71,50 +35,58 @@ namespace AppInternacao.FrmSae
         private void UCHistoricoEnfermagem_Load(object sender, EventArgs e)
         {
             UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
-            Iniciar();
+
+            if (Sessao.Paciente.HistoricoEnfermagem != null)
+            {
+                richTextBoxExHistoricoEnfermagem.Rtf = Sessao.Paciente.HistoricoEnfermagem;
+                richTextBoxExHistoricoEnfermagem.Enabled = richTextBoxExHistoricoEnfermagem.Text.Length < 1000;
+            }
+            else
+                OpenTemplateHistoricoEnfermagem();
+
+           // Sessao.Paciente.HistoricoEnfermagem = null;
         }
 
         private void ButtonSaeAvanca_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!isNewHistoricoEnfermagem)
+                if(string.IsNullOrWhiteSpace(Sessao.Paciente.HistoricoEnfermagem))
                 {
-                    if(string.IsNullOrWhiteSpace(richTextBoxExHistoricoEnfermagem.Tag.ToString()))
-                        if (richTextBoxExHistoricoEnfermagem.Text.Length != totalLength)
-                        {
-                            string msg = "Foi identificado alterações neste registro\nDeseja salvar como um novo Histórico de Enfermagem e manter as informações anteriores?";
-                            if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                historicoEnfermagemPresenter = new HistoricoEnfermagemPresenter(this);
-                                historicoEnfermagemPresenter.Salvar();
-                            }
-                        }
+                    Sessao.Paciente.HistoricoEnfermagem = richTextBoxExHistoricoEnfermagem.Rtf;
+
+                    if (richTextBoxExHistoricoEnfermagem.Text.Length < 1000)
+                    {
+                        MessageBox.Show("Favor informar mais detalhes sobre o hitórico do paciente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        UCTimeLine.ButtonSaeAvanca.Enabled = false;
+                    }
+                    else
+                    {
+                        pacientePresenter = new PacientePresenter();
+                        Paciente paciente = Sessao.Paciente;
+
+                        paciente.NomeLeito = null;
+                        paciente.NomeQuarto = null;
+                        paciente.NomeSetor = null;
+                        paciente.IsBaixado = null;
+
+                        int ret = pacientePresenter.Salvar(paciente);
+                    }
                 }
-                else
-                {
-                    historicoEnfermagemPresenter = new HistoricoEnfermagemPresenter(this);
-                    historicoEnfermagemPresenter.Salvar();
-                }
+               
             }
             catch (Exception exHistorico)
             {
-                new Exception("Erro ao inserir historico de Enfermagem\n" + exHistorico.Message);
+                MessageBox.Show("Erro ao inserir historico de Enfermagem\n" + exHistorico.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Dispose(true);
         }
 
-        void Iniciar()
+        private void btnTemplate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                historicoEnfermagemPresenter = new HistoricoEnfermagemPresenter(this);
-                historicoEnfermagemPresenter.GetHistoricoEnfermagem();
-            }
-            catch (Exception exIniciar)
-            {
-                new Exception("Erro ao iniciar Historico de enfermagem\n" + exIniciar.Message);
-            }
+            string msg = "Essa operação irá substituir o conteúdo da caixa de texto por um template pré formatado!\nDeseja seguir com essa operação?";
+            if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                OpenTemplateHistoricoEnfermagem();
         }
     }
 }

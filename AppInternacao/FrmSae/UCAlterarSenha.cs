@@ -1,5 +1,4 @@
-﻿using AppInternacao.Model;
-using AppInternacao.Presenter;
+﻿using AppInternacao.Presenter;
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,6 +8,7 @@ namespace AppInternacao.FrmSae
 {
     public partial class UCAlterarSenha : UserControl
     {
+
         public UCAlterarSenha()
         {
             InitializeComponent();
@@ -36,7 +36,6 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-               
                 if(textBoxSenha.Text.Length < 5)
                 {
                     MessageBox.Show("A nova senha deve conter pelo menos 5 caracteres!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -88,6 +87,17 @@ namespace AppInternacao.FrmSae
                 strBuilder.Append(valorCriptografado[i].ToString("x2"));
             }
             return strBuilder.ToString();
+        }
+
+        private void btnSaiFechar_Click(object sender, EventArgs e)
+        {
+            Sessao.Usuario = null;
+            Sessao.Cliente = null;
+            Sessao.Paciente = null;
+            Sessao.CodigoCliente = 0;
+
+            Dispose(true);
+            Application.Exit();
         }
     }
     

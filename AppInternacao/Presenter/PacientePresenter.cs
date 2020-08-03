@@ -11,7 +11,6 @@ namespace AppInternacao.Presenter
         Paciente paciente = null;
         private readonly IPaciente view;
         CRUD crud = null;
-        LISTAOBJETOS objeto = null;
 
         public PacientePresenter(IPaciente _view)
         {
@@ -20,18 +19,24 @@ namespace AppInternacao.Presenter
 
         public PacientePresenter(){}
 
-        public int Salvar()
+        public int Salvar(Paciente _paciente =  null)
         {
             int? ret = 0;
             try
             {
-                paciente = view.paciente;
+                if (_paciente == null)
+                    paciente = view.paciente;
+                else
+                    paciente = _paciente;
+
                 crud = new CRUD();
                 ret = crud.Executar(paciente, Procedure.SP_ADD_UPDT_PACIENTE, Acao.Inserir);
                 if (ret > 1)
                     ret = 1;
                 // apos o inserte, recarregar o gride
-                Carregar();
+                if (_paciente == null)
+                    Carregar(loadEstrutura: false);
+
             }
             catch (Exception exeS)
             {
@@ -52,7 +57,7 @@ namespace AppInternacao.Presenter
                 if (ret > 1)
                     ret = 1;
                 // apos o inserte, recarregar o gride
-                Carregar();
+                Carregar(loadEstrutura:false);
             }
             catch (Exception exeS)
             {
@@ -63,15 +68,17 @@ namespace AppInternacao.Presenter
         }
 
 
-        public void Carregar(Paciente obj = null)
+        public void Carregar(Paciente obj = null, bool loadEstrutura = true)
         {
             try
             {
                 if (null == obj)
                     obj = new Paciente();
 
-                objeto = new LISTAOBJETOS();
-                view.pacientes =  objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+                crud = new CRUD();
+                view.pacientes =  crud.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+                if (loadEstrutura)
+                    view.estruturaFisicas = crud.ListaGenerica(Procedure.SP_GET_ESTRUTURA_FISICA, new EstruturaFisica());
             }
             catch (Exception exC)
             {
@@ -86,8 +93,8 @@ namespace AppInternacao.Presenter
                 if (null == obj)
                     obj = new Paciente();
 
-                objeto = new LISTAOBJETOS();
-                return objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+                crud = new CRUD();
+                return crud.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
             }
             catch (Exception exC)
             {
@@ -102,8 +109,8 @@ namespace AppInternacao.Presenter
                 if (null == obj)
                     obj = new Paciente();
 
-                objeto = new LISTAOBJETOS();
-                view.pacientes = objeto.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
+                crud = new CRUD();
+                view.pacientes = crud.ListaGenerica(Procedure.SP_GET_PACIENTE, obj);
             }
             catch (Exception exPesquisa)
             {
@@ -121,8 +128,8 @@ namespace AppInternacao.Presenter
             try
             {
                 Sessao.Paciente = null;
-                objeto = new LISTAOBJETOS();
-                Sessao.Paciente = objeto.RetornaObjeto(Procedure.SP_GET_PACIENTE, new Paciente() { Prontuario = _numeroProntuario });
+                crud = new CRUD();
+                Sessao.Paciente = crud.RetornaObjeto(Procedure.SP_GET_PACIENTE, new Paciente() { Prontuario = _numeroProntuario });
             }
             catch (Exception exC)
             {

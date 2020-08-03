@@ -23,7 +23,7 @@ namespace AppInternacao.FrmSae
         public UCPaciente()
         {
             InitializeComponent();
-           
+            Dock = DockStyle.Fill;
         }
 
         public Paciente paciente {
@@ -31,18 +31,23 @@ namespace AppInternacao.FrmSae
                     {
                         Id = string.IsNullOrWhiteSpace(textBoxIdPaciente.Text) ? 0 : Convert.ToInt32(textBoxIdPaciente.Text),
                         Idade = string.IsNullOrWhiteSpace(textBoxIdade.Text) ? 0 : Convert.ToInt32(textBoxIdade.Text), 
-                        Prontuario = string.IsNullOrWhiteSpace(textBoxProntuario.Text) ? 0 : Convert.ToInt64(textBoxProntuario.Text),
+                        Prontuario = string.IsNullOrWhiteSpace(textProntuario.Text) ? 0 : Convert.ToInt64(textProntuario.Text),
                         Sexo = radioButton1.Checked ? 'M' : 'F',
                         Nome =  textBoxPaciente.Text,
-                        Foto = _criptyPicture
+                        Foto = _criptyPicture,
+                        IdEstruturaFisica = Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue)
                     };
             set
             {
                 textBoxIdPaciente.Text = value.Id.ToString();
                 textBoxPaciente.Text = value.Nome;
                 textBoxIdade.Text = value.Idade.ToString();
+                textBoxLeito.Text = value.NomeLeito;
                 textBoxLeitoCracha.Text = value.NomeLeito;
-                textBoxProntuarioCracha.Text = textBoxProntuario.Text = value.Prontuario.ToString();
+                textBoxQuarto.Text = value.NomeQuarto;
+                textBoxSetor.Text = value.NomeSetor;
+                textBoxProntuarioCracha.Text = textProntuario.Text = value.Prontuario.ToString();
+                comboBoxEstruturaFisica.SelectedValue = value.IdEstruturaFisica ;
                 GeraProntuario();
                 if (value.Foto != null)
                 {
@@ -51,8 +56,10 @@ namespace AppInternacao.FrmSae
                     _criptyPicture = value.Foto;
                 }
                 else
+                {
+                    _criptyPicture = null;
                     pictureBoxImgCracha.Image = Properties.Resources.user0;
-
+                }
                 if (Convert.ToChar(value.Sexo).Equals('M'))
                     radioButton1.Checked = true;
                 else
@@ -62,17 +69,31 @@ namespace AppInternacao.FrmSae
 
         public List<Paciente> pacientes { set => dataGridViewPaciente.DataSource = value; }
 
+        public List<EstruturaFisica> estruturaFisicas
+        {
+            set
+            {
+                List<EstruturaFisica> estruturas = value;
+                estruturas.Insert(0, new EstruturaFisica() { Id = 0, Nome = "Selecione" });
+                comboBoxEstruturaFisica.DataSource = estruturas;
+            }
+        }
+
         private bool validaCampos()
         {
+            TextBox[] textBoxesIgnore = { textBoxLeito, textBoxQuarto, textBoxSetor}; 
             RadioButton radioButton = null;
             try
             {
-                var lista = groupBox1.Controls.OfType<TextBox>().Where(t => t is TextBox).ToList();
+                var lista = groupBox1.Controls.OfType<TextBox>().Where(t => t is TextBox ).ToList();
 
-                lista.RemoveAll(t => !t.Enabled);
+                lista.RemoveAll(t => !t.Enabled || textBoxesIgnore.Contains(t));
 
                 foreach (TextBox item in lista)
                 {
+                    if (textBoxesIgnore.Any(txt => txt == item))
+                        continue;
+
                     if (string.IsNullOrEmpty(item.Text) || item.Text.Equals("0"))
                     {
                         errorProvider1.SetError(item, "preencha este campo");
@@ -95,12 +116,21 @@ namespace AppInternacao.FrmSae
                     errorProvider1.SetError(radioButton, null);
                 }
 
+                if (Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue) == 0)
+                {
+                    errorProvider1.SetError(comboBoxEstruturaFisica, "Selecione um item.");
+                    errorProvider1.SetIconPadding(comboBoxEstruturaFisica, 3);
+                    return false;
+                }
+                else
+                    errorProvider1.SetError(comboBoxEstruturaFisica, null);
+
                 return lista.TrueForAll(x => !string.IsNullOrWhiteSpace(x.Text) && !x.Text.Equals("0"));
             }
-            catch (Exception)
+            catch (Exception exErro)
             {
-
-                throw;
+                FrmMain.Alert(0, exErro);
+                return false;
             }
         }
 
@@ -109,11 +139,11 @@ namespace AppInternacao.FrmSae
             if (paciente.Id == 0)
             {
                 string barcode = $"{DateTime.Now.Second}{Regex.Replace(Guid.NewGuid().ToString() + DateTime.Now.ToString(), @"[^0-9$]", "")}";
-                textBoxProntuario.Text = barcode.PadLeft(18, '0').Substring(0, 18);
+                textProntuario.Text = barcode.PadLeft(18, '0').Substring(0, 18);
             }
             Zen.Barcode.Code128BarcodeDraw code128Barcode = Zen.Barcode.BarcodeDrawFactory.Code128WithChecksum;
-            pbBarcodeCracha.Image = code128Barcode.Draw(textBoxProntuario.Text, 18);
-            textBoxProntuarioCracha.Text = textBoxProntuario.Text;
+            pbBarcodeCracha.Image = code128Barcode.Draw(textProntuario.Text, 18);
+            textBoxProntuarioCracha.Text = textProntuario.Text;
         }
 
         public void Salvar(object sender, EventArgs e)
@@ -127,7 +157,7 @@ namespace AppInternacao.FrmSae
                     //textBoxLeitoCracha.Text = comboBoxLeito.Text;
                     PacientePresenter = new PacientePresenter(this);
 
-                    if (paciente.Id > 0)
+                    if (paciente.Id == 0)
                     {
                         ImprimirCarcha();
                         printDocumentCracha.DocumentName = textBoxNomeCrachar.Text;
@@ -153,11 +183,12 @@ namespace AppInternacao.FrmSae
             textBoxDataCracha.Text = DateTime.Now.ToShortDateString();
             textBoxCliente.Text = Sessao.Cliente;
 
-            Dock = DockStyle.Fill;
+            new ToolTip() { IsBalloon = true, UseAnimation = true }.SetToolTip(buttonLimpar, "Limpar pesquisa.");
             dataGridViewPaciente.AutoGenerateColumns = false;
 
             PacientePresenter = new PacientePresenter(this);
             PacientePresenter.Carregar();
+            
             textBoxPaciente.Focus();
         }
 

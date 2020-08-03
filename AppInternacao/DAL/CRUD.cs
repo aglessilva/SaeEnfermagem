@@ -100,7 +100,7 @@ namespace AppInternacao.Model
 
                                     case TypeCode.Int64:
                                         {
-                                            long valor = (long?)item.GetValue(obejto, null) == null ? 0: (long)item.GetValue(obejto, null);
+                                            long valor = (long?)item.GetValue(obejto, null) == null ? 0 : (long)item.GetValue(obejto, null);
 
                                             if (valor > 0)
                                             {
@@ -141,7 +141,7 @@ namespace AppInternacao.Model
                                                 Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Char));
                                                 Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                             }
-                                           
+
                                             break;
                                         }
                                     case TypeCode.Object:
@@ -216,11 +216,35 @@ namespace AppInternacao.Model
 
             finally
             {
-                DBCONN(Comando); 
+                DBCONN(Comando);
             }
 
             return retorno;
         }
+
+        public int? BulkInsert(DataTable dataTable, string _sqlTabela)
+        {
+
+            SqlCommand sqlCommand = ComandoSQL(Procedure.VAZIO);
+            using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlCommand.Connection.ConnectionString))
+            {
+                bulkCopy.DestinationTableName = _sqlTabela;
+
+                try
+                {
+                    bulkCopy.WriteToServer(dataTable);
+                    retorno = 1;
+                }
+                catch (Exception ex)
+                {
+                    retorno = 0;
+                    throw ex;
+                }
+
+                return retorno;
+            }
+        }
+        
         #endregion
     }
 }

@@ -36,6 +36,11 @@ namespace AppInternacao
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            #if DEBUG
+                 textBoxUserName.Text = "xb225ha";
+                 textBoxPassWord.Text = "hbt123";
+            #endif
+
             textBoxUserName.Focus();
         }
 
@@ -80,13 +85,15 @@ namespace AppInternacao
                     UsuarioPresenter usuarioPresenter = new UsuarioPresenter();
 
                     TopMost = false;
-
+                    
                     if (obj.Id > 0)
                     {
                         string novaSenha = "xb" + DateTime.Now.Day + obj.Nome.Substring(0, 2) + obj.Cpf.Substring(8, 2);
                         obj.AlterarSenha = true;
+                        Enabled = false;
                         obj.Senha = Funcoes.CriptoGrafaSenha(novaSenha);
                         int ret = (int)usuarioPresenter.Salvar(obj);
+                        Enabled = true;
 
                         if (ret == 1)
                         {
