@@ -47,17 +47,15 @@ namespace AppInternacao.Presenter
         }
 
 
-        public int BaixarPaciente(Paciente obj)
+        public int BaixarPaciente(BaixarPaciente obj)
         {
             int? ret = 0;
             try
             {
                 crud = new CRUD();
-                ret = crud.Executar(new Paciente() { Id = obj.Id, Foto = obj.Foto }, Procedure.SP_BAIXAR_PACIENTE, Acao.Inserir);
+                ret = crud.Executar(new BaixarPaciente() { Prontuario = obj.Prontuario, IdLeito = obj.IdLeito }, Procedure.SP_BAIXAR_PACIENTE, Acao.Inserir);
                 if (ret > 1)
                     ret = 1;
-                // apos o inserte, recarregar o gride
-                Carregar(loadEstrutura:false);
             }
             catch (Exception exeS)
             {

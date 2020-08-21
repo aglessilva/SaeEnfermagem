@@ -82,6 +82,9 @@
     <Reference Include="NetSpell.SpellChecker">
       <HintPath>..\packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PrintRichTextBox">
       <HintPath>..\packages\RichTextBoxEx.1.0.0\lib\PrintRichTextBox.dll</HintPath>
     </Reference>
@@ -174,11 +177,11 @@
     <Compile Include="FrmSae\UCAlterarSenha.Designer.cs">
       <DependentUpon>UCAlterarSenha.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCExibirHistorico.cs">
+    <Compile Include="FrmSae\UCMenuEsquerdo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmSae\UCExibirHistorico.Designer.cs">
-      <DependentUpon>UCExibirHistorico.cs</DependentUpon>
+    <Compile Include="FrmSae\UCMenuEsquerdo.Designer.cs">
+      <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UCListaPaciente.cs">
       <SubType>UserControl</SubType>
@@ -191,6 +194,12 @@
     </Compile>
     <Compile Include="FrmSae\UCNomeTemplate.Designer.cs">
       <DependentUpon>UCNomeTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCPrescricaoCiclo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCPrescricaoCiclo.Designer.cs">
+      <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UCQuartoLeito.cs">
       <SubType>UserControl</SubType>
@@ -235,13 +244,30 @@
     <Compile Include="FrmViewTemplate.Designer.cs">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm\FrmJustificarChecagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmJustificarChecagem.Designer.cs">
+      <DependentUpon>FrmJustificarChecagem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmJustificativaLeito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmJustificativaLeito.Designer.cs">
+      <DependentUpon>FrmJustificativaLeito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Funcoes.cs" />
+    <Compile Include="Model\AlteracaoLeitoPaciente.cs" />
     <Compile Include="Model\Area_Itens.cs" />
+    <Compile Include="Model\CicloPrescricao.cs" />
+    <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\EstruturaFisica.cs" />
     <Compile Include="Model\Leito.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\Main.cs" />
     <Compile Include="Model\Paciente.cs" />
+    <Compile Include="Model\PrescricaoMedica.cs" />
+    <Compile Include="Model\PrescricaoPaciente.cs" />
     <Compile Include="Model\Quarto.cs" />
     <Compile Include="Model\ExameFisico.cs" />
     <Compile Include="Model\Setor.cs" />
@@ -250,6 +276,7 @@
     <Compile Include="Presenter\LeitoPresenter.cs" />
     <Compile Include="Presenter\LoginPresenter.cs" />
     <Compile Include="Presenter\PacientePresenter.cs" />
+    <Compile Include="Presenter\PresenterGeneric.cs" />
     <Compile Include="Presenter\PresenterMain.cs" />
     <Compile Include="Presenter\QuartoPresenter.cs" />
     <Compile Include="Presenter\TemplateExamePresenter.cs" />
@@ -302,14 +329,17 @@
     <EmbeddedResource Include="FrmSae\UCAlterarSenha.resx">
       <DependentUpon>UCAlterarSenha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCExibirHistorico.resx">
-      <DependentUpon>UCExibirHistorico.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UCMenuEsquerdo.resx">
+      <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCListaPaciente.resx">
       <DependentUpon>UCListaPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCNomeTemplate.resx">
       <DependentUpon>UCNomeTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCPrescricaoCiclo.resx">
+      <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
@@ -331,6 +361,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewTemplate.resx">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmJustificarChecagem.resx">
+      <DependentUpon>FrmJustificarChecagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmJustificativaLeito.resx">
+      <DependentUpon>FrmJustificativaLeito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -428,6 +464,21 @@
     <None Include="Resources\liberar.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\IsOkset.png" />
+    <None Include="Resources\Wait.png" />
+    <None Include="Resources\vcsnormal_93488.png" />
+    <None Include="Resources\vcsconflicting_93497.png" />
+    <None Include="Resources\rubbishbin_102620.png" />
+    <None Include="Resources\Remove_40970.png" />
+    <None Include="Resources\NotOk.png" />
+    <None Include="Resources\integative.png" />
+    <None Include="Resources\LeitoManutencao.png" />
+    <None Include="Resources\sinalizadorManutencao.png" />
+    <None Include="Resources\sinalizador.png" />
+    <None Include="Resources\Photobooth.png" />
+    <None Include="Resources\loginFrmBlue.png" />
+    <None Include="Resources\leftBlue.png" />
+    <None Include="Resources\leftBlue1.png" />
     <None Include="Resources\left.png" />
     <None Include="Resources\security_view1.png" />
     <None Include="Resources\find1.png" />
@@ -495,6 +546,9 @@
     <None Include="Resources\backgroudMenu001.png" />
     <None Include="Resources\down.png" />
     <None Include="Resources\backgroudtitel.png" />
+    <None Include="Resources\downBlue.png" />
+    <None Include="Resources\addItem.png" />
+    <None Include="Resources\Checked-80_icon-icons.com_57359.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
     <None Include="Resources\Error-80_icon-icons.com_573261.png" />
   </ItemGroup>
@@ -508,6 +562,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

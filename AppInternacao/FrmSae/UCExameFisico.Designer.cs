@@ -1494,6 +1494,7 @@ namespace AppInternacao.FrmSae
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(55, 1);
             this.panel11.TabIndex = 1008;
+            this.panel11.Paint += new System.Windows.Forms.PaintEventHandler(this.panel11_Paint);
             // 
             // label14
             // 
@@ -1503,6 +1504,7 @@ namespace AppInternacao.FrmSae
             this.label14.Size = new System.Drawing.Size(29, 13);
             this.label14.TabIndex = 1007;
             this.label14.Text = "PAD";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // textBoxPad
             // 
@@ -1514,6 +1516,7 @@ namespace AppInternacao.FrmSae
             this.textBoxPad.ReadOnly = true;
             this.textBoxPad.Size = new System.Drawing.Size(51, 13);
             this.textBoxPad.TabIndex = 1006;
+            this.textBoxPad.TextChanged += new System.EventHandler(this.textBoxPad_TextChanged);
             // 
             // panel10
             // 
@@ -1522,6 +1525,7 @@ namespace AppInternacao.FrmSae
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(55, 1);
             this.panel10.TabIndex = 1005;
+            this.panel10.Paint += new System.Windows.Forms.PaintEventHandler(this.panel10_Paint);
             // 
             // label13
             // 
@@ -1531,6 +1535,7 @@ namespace AppInternacao.FrmSae
             this.label13.Size = new System.Drawing.Size(28, 13);
             this.label13.TabIndex = 1004;
             this.label13.Text = "PAS";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // textBoxPas
             // 
@@ -1542,6 +1547,7 @@ namespace AppInternacao.FrmSae
             this.textBoxPas.ReadOnly = true;
             this.textBoxPas.Size = new System.Drawing.Size(51, 13);
             this.textBoxPas.TabIndex = 1003;
+            this.textBoxPas.TextChanged += new System.EventHandler(this.textBoxPas_TextChanged);
             // 
             // label12
             // 
@@ -1551,6 +1557,7 @@ namespace AppInternacao.FrmSae
             this.label12.Size = new System.Drawing.Size(133, 13);
             this.label12.TabIndex = 1002;
             this.label12.Text = " Escala de Pressão Arterial";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // comboBoxPressaoArterial
             // 

@@ -1,9 +1,12 @@
 ﻿using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace AppInternacao
@@ -317,6 +320,44 @@ namespace AppInternacao
             CloseUC();
             userControl = new FrmSae.UCNomeTemplate();
             OpenUc();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://viacep.com.br/ws/03546000/json/");
+                request.ServerCertificateValidationCallback = delegate { return true; };
+                request.AllowAutoRedirect = false;
+
+                HttpWebResponse ChecaServidor = (HttpWebResponse)request.GetResponse();
+
+                if (ChecaServidor.StatusCode != HttpStatusCode.OK)
+                {
+                    MessageBox.Show("Servidor indisponível");
+                    return; // Sai da rotina
+                }
+
+                using (Stream webStream = ChecaServidor.GetResponseStream())
+                {
+                    if (webStream != null)
+                    {
+                        using (StreamReader responseReader = new StreamReader(webStream))
+                        {
+                            string response = responseReader.ReadToEnd();
+                            Endereco constants = JsonConvert.DeserializeObject<Endereco>(response);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
     }
 }

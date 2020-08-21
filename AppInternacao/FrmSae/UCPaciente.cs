@@ -1,12 +1,14 @@
 ﻿using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -35,8 +37,16 @@ namespace AppInternacao.FrmSae
                         Sexo = radioButton1.Checked ? 'M' : 'F',
                         Nome =  textBoxPaciente.Text,
                         Foto = _criptyPicture,
-                        IdEstruturaFisica = Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue)
-                    };
+                        IdEstruturaFisica = Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue),
+                        Telefone = textTelefone.Text,
+                        Bairro = textBairro.Text,
+                        Cep = textCep.Text,
+                        Logradouro = textLogradouro.Text,
+                        Complemento = textComplemento.Text,
+                        Localidade = textCidade.Text,
+                        Uf =textUf.Text,
+                        Numero =  textNumero.Text
+            };
             set
             {
                 textBoxIdPaciente.Text = value.Id.ToString();
@@ -46,6 +56,14 @@ namespace AppInternacao.FrmSae
                 textBoxLeitoCracha.Text = value.NomeLeito;
                 textBoxQuarto.Text = value.NomeQuarto;
                 textBoxSetor.Text = value.NomeSetor;
+                textTelefone.Text = value.Telefone;
+                textUf.Text = value.Uf;
+                textBairro.Text = value.Bairro;
+                textCep.Text = value.Cep;
+                textComplemento.Text = value.Complemento;
+                textCidade.Text = value.Localidade;
+                textLogradouro.Text = value.Logradouro;
+                textNumero.Text = value.Numero;
                 textBoxProntuarioCracha.Text = textProntuario.Text = value.Prontuario.ToString();
                 comboBoxEstruturaFisica.SelectedValue = value.IdEstruturaFisica ;
                 GeraProntuario();
@@ -346,6 +364,64 @@ namespace AppInternacao.FrmSae
             Graphics g = panelCracha.CreateGraphics();
             _cracha = new Bitmap(panelCracha.Size.Width, panelCracha.Size.Height, g);
             panelCracha.DrawToBitmap(_cracha, new Rectangle(0, 0, panelCracha.Width, panelCracha.Height));
+        }
+
+       
+        private void textCep_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 08)
+            {
+                //Atribui True no Handled para cancelar o evento
+                e.Handled = true;
+                return;
+            }
+           
+        }
+
+        private void textCep_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+            if (textCep.Text.Length != 8 && (e.KeyValue < 48 || e.KeyValue > 57))
+                return;
+
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"https://viacep.com.br/ws/{textCep.Text}/json/");
+                request.ServerCertificateValidationCallback = delegate { return true; };
+                request.AllowAutoRedirect = false;
+
+                HttpWebResponse ChecaServidor = (HttpWebResponse)request.GetResponse();
+
+                if (ChecaServidor.StatusCode != HttpStatusCode.OK)
+                {
+                    MessageBox.Show("Servidor indisponível");
+                    return; // Sai da rotina
+                }
+
+                using (Stream webStream = ChecaServidor.GetResponseStream())
+                {
+                    if (webStream != null)
+                    {
+                        using (StreamReader responseReader = new StreamReader(webStream))
+                        {
+                            string response = responseReader.ReadToEnd();
+                            Endereco endereco = JsonConvert.DeserializeObject<Endereco>(response);
+                            textBairro.Text = endereco.Bairro;
+                            textCep.Text = endereco.Cep.ToString();
+                            textLogradouro.Text = endereco.Logradouro;
+                            textComplemento.Text = endereco.Complemento;
+                            textCidade.Text = endereco.Localidade;
+                            textUf.Text = endereco.Uf.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

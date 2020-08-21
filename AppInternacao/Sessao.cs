@@ -14,5 +14,7 @@ namespace AppInternacao
 
         public static Paciente Paciente { get; internal set; }
         public static Usuario Usuario { get; internal set; }
+
+        public static object Dinamico { get; set; }
     }
 }

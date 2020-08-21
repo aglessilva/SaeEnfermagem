@@ -17,9 +17,11 @@ namespace AppInternacao.FrmSae
         QuartoPresenter presenterQuarto = null;
         LeitoPresenter presenterLeito = null;
         Leito obj = null;
+
         private List<Leito> lstObjLeito;
         private List<Quarto> lstObjetoQuarto;
         private Quarto[] lstPesquisaQuarto;
+
         public Quarto QuartoLeito
         {
             get => new Quarto()
@@ -66,7 +68,8 @@ namespace AppInternacao.FrmSae
             {
                 Id = string.IsNullOrWhiteSpace(textBoxIdLeito.Text) ? 0 : Convert.ToInt32(textBoxIdLeito.Text),
                 IdQuarto = comboBoxQuarto.SelectedItem == null ? 0 : Convert.ToInt32(comboBoxQuarto.SelectedValue),
-                NomeLeito = textBoxNomeLeito.Text
+                NomeLeito = textBoxNomeLeito.Text,
+                IsManutencao = chkLeitoManutencao.Checked
             };
             set
             {
@@ -74,6 +77,9 @@ namespace AppInternacao.FrmSae
                 textBoxNomeLeito.Text = value.NomeLeito;
                 textBoxIdLeitoQuarto.Text = value.IdQuarto == 0 ? string.Empty : value.IdQuarto.ToString();
                 comboBoxQuarto.SelectedValue = value.IdQuarto;
+                chkLeitoManutencao.Checked = value.IsManutencao;
+
+                chkLeitoManutencao.Enabled = value.IsDisponibilidade == null ? false : !(bool)value.IsDisponibilidade ? false : true;
             }
         }
         public List<Leito> leitos { set { dataGridViewLeito.DataSource = value; lstObjLeito = value; } }
@@ -191,7 +197,7 @@ namespace AppInternacao.FrmSae
             {
 
                 pictureBoxLeito = new RadioButton();
-                pictureBoxLeito.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+                pictureBoxLeito.TextAlign = ContentAlignment.TopLeft;
                 pictureBoxLeito.ForeColor = Color.DarkSlateGray;
                 toolTip = new ToolTip() { IsBalloon = true, UseAnimation = true };
                 pictureBoxLeito.Appearance = Appearance.Button;
@@ -199,7 +205,7 @@ namespace AppInternacao.FrmSae
                 pictureBoxLeito.FlatAppearance.MouseOverBackColor = button1.FlatAppearance.MouseOverBackColor;
                 pictureBoxLeito.FlatAppearance.BorderSize = button1.FlatAppearance.BorderSize;
                 pictureBoxLeito.FlatAppearance.CheckedBackColor = button1.FlatAppearance.MouseOverBackColor;
-                pictureBoxLeito.Size = new System.Drawing.Size(165, 134);
+                pictureBoxLeito.Size = new Size(165, 134);
                 pictureBoxLeito.Margin = new Padding(20);
                 pictureBoxLeito.Cursor = Cursors.Hand;
 
@@ -219,6 +225,14 @@ namespace AppInternacao.FrmSae
                     toolTip.SetToolTip(pictureBoxLeito, $"{l.NomeLeito} - Leito Inidiponivel\nPaciente: {l.Nome}");
                 }
 
+                if (l.IsManutencao)
+                {
+                    pictureBoxLeito.Image = Properties.Resources.LeitoManutencao;
+                    pictureBoxLeito.Tag = l;
+                    pictureBoxLeito.Text = l.NomeLeito;
+                    toolTip.SetToolTip(pictureBoxLeito, $"{l.NomeLeito} - Leito em Manutenção");
+                }
+
                 flowLayoutPanelImgLeito.Controls.Add(pictureBoxLeito);
             });
 
@@ -229,17 +243,36 @@ namespace AppInternacao.FrmSae
             var senderRadio = (RadioButton)sender;
             obj = (Leito)senderRadio.Tag;
             obj = lstObjLeito.FirstOrDefault(p => p.Prontuario == obj.Prontuario);
+
             string msg = $"Tem certeza que deseja liberar o Leito {obj.NomeLeito}\nocupado pelo paciente {obj.Nome} ?";
             if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                dataGridViewLeito.DataSource = null;
-                obj.Nome = string.Empty;
-                obj.IsDisponibilidade = true;
-                obj.Prontuario = 0;
-                presenterLeito.Salvar(obj);
-                AtualizaUserControls();
+                Sessao.Dinamico = obj;
+                Frm.FrmJustificativaLeito frm = new Frm.FrmJustificativaLeito();
+                DialogResult result = frm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    AlteracaoLeitoPaciente alteracaoLeitoPaciente = (AlteracaoLeitoPaciente)Sessao.Dinamico;
+                    if (alteracaoLeitoPaciente.IdStatusAlteracao < 3) // baixa de paciente Obito | Alta
+                        new PacientePresenter().BaixarPaciente(new BaixarPaciente() { Prontuario = obj.Prontuario, IdLeito = obj.Id });
+
+                    if (alteracaoLeitoPaciente.IdStatusAlteracao == 4) // manutenção de leito
+                        obj.IsManutencao = true;
+
+                    dataGridViewLeito.DataSource = null;
+                    obj.Nome = string.Empty;
+                    obj.IsDisponibilidade = true;
+                    obj.Prontuario = 0;
+                    obj.Act = 'X';
+
+
+                    presenterLeito.Salvar(obj);
+
+                    AtualizaUserControls();
+                    obj = null;
+                    FindForm().BringToFront();
+                }
             }
-            obj = null;
         }
 
         private void AtualizaUserControls()
@@ -299,20 +332,29 @@ namespace AppInternacao.FrmSae
                 {
                     RadioButton radioButton = flowLayoutPanelImgLeito.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked == true);
 
-                    if (radioButton == null)
+                    if (radioButton ==  null)
                     {
-                        MessageBox.Show("Selecione um Leito com a situação 'Disponivel' e tente novamente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        MessageBox.Show("Selecione um Leito disponivel", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
 
                     obj = (Leito)radioButton.Tag;
+
+                    if ( obj.IsManutencao)
+                    {
+                        MessageBox.Show("Leito em MANUTENÇÃO", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string msg = $"Tem certeza que deseja associar o paciente {paciente.Nome} ao  leito {obj.NomeLeito} ?";
 
                     if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                       
                         obj.IsDisponibilidade = false;
                         obj.Prontuario = paciente.Prontuario;
                         obj.Nome = string.Empty;
+                        obj.Act = 'X';
                         presenterLeito.Salvar(obj);
                         AtualizaUserControls();
                     }
@@ -378,13 +420,19 @@ namespace AppInternacao.FrmSae
 
                     if ((bool)obj.IsDisponibilidade)
                     {
-                        row.Cells[2].Value = Properties.Resources.sinalizadorVer;
+                        row.Cells[2].Value = Properties.Resources.sinalizador;
                         row.Cells[2].ToolTipText = "Leito DISPONIVEL";
                     }
                     else
                     {
                         row.Cells[2].Value = Properties.Resources.sinalizadorV1;
                         row.Cells[2].ToolTipText = "Leito INDISPONIVEL";
+                    }
+
+                    if(obj.IsManutencao)
+                    {
+                        row.Cells[2].Value = Properties.Resources.sinalizadorManutencao;
+                        row.Cells[2].ToolTipText = "Leito em MANUTENÇÃO";
                     }
                 }
             }

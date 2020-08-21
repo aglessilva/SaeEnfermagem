@@ -325,6 +325,51 @@ namespace AppInternacao.Model
                 DBCONN(cmd);
             }
         }
+       
+        public DataTable GetDataTable(SqlParameter[] sqlParameters, Procedure procedure)
+        {
+            DataTable dataTable = null;
+            try
+            {
+                SqlCommand command = ComandoSQL(procedure);
+                command.Parameters.AddRange(sqlParameters);
+
+                if (command.Connection.State == ConnectionState.Closed)
+                    command.Connection.Open();
+
+                SqlDataReader dataReader = command.ExecuteReader();
+                DataTable schematb = dataReader.GetSchemaTable();
+                dataTable = new DataTable();
+                DataColumn dataColumn = null;
+                DataRow dataRow = null;
+                foreach (DataRow item in schematb.Rows)
+                {
+                    dataColumn = new DataColumn(item[0].ToString());
+                    dataTable.Columns.Add(dataColumn);
+                }
+
+                while (dataReader.Read())
+                {
+                    dataRow = dataTable.NewRow();
+
+                    foreach (DataColumn item in dataTable.Columns)
+                    {
+                        dataRow[item.Ordinal] = dataReader[item.Ordinal].ToString();
+                    }
+                    dataTable.Rows.Add(dataRow);
+                }
+
+
+                command.Connection.Close();
+            }
+            catch (Exception exDataTable)
+            {
+                throw exDataTable;
+            }
+
+            return dataTable;
+        }
+
         #endregion
     }
 }

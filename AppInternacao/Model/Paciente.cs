@@ -3,11 +3,12 @@
 namespace AppInternacao.Model
 {
 
-    public class Paciente
+    public class Paciente : Endereco
     {
         public Paciente()
         {
             Nome = string.Empty;
+
         }
         public int Id { get; set; }
         public char Sexo { get; set; }
@@ -21,7 +22,9 @@ namespace AppInternacao.Model
         public string NomeSetor { get; set; }
         public bool? IsBaixado { get; set; }
         public string HistoricoEnfermagem { get; set; }
+        public string Telefone { get; set; }
         public SAE Sae { get; set; }
+       // public Endereco Endereco { get; set; }
     }
 
     public sealed class SAE
@@ -36,6 +39,12 @@ namespace AppInternacao.Model
         public bool EnvolucaoEnfermagem { get; set; }
         public bool AvaliacaoEnfermagem { get; set; }
         public bool IsConcluido { get; set; }
+    }
+
+    public class BaixarPaciente
+    {
+        public long Prontuario { get; set; }
+        public int IdLeito { get; set; }
     }
     
 }

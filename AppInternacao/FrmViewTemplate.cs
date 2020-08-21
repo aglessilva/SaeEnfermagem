@@ -19,6 +19,17 @@ namespace AppInternacao
         RadioButton radioBtn = null, radioButtonEvent = null;
         TextBox TextBox = null;
 
+        List<object> pressaoArterial = new List<object>()
+            {
+             new {Codigo = 0, Titulo = "Selecione", Valor = "0"},
+            new {Codigo = 1, Titulo = "Ótima", Valor = "< 120 X < 80"},
+            new {Codigo = 2, Titulo ="Normal", Valor = "120 a 129 X 80 a 84" },
+            new {Codigo = 3, Titulo = "Normal Alto",Valor = "130 a 139 X 85 a 89" },
+            new {Codigo = 4, Titulo = "Estágio 1", Valor = "140 a 159 X 90 a 99" },
+            new {Codigo = 5, Titulo = "Estágio 2", Valor = "160 a 179 X 100 a 109" },
+            new {Codigo = 6, Titulo = "Estágio 3", Valor = ">= 180 X >= 110" }
+        };
+
         public FrmViewTemplate(DataTable _dataTable)
         {
             InitializeComponent();
@@ -39,6 +50,10 @@ namespace AppInternacao
         {
             Area area;
             RadioButton radioButton = null;
+
+            comboBoxPressaoArterial.ValueMember = "Codigo";
+            comboBoxPressaoArterial.DisplayMember = "Titulo";
+            comboBoxPressaoArterial.DataSource = pressaoArterial;
 
             foreach (DataRow item in dataTable.Rows)
             {
@@ -189,6 +204,22 @@ namespace AppInternacao
 
            if(TextBox != null )
                 flpRegulacaotermica.Controls.Add(TextBox);
+        }
+
+        private void comboBoxPressaoArterial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dynamic item = comboBoxPressaoArterial.SelectedItem;
+            string param = item.Valor;
+            if (!param.Equals("0"))
+            {
+                textBoxPas.Text = param.Split('X')[0];
+                textBoxPad.Text = param.Split('X')[1];
+            }
+            else
+            {
+                textBoxPas.Text = string.Empty;
+                textBoxPad.Text = string.Empty;
+            }
         }
 
         private void RadioBtn_Click(object sender, EventArgs e)

@@ -998,7 +998,7 @@ namespace AppInternacao.FrmSae
         {
           
             buttonTyp = (PictureBox)sender;
-            buttonTyp.Image = Properties.Resources.down;
+            buttonTyp.Image = Properties.Resources.downBlue;
             Area _area = (Area)System.Enum.Parse(typeof(Area), buttonTyp.Tag.ToString());
 
             switch (_area)
@@ -1102,7 +1102,7 @@ namespace AppInternacao.FrmSae
                 if (accordion.Size.Height == 0)
                 {
                     timerAccordion.Stop();
-                    buttonTyp.Image = Properties.Resources.left;
+                    buttonTyp.Image = Properties.Resources.leftBlue;
                     accordion.Tag = "0";
                 }
             }

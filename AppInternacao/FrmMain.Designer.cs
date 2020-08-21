@@ -89,7 +89,7 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Size = new System.Drawing.Size(1092, 524);
-            this.splitContainer1.SplitterDistance = 811;
+            this.splitContainer1.SplitterDistance = 810;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -108,7 +108,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.loginFrm2;
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.loginFrmBlue;
             this.pictureBox1.Location = new System.Drawing.Point(1216, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(44, 30);
@@ -124,7 +124,7 @@
             this.panelCabecalho.Controls.Add(this.btnImprimir);
             this.panelCabecalho.Location = new System.Drawing.Point(1, 1);
             this.panelCabecalho.Name = "panelCabecalho";
-            this.panelCabecalho.Size = new System.Drawing.Size(388, 36);
+            this.panelCabecalho.Size = new System.Drawing.Size(315, 36);
             this.panelCabecalho.TabIndex = 5;
             // 
             // btnSalvar
@@ -132,6 +132,7 @@
             this.btnSalvar.BackColor = System.Drawing.Color.Transparent;
             this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalvar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -141,9 +142,9 @@
             this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnSalvar.Image = global::AppInternacao.Properties.Resources.Save_Icon_icon_icons_com_69139;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(187, 4);
+            this.btnSalvar.Location = new System.Drawing.Point(170, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(85, 29);
+            this.btnSalvar.Size = new System.Drawing.Size(85, 36);
             this.btnSalvar.TabIndex = 3;
             this.btnSalvar.TabStop = false;
             this.btnSalvar.Text = "Salvar";
@@ -155,6 +156,7 @@
             this.btnNovo.BackColor = System.Drawing.Color.Transparent;
             this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNovo.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNovo.FlatAppearance.BorderSize = 0;
             this.btnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -164,9 +166,9 @@
             this.btnNovo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnNovo.Image = global::AppInternacao.Properties.Resources.newFile;
             this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNovo.Location = new System.Drawing.Point(96, 4);
+            this.btnNovo.Location = new System.Drawing.Point(85, 0);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(85, 29);
+            this.btnNovo.Size = new System.Drawing.Size(85, 36);
             this.btnNovo.TabIndex = 4;
             this.btnNovo.TabStop = false;
             this.btnNovo.Text = "Novo";
@@ -178,6 +180,7 @@
             this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
             this.btnImprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnImprimir.FlatAppearance.BorderSize = 0;
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -187,14 +190,15 @@
             this.btnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnImprimir.Image = global::AppInternacao.Properties.Resources.PhotoPrint_6314;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(4, 4);
+            this.btnImprimir.Location = new System.Drawing.Point(0, 0);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(85, 29);
+            this.btnImprimir.Size = new System.Drawing.Size(85, 36);
             this.btnImprimir.TabIndex = 3;
             this.btnImprimir.TabStop = false;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Visible = false;
             // 
             // label2
             // 
@@ -239,6 +243,7 @@
             // 
             // panelButtons
             // 
+            this.panelButtons.AutoSize = true;
             this.panelButtons.BackColor = System.Drawing.Color.Transparent;
             this.panelButtons.Controls.Add(this.btnTempalte);
             this.panelButtons.Controls.Add(this.btnAdmUsuario);
@@ -247,7 +252,7 @@
             this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelButtons.Location = new System.Drawing.Point(0, 37);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(169, 168);
+            this.panelButtons.Size = new System.Drawing.Size(169, 160);
             this.panelButtons.TabIndex = 6;
             // 
             // btnTempalte
@@ -591,6 +596,7 @@
             this.panelCabecalho.ResumeLayout(false);
             this.panelScreen.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
+            this.panelMenu.PerformLayout();
             this.panelButtons.ResumeLayout(false);
             this.pLogoff.ResumeLayout(false);
             this.panelDropDown.ResumeLayout(false);

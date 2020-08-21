@@ -22,7 +22,9 @@ namespace AppInternacao.Presenter
                 IsDisponibilidade = _view.Leito.IsDisponibilidade,
                 Id = _view.Leito.Id,
                 IdQuarto = _view.Leito.IdQuarto,
-                NomeLeito = _view.Leito.NomeLeito
+                NomeLeito = _view.Leito.NomeLeito,
+                IsManutencao = view.Leito.IsManutencao,
+                Act = 'A'
             };
         }
 

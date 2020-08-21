@@ -105,6 +105,7 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.chkLeitoManutencao = new System.Windows.Forms.CheckBox();
             this.tabControlQuartoLeito.SuspendLayout();
             this.tabPageQuartos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartos)).BeginInit();
@@ -643,6 +644,7 @@ namespace AppInternacao.FrmSae
             // 
             // gLeito
             // 
+            this.gLeito.Controls.Add(this.chkLeitoManutencao);
             this.gLeito.Controls.Add(this.label3);
             this.gLeito.Controls.Add(this.panel5);
             this.gLeito.Controls.Add(this.panel2);
@@ -677,7 +679,7 @@ namespace AppInternacao.FrmSae
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.DimGray;
-            this.panel5.Location = new System.Drawing.Point(635, 60);
+            this.panel5.Location = new System.Drawing.Point(560, 60);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(22, 1);
             this.panel5.TabIndex = 15;
@@ -685,7 +687,7 @@ namespace AppInternacao.FrmSae
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DimGray;
-            this.panel2.Location = new System.Drawing.Point(536, 60);
+            this.panel2.Location = new System.Drawing.Point(461, 60);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(22, 1);
             this.panel2.TabIndex = 14;
@@ -710,7 +712,7 @@ namespace AppInternacao.FrmSae
             // 
             // textBoxIdLeitoQuarto
             // 
-            this.textBoxIdLeitoQuarto.Location = new System.Drawing.Point(717, 43);
+            this.textBoxIdLeitoQuarto.Location = new System.Drawing.Point(538, 12);
             this.textBoxIdLeitoQuarto.Name = "textBoxIdLeitoQuarto";
             this.textBoxIdLeitoQuarto.Size = new System.Drawing.Size(29, 20);
             this.textBoxIdLeitoQuarto.TabIndex = 12;
@@ -719,7 +721,7 @@ namespace AppInternacao.FrmSae
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(566, 45);
+            this.label5.Location = new System.Drawing.Point(491, 45);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label5.Size = new System.Drawing.Size(62, 13);
@@ -746,14 +748,14 @@ namespace AppInternacao.FrmSae
             this.comboBoxQuarto.MaxDropDownItems = 10;
             this.comboBoxQuarto.Name = "comboBoxQuarto";
             this.comboBoxQuarto.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboBoxQuarto.Size = new System.Drawing.Size(205, 21);
+            this.comboBoxQuarto.Size = new System.Drawing.Size(126, 21);
             this.comboBoxQuarto.TabIndex = 1;
             this.comboBoxQuarto.ValueMember = "Id";
             this.comboBoxQuarto.SelectedIndexChanged += new System.EventHandler(this.comboBoxQuarto_SelectedIndexChanged);
             // 
             // textBoxIdLeito
             // 
-            this.textBoxIdLeito.Location = new System.Drawing.Point(717, 16);
+            this.textBoxIdLeito.Location = new System.Drawing.Point(494, 12);
             this.textBoxIdLeito.Name = "textBoxIdLeito";
             this.textBoxIdLeito.Size = new System.Drawing.Size(29, 20);
             this.textBoxIdLeito.TabIndex = 0;
@@ -764,7 +766,7 @@ namespace AppInternacao.FrmSae
             this.textBoxTotalLeitos.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxTotalLeitos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxTotalLeitos.Enabled = false;
-            this.textBoxTotalLeitos.Location = new System.Drawing.Point(536, 46);
+            this.textBoxTotalLeitos.Location = new System.Drawing.Point(461, 46);
             this.textBoxTotalLeitos.Name = "textBoxTotalLeitos";
             this.textBoxTotalLeitos.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxTotalLeitos.Size = new System.Drawing.Size(22, 13);
@@ -784,7 +786,7 @@ namespace AppInternacao.FrmSae
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(662, 45);
+            this.label4.Location = new System.Drawing.Point(587, 45);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label4.Size = new System.Drawing.Size(56, 13);
@@ -807,7 +809,7 @@ namespace AppInternacao.FrmSae
             this.textBoxlLeitoQtd.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxlLeitoQtd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxlLeitoQtd.Enabled = false;
-            this.textBoxlLeitoQtd.Location = new System.Drawing.Point(634, 46);
+            this.textBoxlLeitoQtd.Location = new System.Drawing.Point(559, 46);
             this.textBoxlLeitoQtd.Name = "textBoxlLeitoQtd";
             this.textBoxlLeitoQtd.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBoxlLeitoQtd.Size = new System.Drawing.Size(22, 13);
@@ -924,6 +926,16 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn5.Width = 30;
             // 
+            // chkLeitoManutencao
+            // 
+            this.chkLeitoManutencao.AutoSize = true;
+            this.chkLeitoManutencao.Location = new System.Drawing.Point(666, 44);
+            this.chkLeitoManutencao.Name = "chkLeitoManutencao";
+            this.chkLeitoManutencao.Size = new System.Drawing.Size(86, 17);
+            this.chkLeitoManutencao.TabIndex = 16;
+            this.chkLeitoManutencao.Text = "Manutenção";
+            this.chkLeitoManutencao.UseVisualStyleBackColor = true;
+            // 
             // UCQuartoLeito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1025,5 +1037,6 @@ namespace AppInternacao.FrmSae
         private DataGridViewImageColumn isDisponivel;
         private DataGridViewImageColumn dataGridViewImageColumn3;
         private DataGridViewImageColumn dataGridViewImageColumn4;
+        private CheckBox chkLeitoManutencao;
     }
 }

@@ -282,5 +282,40 @@ namespace AppInternacao.FrmSae
                 textBoxPad.Text = string.Empty;
             }
         }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxPad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxPas_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

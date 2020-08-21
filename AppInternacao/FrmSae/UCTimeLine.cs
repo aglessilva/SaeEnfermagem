@@ -21,29 +21,36 @@ namespace AppInternacao.FrmSae
 
         void OpnUC_Sae(int frm = 0)
         {
-                //ctrl.Controls[1].Controls.RemoveAt(0);
+            //ctrl.Controls[1].Controls.RemoveAt(0);
 
             if (pFrmSae.Controls.Count > 0)
                 pFrmSae.Controls.RemoveAt(0);
 
-            if(frm  != 0)
+            if (frm != 0)
                 lblTitulo.Visible = true;
             else
                 lblTitulo.Visible = false;
 
-           
             pFrmSae.Controls.Clear();
             if (frm == 0)
                 userControl = new UC00BarCodeProntuario();
 
             if (frm == 1)
             {
+                ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
+                ctrl.Controls[1].Controls.Add(new UCMenuEsquerdo());
+
+                if (!Sessao.Usuario.Perfil.HasFlag(Enum.Perfil.Enfermeiros))
+                {
+                    ctrl.Panel1.Controls.Clear();
+                    return;
+                }
+
                 if (Sessao.Paciente.HistoricoEnfermagem != null)
                 {
                     lblTitulo.Text = "Exame Físico";
                     userControl = new UCExameFisico();
-                    ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
-                    ctrl.Controls[1].Controls.Add(new UCExibirHistorico());
+
                 }
                 else
                 {
@@ -75,9 +82,6 @@ namespace AppInternacao.FrmSae
                 lblTitulo.Text = "Avaliação de Enfermagem";
                 userControl = new UC05AvaliacaoEnfermagem();
             }
-
-           
-          
 
             pFrmSae.Controls.Add(userControl);
         }

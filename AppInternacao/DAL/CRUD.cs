@@ -244,7 +244,47 @@ namespace AppInternacao.Model
                 return retorno;
             }
         }
-        
+
+        //================================= BLOCO ESPECIFICO PARA ACÕES DE PRESCRIÇÃO==============================================
+        public int InsertPrescricao(PrescricaoMedica prescricaoMedica)
+        {
+            SqlCommand command = ComandoSQL(Procedure.SP_INSERT_PRESCRICAO);
+
+            int ret = 0;
+            try
+            {
+                command.Parameters.Add(new SqlParameter("@Id", prescricaoMedica.Id));
+                command.Parameters.Add(new SqlParameter("@IdPaciente", prescricaoMedica.IdPaciente));
+                command.Parameters.Add(new SqlParameter("@Horario", prescricaoMedica.Horario));
+                command.Parameters.Add(new SqlParameter("@Prescricao", prescricaoMedica.Prescricao));
+                var newIdParam = command.Parameters.Add("@Indentity", SqlDbType.Int);
+                newIdParam.Direction = ParameterDirection.Output;
+
+                if (command.Connection.State == ConnectionState.Closed)
+                    command.Connection.Open();
+
+                command.ExecuteNonQuery();
+                if (newIdParam.Value != DBNull.Value)
+                    ret = Convert.ToInt32(newIdParam.Value);
+
+                command.Dispose();
+                command.Clone();
+            }
+            catch (SqlException ex)
+            {
+                command.Dispose();
+                command.Clone();
+                throw ex;
+            }
+
+            return ret;
+        }
+
+        public DataTable GetDataTable(Procedure procedure, SqlParameter[] sqlParameter)
+        {
+            return GetDataTable(sqlParameter, procedure);
+        }
+        //==========================================================================================================================
         #endregion
     }
 }

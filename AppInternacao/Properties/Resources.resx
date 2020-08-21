@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iconfinder-securityprotectlockshield43-4021443_113114" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconfinder-securityprotectlockshield43-4021443_113114.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="security_view" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\security_view.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -129,6 +129,9 @@
   </data>
   <data name="nurse_person_woman_people_1697" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nurse_person_woman_people_1697.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="leftBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\leftBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="file-search_114412" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file-search_114412.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,11 +151,11 @@
   <data name="newFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\newFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Undergo_Insomnia_icon-icons.com_54126" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Undergo_Insomnia_icon-icons.com_54126.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="crianca" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\crianca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sinalizadorV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sinalizadorV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_people_outline_128_28591" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_people_outline_128_28591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,8 +166,8 @@
   <data name="heartbeat_icon-icons.com_56347" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heartbeat_icon-icons.com_56347.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save_Icon_icon-icons.com_69139" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save_Icon_icon-icons.com_69139.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="toddler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\toddler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calendar_40619" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calendar_40619.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,14 +184,11 @@
   <data name="backgroudMenu001" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\backgroudMenu001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="toddler" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\toddler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Barcode_27025" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Barcode_27025.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Add_40971" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add_40971.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="liberar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\liberar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,6 +208,9 @@
   <data name="Delete-80_icon-icons.com_57340" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete-80_icon-icons.com_57340.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="key_password_lock_800" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\key_password_lock_800.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ok_accept_15562" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ok_accept_15562.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -216,9 +219,6 @@
   </data>
   <data name="find1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\find1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="people_virus_spreading_corona_covid_icon_141669" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\people_virus_spreading_corona_covid_icon_141669.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,14 +238,17 @@
   <data name="Cracha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cracha1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="internet_lock_locked_padlock_password_secure_security_icon_127100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\internet_lock_locked_padlock_password_secure_security_icon_127100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add_40971" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add_40971.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\summer_vacation_beach_bed_sun_bathing_sunbed_icon_133411.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Search_find_magnifier_248" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search_find_magnifier_248.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sinalizadorV1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sinalizadorV1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="internet_lock_locked_padlock_password_secure_security_icon_127100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\internet_lock_locked_padlock_password_secure_security_icon_127100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vector-scan-barcode-4-transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vector-scan-barcode-4-transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,26 +280,35 @@
   <data name="infoflat_105980" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\infoflat_105980.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="key_password_lock_800" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\key_password_lock_800.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file-edit_114433" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file-edit_114433.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PhotoPrint_6314" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PhotoPrint_6314.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconfinder-securityprotectlockshield43-4021443_113114" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder-securityprotectlockshield43-4021443_113114.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backgroudtitel4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroudtitel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_account_child_128_28130" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_account_child_128_28130.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file-edit_114433" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file-edit_114433.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Undergo_Insomnia_icon-icons.com_54126" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Undergo_Insomnia_icon-icons.com_54126.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Save_Icon_icon-icons.com_69139" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save_Icon_icon-icons.com_69139.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loginFrmBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loginFrmBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barcodeflat_105982" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barcodeflat_105982.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="people_47795" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\people_47795.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="downBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\downBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="addPlus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addPlus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -331,13 +343,43 @@
   <data name="hospital_doctor_10739" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hospital_doctor_10739.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Photobooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Photobooth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sinalizador" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sinalizador.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="backgroudtitel4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\backgroudtitel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sinalizadorManutencao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sinalizadorManutencao.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LeitoManutencao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LeitoManutencao.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addItem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Checked_80_icon_icons_com_57359" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Checked-80_icon-icons.com_57359.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="integative" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\integative.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotOk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotOk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Remove_40970" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Remove_40970.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rubbishbin_102620" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rubbishbin_102620.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vcsconflicting_93497" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vcsconflicting_93497.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IsOk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vcsnormal_93488.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Wait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wait.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
