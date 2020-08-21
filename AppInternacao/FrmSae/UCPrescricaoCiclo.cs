@@ -152,6 +152,12 @@ namespace AppInternacao.FrmSae
 
                 table.Columns["Checado"].ReadOnly = true;
 
+                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
+                prescricaoMedica.Prescricao = null;
+                prescricaoMedica.Horario = new TimeSpan(0, 0, 0);
+
+                int _idPrescricao = presenterGeneric.InsertPrescricao(prescricaoMedica);
+
                 while (dateTime <= CalendarCicloPrescricao.SelectionEnd)
                 {
                     table.Columns.Add(new DataColumn(dateTime.ToString("dd/MM"), typeof(Image)));
@@ -168,11 +174,6 @@ namespace AppInternacao.FrmSae
                 AddNewRows();
                 CalendarCicloPrescricao.BoldedDates = det;
 
-                prescricaoMedica.IdPaciente = 1;
-                prescricaoMedica.Prescricao = null;
-                prescricaoMedica.Horario = new TimeSpan(0, 0, 0);
-
-                  int _idPrescricao = presenterGeneric.InsertPrescricao(prescricaoMedica);
 
                 if (table.Rows.Count == 1)
                 {
@@ -192,7 +193,7 @@ namespace AppInternacao.FrmSae
                             continue;
                         dataRow = dataTable.NewRow();
                         dataRow["Id"] = 0;
-                        dataRow["IdPrescricao"] = 0; //_idPrescricao;
+                        dataRow["IdPrescricao"] = _idPrescricao;
                         dataRow["DataCiclo"] = Convert.ToDateTime(item.Caption).Date;
                         dataRow["StatusCiclo"] = false;
                         dataRow["Justificativa"] = null;

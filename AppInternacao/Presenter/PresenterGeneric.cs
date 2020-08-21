@@ -52,7 +52,7 @@ namespace AppInternacao.Presenter
             int? ret = null;
             try
             {
-                ret = crud.BulkInsert(dataTable, "TB_CICLO_PRESCRICAO");
+                ret = crud.BulkInsert(dataTable, "TB_CicloPrescricao");
             }
             catch (Exception exCliclo)
             {
