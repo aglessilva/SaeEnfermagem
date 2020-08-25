@@ -6,8 +6,10 @@ namespace AppInternacao.Enum
     public enum Perfil : int
     {
         Nenhum = 0,
-        Enfermeiros = 1,
-        Medicos = 2,
-        Administrador =  Enfermeiros | Medicos
+        Tecnico = 2,
+        Enfermeiro_Assistemcial = 4 ,
+        Medicos = 8,
+        EnfermeiroAdmin = Enfermeiro_Assistemcial | Tecnico,
+        Administrador =  Enfermeiro_Assistemcial | Medicos | Tecnico
     }
 }

@@ -29,8 +29,8 @@ namespace AppInternacao.Presenter
                     usuario = view.usuario;
                 else
                     usuario = _usuario;
-
-                return crud.Executar(usuario, Procedure.SP_ADD_UPDT_USUARIO, Acao.Inserir);
+                Procedure p = usuario == null ? Procedure.SP_UPDT_SENHA_USUARIO : Procedure.SP_ADD_UPDT_USUARIO;
+                return crud.Executar(usuario, p, Acao.Inserir);
             }
             catch (Exception exSalvar)
             {

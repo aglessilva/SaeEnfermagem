@@ -31,10 +31,10 @@
             this.panel00title = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCaracteres = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.textBoxJustificativa = new System.Windows.Forms.TextBox();
-            this.lblCaracteres = new System.Windows.Forms.Label();
             this.panel00title.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +73,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(345, 134);
             this.panel1.TabIndex = 3;
+            // 
+            // lblCaracteres
+            // 
+            this.lblCaracteres.AutoSize = true;
+            this.lblCaracteres.Location = new System.Drawing.Point(11, 71);
+            this.lblCaracteres.Name = "lblCaracteres";
+            this.lblCaracteres.Size = new System.Drawing.Size(123, 13);
+            this.lblCaracteres.TabIndex = 57;
+            this.lblCaracteres.Text = "Minimo de 50 caracteres";
             // 
             // btnCancelar
             // 
@@ -129,15 +138,6 @@
             this.textBoxJustificativa.TabIndex = 0;
             this.textBoxJustificativa.TextChanged += new System.EventHandler(this.textBoxJustificativa_TextChanged);
             // 
-            // lblCaracteres
-            // 
-            this.lblCaracteres.AutoSize = true;
-            this.lblCaracteres.Location = new System.Drawing.Point(11, 71);
-            this.lblCaracteres.Name = "lblCaracteres";
-            this.lblCaracteres.Size = new System.Drawing.Size(123, 13);
-            this.lblCaracteres.TabIndex = 57;
-            this.lblCaracteres.Text = "Minimo de 50 caracteres";
-            // 
             // FrmJustificarChecagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +155,7 @@
             this.Text = "FrmJustificarChecagem";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmJustificarChecagem_FormClosing);
+            this.Load += new System.EventHandler(this.FrmJustificarChecagem_Load);
             this.panel00title.ResumeLayout(false);
             this.panel00title.PerformLayout();
             this.panel1.ResumeLayout(false);

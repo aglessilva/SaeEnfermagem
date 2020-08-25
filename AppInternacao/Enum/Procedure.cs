@@ -53,8 +53,24 @@
 
         SP_ADD_ALTERACAO_LEITO_PACIENTE = 25,
 
-        SP_INSERT_PRESCRICAO =  26,
+        SP_ADD_PRESCRICAO =  26,
 
-        SP_REMOVER_PRESCRICAO = 27,
+        SP_DEL_PRESCRICAO = 27,
+
+        SP_ADD_DATE = 28,
+
+        SP_DEL_DATE_PRESCRICAO = 29,
+
+        SP_GET_PRESCRICAO = 30,
+
+        SP_GET_CHAVE_PRESCRICAO = 31,
+
+        SP_ADD_CHAVE_PRESCRICAO = 32,
+
+        SP_GET_CLICLO = 33,
+
+        SP_DEL_CHAVE_PRESCRICAO = 34,
+
+   
     }
 }

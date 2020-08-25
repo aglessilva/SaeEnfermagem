@@ -197,16 +197,27 @@ namespace AppInternacao.Model
                 Comando.Parameters.Add(new SqlParameter("@IDCLIENTE", SqlDbType.Int));
                 Comando.Parameters["@IDCLIENTE"].Value = Sessao.CodigoCliente;
 
+
+
                 if (acao == Acao.Verificar)
                     retorno = (int?)Comando.ExecuteScalar();
                 else if (acao == Acao.Excluir)
                 {
-                    Comando.Parameters.Add(new SqlParameter("@RETORNO", SqlDbType.Int)).Direction = ParameterDirection.ReturnValue;
-                    Comando.ExecuteNonQuery();
-                    retorno = Convert.ToInt32(Comando.Parameters["@RETORNO"].Value);
+                    retorno = 0;
+                   // Comando.Parameters.Add(new SqlParameter("@RETORNO", SqlDbType.Int)).Direction = ParameterDirection.ReturnValue;
+                    retorno = Comando.ExecuteNonQuery();
+                   // retorno = Convert.ToInt32(Comando.Parameters["@RETORNO"].Value);
                 }
                 else
+                {
+                    retorno = 0;
+                    var newIdParam = Comando.Parameters.Add("@Identity", SqlDbType.Int);
+                    newIdParam.Direction = ParameterDirection.Output;
                     retorno = Comando.ExecuteNonQuery();
+
+                    if (newIdParam.Value != DBNull.Value)
+                        retorno = Convert.ToInt32(newIdParam.Value);
+                }
             }
             catch (SqlException sqlEx)
             {
@@ -248,12 +259,14 @@ namespace AppInternacao.Model
         //================================= BLOCO ESPECIFICO PARA ACÕES DE PRESCRIÇÃO==============================================
         public int InsertPrescricao(PrescricaoMedica prescricaoMedica)
         {
-            SqlCommand command = ComandoSQL(Procedure.SP_INSERT_PRESCRICAO);
+            SqlCommand command = ComandoSQL(Procedure.SP_ADD_PRESCRICAO);
 
             int ret = 0;
             try
             {
                 command.Parameters.Add(new SqlParameter("@Id", prescricaoMedica.Id));
+                command.Parameters.Add(new SqlParameter("@IdCliente", Sessao.CodigoCliente));
+                command.Parameters.Add(new SqlParameter("@IdChavePrescricao", prescricaoMedica.IdChavePrescricao ));
                 command.Parameters.Add(new SqlParameter("@IdPaciente", prescricaoMedica.IdPaciente));
                 command.Parameters.Add(new SqlParameter("@Horario", prescricaoMedica.Horario));
                 command.Parameters.Add(new SqlParameter("@Prescricao", prescricaoMedica.Prescricao));

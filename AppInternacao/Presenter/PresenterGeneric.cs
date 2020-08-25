@@ -47,6 +47,19 @@ namespace AppInternacao.Presenter
             return ret ?? 0;
         }
 
+        public List<T> GetLista<T>(T obj, Procedure procedure)
+        {
+            try
+            {
+                return crud.ListaGenerica<T>(procedure, obj);
+            }
+            catch (Exception exS)
+            {
+                throw exS;
+            }
+
+        }
+
         public int InsertCiclo(DataTable dataTable)
         {
             int? ret = null;

@@ -6,7 +6,8 @@ namespace AppInternacao.Model
     {
         public int Id { get; set; }
         public int IdPaciente { get; set; }
+        public int IdChavePrescricao { get; set; }
         public string Prescricao { get; set; }
-        public TimeSpan Horario { get; set; }
+        public TimeSpan? Horario { get; set; }
     }
 }

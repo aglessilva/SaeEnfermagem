@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppInternacao.Frm
@@ -13,11 +7,13 @@ namespace AppInternacao.Frm
     public partial class FrmJustificarChecagem : Form
     {
         DataRow dataRow = null;
-        public FrmJustificarChecagem(DataRow _dataRow)
+        bool viewEnable = true;
+        public FrmJustificarChecagem(DataRow _dataRow = null, bool eneble = true)
         {
             InitializeComponent();
             dataRow = _dataRow;
             textBoxJustificativa.Focus();
+            viewEnable = eneble;
         }
 
         private void textBoxJustificativa_TextChanged(object sender, EventArgs e)
@@ -36,14 +32,14 @@ namespace AppInternacao.Frm
         {
             try
             {
-
+                
+                dataRow["Justificativa"] += DateTime.Now.Date.ToString("dd/MM/yyyy")+ " - " + textBoxJustificativa.Text + Environment.NewLine;
                 DialogResult = DialogResult.OK;
                 Dispose();
             }
-            catch (Exception)
+            catch (Exception exErroJus)
             {
-
-                throw;
+                throw exErroJus;
             }
         }
 
@@ -59,6 +55,17 @@ namespace AppInternacao.Frm
         {
             DialogResult = DialogResult.Cancel;
             Dispose();
+        }
+
+        private void FrmJustificarChecagem_Load(object sender, EventArgs e)
+        {
+            if (!viewEnable)
+            {
+                btnConfirmar.Click -= btnConfirmar_Click;
+                textBoxJustificativa.Text = dataRow["Justificativa"].ToString();
+                textBoxJustificativa.MaxLength = 1000;
+                lblCaracteres.Visible = false;
+            }
         }
     }
 }

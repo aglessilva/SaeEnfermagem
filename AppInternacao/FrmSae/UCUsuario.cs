@@ -76,7 +76,7 @@ namespace AppInternacao.FrmSae
             try
             {
                 Carregar();
-                List<Perfil> list = new List<Perfil>() { Perfil.Nenhum, Perfil.Administrador, Perfil.Enfermeiros, Perfil.Medicos };
+                List<Perfil> list = new List<Perfil>() { Perfil.Nenhum, Perfil.Tecnico , Perfil.Administrador, Perfil.Enfermeiro_Assistemcial, Perfil.EnfermeiroAdmin, Perfil.Medicos };
                 comboBoxPerfil.DataSource = list;
             }
             catch (Exception ex)

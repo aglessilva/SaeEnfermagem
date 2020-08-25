@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewPrescricoes = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.CalendarCicloPrescricao = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCicloPrescricao = new System.Windows.Forms.Label();
             this.gDadosPaciente = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxDataPrescricao = new System.Windows.Forms.ComboBox();
             this.lblLeito = new System.Windows.Forms.Label();
             this.lblIdade = new System.Windows.Forms.Label();
             this.lblProntuario = new System.Windows.Forms.Label();
@@ -45,10 +47,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddCiclo = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnAddDia = new System.Windows.Forms.Button();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnRemoveDia = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrescricoes)).BeginInit();
             this.panel1.SuspendLayout();
             this.gDadosPaciente.SuspendLayout();
@@ -59,22 +61,23 @@
             // 
             this.dataGridViewPrescricoes.AllowUserToAddRows = false;
             this.dataGridViewPrescricoes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
-            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
+            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewPrescricoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPrescricoes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPrescricoes.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridViewPrescricoes.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPrescricoes.Name = "dataGridViewPrescricoes";
             this.dataGridViewPrescricoes.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPrescricoes.RowTemplate.Height = 40;
             this.dataGridViewPrescricoes.Size = new System.Drawing.Size(773, 350);
             this.dataGridViewPrescricoes.TabIndex = 17;
             this.dataGridViewPrescricoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellContentClick);
             this.dataGridViewPrescricoes.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellContentDoubleClick);
             this.dataGridViewPrescricoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellEndEdit);
+            this.dataGridViewPrescricoes.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellEnter);
             this.dataGridViewPrescricoes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewPrescricoes_DataError);
             // 
             // label1
@@ -89,6 +92,7 @@
             // CalendarCicloPrescricao
             // 
             this.CalendarCicloPrescricao.BackColor = System.Drawing.SystemColors.Window;
+            this.CalendarCicloPrescricao.Enabled = false;
             this.CalendarCicloPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalendarCicloPrescricao.Location = new System.Drawing.Point(9, 21);
             this.CalendarCicloPrescricao.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
@@ -133,6 +137,8 @@
             this.gDadosPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gDadosPaciente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gDadosPaciente.Controls.Add(this.label3);
+            this.gDadosPaciente.Controls.Add(this.comboBoxDataPrescricao);
             this.gDadosPaciente.Controls.Add(this.lblLeito);
             this.gDadosPaciente.Controls.Add(this.lblIdade);
             this.gDadosPaciente.Controls.Add(this.lblProntuario);
@@ -149,6 +155,29 @@
             this.gDadosPaciente.TabIndex = 48;
             this.gDadosPaciente.TabStop = false;
             this.gDadosPaciente.Text = "Paciente Prescrito";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(378, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 16);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Data da Prescrição";
+            // 
+            // comboBoxDataPrescricao
+            // 
+            this.comboBoxDataPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDataPrescricao.DisplayMember = "DataPrescricao";
+            this.comboBoxDataPrescricao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDataPrescricao.FormatString = "d";
+            this.comboBoxDataPrescricao.FormattingEnabled = true;
+            this.comboBoxDataPrescricao.Location = new System.Drawing.Point(351, 92);
+            this.comboBoxDataPrescricao.Name = "comboBoxDataPrescricao";
+            this.comboBoxDataPrescricao.Size = new System.Drawing.Size(156, 23);
+            this.comboBoxDataPrescricao.TabIndex = 11;
+            this.comboBoxDataPrescricao.ValueMember = "Id";
             // 
             // lblLeito
             // 
@@ -245,16 +274,6 @@
             this.btnAddCiclo.Visible = false;
             this.btnAddCiclo.Click += new System.EventHandler(this.btnAddCiclo_Click);
             // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.dataGridViewPrescricoes);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 198);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(773, 350);
-            this.panel2.TabIndex = 24;
-            // 
             // btnAddDia
             // 
             this.btnAddDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -305,6 +324,16 @@
             this.btnRemoveDia.UseVisualStyleBackColor = true;
             this.btnRemoveDia.Click += new System.EventHandler(this.btnRemoveDia_Click);
             // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.dataGridViewPrescricoes);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 198);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(773, 350);
+            this.panel2.TabIndex = 24;
+            // 
             // UCPrescricaoCiclo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,5 +376,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCicloPrescricao;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxDataPrescricao;
     }
 }

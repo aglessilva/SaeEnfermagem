@@ -259,6 +259,7 @@
     <Compile Include="Funcoes.cs" />
     <Compile Include="Model\AlteracaoLeitoPaciente.cs" />
     <Compile Include="Model\Area_Itens.cs" />
+    <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
     <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\EstruturaFisica.cs" />

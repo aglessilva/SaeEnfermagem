@@ -40,7 +40,7 @@ namespace AppInternacao.FrmSae
                 ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
                 ctrl.Controls[1].Controls.Add(new UCMenuEsquerdo());
 
-                if (!Sessao.Usuario.Perfil.HasFlag(Enum.Perfil.Enfermeiros))
+                if (!Sessao.Usuario.Perfil.HasFlag(Enum.Perfil.Enfermeiro_Assistemcial))
                 {
                     ctrl.Panel1.Controls.Clear();
                     return;
