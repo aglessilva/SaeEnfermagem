@@ -34,9 +34,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CalendarCicloPrescricao = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pNamePrescricao = new System.Windows.Forms.Panel();
+            this.btnCancelaPrescricao = new System.Windows.Forms.Button();
+            this.lblContaCaracter = new System.Windows.Forms.Label();
+            this.btnCriarPrescricao = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblRotulo = new System.Windows.Forms.Label();
+            this.textBoxNomePrescricao = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCicloPrescricao = new System.Windows.Forms.Label();
+            this.btnAddCiclo = new System.Windows.Forms.Button();
             this.gDadosPaciente = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTotalPrescricao = new System.Windows.Forms.Label();
             this.comboBoxDataPrescricao = new System.Windows.Forms.ComboBox();
             this.lblLeito = new System.Windows.Forms.Label();
             this.lblIdade = new System.Windows.Forms.Label();
@@ -46,13 +55,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnAddCiclo = new System.Windows.Forms.Button();
-            this.btnAddDia = new System.Windows.Forms.Button();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnRemoveDia = new System.Windows.Forms.Button();
+            this.btnAddDia = new System.Windows.Forms.Button();
+            this.btnChecarPrescricao = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrescricoes)).BeginInit();
             this.panel1.SuspendLayout();
+            this.pNamePrescricao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gDadosPaciente.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -92,31 +103,149 @@
             // CalendarCicloPrescricao
             // 
             this.CalendarCicloPrescricao.BackColor = System.Drawing.SystemColors.Window;
-            this.CalendarCicloPrescricao.Enabled = false;
             this.CalendarCicloPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalendarCicloPrescricao.Location = new System.Drawing.Point(9, 21);
             this.CalendarCicloPrescricao.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
             this.CalendarCicloPrescricao.MaxSelectionCount = 30;
             this.CalendarCicloPrescricao.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.CalendarCicloPrescricao.Name = "CalendarCicloPrescricao";
-            this.CalendarCicloPrescricao.TabIndex = 14;
+            this.CalendarCicloPrescricao.TabIndex = 0;
             this.CalendarCicloPrescricao.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.CalendarCicloPrescricao_DateSelected);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pNamePrescricao);
             this.panel1.Controls.Add(this.lblCicloPrescricao);
-            this.panel1.Controls.Add(this.gDadosPaciente);
             this.panel1.Controls.Add(this.btnAddCiclo);
-            this.panel1.Controls.Add(this.btnAddDia);
+            this.panel1.Controls.Add(this.gDadosPaciente);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.CalendarCicloPrescricao);
             this.panel1.Controls.Add(this.btnNewLine);
             this.panel1.Controls.Add(this.btnRemoveDia);
+            this.panel1.Controls.Add(this.btnAddDia);
+            this.panel1.Controls.Add(this.btnChecarPrescricao);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(773, 198);
             this.panel1.TabIndex = 23;
+            // 
+            // pNamePrescricao
+            // 
+            this.pNamePrescricao.Controls.Add(this.btnCancelaPrescricao);
+            this.pNamePrescricao.Controls.Add(this.lblContaCaracter);
+            this.pNamePrescricao.Controls.Add(this.btnCriarPrescricao);
+            this.pNamePrescricao.Controls.Add(this.panel3);
+            this.pNamePrescricao.Controls.Add(this.lblRotulo);
+            this.pNamePrescricao.Controls.Add(this.textBoxNomePrescricao);
+            this.pNamePrescricao.Controls.Add(this.pictureBox1);
+            this.pNamePrescricao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pNamePrescricao.Location = new System.Drawing.Point(0, 0);
+            this.pNamePrescricao.Name = "pNamePrescricao";
+            this.pNamePrescricao.Size = new System.Drawing.Size(773, 198);
+            this.pNamePrescricao.TabIndex = 11;
+            this.pNamePrescricao.Visible = false;
+            // 
+            // btnCancelaPrescricao
+            // 
+            this.btnCancelaPrescricao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnCancelaPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelaPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelaPrescricao.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnCancelaPrescricao.FlatAppearance.BorderSize = 2;
+            this.btnCancelaPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCancelaPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnCancelaPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelaPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnCancelaPrescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCancelaPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelaPrescricao.Location = new System.Drawing.Point(225, 121);
+            this.btnCancelaPrescricao.Name = "btnCancelaPrescricao";
+            this.btnCancelaPrescricao.Size = new System.Drawing.Size(169, 30);
+            this.btnCancelaPrescricao.TabIndex = 27;
+            this.btnCancelaPrescricao.TabStop = false;
+            this.btnCancelaPrescricao.Text = "Cancelar prescrição";
+            this.btnCancelaPrescricao.UseVisualStyleBackColor = false;
+            this.btnCancelaPrescricao.Click += new System.EventHandler(this.btnCancelaPrescricao_Click);
+            // 
+            // lblContaCaracter
+            // 
+            this.lblContaCaracter.AutoSize = true;
+            this.lblContaCaracter.Location = new System.Drawing.Point(228, 97);
+            this.lblContaCaracter.Name = "lblContaCaracter";
+            this.lblContaCaracter.Size = new System.Drawing.Size(125, 13);
+            this.lblContaCaracter.TabIndex = 26;
+            this.lblContaCaracter.Text = "Mínimo de 10 caracteres";
+            // 
+            // btnCriarPrescricao
+            // 
+            this.btnCriarPrescricao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnCriarPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCriarPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCriarPrescricao.Enabled = false;
+            this.btnCriarPrescricao.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnCriarPrescricao.FlatAppearance.BorderSize = 2;
+            this.btnCriarPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCriarPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnCriarPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCriarPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnCriarPrescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCriarPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCriarPrescricao.Location = new System.Drawing.Point(417, 121);
+            this.btnCriarPrescricao.Name = "btnCriarPrescricao";
+            this.btnCriarPrescricao.Size = new System.Drawing.Size(169, 30);
+            this.btnCriarPrescricao.TabIndex = 25;
+            this.btnCriarPrescricao.TabStop = false;
+            this.btnCriarPrescricao.Text = "Criar nova prescrição";
+            this.btnCriarPrescricao.UseVisualStyleBackColor = false;
+            this.btnCriarPrescricao.Click += new System.EventHandler(this.btnCriarPrescricao_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BackColor = System.Drawing.Color.DimGray;
+            this.panel3.Location = new System.Drawing.Point(228, 90);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(358, 1);
+            this.panel3.TabIndex = 23;
+            // 
+            // lblRotulo
+            // 
+            this.lblRotulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRotulo.AutoSize = true;
+            this.lblRotulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.lblRotulo.Location = new System.Drawing.Point(228, 42);
+            this.lblRotulo.Name = "lblRotulo";
+            this.lblRotulo.Size = new System.Drawing.Size(255, 17);
+            this.lblRotulo.TabIndex = 22;
+            this.lblRotulo.Text = "Informe um nome para nova prescrição";
+            // 
+            // textBoxNomePrescricao
+            // 
+            this.textBoxNomePrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNomePrescricao.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxNomePrescricao.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxNomePrescricao.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxNomePrescricao.Location = new System.Drawing.Point(273, 76);
+            this.textBoxNomePrescricao.MaxLength = 50;
+            this.textBoxNomePrescricao.Name = "textBoxNomePrescricao";
+            this.textBoxNomePrescricao.Size = new System.Drawing.Size(321, 13);
+            this.textBoxNomePrescricao.TabIndex = 21;
+            this.textBoxNomePrescricao.WordWrap = false;
+            this.textBoxNomePrescricao.TextChanged += new System.EventHandler(this.textBoxNomePrescricao_TextChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.Documents;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 64);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
             // 
             // lblCicloPrescricao
             // 
@@ -132,12 +261,35 @@
             this.lblCicloPrescricao.Text = "-";
             this.lblCicloPrescricao.Visible = false;
             // 
+            // btnAddCiclo
+            // 
+            this.btnAddCiclo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnAddCiclo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddCiclo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddCiclo.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnAddCiclo.FlatAppearance.BorderSize = 0;
+            this.btnAddCiclo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAddCiclo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnAddCiclo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCiclo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnAddCiclo.ForeColor = System.Drawing.Color.White;
+            this.btnAddCiclo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddCiclo.Location = new System.Drawing.Point(248, 153);
+            this.btnAddCiclo.Name = "btnAddCiclo";
+            this.btnAddCiclo.Size = new System.Drawing.Size(146, 30);
+            this.btnAddCiclo.TabIndex = 0;
+            this.btnAddCiclo.TabStop = false;
+            this.btnAddCiclo.Text = "Promover Ciclo";
+            this.btnAddCiclo.UseVisualStyleBackColor = false;
+            this.btnAddCiclo.Visible = false;
+            this.btnAddCiclo.Click += new System.EventHandler(this.btnAddCiclo_Click);
+            // 
             // gDadosPaciente
             // 
             this.gDadosPaciente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gDadosPaciente.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.gDadosPaciente.Controls.Add(this.label3);
+            this.gDadosPaciente.Controls.Add(this.lblTotalPrescricao);
             this.gDadosPaciente.Controls.Add(this.comboBoxDataPrescricao);
             this.gDadosPaciente.Controls.Add(this.lblLeito);
             this.gDadosPaciente.Controls.Add(this.lblIdade);
@@ -156,28 +308,29 @@
             this.gDadosPaciente.TabStop = false;
             this.gDadosPaciente.Text = "Paciente Prescrito";
             // 
-            // label3
+            // lblTotalPrescricao
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(378, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 16);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Data da Prescrição";
+            this.lblTotalPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalPrescricao.AutoSize = true;
+            this.lblTotalPrescricao.Location = new System.Drawing.Point(343, 73);
+            this.lblTotalPrescricao.Name = "lblTotalPrescricao";
+            this.lblTotalPrescricao.Size = new System.Drawing.Size(152, 16);
+            this.lblTotalPrescricao.TabIndex = 12;
+            this.lblTotalPrescricao.Text = "Prescrição cadastradas";
             // 
             // comboBoxDataPrescricao
             // 
             this.comboBoxDataPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxDataPrescricao.DisplayMember = "DataPrescricao";
+            this.comboBoxDataPrescricao.DisplayMember = "NomePrescricao";
             this.comboBoxDataPrescricao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDataPrescricao.FormatString = "d";
             this.comboBoxDataPrescricao.FormattingEnabled = true;
-            this.comboBoxDataPrescricao.Location = new System.Drawing.Point(351, 92);
+            this.comboBoxDataPrescricao.Location = new System.Drawing.Point(280, 92);
             this.comboBoxDataPrescricao.Name = "comboBoxDataPrescricao";
-            this.comboBoxDataPrescricao.Size = new System.Drawing.Size(156, 23);
+            this.comboBoxDataPrescricao.Size = new System.Drawing.Size(227, 23);
             this.comboBoxDataPrescricao.TabIndex = 11;
             this.comboBoxDataPrescricao.ValueMember = "Id";
+            this.comboBoxDataPrescricao.SelectedIndexChanged += new System.EventHandler(this.comboBoxDataPrescricao_SelectedIndexChanged);
             // 
             // lblLeito
             // 
@@ -251,46 +404,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Idade:";
             // 
-            // btnAddCiclo
-            // 
-            this.btnAddCiclo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnAddCiclo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddCiclo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCiclo.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnAddCiclo.FlatAppearance.BorderSize = 0;
-            this.btnAddCiclo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnAddCiclo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnAddCiclo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCiclo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnAddCiclo.ForeColor = System.Drawing.Color.White;
-            this.btnAddCiclo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddCiclo.Location = new System.Drawing.Point(248, 151);
-            this.btnAddCiclo.Name = "btnAddCiclo";
-            this.btnAddCiclo.Size = new System.Drawing.Size(146, 30);
-            this.btnAddCiclo.TabIndex = 46;
-            this.btnAddCiclo.TabStop = false;
-            this.btnAddCiclo.Text = "Promover Ciclo";
-            this.btnAddCiclo.UseVisualStyleBackColor = false;
-            this.btnAddCiclo.Visible = false;
-            this.btnAddCiclo.Click += new System.EventHandler(this.btnAddCiclo_Click);
-            // 
-            // btnAddDia
-            // 
-            this.btnAddDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddDia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddDia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddDia.Enabled = false;
-            this.btnAddDia.FlatAppearance.BorderSize = 0;
-            this.btnAddDia.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.btnAddDia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddDia.Image = global::AppInternacao.Properties.Resources.Add_40971;
-            this.btnAddDia.Location = new System.Drawing.Point(677, 146);
-            this.btnAddDia.Name = "btnAddDia";
-            this.btnAddDia.Size = new System.Drawing.Size(39, 39);
-            this.btnAddDia.TabIndex = 19;
-            this.btnAddDia.UseVisualStyleBackColor = true;
-            this.btnAddDia.Click += new System.EventHandler(this.btnAddDia_Click);
-            // 
             // btnNewLine
             // 
             this.btnNewLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -304,7 +417,7 @@
             this.btnNewLine.Location = new System.Drawing.Point(632, 146);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(39, 39);
-            this.btnNewLine.TabIndex = 22;
+            this.btnNewLine.TabIndex = 1;
             this.btnNewLine.UseVisualStyleBackColor = true;
             this.btnNewLine.Click += new System.EventHandler(this.btnNewLine_Click);
             // 
@@ -320,9 +433,41 @@
             this.btnRemoveDia.Location = new System.Drawing.Point(722, 146);
             this.btnRemoveDia.Name = "btnRemoveDia";
             this.btnRemoveDia.Size = new System.Drawing.Size(39, 39);
-            this.btnRemoveDia.TabIndex = 20;
+            this.btnRemoveDia.TabIndex = 3;
             this.btnRemoveDia.UseVisualStyleBackColor = true;
             this.btnRemoveDia.Click += new System.EventHandler(this.btnRemoveDia_Click);
+            // 
+            // btnAddDia
+            // 
+            this.btnAddDia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddDia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddDia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddDia.Enabled = false;
+            this.btnAddDia.FlatAppearance.BorderSize = 0;
+            this.btnAddDia.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.btnAddDia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDia.Image = global::AppInternacao.Properties.Resources.Add_40971;
+            this.btnAddDia.Location = new System.Drawing.Point(677, 146);
+            this.btnAddDia.Name = "btnAddDia";
+            this.btnAddDia.Size = new System.Drawing.Size(39, 39);
+            this.btnAddDia.TabIndex = 2;
+            this.btnAddDia.UseVisualStyleBackColor = true;
+            this.btnAddDia.Click += new System.EventHandler(this.btnAddDia_Click);
+            // 
+            // btnChecarPrescricao
+            // 
+            this.btnChecarPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChecarPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnChecarPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChecarPrescricao.FlatAppearance.BorderSize = 0;
+            this.btnChecarPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.btnChecarPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChecarPrescricao.Image = global::AppInternacao.Properties.Resources.tipotemplate;
+            this.btnChecarPrescricao.Location = new System.Drawing.Point(587, 146);
+            this.btnChecarPrescricao.Name = "btnChecarPrescricao";
+            this.btnChecarPrescricao.Size = new System.Drawing.Size(39, 39);
+            this.btnChecarPrescricao.TabIndex = 50;
+            this.btnChecarPrescricao.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -347,6 +492,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrescricoes)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.pNamePrescricao.ResumeLayout(false);
+            this.pNamePrescricao.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gDadosPaciente.ResumeLayout(false);
             this.gDadosPaciente.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -376,7 +524,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCicloPrescricao;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTotalPrescricao;
         private System.Windows.Forms.ComboBox comboBoxDataPrescricao;
+        private System.Windows.Forms.Panel pNamePrescricao;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblRotulo;
+        private System.Windows.Forms.TextBox textBoxNomePrescricao;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnCriarPrescricao;
+        private System.Windows.Forms.Label lblContaCaracter;
+        private System.Windows.Forms.Button btnCancelaPrescricao;
+        private System.Windows.Forms.Button btnChecarPrescricao;
     }
 }

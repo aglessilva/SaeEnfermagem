@@ -10,7 +10,5 @@ namespace AppInternacao.Model
         public string IdPrescricao { get; set; }
         public DateTime? Checado { get; set; }
         public DateTime? DataCiclo { get; set; }
-        public bool? StatusCiclo { get; set; }
-        public string Justificativa { get; set; }
     }
 }

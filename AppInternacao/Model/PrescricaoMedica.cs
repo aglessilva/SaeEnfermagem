@@ -9,5 +9,6 @@ namespace AppInternacao.Model
         public int IdChavePrescricao { get; set; }
         public string Prescricao { get; set; }
         public TimeSpan? Horario { get; set; }
+        public string Justificativa { get; set; }
     }
 }

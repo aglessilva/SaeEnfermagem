@@ -32,8 +32,7 @@ namespace AppInternacao.Frm
         {
             try
             {
-                
-                dataRow["Justificativa"] += DateTime.Now.Date.ToString("dd/MM/yyyy")+ " - " + textBoxJustificativa.Text + Environment.NewLine;
+                dataRow["Justificativa"] += DateTime.Now.Date.ToString("dd/MM/yyyy") + " - " + textBoxJustificativa.Text +Environment.NewLine;
                 DialogResult = DialogResult.OK;
                 Dispose();
             }

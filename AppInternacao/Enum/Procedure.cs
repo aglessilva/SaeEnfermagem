@@ -67,10 +67,11 @@
 
         SP_ADD_CHAVE_PRESCRICAO = 32,
 
-        SP_GET_CLICLO = 33,
+        SP_GET_CICLO = 33,
 
         SP_DEL_CHAVE_PRESCRICAO = 34,
 
-   
+        SP_UPDT_JUSTIFICATIVA = 35,
+
     }
 }
