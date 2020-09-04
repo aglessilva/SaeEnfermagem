@@ -6,6 +6,8 @@ namespace AppInternacao.Model
     {
         public int Id { get; set; }
         public Area IdArea { get; set; }
+        public int IdItemArea { get; set; }
+        public int IdTemplate { get; set; }
         public int IdEstruturaFisica { get; set; }
         public int IdUsuario { get; set; }
         public string Nome { get; set; }

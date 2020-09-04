@@ -1,5 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AppInternacao.Enum;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
@@ -15,7 +17,15 @@ namespace AppInternacao.FrmSae
         private SplitContainer ctrl;
         private void btnExibirHistorico_Click(object sender, EventArgs e)
         {
-            new FrmExibirHistorico().ShowDialog();
+            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+            {
+                CloseUC();
+                ctrl.Controls[0].Controls.Add(new UCViewHistoricoEnfermagem());
+            }
+            else
+            {
+                new FrmExibirHistorico().ShowDialog();
+            }
         }
 
         private void btnPrecricaoMedica_Click(object sender, EventArgs e)
@@ -37,6 +47,14 @@ namespace AppInternacao.FrmSae
         private void UCMenuEsquerdo_Load(object sender, EventArgs e)
         {
             ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
+            lblQuarto.Text = Sessao.Paciente.NomeQuarto;
+            lblLeito.Text = Sessao.Paciente.NomeLeito;
+            lblUnidadeFuncional.Text = Sessao.Paciente.NomeSetor;
+            lblPaciente.Text = Sessao.Paciente.Nome;
+            lblIdade.Text = Sessao.Paciente.Idade.ToString();
+
+            MemoryStream ms = new MemoryStream(Sessao.Paciente.Foto);
+            pictureBoxExtFoto.Image = Image.FromStream(ms);
         }
     }
 }

@@ -60,10 +60,18 @@ namespace AppInternacao.Frm
         {
             if (!viewEnable)
             {
-                btnConfirmar.Click -= btnConfirmar_Click;
-                textBoxJustificativa.Text = dataRow["Justificativa"].ToString();
+                string[] txtJustificativas = dataRow["Justificativa"].ToString().Split('\r');
+
                 textBoxJustificativa.MaxLength = 1000;
+                btnConfirmar.Click -= btnConfirmar_Click;
                 lblCaracteres.Visible = false;
+
+                foreach (var item in txtJustificativas)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.ToString()))
+                        textBoxJustificativa.Text += item.ToString() + Environment.NewLine;
+                }
+                //textBoxJustificativa.Text = dataRow["Justificativa"].ToString();
             }
         }
     }

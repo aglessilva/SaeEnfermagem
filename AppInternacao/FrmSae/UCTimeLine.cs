@@ -14,7 +14,7 @@ namespace AppInternacao.FrmSae
             ButtonSaeAvanca = btnStep;
         }
 
-        int[] left = {9, 83, 158, 233, 308, 382, 456 };
+        int[] left = {11, 86, 161, 236, 311, 385, 459 };
         int cont = 0;
         private Control userControl;
         private SplitContainer ctrl;
@@ -46,17 +46,16 @@ namespace AppInternacao.FrmSae
                     return;
                 }
 
-                if (Sessao.Paciente.HistoricoEnfermagem != null)
-                {
+                //if (Sessao.Paciente.HistoricoEnfermagem != null)
+                //{
                     lblTitulo.Text = "Exame Físico";
                     userControl = new UCExameFisico();
-
-                }
-                else
-                {
-                    lblTitulo.Text = "Histórico de Enfermagem";
-                    userControl = new UC01HistoricoEnfermagem();
-                }
+                //}
+                //else
+                //{
+                //    lblTitulo.Text = "Histórico de Enfermagem";
+                //    userControl = new UC01HistoricoEnfermagem();
+                //}
             }
 
             if (frm == 2)
@@ -88,8 +87,8 @@ namespace AppInternacao.FrmSae
 
         private void btnStep_Click(object sender, EventArgs e)
         {
-            ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
-            ctrl.Controls[1].Controls.Clear();
+            //ctrl = (SplitContainer)ParentForm.Controls[0].Controls[0];
+            //ctrl.Controls[1].Controls.Clear();
             btnStep.Enabled = false;
             lblTitulo.Visible = false;
             cont++;

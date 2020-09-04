@@ -188,7 +188,7 @@ namespace AppInternacao.FrmSae
             this.dataGridViewPaciente.ReadOnly = true;
             this.dataGridViewPaciente.RowHeadersVisible = false;
             this.dataGridViewPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPaciente.Size = new System.Drawing.Size(924, 233);
+            this.dataGridViewPaciente.Size = new System.Drawing.Size(938, 233);
             this.dataGridViewPaciente.TabIndex = 16;
             this.dataGridViewPaciente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPaciente_CellContentClick);
             this.dataGridViewPaciente.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewPaciente_RowsAdded);
@@ -270,7 +270,7 @@ namespace AppInternacao.FrmSae
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(0, 350);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(924, 56);
+            this.groupBox2.Size = new System.Drawing.Size(938, 56);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pesquisa por Nome do paciente";
@@ -333,7 +333,7 @@ namespace AppInternacao.FrmSae
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 406);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(924, 233);
+            this.panel2.Size = new System.Drawing.Size(938, 233);
             this.panel2.TabIndex = 18;
             // 
             // printDocumentCracha
@@ -355,10 +355,10 @@ namespace AppInternacao.FrmSae
             // 
             this.textBoxIdade.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxIdade.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxIdade.Location = new System.Drawing.Point(394, 74);
+            this.textBoxIdade.Location = new System.Drawing.Point(406, 76);
             this.textBoxIdade.MaxLength = 2;
             this.textBoxIdade.Name = "textBoxIdade";
-            this.textBoxIdade.Size = new System.Drawing.Size(51, 13);
+            this.textBoxIdade.Size = new System.Drawing.Size(44, 13);
             this.textBoxIdade.TabIndex = 5;
             this.textBoxIdade.TextChanged += new System.EventHandler(this.textBoxIdade_TextChanged);
             this.textBoxIdade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdade_KeyPress);
@@ -397,7 +397,7 @@ namespace AppInternacao.FrmSae
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(352, 78);
+            this.label1.Location = new System.Drawing.Point(366, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 7;
@@ -435,9 +435,9 @@ namespace AppInternacao.FrmSae
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.DimGray;
-            this.panel3.Location = new System.Drawing.Point(394, 89);
+            this.panel3.Location = new System.Drawing.Point(406, 91);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(55, 1);
+            this.panel3.Size = new System.Drawing.Size(43, 1);
             this.panel3.TabIndex = 18;
             // 
             // groupBox1
@@ -497,7 +497,7 @@ namespace AppInternacao.FrmSae
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 50);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(924, 350);
+            this.groupBox1.Size = new System.Drawing.Size(938, 350);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro resumido de paciente";
@@ -540,7 +540,7 @@ namespace AppInternacao.FrmSae
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(405, 104);
+            this.label19.Location = new System.Drawing.Point(401, 104);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(19, 13);
             this.label19.TabIndex = 49;
@@ -555,7 +555,7 @@ namespace AppInternacao.FrmSae
             this.btnAddPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPicture.Image = global::AppInternacao.Properties.Resources.Photobooth;
             this.btnAddPicture.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddPicture.Location = new System.Drawing.Point(770, 307);
+            this.btnAddPicture.Location = new System.Drawing.Point(784, 307);
             this.btnAddPicture.Name = "btnAddPicture";
             this.btnAddPicture.Size = new System.Drawing.Size(148, 35);
             this.btnAddPicture.TabIndex = 17;
@@ -660,7 +660,7 @@ namespace AppInternacao.FrmSae
             this.panel11.BackColor = System.Drawing.Color.DimGray;
             this.panel11.Location = new System.Drawing.Point(6, 185);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(420, 1);
+            this.panel11.Size = new System.Drawing.Size(444, 1);
             this.panel11.TabIndex = 38;
             // 
             // label15
@@ -679,7 +679,7 @@ namespace AppInternacao.FrmSae
             this.textComplemento.Location = new System.Drawing.Point(6, 170);
             this.textComplemento.MaxLength = 200;
             this.textComplemento.Name = "textComplemento";
-            this.textComplemento.Size = new System.Drawing.Size(420, 13);
+            this.textComplemento.Size = new System.Drawing.Size(444, 13);
             this.textComplemento.TabIndex = 9;
             // 
             // panel10
@@ -755,7 +755,7 @@ namespace AppInternacao.FrmSae
             this.comboBoxEstruturaFisica.FormattingEnabled = true;
             this.comboBoxEstruturaFisica.Location = new System.Drawing.Point(342, 44);
             this.comboBoxEstruturaFisica.Name = "comboBoxEstruturaFisica";
-            this.comboBoxEstruturaFisica.Size = new System.Drawing.Size(117, 21);
+            this.comboBoxEstruturaFisica.Size = new System.Drawing.Size(108, 21);
             this.comboBoxEstruturaFisica.TabIndex = 1;
             this.comboBoxEstruturaFisica.ValueMember = "Id";
             // 
@@ -877,7 +877,7 @@ namespace AppInternacao.FrmSae
             this.panelCracha.Controls.Add(this.textBoxDataCracha);
             this.panelCracha.Controls.Add(this.textBoxNomeCrachar);
             this.panelCracha.Controls.Add(this.textBoxProntuarioCracha);
-            this.panelCracha.Location = new System.Drawing.Point(507, 23);
+            this.panelCracha.Location = new System.Drawing.Point(521, 23);
             this.panelCracha.Name = "panelCracha";
             this.panelCracha.Size = new System.Drawing.Size(413, 273);
             this.panelCracha.TabIndex = 15;
@@ -1069,7 +1069,7 @@ namespace AppInternacao.FrmSae
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Name = "UCPaciente";
-            this.Size = new System.Drawing.Size(924, 639);
+            this.Size = new System.Drawing.Size(938, 639);
             this.Load += new System.EventHandler(this.UCPaciente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).EndInit();

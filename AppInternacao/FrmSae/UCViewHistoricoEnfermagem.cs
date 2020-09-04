@@ -10,17 +10,19 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UCExameFisico : UserControl
+    public partial class UCViewHistoricoEnfermagem : UserControl
     {
-        public UCExameFisico()
+        UserControl userControl = null;
+        public UCViewHistoricoEnfermagem()
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+          
         }
 
-        private void UCExameFisico_Load(object sender, EventArgs e)
+        private void richTextBoxExExibirHistorico_Load(object sender, EventArgs e)
         {
-
+            richTextBoxExExibirHistorico.Rtf = Sessao.Paciente.HistoricoEnfermagem;
         }
     }
 }

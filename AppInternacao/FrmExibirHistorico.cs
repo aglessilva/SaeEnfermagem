@@ -16,17 +16,21 @@ namespace AppInternacao
         public FrmExibirHistorico()
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            richTextBoxExExibirHistorico.Rtf = Sessao.Paciente.HistoricoEnfermagem;
+            string msg = "Ainda não existe hitórico de enfermagem registrado para este paciente!";
+            if (Sessao.Paciente.HistoricoEnfermagem == null)
+                richTextBoxExExibirHistorico.Text = msg;
+            else
+                richTextBoxExExibirHistorico.Rtf = Sessao.Paciente.HistoricoEnfermagem;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Close();
-            Dispose();
+            Dispose(true);
         }
     }
 }

@@ -7,11 +7,12 @@ namespace AppInternacao.FrmSae
 {
     public partial class UC00BarCodeProntuario : UserControl
     {
-        public UC00BarCodeProntuario()
+        bool isMedico = false;
+        public UC00BarCodeProntuario(bool _isMedico = false)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-           
+            isMedico = _isMedico;
         }
 
         PacientePresenter PacientePresenter = null;
@@ -19,7 +20,8 @@ namespace AppInternacao.FrmSae
         private void UCBarCodeProntuario_Load(object sender, EventArgs e)
         {
             textBoxProntuario.Focus();
-            UCTimeLine.ButtonSaeAvanca.Enabled = false;
+            if (!isMedico)
+                UCTimeLine.ButtonSaeAvanca.Enabled = false;
         }
 
         private void textBoxProntuario_TextChanged(object sender, EventArgs e)
@@ -46,26 +48,29 @@ namespace AppInternacao.FrmSae
 
                     pbOk.Visible = true;
 
-                    if(Sessao.Paciente.IsBaixado.HasValue)
-                        if((bool)Sessao.Paciente.IsBaixado)
+                    if (Sessao.Paciente.IsBaixado.HasValue)
+                        if ((bool)Sessao.Paciente.IsBaixado)
                         {
                             gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
                             MessageBox.Show($"Foi dado baixa no paciente: {Sessao.Paciente.Nome} o mesmo já não ocupa nenhum Leito e não está disponível para a SAE.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
 
-                    
-                    if(string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito))
+
+                    if (string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito))
                     {
                         lblObs.Visible = true;
                         lblObs.Text = "PARA CONTINUAR É NECESSÁRIO ASSOCIAR O PACIENTE À UM LEITO";
-                        UCTimeLine.ButtonSaeAvanca.Enabled = false;
+                        if (!isMedico)
+                            UCTimeLine.ButtonSaeAvanca.Enabled = false;
                     }
 
                     if (Sessao.Paciente.Id > 0)
                     {
                         lblObs.Visible = string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
-                        UCTimeLine.ButtonSaeAvanca.Enabled = !lblObs.Visible;
+                        if (!isMedico)
+                            UCTimeLine.ButtonSaeAvanca.Enabled = !lblObs.Visible;
+                        btnEnviarCodigoBarra.Visible = (isMedico && !lblObs.Visible);
                         gDadosPaciente.Visible = true;
                         lblNaoLocaizado.Visible = false;
                         pbOk.Image = Properties.Resources.ok_accept_15562;
@@ -73,16 +78,21 @@ namespace AppInternacao.FrmSae
                         lblLeito.Text = string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito) ? "PACIENTE SEM LEITO" : Sessao.Paciente.NomeLeito;
                         lblProntuario.Text = Sessao.Paciente.Prontuario.ToString();
                         lblIdade.Text = Sessao.Paciente.Idade.ToString();
+
                     }
                     else
                     {
-                        lblObs.Visible = UCTimeLine.ButtonSaeAvanca.Enabled = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
+                        if (!isMedico)
+                            lblObs.Visible = UCTimeLine.ButtonSaeAvanca.Enabled = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
                         gDadosPaciente.Visible = false;
                         lblNaoLocaizado.Visible = true;
                         pbOk.Image = Properties.Resources.Childish_Cross_24996;
                         lblNaoLocaizado.Text = "Prontuário do paciente não localizado!";
                     }
                 }
+                else
+                   btnEnviarCodigoBarra.Visible = textBoxProntuario.Text.Length == 18; 
+
             }
             catch (Exception exL)
             {
@@ -102,6 +112,13 @@ namespace AppInternacao.FrmSae
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
                 e.Handled = true;
+        }
+
+        private void btnEnviarCodigoBarra_Click(object sender, EventArgs e)
+        {
+            SplitContainer ctrl = (SplitContainer)Parent.Parent;
+            Dispose(true);
+            ctrl.Controls[1].Controls.Add(new UCMenuEsquerdo());
         }
     }
 }

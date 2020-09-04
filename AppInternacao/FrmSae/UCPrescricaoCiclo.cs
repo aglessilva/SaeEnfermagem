@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,10 @@ namespace AppInternacao.FrmSae
         List<PrescricaoMedica> lstPrescricao = null;
         List<CicloPrescricao> lstCiclo = null;
         private List<ChavePrescricao> lstChavePrescricoes = null;
+        DataTable table;
+        List<DateTime> lst = null;
+        List<string> lstIgnore = new List<string>() { "Id", "Horário", "IdCliente", "IdPaciente", "Prescrição",  "IdChavePrescricao"  };
+
         public UCPrescricaoCiclo()
         {
             InitializeComponent();
@@ -28,10 +33,407 @@ namespace AppInternacao.FrmSae
             presenterGeneric = new PresenterGeneric();
         }
 
-        DataTable table;
-        List<DateTime> lst = null;
+        private void UCPrescricaoCiclo_Load(object sender, EventArgs e)
+        {
+            FrmMain.myNovo.Click += MyNovo_Click;
 
-        List<string> lstIgnore = new List<string>() { "Id", "Horário", "IdCliente", "IdPaciente", "Prescrição",  "IdChavePrescricao"  };
+            lblNome.Text = Sessao.Paciente.Nome;
+            lblIdade.Text = Sessao.Paciente.Idade.ToString();
+            lblLeito.Text = Sessao.Paciente.NomeLeito;
+            lblProntuario.Text = Sessao.Paciente.Prontuario.ToString();
+            btnCriarPrescricao.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnNewLine.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+            btnRemoveDia.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+            btnAddCiclo.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+            btnAddDia.Enabled = CalendarCicloPrescricao.Enabled =  Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+
+            CriaDataTable();
+            GetDatas();
+        }
+
+        private void CalendarCicloPrescricao_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            int intervalor = (int)(e.End - e.Start).TotalDays + 1;
+            lblCicloPrescricao.Visible = intervalor > 0;
+            lblCicloPrescricao.Text = $"Prescrição com o ciclo de {intervalor + (intervalor > 1 ? " dias" : " dia ")} {(!btnAddCiclo.Visible ? "\nNova prescrição, clique no botão 'Novo'" : "")}";
+        }
+
+        private void MyNovo_Click(object sender, EventArgs e)
+        {
+            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+            {
+                pNamePrescricao.BringToFront();
+                pNamePrescricao.Visible = true;
+                dataGridViewPrescricoes.DataSource = null;
+                table = null;
+                comboBoxDataPrescricao.SelectedIndex = 0;
+            }
+        }
+
+        private void btnAddCiclo_Click(object sender, EventArgs e)
+        {
+
+            if (CalendarCicloPrescricao.SelectionStart < DateTime.Now.Date)
+            {
+                MessageBox.Show("Selecione uma data ou intervalo de datas maior que a data atual", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                gDadosPaciente.Enabled = btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = true;
+
+                prescricaoMedica.IdChavePrescricao = presenterGeneric.Salvar(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, NomePrescricao = textBoxNomePrescricao.Text }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
+                textBoxNomePrescricao.Text = string.Empty;
+
+                CalendarCicloPrescricao.SelectionRange = new SelectionRange(CalendarCicloPrescricao.SelectionStart, CalendarCicloPrescricao.SelectionEnd);
+                lst = new List<DateTime>();
+                DateTime dateTime = CalendarCicloPrescricao.SelectionStart;
+
+                CriaDataTable();
+
+                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
+                prescricaoMedica.Prescricao = null;
+                prescricaoMedica.Horario = null;
+
+                prescricaoMedica.Id = presenterGeneric.InsertPrescricao(prescricaoMedica);
+
+                while (dateTime <= CalendarCicloPrescricao.SelectionEnd)
+                {
+                    table.Columns.Add(new DataColumn(dateTime.ToString("dd/MM"), typeof(Image)));
+                    lst.Add(dateTime);
+                    dateTime = dateTime.AddDays(1);
+                }
+
+                DateTime[] det = lst.ToArray();
+                lst.Clear();
+
+                dataGridViewPrescricoes.DataSource = null;
+                dataGridViewPrescricoes.DataSource = table;
+                CalendarCicloPrescricao.BoldedDates = det;
+
+                DataTable dataTable = TableInsert();
+
+                GetDatas();
+                presenterGeneric.InsertCiclo(dataTable);
+
+                AddNewRows();
+
+                btnNewLine.Enabled = table != null;
+                btnAddDia.Enabled = btnRemoveDia.Enabled = dataTable.Rows.Count > 0;
+                btnAddCiclo.Visible = false;
+
+            }
+            catch (Exception exCiclo)
+            {
+                FrmMain.Alert(100, exCiclo);
+            }
+        }
+
+        private void btnNewLine_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
+                prescricaoMedica.Id = 0;
+                prescricaoMedica.IdChavePrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue);
+                prescricaoMedica.Prescricao = null;
+                prescricaoMedica.Horario = null;
+
+                if (prescricaoMedica.IdChavePrescricao == 0)
+                    return;
+
+                prescricaoMedica.Id = presenterGeneric.InsertPrescricao(prescricaoMedica);
+
+                AddNewRows();
+            }
+            catch (Exception exNewLinhe)
+            {
+                FrmMain.Alert(100, exNewLinhe);
+            }
+        }
+
+        private void btnAddDia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (prescricaoMedica.IdChavePrescricao == 0)
+                    return;
+
+                DataColumn dataColumns = table.Columns.OfType<DataColumn>().LastOrDefault(dc => dc.DataType == typeof(Image) && dc.ColumnName != "Act");
+
+                DateTime newDate = Convert.ToDateTime(dataColumns.ColumnName);
+                newDate = newDate.AddDays(1);
+
+                int idDateCiclo = presenterGeneric.Salvar(new CicloPrescricao()
+                {
+                    DataCiclo = newDate,
+                    IdChavePrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue),
+                    IdPaciente = Sessao.Paciente.Id
+                },
+                    Procedure.SP_ADD_DATE);
+
+                DataColumn dataColumn = table.Columns["Act"];
+                table.Columns.Remove(dataColumn);
+                
+                DataColumn dataColumnNewDate = new DataColumn(newDate.ToString("dd/MM"), typeof(Image));
+                dataColumnNewDate.ExtendedProperties.Add("Id", idDateCiclo);
+
+                table.Columns.Add(dataColumnNewDate);
+                table.Columns.Add(dataColumn);
+
+                foreach (DataRow item in table.Rows)
+                {
+                    item["Act"] = Properties.Resources.rubbishbin_102620;
+                    item[newDate.ToString("dd/MM")] = Properties.Resources.Wait;
+                }
+
+                ConfigGrid();
+
+            }
+            catch (Exception exEAddDia)
+            {
+                FrmMain.Alert(100, exEAddDia);
+            }
+        }
+
+        private void btnRemoveDia_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (prescricaoMedica.IdChavePrescricao == 0)
+                    return;
+
+                DataColumn ob = table.Columns.OfType<DataColumn>().LastOrDefault(d => Convert.ToInt32(d.ExtendedProperties["Id"]) > 0);
+                if (ob == null)
+                    return;
+
+               int ret = presenterGeneric.Salvar(new CicloPrescricao()
+                {
+                    Id = Convert.ToInt32(ob.ExtendedProperties["Id"]),
+                    IdPaciente = Sessao.Paciente.Id
+                }, Procedure.SP_DEL_DATE_PRESCRICAO, Acao.Excluir);
+
+              
+                    table.Columns.Remove(ob);
+            }
+            catch (Exception exRemovDia)
+            {
+                FrmMain.Alert(100, exRemovDia);
+            }
+        }
+
+        private void btnCriarPrescricao_Click(object sender, EventArgs e)
+        {
+            pNamePrescricao.Visible = false;
+            btnAddCiclo.Visible = true;
+            dataGridViewPrescricoes.DataSource = null;
+            table = null;
+            lblCicloPrescricao.Visible = false;
+            gDadosPaciente.Enabled = btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = false;
+            
+        }
+
+        private void btnCancelaPrescricao_Click(object sender, EventArgs e)
+        {
+            pNamePrescricao.Visible = false;
+        }
+
+        private void dataGridViewPrescricoes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string _justificativa = string.Empty;
+                DataGridView sendGrid = (DataGridView)sender;
+                DataRow dataRow = table.Rows[e.RowIndex];
+
+                if (sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn)
+                {
+                    if (e.ColumnIndex >= 2 && dataGridViewPrescricoes.Columns[e.ColumnIndex].Name != "Act")
+                    {
+                        DateTime dateTime = Convert.ToDateTime(dataGridViewPrescricoes.Columns[e.ColumnIndex].HeaderText);
+                        if (dateTime.Equals(DateTime.Now.Date))
+                        {
+                            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.Tecnico))
+                            {
+                                TimeSpan time = (TimeSpan)dataGridViewPrescricoes["Horário", e.RowIndex].Value;
+                                if (DateTime.Now.TimeOfDay - time > new TimeSpan(1, 0, 59) || DateTime.Now.TimeOfDay - time < new TimeSpan(-1, 0, 59))
+                                {
+                                    string msgBox = "Essa linha de prescrição, tem mais de 1:00 atrasada ou adiantada do horario previsto.";
+                                    msgBox += "\nDeseja realizar a checagem e justificar o motivo.";
+
+                                    if (MessageBox.Show(msgBox, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        table.Columns["Justificativa"].ReadOnly = false;
+
+                                        DialogResult dialog = new Frm.FrmJustificarChecagem(dataRow).ShowDialog();
+                                        table.Columns["Justificativa"].ReadOnly = true;
+                                        if (dialog != DialogResult.OK)
+                                            return;
+                                        else
+                                        {
+                                            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = false;
+                                            _justificativa = sendGrid.Rows[e.RowIndex].Cells["Justificativa"].Value.ToString();
+                                            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = true;
+
+                                            presenterGeneric.Salvar(new PrescricaoMedica()
+                                            {
+                                                Id = Convert.ToInt32(table.Rows[e.RowIndex]["Id"]),
+                                                IdPaciente = Sessao.Paciente.Id,
+                                                IdChavePrescricao = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]),
+                                                Justificativa = _justificativa
+                                            }, Procedure.SP_UPDT_JUSTIFICATIVA, Acao.Atualizar);
+                                        }
+
+                                    }
+                                    else
+                                        return;
+                                }
+                            }
+                            else
+                                return;
+
+
+                            if (dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null || (int)dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == 0)
+                            {
+                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.IsOk;
+                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag = 1;
+                            }
+                            else
+                            {
+                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.Wait;
+                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag = 0;
+                            }
+
+                            presenterGeneric.Salvar(new CicloPrescricao()
+                            {
+                                Id = Convert.ToInt32(table.Columns[e.ColumnIndex].ExtendedProperties["Id"]),
+                                IdPaciente = Sessao.Paciente.Id,
+                                IdPrescricao = dataGridViewPrescricoes.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                                IdChavePrescricao = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]),
+                                Checado = DateTime.Now,
+                            }, Procedure.SP_ADD_DATE, Acao.Atualizar);
+                        }
+                        else
+                            MessageBox.Show("Não é permitido realizar checagem de cuidados prescritos em datas passadas ou futuras", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                if (sendGrid.Columns[e.ColumnIndex].Name.Equals("Justificativa"))
+                {
+                    new Frm.FrmJustificarChecagem(dataRow, false).ShowDialog();
+                }
+                
+
+            }
+            catch (Exception exChekPrescricao)
+            {
+                FrmMain.Alert(100, exChekPrescricao);
+            }
+        }
+
+        private void dataGridViewPrescricoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dataGridViewPrescricoes.Columns[e.ColumnIndex].DataPropertyName.Equals("Horário"))
+                {
+                    bool item = DateTime.TryParse(dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out DateTime time);
+                    if (!item)
+                    {
+                        MessageBox.Show($"Horario invalido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                prescricaoMedica.Id = Convert.ToInt32(dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Id"].Value);
+                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
+                prescricaoMedica.Prescricao = dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Prescrição"].Value.ToString();
+                prescricaoMedica.Horario = TimeSpan.Parse(dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Horário"].Value.ToString());
+
+                presenterGeneric.InsertPrescricao(prescricaoMedica);
+            }
+            catch (Exception exEditRow)
+            {
+                FrmMain.Alert(100, exEditRow);
+            }
+        }
+
+        private void dataGridViewPrescricoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void dataGridViewPrescricoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewPrescricoes.Columns[e.ColumnIndex].DataPropertyName.Equals("Act"))
+            {
+                if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+                {
+                    try
+                    {
+                        int _id = Convert.ToInt32(table.Rows[e.RowIndex][0]);
+                        _id = presenterGeneric.Salvar(new PrescricaoMedica() { Id = _id }, Procedure.SP_DEL_PRESCRICAO, Acao.Excluir);
+
+                        if (_id > 0)
+                        {
+                            _id = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]);
+                            table.Rows.RemoveAt(e.RowIndex);
+
+                            if (table.Rows.Count == 0)
+                            {
+                                _id = presenterGeneric.Salvar(new PrescricaoMedica() { Id = _id }, Procedure.SP_DEL_CHAVE_PRESCRICAO, Acao.Excluir);
+                                table = null;
+                                dataGridViewPrescricoes.DataSource = null;
+                                lblCicloPrescricao.Visible = false;
+                                btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = false;
+                                GetDatas();
+                            }
+                        }
+                    }
+                    catch (Exception exRemoveItem)
+                    {
+                        FrmMain.Alert(100, exRemoveItem);
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewPrescricoes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView sendGrid = (DataGridView)sender;
+            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = true;
+        }
+
+        private void textBoxNomePrescricao_TextChanged(object sender, EventArgs e)
+        {
+            lblContaCaracter.Text = $"Mínimo de {10 - textBoxNomePrescricao.Text.Trim().Length } caracteres";
+            btnCriarPrescricao.Enabled = textBoxNomePrescricao.Text.Trim().Length >= 10;
+            lblContaCaracter.Visible = textBoxNomePrescricao.Text.Trim().Length <= 10;
+        }
+
+        private void comboBoxDataPrescricao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblCicloPrescricao.Visible = false;
+            if (comboBoxDataPrescricao.SelectedIndex == 0)
+                return;
+
+            table = null;
+            CriaDataTable();
+            dataGridViewPrescricoes.DataSource = null;
+            ChavePrescricao chave = (ChavePrescricao)comboBoxDataPrescricao.SelectedItem;
+
+            lstCiclo = presenterGeneric.GetLista(new CicloPrescricao()
+            {
+                IdChavePrescricao = chave.Id,
+                IdPaciente = chave.idPaciente
+            }
+                , Procedure.SP_GET_CICLO);
+
+            lstPrescricao = presenterGeneric.GetLista(new PrescricaoMedica() { Id = 0,  IdPaciente = Sessao.Paciente.Id,  IdChavePrescricao = chave.Id   }, Procedure.SP_GET_PRESCRICAO);
+
+            LoadDataTable();
+        }
 
         void ConfigGrid()
         {
@@ -47,6 +449,8 @@ namespace AppInternacao.FrmSae
                 if (!lstIgnore.Any(c => c.Contains(item.DataPropertyName)))
                     item.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             }
+
+            dataGridViewPrescricoes.ReadOnly = !Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
         }
 
         private void AddNewRows()
@@ -115,22 +519,9 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void UCPrescricaoCiclo_Load(object sender, EventArgs e)
-        {
-            FrmMain.myNovo.Click += MyNovo_Click;
-
-            lblNome.Text = Sessao.Paciente.Nome;
-            lblIdade.Text = Sessao.Paciente.Idade.ToString();
-            lblLeito.Text = Sessao.Paciente.NomeLeito;
-            lblProntuario.Text = Sessao.Paciente.Prontuario.ToString();
-            btnChecarPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Administrador);
-
-            CriaDataTable();
-            GetDatas();
-        }
-
         void GetDatas()
         {
+            string msgValidarPrescricao = string.Empty;
             lstChavePrescricoes = presenterGeneric.GetLista(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, NomePrescricao = textBoxNomePrescricao.Text }, Procedure.SP_GET_CHAVE_PRESCRICAO);
             lstChavePrescricoes.Insert(0,new ChavePrescricao() { Id = 0, NomePrescricao = "Selecione..." });
             comboBoxDataPrescricao.DataSource = lstChavePrescricoes;
@@ -140,352 +531,6 @@ namespace AppInternacao.FrmSae
             comboBoxDataPrescricao.SelectedIndexChanged += comboBoxDataPrescricao_SelectedIndexChanged;
 
             lblTotalPrescricao.Text = $"{lstChavePrescricoes.Count(p => p.Id > 0)} Prescrição cadastradas";
-        }
-
-        private void MyNovo_Click(object sender, EventArgs e)
-        {
-            pNamePrescricao.BringToFront();
-            pNamePrescricao.Visible = true;
-            dataGridViewPrescricoes.DataSource = null;
-            table = null;
-            comboBoxDataPrescricao.SelectedIndex = 0;
-        }
-
-        private void CalendarCicloPrescricao_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            int intervalor = (int)(e.End - e.Start).TotalDays + 1;
-            lblCicloPrescricao.Visible = intervalor > 0;
-            lblCicloPrescricao.Text = $"Prescrição com o ciclo de {intervalor + (intervalor > 1 ? " dias" : " dia ")} {(!btnAddCiclo.Visible ? "\nNova prescrição, clique no botão 'Novo'" : "")}";
-        }
-
-        private void btnAddCiclo_Click(object sender, EventArgs e)
-        {
-
-            if (CalendarCicloPrescricao.SelectionStart < DateTime.Now.Date)
-            {
-                MessageBox.Show("Selecione uma data ou intervalo de datas maior que a data atual", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            try
-            {
-                prescricaoMedica.IdChavePrescricao = presenterGeneric.Salvar(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, NomePrescricao = textBoxNomePrescricao.Text }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
-                textBoxNomePrescricao.Text = string.Empty;
-
-                CalendarCicloPrescricao.SelectionRange = new SelectionRange(CalendarCicloPrescricao.SelectionStart, CalendarCicloPrescricao.SelectionEnd);
-                lst = new List<DateTime>();
-                DateTime dateTime = CalendarCicloPrescricao.SelectionStart;
-
-                CriaDataTable();
-
-                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
-                prescricaoMedica.Prescricao = null;
-                prescricaoMedica.Horario = null;
-
-                prescricaoMedica.Id = presenterGeneric.InsertPrescricao(prescricaoMedica);
-
-                while (dateTime <= CalendarCicloPrescricao.SelectionEnd)
-                {
-                    table.Columns.Add(new DataColumn(dateTime.ToString("dd/MM"), typeof(Image)));
-                    lst.Add(dateTime);
-                    dateTime = dateTime.AddDays(1);
-                }
-
-                DateTime[] det = lst.ToArray();
-                lst.Clear();
-
-                dataGridViewPrescricoes.DataSource = null;
-                dataGridViewPrescricoes.DataSource = table;
-                CalendarCicloPrescricao.BoldedDates = det;
-
-                DataTable dataTable = TableInsert();
-
-                GetDatas();
-                presenterGeneric.InsertCiclo(dataTable);
-
-                AddNewRows();
-
-                btnNewLine.Enabled = table != null;
-                btnAddDia.Enabled = btnRemoveDia.Enabled = dataTable.Rows.Count > 0;
-                btnAddCiclo.Visible = false;
-
-            }
-            catch (Exception exCiclo)
-            {
-                FrmMain.Alert(100, exCiclo);
-            }
-        }
-
-        private void btnNewLine_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
-                prescricaoMedica.Id = 0;
-                prescricaoMedica.IdChavePrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue);
-                prescricaoMedica.Prescricao = null;
-                prescricaoMedica.Horario = null;
-
-                prescricaoMedica.Id = presenterGeneric.InsertPrescricao(prescricaoMedica);
-
-                AddNewRows();
-            }
-            catch (Exception exNewLinhe)
-            {
-                FrmMain.Alert(100, exNewLinhe);
-            }
-        }
-
-        private void dataGridViewPrescricoes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                string _justificativa = string.Empty;
-                DataGridView sendGrid = (DataGridView)sender;
-                DataRow dataRow = table.Rows[e.RowIndex];
-
-                if (sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn)
-                {
-                    if (e.ColumnIndex >= 2 && dataGridViewPrescricoes.Columns[e.RowIndex].Name != "Act")
-                    {
-                        DateTime dateTime = Convert.ToDateTime(dataGridViewPrescricoes.Columns[e.ColumnIndex].HeaderText);
-                        if (dateTime.Equals(DateTime.Now.Date))
-                        {
-                            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial))
-                            {
-                                TimeSpan time = (TimeSpan)dataGridViewPrescricoes["Horário", e.RowIndex].Value;
-                                if (DateTime.Now.TimeOfDay - time > new TimeSpan(1, 0, 59) || DateTime.Now.TimeOfDay - time < new TimeSpan(-1, 0, 59))
-                                {
-                                    string msgBox = "Essa linha de prescrição, tem mais de 1:00 atrasada ou adiantada do horario previsto.";
-                                    msgBox += "\nDeseja realizar a checagem e justificar no motivo.";
-
-                                    if (MessageBox.Show(msgBox, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        table.Columns["Justificativa"].ReadOnly = false;
-
-                                        DialogResult dialog = new Frm.FrmJustificarChecagem(dataRow).ShowDialog();
-                                        table.Columns["Justificativa"].ReadOnly = true;
-                                        if (dialog != DialogResult.OK)
-                                            return;
-                                        else
-                                        {
-                                            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = false;
-                                            _justificativa = sendGrid.Rows[e.RowIndex].Cells["Justificativa"].Value.ToString().Split('\n').LastOrDefault(w => !string.IsNullOrWhiteSpace(w));
-                                           // _justificativa += Environment.NewLine;
-                                            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = true;
-
-                                            presenterGeneric.Salvar(new PrescricaoMedica()
-                                            {
-                                                Id = Convert.ToInt32(table.Rows[e.RowIndex]["Id"]),
-                                                IdPaciente = Sessao.Paciente.Id,
-                                                IdChavePrescricao = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]),
-                                                Justificativa = _justificativa
-                                            }, Procedure.SP_UPDT_JUSTIFICATIVA, Acao.Atualizar);
-                                        }
-
-                                    }
-                                    else
-                                        return;
-                                }
-                            }
-                            else
-                                return;
-
-
-                            if (dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null || (int)dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == 0)
-                            {
-                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.IsOk;
-                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag = 1;
-                            }
-                            else
-                            {
-                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Properties.Resources.Wait;
-                                dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag = 0;
-                            }
-
-                            presenterGeneric.Salvar(new CicloPrescricao()
-                            {
-                                Id = Convert.ToInt32(table.Columns[e.ColumnIndex].ExtendedProperties["Id"]),
-                                IdPaciente = Sessao.Paciente.Id,
-                                IdPrescricao = dataGridViewPrescricoes.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                                IdChavePrescricao = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]),
-                                Checado = DateTime.Now,
-                            }, Procedure.SP_ADD_DATE, Acao.Atualizar);
-
-                            presenterGeneric.InsertPrescricao(prescricaoMedica);
-
-                        }
-                        else
-                            MessageBox.Show("Não é permitido realizar checagem de cuidados prescritos em datas passadas ou futuras", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                if (sendGrid.Columns[e.ColumnIndex].Name.Equals("Justificativa"))
-                {
-                    new Frm.FrmJustificarChecagem(dataRow, false).ShowDialog();
-                }
-                
-
-            }
-            catch (Exception exChekPrescricao)
-            {
-                FrmMain.Alert(100, exChekPrescricao);
-            }
-        }
-
-        private void dataGridViewPrescricoes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (dataGridViewPrescricoes.Columns[e.ColumnIndex].DataPropertyName.Equals("Horário"))
-                {
-                    bool item = DateTime.TryParse(dataGridViewPrescricoes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), out DateTime time);
-                    if (!item)
-                    {
-                        MessageBox.Show($"Horario invalido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-                prescricaoMedica.Id = Convert.ToInt32(dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Id"].Value);
-                prescricaoMedica.IdPaciente = Sessao.Paciente.Id;
-                prescricaoMedica.Prescricao = dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Prescrição"].Value.ToString();
-                prescricaoMedica.Horario = TimeSpan.Parse(dataGridViewPrescricoes.Rows[e.RowIndex].Cells["Horário"].Value.ToString());
-
-                presenterGeneric.InsertPrescricao(prescricaoMedica);
-            }
-            catch (Exception exEditRow)
-            {
-                FrmMain.Alert(100, exEditRow);
-            }
-        }
-
-        private void dataGridViewPrescricoes_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        private void dataGridViewPrescricoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewPrescricoes.Columns[e.ColumnIndex].DataPropertyName.Equals("Act"))
-            {
-                try
-                {
-                    int _id = Convert.ToInt32(table.Rows[e.RowIndex][0]);
-                    _id = presenterGeneric.Salvar(new PrescricaoMedica() { Id = _id }, Procedure.SP_DEL_PRESCRICAO, Acao.Excluir);
-
-                    if (_id > 0)
-                    {
-                        _id = Convert.ToInt32(table.Rows[e.RowIndex]["IdChavePrescricao"]);
-                        table.Rows.RemoveAt(e.RowIndex);
-
-                        if (table.Rows.Count == 0)
-                        {
-                            _id = presenterGeneric.Salvar(new PrescricaoMedica() { Id = _id }, Procedure.SP_DEL_CHAVE_PRESCRICAO, Acao.Excluir);
-                            table = null;
-                            dataGridViewPrescricoes.DataSource = null;
-                            lblCicloPrescricao.Visible = false;
-                            btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled =  false;
-                            GetDatas();
-                        }
-                    }
-                }
-                catch (Exception exRemoveItem)
-                {
-                    FrmMain.Alert(100, exRemoveItem);
-                }
-            }
-        }
-
-        private void btnAddDia_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DataColumn dataColumns = table.Columns.OfType<DataColumn>().LastOrDefault(dc => dc.DataType == typeof(Image) && dc.ColumnName != "Act");
-
-                DateTime newDate = Convert.ToDateTime(dataColumns.ColumnName);
-                newDate = newDate.AddDays(1);
-
-                int idDateCiclo = presenterGeneric.Salvar(new CicloPrescricao()
-                {
-                    DataCiclo = newDate,
-                    IdChavePrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue),
-                    IdPaciente = Sessao.Paciente.Id
-                },
-                    Procedure.SP_ADD_DATE);
-
-                DataColumn dataColumn = table.Columns["Act"];
-                table.Columns.Remove(dataColumn);
-                
-                DataColumn dataColumnNewDate = new DataColumn(newDate.ToString("dd/MM"), typeof(Image));
-                dataColumnNewDate.ExtendedProperties.Add("Id", idDateCiclo);
-
-                table.Columns.Add(dataColumnNewDate);
-                table.Columns.Add(dataColumn);
-
-                foreach (DataRow item in table.Rows)
-                {
-                    item["Act"] = Properties.Resources.rubbishbin_102620;
-                    item[newDate.ToString("dd/MM")] = Properties.Resources.Wait;
-                }
-
-                ConfigGrid();
-
-            }
-            catch (Exception exEAddDia)
-            {
-                FrmMain.Alert(100, exEAddDia);
-            }
-        }
-
-        private void btnRemoveDia_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DataColumn ob = table.Columns.OfType<DataColumn>().LastOrDefault(d => Convert.ToInt32(d.ExtendedProperties["Id"]) > 0);
-                if (ob == null)
-                    return;
-
-               int ret = presenterGeneric.Salvar(new CicloPrescricao()
-                {
-                    Id = Convert.ToInt32(ob.ExtendedProperties["Id"]),
-                    IdPaciente = Sessao.Paciente.Id
-                }, Procedure.SP_DEL_DATE_PRESCRICAO, Acao.Excluir);
-
-              
-                    table.Columns.Remove(ob);
-            }
-            catch (Exception exRemovDia)
-            {
-                FrmMain.Alert(100, exRemovDia);
-            }
-        }
-
-        private void dataGridViewPrescricoes_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView sendGrid = (DataGridView)sender;
-            sendGrid.Rows[e.RowIndex].Cells["Justificativa"].ReadOnly = true;
-        }
-
-        private void textBoxNomePrescricao_TextChanged(object sender, EventArgs e)
-        {
-            lblContaCaracter.Text = $"Mínimo de {10 - textBoxNomePrescricao.Text.Trim().Length } caracteres";
-            btnCriarPrescricao.Enabled = textBoxNomePrescricao.Text.Trim().Length >= 10;
-            lblContaCaracter.Visible = textBoxNomePrescricao.Text.Trim().Length <= 10;
-        }
-
-        private void btnCriarPrescricao_Click(object sender, EventArgs e)
-        {
-            pNamePrescricao.Visible = false;
-            btnAddCiclo.Visible = true;
-            dataGridViewPrescricoes.DataSource = null;
-            table = null;
-            lblCicloPrescricao.Visible = false;
-        }
-
-        private void btnCancelaPrescricao_Click(object sender, EventArgs e)
-        {
-            pNamePrescricao.Visible = false;
         }
 
         private void CriaDataTable()
@@ -608,8 +653,11 @@ namespace AppInternacao.FrmSae
                 dataGridViewPrescricoes.DataSource = table;
                 ConfigGrid();
 
-                btnNewLine.Enabled = table != null;
-                btnAddDia.Enabled = btnRemoveDia.Enabled = table.Rows.Count > 0;
+                if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+                {
+                    btnNewLine.Enabled = table != null;
+                    btnAddDia.Enabled = btnRemoveDia.Enabled = table.Rows.Count > 0;
+                }
                
             }
             catch (Exception ex)
@@ -618,26 +666,7 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void comboBoxDataPrescricao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxDataPrescricao.SelectedIndex == 0)
-                return;
 
-            table = null;
-            CriaDataTable();
-            dataGridViewPrescricoes.DataSource = null;
-            ChavePrescricao chave = (ChavePrescricao)comboBoxDataPrescricao.SelectedItem;
-
-            lstCiclo = presenterGeneric.GetLista(new CicloPrescricao()
-            {
-                IdChavePrescricao = chave.Id,
-                IdPaciente = chave.idPaciente
-            }
-                , Procedure.SP_GET_CICLO);
-
-            lstPrescricao = presenterGeneric.GetLista(new PrescricaoMedica() { Id = 0,  IdPaciente = Sessao.Paciente.Id,  IdChavePrescricao = chave.Id   }, Procedure.SP_GET_PRESCRICAO);
-
-            LoadDataTable();
-        }
+       
     }
 }

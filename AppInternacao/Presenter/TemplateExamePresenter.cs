@@ -13,12 +13,14 @@ namespace AppInternacao.Presenter
 
         public TemplateExamePresenter(IArea_Itens _view){ view = _view;}
         public TemplateExamePresenter(){}
+
         public void GetAreaItens()
         {
             try
             {
                 crud = new CRUD();
-                view.area_Itens = crud.ListaGenerica(Procedure.SP_GET_AREAS_ITENS, new Area_Itens());
+                view.Area_Itens_Template = crud.ListaGenerica(Procedure.SP_GET_ITENS_TEMPLATE, new Area_Itens() { IdTemplate = view.Template.Id });
+                view.Area_Itens = crud.ListaGenerica(Procedure.SP_GET_AREAS_ITENS, new Area_Itens());
             }
             catch (Exception exExtr)
             {
@@ -26,12 +28,23 @@ namespace AppInternacao.Presenter
             }
         }
 
+        public void RemoveItens()
+        {
+            try
+            {
+                crud = new CRUD();
+                crud.Executar(new Area_Itens() { IdTemplate = view.Template.Id }, Procedure.SP_DEL_REMOVE_ITENS_TEMPLATE, Acao.Excluir );
+            }
+            catch (Exception exExtr)
+            {
+                throw exExtr;
+            }
+        }
 
         public int BulkInsert(DataTable dataTable, string sqlTabela)
         {
             try
             {
-                dataTable.Columns.RemoveAt(5);
                 crud = new CRUD();
                 return (int)crud.BulkInsert(dataTable, sqlTabela);
             }

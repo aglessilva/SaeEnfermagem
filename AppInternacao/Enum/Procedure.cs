@@ -73,5 +73,8 @@
 
         SP_UPDT_JUSTIFICATIVA = 35,
 
+        SP_GET_ITENS_TEMPLATE = 36,
+
+        SP_DEL_REMOVE_ITENS_TEMPLATE = 37,
     }
 }

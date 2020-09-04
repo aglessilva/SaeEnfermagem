@@ -67,7 +67,7 @@
             this.groupBox1.Size = new System.Drawing.Size(403, 182);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Alteração de senha do primeiro acesso";
+            this.groupBox1.Text = "Alteração de senha de acesso";
             // 
             // btnSaiFechar
             // 
@@ -190,11 +190,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(77, 57);
+            this.label6.Location = new System.Drawing.Point(37, 57);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 16);
+            this.label6.Size = new System.Drawing.Size(97, 16);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Senha:";
+            this.label6.Text = "Nova Senha:";
             // 
             // panelTop
             // 

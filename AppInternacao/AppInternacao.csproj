@@ -117,6 +117,9 @@
     <Compile Include="Enum\Area.cs" />
     <Compile Include="Enum\Perfil.cs" />
     <Compile Include="Enum\Procedure.cs" />
+    <Compile Include="Extend\PictureBoxExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FrmExibirHistorico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +137,18 @@
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCExameFisico.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCExameFisico.Designer.cs">
+      <DependentUpon>UCExameFisico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UCViewHistoricoEnfermagem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UCViewHistoricoEnfermagem.Designer.cs">
+      <DependentUpon>UCViewHistoricoEnfermagem.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UC03PrescricaoEnfermagem.cs">
       <SubType>UserControl</SubType>
@@ -207,11 +222,11 @@
     <Compile Include="FrmSae\UCQuartoLeito.Designer.cs">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCExameFisico.cs">
+    <Compile Include="FrmSae\UCExameFisico_OLD.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FrmSae\UCExameFisico.Designer.cs">
-      <DependentUpon>UCExameFisico.cs</DependentUpon>
+    <Compile Include="FrmSae\UCExameFisico_OLD.Designer.cs">
+      <DependentUpon>UCExameFisico_OLD.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UCPaciente.cs">
       <SubType>UserControl</SubType>
@@ -309,6 +324,12 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCExameFisico.resx">
+      <DependentUpon>UCExameFisico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UCViewHistoricoEnfermagem.resx">
+      <DependentUpon>UCViewHistoricoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UC03PrescricaoEnfermagem.resx">
       <DependentUpon>UC03PrescricaoEnfermagem.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,8 +366,8 @@
     <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCExameFisico.resx">
-      <DependentUpon>UCExameFisico.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UCExameFisico_OLD.resx">
+      <DependentUpon>UCExameFisico_OLD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCPaciente.resx">
       <DependentUpon>UCPaciente.cs</DependentUpon>
@@ -550,6 +571,7 @@
     <None Include="Resources\downBlue.png" />
     <None Include="Resources\addItem.png" />
     <None Include="Resources\Checked-80_icon-icons.com_57359.png" />
+    <None Include="Resources\check.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
     <None Include="Resources\Error-80_icon-icons.com_573261.png" />
   </ItemGroup>

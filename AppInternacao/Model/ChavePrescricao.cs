@@ -8,7 +8,6 @@ namespace AppInternacao.Model
         public int idPaciente { get; set;}
         public string NomePrescricao { get; set; }
         public DateTime? DataPrescricao { get; set;}
-        public bool? IsValidado { get; set; }
 
     }
 }

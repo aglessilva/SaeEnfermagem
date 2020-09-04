@@ -55,7 +55,7 @@ namespace AppInternacao.FrmSae
                 {
                     Sessao.Paciente.HistoricoEnfermagem = richTextBoxExHistoricoEnfermagem.Rtf;
 
-                    if (richTextBoxExHistoricoEnfermagem.Text.Length < 1000)
+                    if (richTextBoxExHistoricoEnfermagem.Text.Length < 500)
                     {
                         MessageBox.Show("Favor informar mais detalhes sobre o hitórico do paciente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         UCTimeLine.ButtonSaeAvanca.Enabled = false;

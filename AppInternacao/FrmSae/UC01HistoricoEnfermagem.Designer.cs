@@ -80,15 +80,15 @@ namespace AppInternacao.FrmSae
             this.btnTemplate.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnTemplate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.btnTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnTemplate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTemplate.Location = new System.Drawing.Point(0, 437);
+            this.btnTemplate.Location = new System.Drawing.Point(0, 435);
             this.btnTemplate.Name = "btnTemplate";
-            this.btnTemplate.Size = new System.Drawing.Size(813, 37);
+            this.btnTemplate.Size = new System.Drawing.Size(813, 39);
             this.btnTemplate.TabIndex = 12;
             this.btnTemplate.TabStop = false;
-            this.btnTemplate.Text = "Recuperar Template!";
+            this.btnTemplate.Text = "Recuperar Template Original!";
             this.btnTemplate.UseVisualStyleBackColor = false;
             this.btnTemplate.Click += new System.EventHandler(this.btnTemplate_Click);
             // 

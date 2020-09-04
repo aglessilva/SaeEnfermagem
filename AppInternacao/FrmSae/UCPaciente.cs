@@ -264,6 +264,7 @@ namespace AppInternacao.FrmSae
             try
             {
                 var senderGrid = (DataGridView)sender;
+               
                 foreach (DataGridViewRow row in senderGrid.Rows)
                 {
                     if (row.Index < e.RowIndex)
@@ -366,7 +367,6 @@ namespace AppInternacao.FrmSae
             panelCracha.DrawToBitmap(_cracha, new Rectangle(0, 0, panelCracha.Width, panelCracha.Height));
         }
 
-       
         private void textCep_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 08)
@@ -381,7 +381,7 @@ namespace AppInternacao.FrmSae
         private void textCep_KeyUp(object sender, KeyEventArgs e)
         {
            
-            if (textCep.Text.Length != 8 && (e.KeyValue < 48 || e.KeyValue > 57))
+            if (textCep.Text.Length < 8 )
                 return;
 
             try

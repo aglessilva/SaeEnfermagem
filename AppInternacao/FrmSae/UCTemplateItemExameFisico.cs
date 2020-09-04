@@ -15,7 +15,7 @@ namespace AppInternacao.FrmSae
         DataTable tabelaItens = null;
         TemplateExamePresenter templateExamePresenter = null;
         List<Area_Itens> lstAreaItem = new List<Area_Itens>();
-        TemplateName templateName = null;
+        List<Area_Itens> lst = null;
         Panel accordion = null;
         PictureBox buttonTyp = null;
         int[] _coutItens = new int[14];
@@ -24,150 +24,195 @@ namespace AppInternacao.FrmSae
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            lbltituloExame.Text = "Template: " + _templateName.Nome;
-            templateName = _templateName;
+            lbltituloExame.Text = "Template de exame físico: " + _templateName.Nome;
+            Template = _templateName;
         }
-
        
 
-        public List<Area_Itens> area_Itens
+        public List<Area_Itens> Area_Itens
         {
             set
             {
                 ListViewItem lvi = null;
+                Area_Itens objArea = null;
                 //lvi = new ListViewItem("1");
                 //lvi.SubItems.Add("Conciente");
                 //listViewTemplateSistemaNeurologico.Items.Add(lvi);
-                List<Area_Itens> lst = new List<Area_Itens>();// { new Area_Itens() { Id = 1, IdArea = Area.SistemaNeurologico, Nome = "Conciente" } };
+                //List<Area_Itens> lst = new List<Area_Itens>();// { new Area_Itens() { Id = 1, IdArea = Area.SistemaNeurologico, Nome = "Conciente" } };
 
                 foreach (Area_Itens item in value)
                 {
+                    lvi = new ListViewItem(item.Id.ToString());
+                    lvi.SubItems.Add(item.Nome.ToString());
+
                     switch (item.IdArea)
                     {
                         case Area.SistemaNeurologico:
                             {
-                                if (lst.Where(area => area.IdArea == Area.SistemaNeurologico).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewItemSistemaNeurologico.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.SistemaNeurologico && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.SistemaNeurologico && area.IdItemArea == item.Id);
+                                    listViewTemplateSistemaNeurologico.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewItemSistemaNeurologico.Items.Add(lvi);
                                 break;
                             }
                         case Area.Pupilas:
                             {
-                                if (lst.Where(area => area.IdArea == Area.Pupilas).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewPuplias.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.Pupilas && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.Pupilas && area.IdItemArea == item.Id);
+                                    listViewTemplatePuplias.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewPuplias.Items.Add(lvi);
                                 break;
                             }
                         case Area.RegulacaoTermica:
                             {
-                                if (lst.Where(area => area.IdArea == Area.RegulacaoTermica).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewRegulacaoTermica.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.RegulacaoTermica && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.RegulacaoTermica && area.IdItemArea == item.Id);
+                                    listViewTemplateRegulacaoTermica.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewRegulacaoTermica.Items.Add(lvi);
                                 break;
                             }
                         case Area.Oxigenacao:
                             {
-                                if (lst.Where(area => area.IdArea == Area.Oxigenacao).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewOxigenacao.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.Oxigenacao && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.Oxigenacao && area.IdItemArea == item.Id);
+                                    listViewTemplateOxigenacao.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewOxigenacao.Items.Add(lvi);
                                 break;
                             }
                         case Area.Pele:
                             {
-                                if (lst.Where(area => area.IdArea == Area.Pele).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewPele.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.Pele && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.Pele && area.IdItemArea == item.Id);
+                                    listViewTemplatePele.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewPele.Items.Add(lvi);
                                 break;
                             }
                         case Area.SistemaGastrointestinal:
                             {
-                                if (lst.Where(area => area.IdArea == Area.SistemaGastrointestinal).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewSistemaGastrointestinal.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.SistemaGastrointestinal && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.SistemaGastrointestinal && area.IdItemArea == item.Id);
+                                    listViewTemplateSistemaGastrointestinal.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewSistemaGastrointestinal.Items.Add(lvi);
                                 break;
                             }
                         case Area.SistemaVascular:
                             {
-                                if (lst.Where(area => area.IdArea == Area.SistemaVascular).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewSistemaVascular.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.SistemaVascular && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.SistemaVascular && area.IdItemArea == item.Id);
+                                    listViewTemplateSistemaVascular.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewSistemaVascular.Items.Add(lvi);
                                 break;
                             }
                         case Area.SistemaAbdominal:
                             {
-                                if (lst.Where(area => area.IdArea == Area.SistemaAbdominal).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewSistemaAbdominal.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.SistemaAbdominal && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.SistemaAbdominal && area.IdItemArea == item.Id);
+                                    listViewTemplateSistemaAbdominal.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewSistemaAbdominal.Items.Add(lvi);
                                 break;
                             }
                         case Area.SistemaUrinario:
                             {
-                                if (lst.Where(area => area.IdArea == Area.SistemaUrinario).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewSistemaUrinario.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.SistemaUrinario && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.SistemaUrinario && area.IdItemArea == item.Id);
+                                    listViewTemplateSistemaUrinario.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewSistemaUrinario.Items.Add(lvi);
                                 break;
                             }
                         case Area.LesaoCompressao:
                             {
-                                if (lst.Where(area => area.IdArea == Area.LesaoCompressao).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewLesaoCompressao.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.LesaoCompressao && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.LesaoCompressao && area.IdItemArea == item.Id);
+                                    listViewTemplateLesaoCompressao.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewLesaoCompressao.Items.Add(lvi);
                                 break;
                             }
                         case Area.GloboPinard:
                             {
-                                if (lst.Where(area => area.IdArea == Area.GloboPinard).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewPinard.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.GloboPinard && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.GloboPinard && area.IdItemArea == item.Id);
+                                    listViewTemplatePinard.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewPinard.Items.Add(lvi);
                                 break;
                             }
                         case Area.ComaGlasgow:
                             {
-                                if (lst.Where(area => area.IdArea == Area.ComaGlasgow).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewGlasgow.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.ComaGlasgow && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.ComaGlasgow && area.IdItemArea == item.Id);
+                                    listViewTemplateGlasgow.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewGlasgow.Items.Add(lvi);
                                 break;
                             }
                         case Area.ControleCateteres:
                             {
-                                if (lst.Where(area => area.IdArea == Area.ControleCateteres).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewCatetres.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.ControleCateteres && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.ControleCateteres && area.IdItemArea == item.Id);
+                                    listViewTemplateCatetres.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewCatetres.Items.Add(lvi);
                                 break;
                             }
                         case Area.PressaoArterial:
                             {
-                                if (lst.Where(area => area.IdArea == Area.PressaoArterial).Any(i => i.Id == item.Id))
-                                    continue;
-                                lvi = new ListViewItem(item.Id.ToString());
-                                lvi.SubItems.Add(item.Nome.ToString());
-                                listViewPressaoArterialOutros.Items.Add(lvi);
+                                if (lst.Any(area => area.IdArea == Area.PressaoArterial && area.IdItemArea == item.Id))
+                                {
+                                    objArea = lst.SingleOrDefault(area => area.IdArea == Area.PressaoArterial && area.IdItemArea == item.Id);
+                                    listViewTemplatePressaoArterialOutros.Items.Add(lvi);
+                                    AdicionaItem(objArea);
+                                }
+                                else
+                                    listViewPressaoArterialOutros.Items.Add(lvi);
                                 break;
                             }
                         default:
@@ -177,14 +222,19 @@ namespace AppInternacao.FrmSae
             }
         }
 
+        public List<Area_Itens> Area_Itens_Template { set => lst = value;  }
+
+        public TemplateName Template { get; set; }
+
         private void UCTemplateExameFisico_Load(object sender, EventArgs e)
         {
             FrmMain.mySalvar.Click += new EventHandler(Salvar);
             FrmMain.myNovo.Click -= new EventHandler(MyNovo_Click);
             new ToolTip().SetToolTip(btnStepVoltar, "Voltar para tela anterior");
+            tabelaItens = CriarTabela();
             templateExamePresenter = new TemplateExamePresenter(this);
             templateExamePresenter.GetAreaItens();
-            tabelaItens = CriarTabela();
+            CountItem();
         }
 
 
@@ -198,9 +248,9 @@ namespace AppInternacao.FrmSae
             try
             {
                 DataView dv = tabelaItens.DefaultView;
-                dv.Sort = "IdItem asc";
+                dv.Sort = "IdItemArea asc";
                 tabelaItens = dv.ToTable();
-
+                templateExamePresenter.RemoveItens();
                 FrmMain.Alert(templateExamePresenter.BulkInsert(tabelaItens, "TB_TemplateExame_Itens"));
                 btnStepVoltar_Click(null, null);
             }
@@ -212,20 +262,20 @@ namespace AppInternacao.FrmSae
 
         void CountItem()
         {
-            _coutItens[0] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.SistemaNeurologico);
-            _coutItens[1] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.Pupilas);
-            _coutItens[2] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.RegulacaoTermica);
-            _coutItens[3] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.Oxigenacao);
-            _coutItens[4] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.Pele);
-            _coutItens[5] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.SistemaGastrointestinal);
-            _coutItens[6] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.SistemaVascular);
-            _coutItens[7] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.SistemaAbdominal);
-            _coutItens[8] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.SistemaUrinario);
-            _coutItens[9] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.LesaoCompressao);
-            _coutItens[10] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.GloboPinard);
-            _coutItens[11] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.ComaGlasgow);
-            _coutItens[12] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.ControleCateteres);
-            _coutItens[13] = tabelaItens.Select().Count(c => (Area)c.ItemArray[3] == Area.PressaoArterial);
+            _coutItens[0] = tabelaItens.Select($"IdArea = {(int)Area.SistemaNeurologico}").Count();
+            _coutItens[1] = tabelaItens.Select($"IdArea = {(int)Area.Pupilas}").Count();
+            _coutItens[2] = tabelaItens.Select($"IdArea = {(int)Area.RegulacaoTermica}").Count();
+            _coutItens[3] = tabelaItens.Select($"IdArea = {(int)Area.Oxigenacao}").Count();
+            _coutItens[4] = tabelaItens.Select($"IdArea = {(int)Area.Pele}").Count();
+            _coutItens[5] = tabelaItens.Select($"IdArea = {(int)Area.SistemaGastrointestinal}").Count(); 
+            _coutItens[6] = tabelaItens.Select($"IdArea = {(int)Area.SistemaVascular}").Count();
+            _coutItens[7] = tabelaItens.Select($"IdArea = {(int)Area.SistemaAbdominal}").Count();
+            _coutItens[8] = tabelaItens.Select($"IdArea = {(int)Area.SistemaUrinario}").Count();
+            _coutItens[9] = tabelaItens.Select($"IdArea = {(int)Area.LesaoCompressao}").Count();
+            _coutItens[10] = tabelaItens.Select($"IdArea = {(int)Area.GloboPinard}").Count();
+            _coutItens[11] = tabelaItens.Select($"IdArea = {(int)Area.ComaGlasgow}").Count();
+            _coutItens[12] = tabelaItens.Select($"IdArea = {(int)Area.ControleCateteres}").Count();
+            _coutItens[13] = tabelaItens.Select($"IdArea = {(int)Area.PressaoArterial}").Count();
 
             lblTotalNeurologico.Visible = _coutItens[0] > 0;
             lblTotalNeurologico.Text = $"Total Itens: {_coutItens[0]}";
@@ -271,6 +321,19 @@ namespace AppInternacao.FrmSae
 
         }
 
+        void AdicionaItem(Area_Itens _Itens)
+        {
+            DataRow dataRow = tabelaItens.NewRow();
+            dataRow["IdCliente"] = Sessao.CodigoCliente;
+            dataRow["IdTemplate"] = _Itens.IdTemplate;
+            dataRow["IdEstruturaFisica"] = _Itens.IdEstruturaFisica;
+            dataRow["IdUsuario"] = Sessao.Usuario.Id;
+            dataRow["IdArea"] = (int)_Itens.IdArea;
+            dataRow["IdItemArea"] = _Itens.IdItemArea;
+            dataRow["Nome"] = _Itens.Nome;
+            tabelaItens.Rows.Add(dataRow);  
+        }
+
         void AdicionaItem(Area _area, ListView[] _ListView, DragEventArgs e)
         {
             ListViewItem view = (ListViewItem)e.Data.GetData(DataFormats.Serializable);
@@ -288,10 +351,11 @@ namespace AppInternacao.FrmSae
             int codigo = Convert.ToInt32(view.SubItems[0].Text);
             DataRow dataRow = tabelaItens.NewRow();
             dataRow["IdCliente"] = Sessao.CodigoCliente;
-            dataRow["IdTemplate"] = templateName.Id;
+            dataRow["IdTemplate"] = Template.Id;
+            dataRow["IdEstruturaFisica"] = Template.IdEstruturaFisica;
             dataRow["IdUsuario"] = Sessao.Usuario.Id;
             dataRow["IdArea"] = (int)_area;
-            dataRow["IdItem"] = codigo;
+            dataRow["IdItemArea"] = codigo;
             dataRow["Nome"] = view.SubItems[1].Text;
             tabelaItens.Rows.Add(dataRow);
 
@@ -313,7 +377,7 @@ namespace AppInternacao.FrmSae
             }
 
             int codigo = Convert.ToInt32(view.SubItems[0].Text);
-            DataRow dataRow = tabelaItens.Select($"IdItem = {codigo}").FirstOrDefault();
+            DataRow dataRow = tabelaItens.Select($"IdItemArea = {codigo}").FirstOrDefault();
 
             if (dataRow != null)
                 tabelaItens.Rows.Remove(dataRow);
@@ -328,9 +392,10 @@ namespace AppInternacao.FrmSae
             var table = new DataTable();
             table.Columns.Add("IdCliente", typeof(int));
             table.Columns.Add("IdTemplate", typeof(int));
+            table.Columns.Add("IdEstruturaFisica", typeof(int));
             table.Columns.Add("IdUsuario", typeof(int));
             table.Columns.Add("IdArea", typeof(int));
-            table.Columns.Add("IdItem", typeof(int));
+            table.Columns.Add("IdItemArea", typeof(int));
             table.Columns.Add("Nome", typeof(string));
 
             return table;

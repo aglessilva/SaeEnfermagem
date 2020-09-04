@@ -1,4 +1,5 @@
-﻿using AppInternacao.Model;
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
 using Newtonsoft.Json;
@@ -80,6 +81,17 @@ namespace AppInternacao
 
         }
 
+        private void CarregaPerfil()
+        {
+            btnAddSae.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnAdmUsuario.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin);
+            btnGerenciamentoLeito.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnPaciente.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnTempalte.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin);
+            btnSalvar.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos) || Sessao.Usuario.Perfil.HasFlag(Perfil.Tecnico);
+            btnNovo.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+        }
 
         private void btnCMAdulto_Click(object sender, EventArgs e)
         {
@@ -128,6 +140,8 @@ namespace AppInternacao
                     panelCabecalho.Enabled = panelMenu.Enabled = false;
                     OpenUc();
                 }
+
+                CarregaPerfil();
             }
             catch (Exception exM)
             {
@@ -358,6 +372,16 @@ namespace AppInternacao
             }
 
 
+        }
+
+        private void btnPrescricao_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed)
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UC00BarCodeProntuario(true);
+            OpenUc();
         }
     }
 }

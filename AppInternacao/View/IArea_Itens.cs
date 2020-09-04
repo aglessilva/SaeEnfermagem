@@ -5,6 +5,8 @@ namespace AppInternacao.View
 {
     public interface IArea_Itens
     {
-        List<Area_Itens> area_Itens { set; }
+        TemplateName Template { get; set; }
+        List<Area_Itens> Area_Itens { set; }
+        List<Area_Itens> Area_Itens_Template { set; }
     }
 }

@@ -110,8 +110,6 @@
             // 
             // pStep
             // 
-            this.pStep.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pStep.BackColor = System.Drawing.Color.Transparent;
             this.pStep.BackgroundImage = global::AppInternacao.Properties.Resources.Cabecalho02;
             this.pStep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -139,9 +137,9 @@
             this.pByStep.BackColor = System.Drawing.Color.Transparent;
             this.pByStep.BackgroundImage = global::AppInternacao.Properties.Resources.infoflat_105980;
             this.pByStep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pByStep.Location = new System.Drawing.Point(9, 20);
+            this.pByStep.Location = new System.Drawing.Point(11, 22);
             this.pByStep.Name = "pByStep";
-            this.pByStep.Size = new System.Drawing.Size(22, 22);
+            this.pByStep.Size = new System.Drawing.Size(19, 19);
             this.pByStep.TabIndex = 5;
             // 
             // timerStepBack

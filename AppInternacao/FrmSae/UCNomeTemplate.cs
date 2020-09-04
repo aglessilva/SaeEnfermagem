@@ -36,6 +36,7 @@ namespace AppInternacao.FrmSae
                      IdUsuario = Sessao.Usuario.Id,
                      IdEstruturaFisica = Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue),
                      Nome = textBoxNomeTemplate.Text.Trim(),
+                     Ativo = chkAtivarTemplate.Checked
                 };
             set
             {
@@ -44,6 +45,7 @@ namespace AppInternacao.FrmSae
                 comboBoxEstruturaFisica.Enabled = value.CountExame.HasValue ? false : true;
                 lblAviso.Visible = !comboBoxEstruturaFisica.Enabled;
                 comboBoxEstruturaFisica.SelectedValue = value.IdEstruturaFisica;
+                chkAtivarTemplate.Checked = value.Ativo;
             }
         }
 
@@ -145,6 +147,15 @@ namespace AppInternacao.FrmSae
                     Dispose();
                 }
             }
+        }
+      
+
+        private void chkAtivarTemplate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkAtivarTemplate.Checked)
+                chkAtivarTemplate.Text = "Desativar Template";
+            else
+                chkAtivarTemplate.Text = "Ativar Template";
         }
     }
 }
