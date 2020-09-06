@@ -52,8 +52,8 @@ namespace AppInternacao
 
             foreach (DataRow item in dataTable.Rows)
             {
-                area = (Area)item[3];
-                radioButton = new RadioButton() { Text = item[5].ToString(), Tag = item[4].ToString(), AutoSize = true, Checked = false };
+                area = (Area)item[4];
+                radioButton = new RadioButton() { Text = item[6].ToString(), Tag = item[5].ToString(), AutoSize = true, Checked = false };
 
                 switch (area)
                 {

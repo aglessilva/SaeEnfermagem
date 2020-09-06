@@ -117,7 +117,13 @@
     <Compile Include="Enum\Area.cs" />
     <Compile Include="Enum\Perfil.cs" />
     <Compile Include="Enum\Procedure.cs" />
+    <Compile Include="Extend\CheckBoxExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extend\PictureBoxExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extend\RadioButtonExt.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FrmExibirHistorico.cs">
@@ -221,12 +227,6 @@
     </Compile>
     <Compile Include="FrmSae\UCQuartoLeito.Designer.cs">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCExameFisico_OLD.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCExameFisico_OLD.Designer.cs">
-      <DependentUpon>UCExameFisico_OLD.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UCPaciente.cs">
       <SubType>UserControl</SubType>
@@ -365,9 +365,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
       <DependentUpon>UCQuartoLeito.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCExameFisico_OLD.resx">
-      <DependentUpon>UCExameFisico_OLD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCPaciente.resx">
       <DependentUpon>UCPaciente.cs</DependentUpon>
@@ -572,6 +569,7 @@
     <None Include="Resources\addItem.png" />
     <None Include="Resources\Checked-80_icon-icons.com_57359.png" />
     <None Include="Resources\check.png" />
+    <None Include="Resources\Copy.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
     <None Include="Resources\Error-80_icon-icons.com_573261.png" />
   </ItemGroup>

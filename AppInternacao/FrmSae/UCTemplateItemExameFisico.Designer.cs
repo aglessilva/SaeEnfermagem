@@ -62,6 +62,7 @@ namespace AppInternacao.FrmSae
             System.Windows.Forms.ColumnHeader columnHeader54;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCTemplateItemExameFisico));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVisualizarTemplate = new System.Windows.Forms.Button();
             this.btnStepVoltar = new System.Windows.Forms.Button();
             this.lbltituloExame = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
@@ -72,6 +73,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader56 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel28 = new System.Windows.Forms.Panel();
             this.lblTotalOutros = new System.Windows.Forms.Label();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
             this.pControleCateteres = new System.Windows.Forms.Panel();
             this.listViewCatetres = new System.Windows.Forms.ListView();
@@ -80,6 +82,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader52 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel26 = new System.Windows.Forms.Panel();
             this.lblTotalCatetere = new System.Windows.Forms.Label();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pComaGlasgow = new System.Windows.Forms.Panel();
             this.listViewGlasgow = new System.Windows.Forms.ListView();
@@ -88,6 +91,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader48 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel24 = new System.Windows.Forms.Panel();
             this.lblTotalGlasgow = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
             this.pGloboPinard = new System.Windows.Forms.Panel();
             this.listViewPinard = new System.Windows.Forms.ListView();
@@ -96,6 +100,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel22 = new System.Windows.Forms.Panel();
             this.lblTotalPinard = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.pLesaoCompressao = new System.Windows.Forms.Panel();
             this.listViewLesaoCompressao = new System.Windows.Forms.ListView();
@@ -104,6 +109,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader40 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel20 = new System.Windows.Forms.Panel();
             this.lblTotalCompressao = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pSistemaUrinario = new System.Windows.Forms.Panel();
             this.listViewSistemaUrinario = new System.Windows.Forms.ListView();
@@ -112,6 +118,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader36 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel18 = new System.Windows.Forms.Panel();
             this.lblTotalUrinario = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.pSistemaAbdominal = new System.Windows.Forms.Panel();
             this.listViewSistemaAbdominal = new System.Windows.Forms.ListView();
@@ -120,6 +127,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel16 = new System.Windows.Forms.Panel();
             this.lblTotalAbdominal = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pSistemaVascular = new System.Windows.Forms.Panel();
             this.listViewSistemaVascular = new System.Windows.Forms.ListView();
@@ -128,6 +136,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel14 = new System.Windows.Forms.Panel();
             this.lblTotalVascular = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pSistemaGastrointestinal = new System.Windows.Forms.Panel();
             this.listViewSistemaGastrointestinal = new System.Windows.Forms.ListView();
@@ -136,6 +145,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel12 = new System.Windows.Forms.Panel();
             this.lblTotalGastro = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.pPele = new System.Windows.Forms.Panel();
             this.listViewPele = new System.Windows.Forms.ListView();
@@ -144,6 +154,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel10 = new System.Windows.Forms.Panel();
             this.lblTotalPele = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pOxigenacao = new System.Windows.Forms.Panel();
             this.listViewOxigenacao = new System.Windows.Forms.ListView();
@@ -152,6 +163,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel8 = new System.Windows.Forms.Panel();
             this.lblTotalOxigenacao = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.pRegulacaoTermica = new System.Windows.Forms.Panel();
             this.listViewRegulacaoTermica = new System.Windows.Forms.ListView();
@@ -160,6 +172,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel7 = new System.Windows.Forms.Panel();
             this.lblTotalTermina = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pPupilas = new System.Windows.Forms.Panel();
             this.listViewPuplias = new System.Windows.Forms.ListView();
@@ -168,6 +181,7 @@ namespace AppInternacao.FrmSae
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblTotalPupila = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pSistemaNeurologico = new System.Windows.Forms.Panel();
             this.listViewItemSistemaNeurologico = new System.Windows.Forms.ListView();
@@ -176,23 +190,9 @@ namespace AppInternacao.FrmSae
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panetitulo1 = new System.Windows.Forms.Panel();
             this.lblTotalNeurologico = new System.Windows.Forms.Label();
+            this.imgAccordion = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timerAccordion = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.imgAccordion = new System.Windows.Forms.PictureBox();
-            this.btnVisualizarTemplate = new System.Windows.Forms.Button();
             columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -225,45 +225,45 @@ namespace AppInternacao.FrmSae
             this.panelBody.SuspendLayout();
             this.pPressaoArterial.SuspendLayout();
             this.panel28.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             this.pControleCateteres.SuspendLayout();
             this.panel26.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             this.pComaGlasgow.SuspendLayout();
             this.panel24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.pGloboPinard.SuspendLayout();
             this.panel22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.pLesaoCompressao.SuspendLayout();
             this.panel20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.pSistemaUrinario.SuspendLayout();
             this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.pSistemaAbdominal.SuspendLayout();
             this.panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.pSistemaVascular.SuspendLayout();
             this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.pSistemaGastrointestinal.SuspendLayout();
             this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.pPele.SuspendLayout();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pOxigenacao.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pRegulacaoTermica.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pPupilas.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pSistemaNeurologico.SuspendLayout();
             this.panetitulo1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAccordion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -418,6 +418,32 @@ namespace AppInternacao.FrmSae
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(836, 45);
             this.panel1.TabIndex = 0;
+            // 
+            // btnVisualizarTemplate
+            // 
+            this.btnVisualizarTemplate.BackColor = System.Drawing.Color.Transparent;
+            this.btnVisualizarTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVisualizarTemplate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVisualizarTemplate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnVisualizarTemplate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnVisualizarTemplate.FlatAppearance.BorderSize = 0;
+            this.btnVisualizarTemplate.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnVisualizarTemplate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btnVisualizarTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVisualizarTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold);
+            this.btnVisualizarTemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnVisualizarTemplate.Image = global::AppInternacao.Properties.Resources.security_view1;
+            this.btnVisualizarTemplate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVisualizarTemplate.Location = new System.Drawing.Point(544, 0);
+            this.btnVisualizarTemplate.Name = "btnVisualizarTemplate";
+            this.btnVisualizarTemplate.Size = new System.Drawing.Size(207, 45);
+            this.btnVisualizarTemplate.TabIndex = 10;
+            this.btnVisualizarTemplate.TabStop = false;
+            this.btnVisualizarTemplate.Text = "Visualizar Template";
+            this.btnVisualizarTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVisualizarTemplate.UseVisualStyleBackColor = false;
+            this.btnVisualizarTemplate.Visible = false;
+            this.btnVisualizarTemplate.Click += new System.EventHandler(this.VisualizarTemplate);
             // 
             // btnStepVoltar
             // 
@@ -590,6 +616,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalOutros.Text = "0";
             this.lblTotalOutros.Visible = false;
             // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox13.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox13.TabIndex = 6;
+            this.pictureBox13.TabStop = false;
+            this.pictureBox13.Tag = "PressaoArterial";
+            this.pictureBox13.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -598,9 +638,9 @@ namespace AppInternacao.FrmSae
             this.label14.ForeColor = System.Drawing.Color.White;
             this.label14.Location = new System.Drawing.Point(3, 6);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(275, 20);
+            this.label14.Size = new System.Drawing.Size(214, 20);
             this.label14.TabIndex = 3;
-            this.label14.Text = "Escala de Pressão Arterial / Outros";
+            this.label14.Text = "Escala de Pressão Arterial ";
             // 
             // pControleCateteres
             // 
@@ -694,6 +734,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalCatetere.TabIndex = 7;
             this.lblTotalCatetere.Text = "0";
             this.lblTotalCatetere.Visible = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox12.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox12.TabIndex = 6;
+            this.pictureBox12.TabStop = false;
+            this.pictureBox12.Tag = "ControleCateteres";
+            this.pictureBox12.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label13
             // 
@@ -800,6 +854,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalGlasgow.Text = "0";
             this.lblTotalGlasgow.Visible = false;
             // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox11.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox11.TabIndex = 6;
+            this.pictureBox11.TabStop = false;
+            this.pictureBox11.Tag = "ComaGlasgow";
+            this.pictureBox11.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -904,6 +972,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalPinard.TabIndex = 7;
             this.lblTotalPinard.Text = "0";
             this.lblTotalPinard.Visible = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox10.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox10.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox10.TabIndex = 6;
+            this.pictureBox10.TabStop = false;
+            this.pictureBox10.Tag = "GloboPinard";
+            this.pictureBox10.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label11
             // 
@@ -1010,6 +1092,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalCompressao.Text = "0";
             this.lblTotalCompressao.Visible = false;
             // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox9.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox9.TabIndex = 6;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Tag = "LesaoCompressao";
+            this.pictureBox9.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -1114,6 +1210,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalUrinario.TabIndex = 7;
             this.lblTotalUrinario.Text = "0";
             this.lblTotalUrinario.Visible = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox8.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox8.TabIndex = 6;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Tag = "SistemaUrinario";
+            this.pictureBox8.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label9
             // 
@@ -1220,6 +1330,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalAbdominal.Text = "0";
             this.lblTotalAbdominal.Visible = false;
             // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox7.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox7.TabIndex = 6;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Tag = "SistemaAbdominal";
+            this.pictureBox7.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -1324,6 +1448,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalVascular.TabIndex = 7;
             this.lblTotalVascular.Text = "0";
             this.lblTotalVascular.Visible = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox6.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox6.TabIndex = 6;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Tag = "SistemaVascular";
+            this.pictureBox6.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label7
             // 
@@ -1430,6 +1568,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalGastro.Text = "0";
             this.lblTotalGastro.Visible = false;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox5.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox5.TabIndex = 6;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Tag = "SistemaGastrointestinal";
+            this.pictureBox5.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -1534,6 +1686,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalPele.TabIndex = 7;
             this.lblTotalPele.Text = "0";
             this.lblTotalPele.Visible = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox4.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "Pele";
+            this.pictureBox4.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label5
             // 
@@ -1640,6 +1806,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalOxigenacao.Text = "0";
             this.lblTotalOxigenacao.Visible = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox3.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "Oxigenacao";
+            this.pictureBox3.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -1745,6 +1925,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalTermina.Text = "0";
             this.lblTotalTermina.Visible = false;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox2.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "RegulacaoTermica";
+            this.pictureBox2.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1849,6 +2043,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalPupila.TabIndex = 6;
             this.lblTotalPupila.Text = "0";
             this.lblTotalPupila.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(797, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "Pupilas";
+            this.pictureBox1.Click += new System.EventHandler(this.imgAccordion_Click);
             // 
             // label2
             // 
@@ -1958,6 +2166,20 @@ namespace AppInternacao.FrmSae
             this.lblTotalNeurologico.Text = "0";
             this.lblTotalNeurologico.Visible = false;
             // 
+            // imgAccordion
+            // 
+            this.imgAccordion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgAccordion.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imgAccordion.Image = ((System.Drawing.Image)(resources.GetObject("imgAccordion.Image")));
+            this.imgAccordion.Location = new System.Drawing.Point(797, 0);
+            this.imgAccordion.Name = "imgAccordion";
+            this.imgAccordion.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.imgAccordion.Size = new System.Drawing.Size(35, 33);
+            this.imgAccordion.TabIndex = 4;
+            this.imgAccordion.TabStop = false;
+            this.imgAccordion.Tag = "SistemaNeurologico";
+            this.imgAccordion.Click += new System.EventHandler(this.imgAccordion_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1974,228 +2196,6 @@ namespace AppInternacao.FrmSae
             // 
             this.timerAccordion.Interval = 30;
             this.timerAccordion.Tick += new System.EventHandler(this.timerAccordion_Tick);
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox13.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox13.TabIndex = 6;
-            this.pictureBox13.TabStop = false;
-            this.pictureBox13.Tag = "PressaoArterial";
-            this.pictureBox13.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox12.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox12.TabIndex = 6;
-            this.pictureBox12.TabStop = false;
-            this.pictureBox12.Tag = "ControleCateteres";
-            this.pictureBox12.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox11.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox11.TabIndex = 6;
-            this.pictureBox11.TabStop = false;
-            this.pictureBox11.Tag = "ComaGlasgow";
-            this.pictureBox11.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox10.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox10.TabIndex = 6;
-            this.pictureBox10.TabStop = false;
-            this.pictureBox10.Tag = "GloboPinard";
-            this.pictureBox10.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox9.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox9.TabIndex = 6;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.Tag = "LesaoCompressao";
-            this.pictureBox9.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox8.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox8.TabIndex = 6;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Tag = "SistemaUrinario";
-            this.pictureBox8.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox7.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox7.TabIndex = 6;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Tag = "SistemaAbdominal";
-            this.pictureBox7.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox6.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox6.TabIndex = 6;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Tag = "SistemaVascular";
-            this.pictureBox6.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox5.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox5.TabIndex = 6;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Tag = "SistemaGastrointestinal";
-            this.pictureBox5.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox4.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Tag = "Pele";
-            this.pictureBox4.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox3.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Tag = "Oxigenacao";
-            this.pictureBox3.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox2.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Tag = "RegulacaoTermica";
-            this.pictureBox2.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(797, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "Pupilas";
-            this.pictureBox1.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // imgAccordion
-            // 
-            this.imgAccordion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgAccordion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.imgAccordion.Image = ((System.Drawing.Image)(resources.GetObject("imgAccordion.Image")));
-            this.imgAccordion.Location = new System.Drawing.Point(797, 0);
-            this.imgAccordion.Name = "imgAccordion";
-            this.imgAccordion.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.imgAccordion.Size = new System.Drawing.Size(35, 33);
-            this.imgAccordion.TabIndex = 4;
-            this.imgAccordion.TabStop = false;
-            this.imgAccordion.Tag = "SistemaNeurologico";
-            this.imgAccordion.Click += new System.EventHandler(this.imgAccordion_Click);
-            // 
-            // btnVisualizarTemplate
-            // 
-            this.btnVisualizarTemplate.BackColor = System.Drawing.Color.Transparent;
-            this.btnVisualizarTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVisualizarTemplate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVisualizarTemplate.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnVisualizarTemplate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnVisualizarTemplate.FlatAppearance.BorderSize = 0;
-            this.btnVisualizarTemplate.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnVisualizarTemplate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btnVisualizarTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVisualizarTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold);
-            this.btnVisualizarTemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnVisualizarTemplate.Image = global::AppInternacao.Properties.Resources.security_view1;
-            this.btnVisualizarTemplate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVisualizarTemplate.Location = new System.Drawing.Point(544, 0);
-            this.btnVisualizarTemplate.Name = "btnVisualizarTemplate";
-            this.btnVisualizarTemplate.Size = new System.Drawing.Size(207, 45);
-            this.btnVisualizarTemplate.TabIndex = 10;
-            this.btnVisualizarTemplate.TabStop = false;
-            this.btnVisualizarTemplate.Text = "Visualizar Template";
-            this.btnVisualizarTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVisualizarTemplate.UseVisualStyleBackColor = false;
-            this.btnVisualizarTemplate.Visible = false;
-            this.btnVisualizarTemplate.Click += new System.EventHandler(this.VisualizarTemplate);
             // 
             // UCTemplateItemExameFisico
             // 
@@ -2215,58 +2215,58 @@ namespace AppInternacao.FrmSae
             this.pPressaoArterial.ResumeLayout(false);
             this.panel28.ResumeLayout(false);
             this.panel28.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             this.pControleCateteres.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.pComaGlasgow.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             this.panel24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.pGloboPinard.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel22.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.pLesaoCompressao.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.pSistemaUrinario.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.pSistemaAbdominal.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.pSistemaVascular.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.pSistemaGastrointestinal.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.pPele.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pOxigenacao.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pRegulacaoTermica.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pPupilas.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pSistemaNeurologico.ResumeLayout(false);
             this.panetitulo1.ResumeLayout(false);
             this.panetitulo1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAccordion)).EndInit();
             this.ResumeLayout(false);
 

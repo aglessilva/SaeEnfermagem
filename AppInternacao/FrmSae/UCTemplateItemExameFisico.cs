@@ -35,10 +35,7 @@ namespace AppInternacao.FrmSae
             {
                 ListViewItem lvi = null;
                 Area_Itens objArea = null;
-                //lvi = new ListViewItem("1");
-                //lvi.SubItems.Add("Conciente");
-                //listViewTemplateSistemaNeurologico.Items.Add(lvi);
-                //List<Area_Itens> lst = new List<Area_Itens>();// { new Area_Itens() { Id = 1, IdArea = Area.SistemaNeurologico, Nome = "Conciente" } };
+               
 
                 foreach (Area_Itens item in value)
                 {
@@ -222,7 +219,14 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        public List<Area_Itens> Area_Itens_Template { set => lst = value;  }
+        public List<Area_Itens> Area_Itens_Template
+        {
+            set
+            {
+                lst = value;
+                btnVisualizarTemplate.Visible = lst.Count > 0;
+            }
+        }
 
         public TemplateName Template { get; set; }
 

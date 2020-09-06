@@ -42,10 +42,11 @@ namespace AppInternacao.FrmSae
             {
                 textBoxId.Text = value.Id.ToString();
                 textBoxNomeTemplate.Text = value.Nome;
-                comboBoxEstruturaFisica.Enabled = value.CountExame.HasValue ? false : true;
+                comboBoxEstruturaFisica.Enabled = value.CountExame.Value == 0;
+                chkAtivarTemplate.Enabled = value.CountExame.Value >= 1;
                 lblAviso.Visible = !comboBoxEstruturaFisica.Enabled;
                 comboBoxEstruturaFisica.SelectedValue = value.IdEstruturaFisica;
-                chkAtivarTemplate.Checked = value.Ativo;
+                chkAtivarTemplate.Checked = value.Ativo ?? false;
             }
         }
 
@@ -57,8 +58,6 @@ namespace AppInternacao.FrmSae
                 dataGridViewNomeTemplate.DataSource = value;
             }
         }
-
-        
 
         private void UCNomeTemplate_Load(object sender, EventArgs e)
         {
@@ -148,10 +147,10 @@ namespace AppInternacao.FrmSae
                 }
             }
         }
-      
 
         private void chkAtivarTemplate_CheckedChanged(object sender, EventArgs e)
         {
+
             if (chkAtivarTemplate.Checked)
                 chkAtivarTemplate.Text = "Desativar Template";
             else

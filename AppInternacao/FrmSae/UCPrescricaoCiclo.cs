@@ -37,10 +37,6 @@ namespace AppInternacao.FrmSae
         {
             FrmMain.myNovo.Click += MyNovo_Click;
 
-            lblNome.Text = Sessao.Paciente.Nome;
-            lblIdade.Text = Sessao.Paciente.Idade.ToString();
-            lblLeito.Text = Sessao.Paciente.NomeLeito;
-            lblProntuario.Text = Sessao.Paciente.Prontuario.ToString();
             btnCriarPrescricao.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
             btnNewLine.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
             btnRemoveDia.Enabled = Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
@@ -81,7 +77,7 @@ namespace AppInternacao.FrmSae
 
             try
             {
-                gDadosPaciente.Enabled = btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = true;
+                btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = true;
 
                 prescricaoMedica.IdChavePrescricao = presenterGeneric.Salvar(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, NomePrescricao = textBoxNomePrescricao.Text }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
                 textBoxNomePrescricao.Text = string.Empty;
@@ -230,8 +226,7 @@ namespace AppInternacao.FrmSae
             dataGridViewPrescricoes.DataSource = null;
             table = null;
             lblCicloPrescricao.Visible = false;
-            gDadosPaciente.Enabled = btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = false;
-            
+            btnAddDia.Enabled = btnNewLine.Enabled = btnRemoveDia.Enabled = false;
         }
 
         private void btnCancelaPrescricao_Click(object sender, EventArgs e)
@@ -416,12 +411,18 @@ namespace AppInternacao.FrmSae
         {
             lblCicloPrescricao.Visible = false;
             if (comboBoxDataPrescricao.SelectedIndex == 0)
+            {
+                btnValidarPrescricao.Visible = false;
                 return;
+            }
 
             table = null;
             CriaDataTable();
             dataGridViewPrescricoes.DataSource = null;
             ChavePrescricao chave = (ChavePrescricao)comboBoxDataPrescricao.SelectedItem;
+
+            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial))
+                btnValidarPrescricao.Visible = (bool)!chave.IsValidado; 
 
             lstCiclo = presenterGeneric.GetLista(new CicloPrescricao()
             {
@@ -430,9 +431,27 @@ namespace AppInternacao.FrmSae
             }
                 , Procedure.SP_GET_CICLO);
 
-            lstPrescricao = presenterGeneric.GetLista(new PrescricaoMedica() { Id = 0,  IdPaciente = Sessao.Paciente.Id,  IdChavePrescricao = chave.Id   }, Procedure.SP_GET_PRESCRICAO);
+            lstPrescricao = presenterGeneric.GetLista(new PrescricaoMedica() { Id = 0,  IdPaciente = Sessao.Paciente.Id,  IdChavePrescricao = chave.Id,  }, Procedure.SP_GET_PRESCRICAO);
 
             LoadDataTable();
+
+            if ((bool)chave.IsValidado)
+                FrizenGrid(chave);
+        }
+
+        private void btnValidarPrescricao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idPrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue);
+                FrmMain.Alert(presenterGeneric.Salvar(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, Id = idPrescricao }, Procedure.SP_ADD_CHAVE_PRESCRICAO));
+                GetDatas();
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(100, ex);
+                throw;
+            }
         }
 
         void ConfigGrid()
@@ -443,6 +462,7 @@ namespace AppInternacao.FrmSae
             dataGridViewPrescricoes.Columns["IdPaciente"].Visible = false;
             dataGridViewPrescricoes.Columns["Prescrição"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewPrescricoes.Columns["Prescrição"].MinimumWidth = 300;
+            dataGridViewPrescricoes.Columns["Prescrição"].DefaultCellStyle.WrapMode =  DataGridViewTriState.True;
 
             foreach (DataGridViewColumn item in dataGridViewPrescricoes.Columns)
             {
@@ -491,22 +511,12 @@ namespace AppInternacao.FrmSae
                             row[item.ColumnName] = Properties.Resources.Wait;
                         else
                             row[item.ColumnName] = Properties.Resources.integative;
-
+                            
                         if (table.Rows.Count == 0)
                             item.ExtendedProperties.Add("Id", lstCicloItem.Find(c => c.DataCiclo.Equals(Convert.ToDateTime(item.Caption))).Id);
                     }
                 }
 
-
-                //if (table.Rows.Count > 0)
-                //{
-                //    foreach (DataRow item in table.Rows)
-                //    {
-                //        item["Act"] = Properties.Resources.rubbishbin_102620;
-                //    }
-                //}
-
-                //row["Act"] = Properties.Resources.rubbishbin_102620;
                 table.Rows.Add(row);
                 ConfigGrid();
 
@@ -521,11 +531,28 @@ namespace AppInternacao.FrmSae
 
         void GetDatas()
         {
-            string msgValidarPrescricao = string.Empty;
-            lstChavePrescricoes = presenterGeneric.GetLista(new ChavePrescricao() { idPaciente = Sessao.Paciente.Id, NomePrescricao = textBoxNomePrescricao.Text }, Procedure.SP_GET_CHAVE_PRESCRICAO);
-            lstChavePrescricoes.Insert(0,new ChavePrescricao() { Id = 0, NomePrescricao = "Selecione..." });
-            comboBoxDataPrescricao.DataSource = lstChavePrescricoes;
+            bool? _isvalidado = null;
 
+            if (!Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) && !Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+                _isvalidado = true;
+
+            string msgValidarPrescricao = string.Empty;
+            lstChavePrescricoes = presenterGeneric.GetLista(new ChavePrescricao()
+            {
+                idPaciente = Sessao.Paciente.Id,
+                NomePrescricao = textBoxNomePrescricao.Text,
+                IsValidado = _isvalidado
+            }, Procedure.SP_GET_CHAVE_PRESCRICAO);
+            lstChavePrescricoes.Insert(0,new ChavePrescricao() { Id = 0, NomePrescricao = "Selecione...", IsValidado = true });
+            int countPrescricao = lstChavePrescricoes.Count(c => c.IsValidado == false);
+
+            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial))
+            {
+                lblValidaPrescricao.Visible = countPrescricao > 0;
+                lblValidaPrescricao.Text = countPrescricao > 1 ? $"Identificado {countPrescricao} novas prescrições para serem validadas." : $"Identificado 1 nova prescrição para validar.";
+            }
+
+            comboBoxDataPrescricao.DataSource = lstChavePrescricoes;
             comboBoxDataPrescricao.SelectedIndexChanged -= comboBoxDataPrescricao_SelectedIndexChanged;
             comboBoxDataPrescricao.SelectedValue = prescricaoMedica.IdChavePrescricao;
             comboBoxDataPrescricao.SelectedIndexChanged += comboBoxDataPrescricao_SelectedIndexChanged;
@@ -611,7 +638,6 @@ namespace AppInternacao.FrmSae
 
                     foreach (DataColumn item in dataColumns)
                     {
-
                         cicloPrescricao = lstCiclo.FirstOrDefault(dt => dt.DataCiclo.Value.ToString("dd/MM") == item.ColumnName);
 
                         if (cicloPrescricao.DataCiclo >= DateTime.Now.Date)
@@ -666,7 +692,14 @@ namespace AppInternacao.FrmSae
             }
         }
 
-
-       
+        void FrizenGrid(ChavePrescricao chavePrescricao)
+        {
+            dataGridViewPrescricoes.Columns["Prescrição"].ReadOnly = true;
+            dataGridViewPrescricoes.Columns["Horário"].ReadOnly = true;
+            dataGridViewPrescricoes.Columns["Act"].Visible = false;
+            btnAddDia.Enabled = false;
+            btnNewLine.Enabled = false;
+            btnRemoveDia.Enabled = false;
+        }
     }
 }
