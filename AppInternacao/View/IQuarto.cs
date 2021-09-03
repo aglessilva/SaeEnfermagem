@@ -1,16 +1,12 @@
 ﻿using AppInternacao.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AppInternacao.View
 {
     public interface IQuarto
     {
-        Quarto QuartoLeito { get; set; }
-        List<Quarto> QuartoLeitos { set; }
+        Quarto Quarto { get; set; }
+        List<Quarto> Quartos { set; }
         List<Setor> Setores {  set; }
     }
 }

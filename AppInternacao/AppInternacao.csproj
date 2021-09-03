@@ -79,11 +79,14 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="NetSpell.SpellChecker">
       <HintPath>..\packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PrintRichTextBox">
       <HintPath>..\packages\RichTextBoxEx.1.0.0\lib\PrintRichTextBox.dll</HintPath>
@@ -117,6 +120,7 @@
     <Compile Include="Enum\Area.cs" />
     <Compile Include="Enum\Perfil.cs" />
     <Compile Include="Enum\Procedure.cs" />
+    <Compile Include="Enum\StatusInternacao.cs" />
     <Compile Include="Extend\CheckBoxExt.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -125,6 +129,12 @@
     </Compile>
     <Compile Include="Extend\RadioButtonExt.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extend\TextBoxExtcs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Extend\TextBoxExtcs.Designer.cs">
+      <DependentUpon>TextBoxExtcs.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmExibirHistorico.cs">
       <SubType>Form</SubType>
@@ -143,6 +153,66 @@
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI002FrmAlterarSenha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI002FrmAlterarSenha.Designer.cs">
+      <DependentUpon>UI002FrmAlterarSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI003FrmPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI003FrmPaciente.Designer.cs">
+      <DependentUpon>UI003FrmPaciente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI000FrmTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI000FrmTemplate.Designer.cs">
+      <DependentUpon>UI000FrmTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI001FrmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI001FrmUsuario.Designer.cs">
+      <DependentUpon>UI001FrmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelOcupacoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelOcupacoes.Designer.cs">
+      <DependentUpon>UI004FrmPanelOcupacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmQuartoLeito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmQuartoLeito.Designer.cs">
+      <DependentUpon>UI004FrmQuartoLeito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanel.Designer.cs">
+      <DependentUpon>UI004FrmPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelLeito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelLeito.Designer.cs">
+      <DependentUpon>UI004FrmPanelLeito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI004FrmPanelQuarto.Designer.cs">
+      <DependentUpon>UI004FrmPanelQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI005ListaPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI005ListaPaciente.Designer.cs">
+      <DependentUpon>UI005ListaPaciente.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UCExameFisico.cs">
       <SubType>UserControl</SubType>
@@ -204,12 +274,6 @@
     <Compile Include="FrmSae\UCMenuEsquerdo.Designer.cs">
       <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCListaPaciente.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCListaPaciente.Designer.cs">
-      <DependentUpon>UCListaPaciente.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSae\UCNomeTemplate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,18 +285,6 @@
     </Compile>
     <Compile Include="FrmSae\UCPrescricaoCiclo.Designer.cs">
       <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCQuartoLeito.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCQuartoLeito.Designer.cs">
-      <DependentUpon>UCQuartoLeito.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCPaciente.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCPaciente.Designer.cs">
-      <DependentUpon>UCPaciente.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\DBConn.cs" />
     <Compile Include="FrmSae\UCTemplateItemExameFisico.cs">
@@ -247,17 +299,41 @@
     <Compile Include="FrmSae\UCTimeLine.Designer.cs">
       <DependentUpon>UCTimeLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCUsuario.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="FrmSae\UI006FrmBarCodeProntuario.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSae\UCUsuario.Designer.cs">
-      <DependentUpon>UCUsuario.cs</DependentUpon>
+    <Compile Include="FrmSae\UI006FrmBarCodeProntuario.Designer.cs">
+      <DependentUpon>UI006FrmBarCodeProntuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI007FrmMenuDireito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI007FrmMenuDireito.Designer.cs">
+      <DependentUpon>UI007FrmMenuDireito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI008FrmPrescricaoCiclo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI008FrmPrescricaoCiclo.Designer.cs">
+      <DependentUpon>UI008FrmPrescricaoCiclo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI009FrmNomeExameFisico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI009FrmNomeExameFisico.Designer.cs">
+      <DependentUpon>UI009FrmNomeExameFisico.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmViewTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmViewTemplate.Designer.cs">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmAlterarLeitoPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmAlterarLeitoPaciente.Designer.cs">
+      <DependentUpon>FrmAlterarLeitoPaciente.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm\FrmJustificarChecagem.cs">
       <SubType>Form</SubType>
@@ -315,6 +391,9 @@
     <Compile Include="View\IQuarto.cs" />
     <Compile Include="View\ITemplateName.cs" />
     <Compile Include="View\IUsuario.cs" />
+    <EmbeddedResource Include="Extend\TextBoxExtcs.resx">
+      <DependentUpon>TextBoxExtcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmExibirHistorico.resx">
       <DependentUpon>FrmExibirHistorico.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +402,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI002FrmAlterarSenha.resx">
+      <DependentUpon>UI002FrmAlterarSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI003FrmPaciente.resx">
+      <DependentUpon>UI003FrmPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI000FrmTemplate.resx">
+      <DependentUpon>UI000FrmTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI001FrmUsuario.resx">
+      <DependentUpon>UI001FrmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI004FrmPanelOcupacoes.resx">
+      <DependentUpon>UI004FrmPanelOcupacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI004FrmQuartoLeito.resx">
+      <DependentUpon>UI004FrmQuartoLeito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI004FrmPanel.resx">
+      <DependentUpon>UI004FrmPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI004FrmPanelLeito.resx">
+      <DependentUpon>UI004FrmPanelLeito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI004FrmPanelQuarto.resx">
+      <DependentUpon>UI004FrmPanelQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI005ListaPaciente.resx">
+      <DependentUpon>UI005ListaPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCExameFisico.resx">
       <DependentUpon>UCExameFisico.cs</DependentUpon>
@@ -354,20 +463,11 @@
     <EmbeddedResource Include="FrmSae\UCMenuEsquerdo.resx">
       <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCListaPaciente.resx">
-      <DependentUpon>UCListaPaciente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCNomeTemplate.resx">
       <DependentUpon>UCNomeTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCPrescricaoCiclo.resx">
       <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCQuartoLeito.resx">
-      <DependentUpon>UCQuartoLeito.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCPaciente.resx">
-      <DependentUpon>UCPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCTemplateItemExameFisico.resx">
       <DependentUpon>UCTemplateItemExameFisico.cs</DependentUpon>
@@ -375,11 +475,23 @@
     <EmbeddedResource Include="FrmSae\UCTimeLine.resx">
       <DependentUpon>UCTimeLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCUsuario.resx">
-      <DependentUpon>UCUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UI006FrmBarCodeProntuario.resx">
+      <DependentUpon>UI006FrmBarCodeProntuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI007FrmMenuDireito.resx">
+      <DependentUpon>UI007FrmMenuDireito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI008FrmPrescricaoCiclo.resx">
+      <DependentUpon>UI008FrmPrescricaoCiclo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI009FrmNomeExameFisico.resx">
+      <DependentUpon>UI009FrmNomeExameFisico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewTemplate.resx">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmAlterarLeitoPaciente.resx">
+      <DependentUpon>FrmAlterarLeitoPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm\FrmJustificarChecagem.resx">
       <DependentUpon>FrmJustificarChecagem.cs</DependentUpon>
@@ -483,6 +595,7 @@
     <None Include="Resources\liberar.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\LeitoOcupado.png" />
     <None Include="Resources\IsOkset.png" />
     <None Include="Resources\Wait.png" />
     <None Include="Resources\vcsnormal_93488.png" />
@@ -570,19 +683,9 @@
     <None Include="Resources\Checked-80_icon-icons.com_57359.png" />
     <None Include="Resources\check.png" />
     <None Include="Resources\Copy.png" />
+    <Content Include="Resources\backgroudBody.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
     <None Include="Resources\Error-80_icon-icons.com_573261.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="BmlDataCarousel">
-      <Guid>{2B9260FA-4A91-45D1-AAA6-D7CE82322BD8}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -1,4 +1,6 @@
-﻿namespace AppInternacao.Model
+﻿using AppInternacao.Enum;
+
+namespace AppInternacao.Model
 {
     public class AlteracaoLeitoPaciente
     {
@@ -7,8 +9,9 @@
         public int IdUsuario {get; set; }
         public long Prontuario {get; set; }
         public int IdLeito {get; set; }
-        public int IdStatusAlteracao {get; set; }
+        public StatusInternacao IdStatusAlteracao {get; set; }
         public string Justificativa {get; set; }
+        public int? IdLeitoTransferencia { get; set; }
 
     }
 }

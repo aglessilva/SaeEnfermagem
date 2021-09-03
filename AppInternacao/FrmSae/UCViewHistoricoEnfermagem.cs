@@ -12,7 +12,7 @@ namespace AppInternacao.FrmSae
 {
     public partial class UCViewHistoricoEnfermagem : UserControl
     {
-        UserControl userControl = null;
+      //  UserControl userControl = null;
         public UCViewHistoricoEnfermagem()
         {
             InitializeComponent();

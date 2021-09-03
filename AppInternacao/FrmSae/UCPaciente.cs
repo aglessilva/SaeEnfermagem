@@ -100,7 +100,6 @@ namespace AppInternacao.FrmSae
         private bool validaCampos()
         {
             TextBox[] textBoxesIgnore = { textBoxLeito, textBoxQuarto, textBoxSetor}; 
-            RadioButton radioButton = null;
             try
             {
                 var lista = groupBox1.Controls.OfType<TextBox>().Where(t => t is TextBox ).ToList();
@@ -123,18 +122,18 @@ namespace AppInternacao.FrmSae
 
                 if (groupBox1.Controls.OfType<RadioButton>().Where(t => t is RadioButton).ToList().Count(c => c.Checked) == 0)
                 {
-                    radioButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
-                    errorProvider1.SetError(radioButton, "preencha este campo");
-                    errorProvider1.SetIconPadding(radioButton,3);
+                   // radioButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
+                    errorProvider1.SetError(radioButton1, "checar o genero");
+                    errorProvider1.SetIconPadding(radioButton1,3);
                     return false;
                 }
                 else
                 {
-                    radioButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
-                    errorProvider1.SetError(radioButton, null);
+                   // radioButton = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(t => t is RadioButton);
+                    errorProvider1.SetError(radioButton1, null);
                 }
 
-                if (Convert.ToInt32(comboBoxEstruturaFisica.SelectedValue) == 0)
+                if (comboBoxEstruturaFisica.SelectedIndex == 0)
                 {
                     errorProvider1.SetError(comboBoxEstruturaFisica, "Selecione um item.");
                     errorProvider1.SetIconPadding(comboBoxEstruturaFisica, 3);
@@ -222,6 +221,24 @@ namespace AppInternacao.FrmSae
 
         private void MyNovo_Click(object sender, EventArgs e)
         {
+            FrmMain.myImprimir.Visible = false;
+
+            TextBox[] textBoxesIgnore = { textBoxLeito, textBoxQuarto, textBoxSetor };
+
+            var lista = groupBox1.Controls.OfType<TextBox>().Where(t => t is TextBox).ToList();
+
+            lista.RemoveAll(t => !t.Enabled || textBoxesIgnore.Contains(t));
+
+            foreach (TextBox item in lista)
+            {
+                if (textBoxesIgnore.Any(txt => txt == item))
+                    continue;
+               errorProvider1.SetError(item, null);
+            }
+
+            errorProvider1.SetError(comboBoxEstruturaFisica, null);
+            errorProvider1.SetError(radioButton1, null);
+
             paciente = new Paciente();
             pbBarcodeCracha.Image = Properties.Resources.barcode;
         }
@@ -251,10 +268,11 @@ namespace AppInternacao.FrmSae
                 {
                     objPeciente = (Paciente)dataGridViewPaciente.Rows[e.RowIndex].DataBoundItem;
 
-                    if ((bool)objPeciente.IsBaixado)
+                    if ((bool)objPeciente.TipoBaixa)
                         return;
 
                     paciente = (Paciente)dataGridViewPaciente.Rows[e.RowIndex].DataBoundItem;
+                    FrmMain.myImprimir.Visible = !(bool)objPeciente.TipoBaixa;
                 }
             }
         }
@@ -273,7 +291,7 @@ namespace AppInternacao.FrmSae
 
                     if (string.IsNullOrWhiteSpace(objPeciente.NomeLeito))
                     {
-                        if ((bool)objPeciente.IsBaixado)
+                        if ((bool)objPeciente.TipoBaixa)
                         {
                             row.Cells[6].Value = Properties.Resources.userExit;
                             row.Cells[6].ToolTipText = "Paciente liberado\ncom Baixa de Leito";
@@ -364,6 +382,7 @@ namespace AppInternacao.FrmSae
         {
             Graphics g = panelCracha.CreateGraphics();
             _cracha = new Bitmap(panelCracha.Size.Width, panelCracha.Size.Height, g);
+
             panelCracha.DrawToBitmap(_cracha, new Rectangle(0, 0, panelCracha.Width, panelCracha.Height));
         }
 
@@ -407,19 +426,23 @@ namespace AppInternacao.FrmSae
                         {
                             string response = responseReader.ReadToEnd();
                             Endereco endereco = JsonConvert.DeserializeObject<Endereco>(response);
-                            textBairro.Text = endereco.Bairro;
-                            textCep.Text = endereco.Cep.ToString();
-                            textLogradouro.Text = endereco.Logradouro;
-                            textComplemento.Text = endereco.Complemento;
-                            textCidade.Text = endereco.Localidade;
-                            textUf.Text = endereco.Uf.ToString();
+                            if (!string.IsNullOrEmpty(endereco.Cep))
+                            {
+                                textBairro.Text = endereco.Bairro;
+                                textCep.Text = endereco.Cep.ToString();
+                                textLogradouro.Text = endereco.Logradouro;
+                                textComplemento.Text = endereco.Complemento;
+                                textCidade.Text = endereco.Localidade;
+                                textUf.Text = endereco.Uf.ToString();
+                            }
+                            else
+                                MessageBox.Show($"Cep {textCep.Text} não encontratdo", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

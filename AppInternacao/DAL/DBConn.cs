@@ -11,7 +11,8 @@ namespace AppInternacao.Model
     public class DBConn
     {
        
-        const string cnn = @"Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=HAGLESPW701\SQLEXPRESS";
+      //  const string cnn = @"Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=HAGLESPW701\SQLEXPRESS";
+        const string cnn = @"Provider=SQLOLEDB.1;Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=.";
 
 
         public SqlCommand GetSqlCommand(Enum.Procedure procedure)

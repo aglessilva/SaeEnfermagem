@@ -22,11 +22,11 @@ namespace AppInternacao.FrmSae
                 {
                     Id = string.IsNullOrWhiteSpace(textBoxIdUsuario.Text) ? 0 : Convert.ToInt32(textBoxIdUsuario.Text),
                     Nome = textBoxNome.Text.Trim(),
-                    Cpf = Regex.Replace(mskCpf.Text, @"[^0-9$]", string.Empty).Trim(),
-                    Telefone = Regex.Replace(mskTelefone.Text, @"[^0-9$]", string.Empty).Trim(),
-                    Email = textBoxEmail.Text,
-                    Login = textBoxLogin.Text,
-                    Senha = Funcoes.CriptoGrafaSenha(textBoxSenha.Text.Trim()),
+                    Cpf = Regex.Replace(mskCpf.Text.Trim(), @"[^0-9$]", string.Empty).Trim(),
+                    Telefone = Regex.Replace(mskTelefone.Text.Trim(), @"[^0-9$]", string.Empty).Trim(),
+                    Email = textBoxEmail.Text.Trim(),
+                    Login = textBoxLogin.Text.Trim(),
+                    Senha = string.IsNullOrWhiteSpace(textBoxPwdEncripit.Text) ? Funcoes.CriptoGrafaSenha(textBoxSenha.Text.Trim()).Trim() : textBoxPwdEncripit.Text,
                     Ativo = rdoAtivo.Checked ? true : false,
                     Perfil = (Perfil)comboBoxPerfil.SelectedItem
                 };
@@ -38,7 +38,8 @@ namespace AppInternacao.FrmSae
                 mskCpf.Text = value.Cpf;
                 mskTelefone.Text = value.Telefone;
                 textBoxEmail.Text = value.Email;
-                textBoxEmail.Enabled = false;
+                textBoxPwdEncripit.Text = value.Senha;
+                //textBoxEmail.Enabled = false;
                 if (value.Ativo == null)
                 {
                     rdoAtivo.Checked =  false;
@@ -76,7 +77,7 @@ namespace AppInternacao.FrmSae
             try
             {
                 Carregar();
-                List<Perfil> list = new List<Perfil>() { Perfil.Nenhum, Perfil.Tecnico , Perfil.Administrador, Perfil.Enfermeiro_Assistemcial, Perfil.EnfermeiroAdmin, Perfil.Medicos };
+                List<Perfil> list = new List<Perfil>() { Perfil.Nenhum, Perfil.Tecnico , Perfil.Administrador, Perfil.Enfermeiro_Assistemcial, Perfil.EnfermeiroAdmin, Perfil.Medico };
                 comboBoxPerfil.DataSource = list;
             }
             catch (Exception ex)
@@ -88,8 +89,20 @@ namespace AppInternacao.FrmSae
 
         private void MyNovo_Click(object sender, EventArgs e)
         {
+            var lista = gUsuario.Controls.OfType<TextBox>().Where(t => t is TextBox).ToList();
+
+            lista.RemoveAll(t => !t.Enabled);
+
+            foreach (TextBox item in lista)
+                errorProviderFields.SetError(item, null);
+               
+            errorProviderFields.SetError(mskCpf, null);
+            errorProviderFields.SetError(mskTelefone, null);
+            errorProviderFields.SetError(rdoInativo, null);
+
             usuario = new Usuario();
             textBoxSenha.Text = string.Empty;
+            textBoxPwdEncripit.Text = string.Empty;
             comboBoxPerfil.SelectedIndex = 0;
             rdoInativo.Checked = rdoAtivo.Checked = false;
         }
@@ -112,7 +125,8 @@ namespace AppInternacao.FrmSae
 
                 usuarioPresenter = new UsuarioPresenter(this);
                 int retorno = (int)usuarioPresenter.Salvar();
-                if (retorno == 1)
+                
+                if (retorno > 0)
                 {
                     if (usuario.Id == 0)
                     {
@@ -135,15 +149,15 @@ namespace AppInternacao.FrmSae
                         FrmMain.Alert(retorno);
 
                     Carregar();
+                    MyNovo_Click(null, null);
                 }
-                MyNovo_Click(null, null);
+
             }
             catch (Exception exSalvar)
             {
                 MessageBox.Show(exSalvar.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void mskCpf_Leave(object sender, EventArgs e)
         {
@@ -164,11 +178,22 @@ namespace AppInternacao.FrmSae
             string _doc = Regex.Replace(mskCpf.Text, @"[^0-9$]", string.Empty);
             if(_doc.Length == 11)
             {
+                // Verifica se ja existe usuario cadastrado com o CPF
+                if (usuario.Id == 0)
+                {
+                    int ret = usuarioPresenter.VerificarCPF(_doc);
+
+                    if (ret > 0)
+                    {
+                        MessageBox.Show("CPF já cadastrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
                 textBoxLogin.Text = $"xb{_doc.Substring(0, 3)}{arrayNome[0].Substring(0,1)}{arrayNome[1].Substring(0, 1)}";
                 textBoxSenha.Text = $"xb{_doc.Substring(8)}";
             }
         }
-
 
         private bool ValidaCampos()
         {
@@ -208,7 +233,7 @@ namespace AppInternacao.FrmSae
                     }
                     else
                     {
-                        if (!Regex.IsMatch(item.Text.Trim(), @"^\(\d{2}\)\s\d{4,5}-\d{4}$"))
+                        if (!Regex.IsMatch(item.Text.Trim(), @"^\(\d{2}\)\s\d{4,5}-\d{3,4}$"))
                         {
                             errorProviderFields.SetError(item, "preencha este campo");
                             errorProviderFields.SetIconPadding(item, 3);

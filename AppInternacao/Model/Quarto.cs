@@ -12,6 +12,6 @@ namespace AppInternacao.Model
         public int IdSetor { get; set; }
         public string NomeQuarto { get; set; }
         public int TotalLeito { get; set; }
-        public List<Quarto> QuartoLeitos { get; set; }
+        public List<Quarto> QuartosLeito { get; set; }
     }
 }

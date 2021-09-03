@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
+using AppInternacao.Presenter;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -8,6 +11,9 @@ namespace AppInternacao.Frm
     {
         DataRow dataRow = null;
         bool viewEnable = true;
+        ChavePrescricao chavePrescricao = null;
+        PresenterGeneric presenterGeneric = null;
+
         public FrmJustificarChecagem(DataRow _dataRow = null, bool eneble = true)
         {
             InitializeComponent();
@@ -16,8 +22,16 @@ namespace AppInternacao.Frm
             viewEnable = eneble;
         }
 
+        public FrmJustificarChecagem(ChavePrescricao chave)
+        {
+            InitializeComponent();
+            chavePrescricao = chave;
+            textBoxJustificativa.Focus();
+        }
+
         private void textBoxJustificativa_TextChanged(object sender, EventArgs e)
         {
+            lblCaracteres.Visible = textBoxJustificativa.Text.Length > 0;
             if (textBoxJustificativa.Text.Length <= 50)
             {
                 lblCaracteres.Text = $"Mínimo de 50 caracteres: {50 - textBoxJustificativa.Text.Length}";
@@ -25,15 +39,34 @@ namespace AppInternacao.Frm
             }
 
             if (textBoxJustificativa.Text.Length >= 60)
-                lblCaracteres.Text = $"Máximo de 200 caracteres: {200 - textBoxJustificativa.Text.Length}";
+                lblCaracteres.Text = $"Máximo de 500 caracteres: {500 - textBoxJustificativa.Text.Length}";
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
-                dataRow["Justificativa"] += DateTime.Now.Date.ToString("dd/MM/yyyy") + " - " + textBoxJustificativa.Text +Environment.NewLine;
-                DialogResult = DialogResult.OK;
+                string strTexto = $"Checado por:{Sessao.Usuario.Nome}{Environment.NewLine}" +
+                   $"Data:{ DateTime.Now.Date:dd/MM/yyyy}{Environment.NewLine}{textBoxJustificativa.Text} |";
+
+                if (chavePrescricao == null)
+                {
+                    dataRow["Justificativa"] += strTexto;
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    presenterGeneric = new PresenterGeneric();
+                    presenterGeneric.Salvar(new ChavePrescricao() 
+                    { 
+                        Id = chavePrescricao.Id,
+                        NomePrescricao = chavePrescricao.NomePrescricao,
+                        IdPaciente = Sessao.Paciente.Id, 
+                        ObservacaoDevolucao = strTexto,
+                        IsValidado =  false
+                    }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
+                    DialogResult = DialogResult.OK;
+                }
                 Dispose();
             }
             catch (Exception exErroJus)
@@ -58,20 +91,28 @@ namespace AppInternacao.Frm
 
         private void FrmJustificarChecagem_Load(object sender, EventArgs e)
         {
-            if (!viewEnable)
+            string texto = string.Empty;
+            if (chavePrescricao == null)
             {
-                string[] txtJustificativas = dataRow["Justificativa"].ToString().Split('\r');
-
-                textBoxJustificativa.MaxLength = 1000;
-                btnConfirmar.Click -= btnConfirmar_Click;
-                lblCaracteres.Visible = false;
-
-                foreach (var item in txtJustificativas)
+                if (!viewEnable)
                 {
-                    if (!string.IsNullOrWhiteSpace(item.ToString()))
-                        textBoxJustificativa.Text += item.ToString() + Environment.NewLine;
+                    string[] txtJustificativas = dataRow["Justificativa"].ToString().Split('|');
+                    textBoxJustificativa.MaxLength = 1000;
+                    lblCaracteres.Visible = false;
+
+                    foreach (var item in txtJustificativas)
+                    {
+                        texto +=  item.ToString() + Environment.NewLine + Environment.NewLine ;
+                    }
+
+                    textBoxJustificativa.Text = texto;
                 }
-                //textBoxJustificativa.Text = dataRow["Justificativa"].ToString();
+            }
+            else
+            {
+                lblTitle.Text = "Justificar Devolução de Prescrição.";
+                textBoxJustificativa.MaxLength = 500;
+                lblCaracteres.Visible = false;
             }
         }
     }

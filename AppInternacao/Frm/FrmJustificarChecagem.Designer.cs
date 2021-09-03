@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panel00title = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxJustificativa = new System.Windows.Forms.TextBox();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.lblCaracteres = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.textBoxJustificativa = new System.Windows.Forms.TextBox();
             this.panel00title.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -42,7 +42,7 @@
             // panel00title
             // 
             this.panel00title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.panel00title.Controls.Add(this.label1);
+            this.panel00title.Controls.Add(this.lblTitle);
             this.panel00title.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel00title.Location = new System.Drawing.Point(0, 0);
             this.panel00title.Name = "panel00title";
@@ -50,16 +50,16 @@
             this.panel00title.TabIndex = 2;
             this.panel00title.TabStop = true;
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(310, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Justificativa de checagem de prescrição";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(3, 6);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(310, 20);
+            this.lblTitle.TabIndex = 4;
+            this.lblTitle.Text = "Justificativa de checagem de prescrição";
             // 
             // panel1
             // 
@@ -73,6 +73,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(345, 134);
             this.panel1.TabIndex = 3;
+            // 
+            // textBoxJustificativa
+            // 
+            this.textBoxJustificativa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxJustificativa.Location = new System.Drawing.Point(14, 7);
+            this.textBoxJustificativa.Multiline = true;
+            this.textBoxJustificativa.Name = "textBoxJustificativa";
+            this.textBoxJustificativa.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxJustificativa.Size = new System.Drawing.Size(318, 65);
+            this.textBoxJustificativa.TabIndex = 58;
+            this.textBoxJustificativa.TextChanged += new System.EventHandler(this.textBoxJustificativa_TextChanged);
             // 
             // btnConfirmar
             // 
@@ -128,15 +139,6 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // textBoxJustificativa
-            // 
-            this.textBoxJustificativa.Location = new System.Drawing.Point(14, 7);
-            this.textBoxJustificativa.Multiline = true;
-            this.textBoxJustificativa.Name = "textBoxJustificativa";
-            this.textBoxJustificativa.Size = new System.Drawing.Size(318, 65);
-            this.textBoxJustificativa.TabIndex = 58;
-            this.textBoxJustificativa.TextChanged += new System.EventHandler(this.textBoxJustificativa_TextChanged);
-            // 
             // FrmJustificarChecagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,7 +168,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel00title;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;

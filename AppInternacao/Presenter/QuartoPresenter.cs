@@ -17,7 +17,7 @@ namespace AppInternacao.Presenter
         public QuartoPresenter(IQuarto _view)
         {
             view = _view;
-            quarto = _view.QuartoLeito;
+            quarto = _view.Quarto;
         }
 
         public int? Salvar()
@@ -36,7 +36,7 @@ namespace AppInternacao.Presenter
                     ret = crud.Executar(quarto, Procedure.SP_ADD_UPD_QUARTO, Acao.Inserir);
                     List<Quarto> quartos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
 
-                    view.QuartoLeitos = quartos;
+                    view.Quartos = quartos;
                 }
                 return ret;
             }
@@ -55,7 +55,7 @@ namespace AppInternacao.Presenter
                 objeto = new LISTAOBJETOS();
                 crud = new CRUD();
                 ret = crud.Executar(new Quarto() { Id = _id }, Procedure.SP_DEL_QUARTO, Acao.Excluir);
-                view.QuartoLeitos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
+                view.Quartos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
 
                 if (ret.HasValue)
                     ret = 2; // 2 é Codigo de exclusão de registro
@@ -82,7 +82,7 @@ namespace AppInternacao.Presenter
 
                 objeto = new LISTAOBJETOS();
                 view.Setores = objeto.ListaGenerica(Procedure.SP_GET_SETOR, new Setor());
-                view.QuartoLeitos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS_BYNAME, objetoQuarto);
+                view.Quartos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS_BYNAME, objetoQuarto);
             }
             catch (Exception exC)
             {

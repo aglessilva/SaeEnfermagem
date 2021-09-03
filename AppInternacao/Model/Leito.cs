@@ -13,7 +13,9 @@
         public string NomeLeito { get; set; }
         public string Nome { get; set; }
         public long Prontuario { get; set; }
-        public bool? IsDisponibilidade { get; set; }
+        public bool IsDisponibilidade { get; set; }
         public bool IsManutencao { get; set; }
+        public int? IdLeitoTransferencia { get; set; }
+        public bool TipoLeito { get; set; }
     }
 }

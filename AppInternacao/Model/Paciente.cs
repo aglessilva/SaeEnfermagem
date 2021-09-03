@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppInternacao.Enum;
+using System;
 
 namespace AppInternacao.Model
 {
@@ -20,7 +21,7 @@ namespace AppInternacao.Model
         public string NomeLeito { get; set; }
         public string NomeQuarto { get; set; }
         public string NomeSetor { get; set; }
-        public bool? IsBaixado { get; set; }
+        public Enum.StatusInternacao Status { get; set; }
         public string HistoricoEnfermagem { get; set; }
         public string Telefone { get; set; }
         public SAE Sae { get; set; }
@@ -41,10 +42,11 @@ namespace AppInternacao.Model
         public bool IsConcluido { get; set; }
     }
 
-    public class BaixarPaciente
+    public class StatusInernacaoPaciente
     {
         public long Prontuario { get; set; }
         public int IdLeito { get; set; }
+        public StatusInternacao Status { get; set; }
     }
     
 }

@@ -1,4 +1,5 @@
-﻿using AppInternacao.Presenter;
+﻿using AppInternacao.Enum;
+using AppInternacao.Presenter;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -48,13 +49,12 @@ namespace AppInternacao.FrmSae
 
                     pbOk.Visible = true;
 
-                    if (Sessao.Paciente.IsBaixado.HasValue)
-                        if ((bool)Sessao.Paciente.IsBaixado)
-                        {
-                            gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
-                            MessageBox.Show($"Foi dado baixa no paciente: {Sessao.Paciente.Nome} o mesmo já não ocupa nenhum Leito e não está disponível para a SAE.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            return;
-                        }
+                    if (!(StatusInternacao.Alta | StatusInternacao.Obito).HasFlag(Sessao.Paciente.Status))
+                    {
+                        gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
+                        MessageBox.Show($"Foi dado baixa no paciente: {Sessao.Paciente.Nome} o mesmo já não ocupa nenhum Leito e não está disponível para a SAE.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return;
+                    }
 
 
                     if (string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito))

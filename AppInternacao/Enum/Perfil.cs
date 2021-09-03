@@ -8,9 +8,9 @@ namespace AppInternacao.Enum
         Nenhum = 0,
         Tecnico = 2,
         Enfermeiro_Assistemcial = 4 ,
-        Medicos = 8,
+        Medico = 8,
         EnfermeiroAdmin = Enfermeiro_Assistemcial | Tecnico,
-       // Administrador =  Enfermeiro_Assistemcial | Medicos | Tecnico
-        Administrador =  EnfermeiroAdmin | Medicos 
+       // Administrador =  Enfermeiro_Assistemcial | Medico | Tecnico
+        Administrador =  EnfermeiroAdmin | Medico 
     }
 }

@@ -20,10 +20,9 @@ namespace AppInternacao.FrmSae
             textBoxSenha.Focus();
         }
 
-
         private void textBoxSenha_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+          if (e.KeyCode == Keys.Space)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -48,8 +47,8 @@ namespace AppInternacao.FrmSae
                     return;
                 }
 
-                if ((bool)Sessao.Usuario.AlterarSenha)
-                {
+                //if ((bool)Sessao.Usuario.AlterarSenha)
+                //{
                     FrmMain frmMain = (FrmMain)FindForm();
                     UsuarioPresenter usuarioPresenter = new UsuarioPresenter();
 
@@ -65,7 +64,7 @@ namespace AppInternacao.FrmSae
                     }
                     else
                         FrmMain.Alert(ret);
-                }
+              //  }
             }
 
             catch (Exception exalter)
@@ -73,7 +72,6 @@ namespace AppInternacao.FrmSae
                 FrmMain.Alert(0, exalter);
             }
         }
-
 
         private string CriptoGrafaSenha()
         {
@@ -98,6 +96,14 @@ namespace AppInternacao.FrmSae
 
             Dispose(true);
             Application.Exit();
+        }
+
+        private void textBoxSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar.Equals((char)32))
+            {
+                e.Handled = true;
+            }
         }
     }
     

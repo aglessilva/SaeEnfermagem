@@ -6,7 +6,10 @@ namespace AppInternacao.Model
     public class SQLDBCONNECTION
     {
         #region VARIAVEIS DE AMBIENTE
-        private readonly string sTrconn = @"Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=HAGLESPW701\SQLEXPRESS";
+        //private readonly string sTrconn = @"Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=HAGLESPW701\SQLEXPRESS";
+        private readonly string sTrconn = @"Password=#$Sucesso01;Persist Security Info=True;User ID=sa;Initial Catalog=DB_SAE;Data Source=.";
+
+
         private SqlConnection cnn = null;
         #endregion
 

@@ -30,15 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblNaoLocaizado = new System.Windows.Forms.Label();
-            this.pbOk = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnEnviarCodigoBarra = new System.Windows.Forms.Button();
-            this.btnLimpar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxProntuario = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gDadosPaciente = new System.Windows.Forms.GroupBox();
             this.lblLeito = new System.Windows.Forms.Label();
             this.lblIdade = new System.Windows.Forms.Label();
@@ -49,12 +45,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblObs = new System.Windows.Forms.Label();
+            this.pbOk = new System.Windows.Forms.PictureBox();
+            this.btnEnviarCodigoBarra = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gDadosPaciente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,17 +90,6 @@
             this.lblNaoLocaizado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblNaoLocaizado.Visible = false;
             // 
-            // pbOk
-            // 
-            this.pbOk.Image = global::AppInternacao.Properties.Resources.ok_accept_15562;
-            this.pbOk.Location = new System.Drawing.Point(334, 96);
-            this.pbOk.Name = "pbOk";
-            this.pbOk.Size = new System.Drawing.Size(18, 18);
-            this.pbOk.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbOk.TabIndex = 5;
-            this.pbOk.TabStop = false;
-            this.pbOk.Visible = false;
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -119,55 +108,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(372, 39);
             this.panel3.TabIndex = 2;
-            // 
-            // btnEnviarCodigoBarra
-            // 
-            this.btnEnviarCodigoBarra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEnviarCodigoBarra.BackColor = System.Drawing.Color.Transparent;
-            this.btnEnviarCodigoBarra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEnviarCodigoBarra.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEnviarCodigoBarra.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnEnviarCodigoBarra.FlatAppearance.BorderSize = 0;
-            this.btnEnviarCodigoBarra.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnEnviarCodigoBarra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnEnviarCodigoBarra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnviarCodigoBarra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnviarCodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnEnviarCodigoBarra.Image = global::AppInternacao.Properties.Resources.check;
-            this.btnEnviarCodigoBarra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnviarCodigoBarra.Location = new System.Drawing.Point(236, 5);
-            this.btnEnviarCodigoBarra.Name = "btnEnviarCodigoBarra";
-            this.btnEnviarCodigoBarra.Size = new System.Drawing.Size(91, 29);
-            this.btnEnviarCodigoBarra.TabIndex = 6;
-            this.btnEnviarCodigoBarra.Text = "Enviar";
-            this.btnEnviarCodigoBarra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEnviarCodigoBarra.UseVisualStyleBackColor = false;
-            this.btnEnviarCodigoBarra.Visible = false;
-            this.btnEnviarCodigoBarra.Click += new System.EventHandler(this.btnEnviarCodigoBarra_Click);
-            // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnLimpar.BackColor = System.Drawing.Color.Transparent;
-            this.btnLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnLimpar.FlatAppearance.BorderSize = 0;
-            this.btnLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnLimpar.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
-            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpar.Location = new System.Drawing.Point(40, 5);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(127, 29);
-            this.btnLimpar.TabIndex = 5;
-            this.btnLimpar.Text = "Limpar campo";
-            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpar.UseVisualStyleBackColor = false;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // panel2
             // 
@@ -206,16 +146,6 @@
             this.textBoxProntuario.TabIndex = 0;
             this.textBoxProntuario.TextChanged += new System.EventHandler(this.textBoxProntuario_TextChanged);
             this.textBoxProntuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProntuario_KeyPress);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.vector_scan_barcode_4_transparent;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 55);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(61, 60);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // gDadosPaciente
             // 
@@ -322,6 +252,76 @@
             this.lblObs.Text = "-";
             this.lblObs.Visible = false;
             // 
+            // pbOk
+            // 
+            this.pbOk.Image = global::AppInternacao.Properties.Resources.ok_accept_15562;
+            this.pbOk.Location = new System.Drawing.Point(334, 96);
+            this.pbOk.Name = "pbOk";
+            this.pbOk.Size = new System.Drawing.Size(18, 18);
+            this.pbOk.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbOk.TabIndex = 5;
+            this.pbOk.TabStop = false;
+            this.pbOk.Visible = false;
+            // 
+            // btnEnviarCodigoBarra
+            // 
+            this.btnEnviarCodigoBarra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnEnviarCodigoBarra.BackColor = System.Drawing.Color.Transparent;
+            this.btnEnviarCodigoBarra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEnviarCodigoBarra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnviarCodigoBarra.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnEnviarCodigoBarra.FlatAppearance.BorderSize = 0;
+            this.btnEnviarCodigoBarra.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnEnviarCodigoBarra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnEnviarCodigoBarra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnviarCodigoBarra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnviarCodigoBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEnviarCodigoBarra.Image = global::AppInternacao.Properties.Resources.check;
+            this.btnEnviarCodigoBarra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnviarCodigoBarra.Location = new System.Drawing.Point(236, 5);
+            this.btnEnviarCodigoBarra.Name = "btnEnviarCodigoBarra";
+            this.btnEnviarCodigoBarra.Size = new System.Drawing.Size(91, 29);
+            this.btnEnviarCodigoBarra.TabIndex = 6;
+            this.btnEnviarCodigoBarra.Text = "Enviar";
+            this.btnEnviarCodigoBarra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEnviarCodigoBarra.UseVisualStyleBackColor = false;
+            this.btnEnviarCodigoBarra.Visible = false;
+            this.btnEnviarCodigoBarra.Click += new System.EventHandler(this.btnEnviarCodigoBarra_Click);
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnLimpar.FlatAppearance.BorderSize = 0;
+            this.btnLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnLimpar.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
+            this.btnLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLimpar.Location = new System.Drawing.Point(40, 5);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(127, 29);
+            this.btnLimpar.TabIndex = 5;
+            this.btnLimpar.Text = "Limpar campo";
+            this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.vector_scan_barcode_4_transparent;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 55);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(61, 60);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // UC00BarCodeProntuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,13 +335,13 @@
             this.Load += new System.EventHandler(this.UCBarCodeProntuario_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gDadosPaciente.ResumeLayout(false);
             this.gDadosPaciente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

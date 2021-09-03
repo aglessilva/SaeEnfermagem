@@ -3,22 +3,23 @@ using AppInternacao.Model;
 using AppInternacao.Presenter;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppInternacao.Frm
 {
     public partial class FrmJustificativaLeito : Form
     {
-        public FrmJustificativaLeito()
+        readonly List<Leito> leitos = null;
+        AlteracaoLeitoPaciente alteracaoLeitoPaciente = null;
+        private Leito leito = null;
+
+        public FrmJustificativaLeito(List<Leito> _leitos)
         {
             InitializeComponent();
+            leitos = _leitos;
         }
        
 
@@ -30,22 +31,27 @@ namespace AppInternacao.Frm
                 e.Cancel = false;
         }
 
-       
-
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-           
+           if(comboBoxMotivo.SelectedValue.Equals("0"))
+            {
+                MessageBox.Show("Selecione um motivo para justificar a alteração.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comboBoxMotivo.Focus();
+                return;
+            }
+
             try
             {
-                dynamic objDynamic = Sessao.Dinamico;
-                AlteracaoLeitoPaciente alteracaoLeitoPaciente = new AlteracaoLeitoPaciente()
+                leito = (leito != null) ? leitos.FirstOrDefault(n => n.IdLeitoTransferencia != null) : (Leito)Sessao.Dinamico;
+                alteracaoLeitoPaciente = new AlteracaoLeitoPaciente()
                 {
                     Id = 0,
-                    IdStatusAlteracao = Convert.ToInt32(comboBoxMotivo.SelectedValue),
+                    IdStatusAlteracao = (StatusInternacao)Convert.ToInt32(comboBoxMotivo.SelectedValue),
                     IdUsuario = Sessao.Usuario.Id,
                     Justificativa = textBoxJustificativa.Text,
-                    IdLeito = objDynamic.Id,
-                    Prontuario = objDynamic.Prontuario
+                    IdLeito = leito.Id,
+                    IdLeitoTransferencia = (new string[] { "1", "2", "4", "16" }.Contains(comboBoxMotivo.SelectedValue)) ? leito.IdLeitoTransferencia : null,
+                    Prontuario = leito.Prontuario
                 };
 
                 PresenterGeneric presenterGeneric = new PresenterGeneric();
@@ -72,14 +78,20 @@ namespace AppInternacao.Frm
         {
             try
             {
+                comboBoxMotivo.SelectedIndexChanged -= comboBoxMotivo_SelectedIndexChanged;
                 SqlParameter[] sqlParameter = { };
-                DataTable tb = new CRUD().GetDataTable(Enum.Procedure.SP_GET_STATUS_LEITO, sqlParameter);
-                comboBoxMotivo.DataSource = tb;
+                DataTable tb = new CRUD().GetDataTable(Procedure.SP_GET_STATUS_LEITO, sqlParameter);
+                DataRow row = tb.NewRow();
+                row["Id"] = "0";
+                row["StatusLeito"] = "Selecione";
+                tb.Rows.InsertAt(row,0);
+                
+                comboBoxMotivo.DataSource = tb.DefaultView;
+                comboBoxMotivo.SelectedIndexChanged += comboBoxMotivo_SelectedIndexChanged;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
 
@@ -89,6 +101,23 @@ namespace AppInternacao.Frm
             {
                 lblCaracteres.Text = $"Minimo de 100 caracteres: {100 - textBoxJustificativa.Text.Length}";
                 btnConfirmar.Enabled = textBoxJustificativa.Text.Length >= 100;
+            }
+        }
+
+        private void comboBoxMotivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // codigos de status que obriga transferir o paciente de um leito para o outro
+            var list = new string[] { "1", "2", "4", "16" };
+            var item = ((DataRowView)comboBoxMotivo.SelectedItem).Row.ItemArray[0];
+            if (list.Contains(item.ToString()))
+            {
+                Hide();
+                using (var frm = new FrmAlterarLeitoPaciente(leitos))
+                {
+                    frm.ShowDialog();
+                    leito = frm.Parametro;
+                }
+                Show();
             }
         }
     }

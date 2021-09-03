@@ -17,6 +17,14 @@ namespace AppInternacao.FrmSae
             dataGridViewNomeTemplate.AutoGenerateColumns = false;
         }
 
+        private void UCNomeTemplate_Load(object sender, EventArgs e)
+        {
+            FrmMain.mySalvar.Click += Salvar;
+            FrmMain.myNovo.Click += Novo;
+            templateNamePresenter = new TemplateNamePresenter(this);
+            templateNamePresenter.Iniciar();
+        }
+        
         public List<EstruturaFisica> estruturaFisicas
         {
             set
@@ -57,14 +65,6 @@ namespace AppInternacao.FrmSae
                 dataGridViewNomeTemplate.DataSource = null;
                 dataGridViewNomeTemplate.DataSource = value;
             }
-        }
-
-        private void UCNomeTemplate_Load(object sender, EventArgs e)
-        {
-            FrmMain.mySalvar.Click += Salvar;
-            FrmMain.myNovo.Click += Novo;
-            templateNamePresenter = new TemplateNamePresenter(this);
-            templateNamePresenter.Iniciar();
         }
 
         private void Novo(object sender, EventArgs e)

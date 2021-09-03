@@ -38,13 +38,16 @@
             this.textBoxJustificativa = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel00title.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel00title
             // 
             this.panel00title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.panel00title.Controls.Add(this.iconPictureBox1);
             this.panel00title.Controls.Add(this.label1);
             this.panel00title.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel00title.Location = new System.Drawing.Point(0, 0);
@@ -82,8 +85,9 @@
             // 
             // lblCaracteres
             // 
+            this.lblCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCaracteres.AutoSize = true;
-            this.lblCaracteres.Location = new System.Drawing.Point(189, 50);
+            this.lblCaracteres.Location = new System.Drawing.Point(179, 50);
             this.lblCaracteres.Name = "lblCaracteres";
             this.lblCaracteres.Size = new System.Drawing.Size(129, 13);
             this.lblCaracteres.TabIndex = 54;
@@ -141,7 +145,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(11, 138);
+            this.btnCancelar.Location = new System.Drawing.Point(201, 138);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(130, 30);
             this.btnCancelar.TabIndex = 49;
@@ -164,7 +168,7 @@
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirmar.Location = new System.Drawing.Point(199, 138);
+            this.btnConfirmar.Location = new System.Drawing.Point(11, 138);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(130, 30);
             this.btnConfirmar.TabIndex = 48;
@@ -172,6 +176,20 @@
             this.btnConfirmar.Text = "Confirmar Alteração";
             this.btnConfirmar.UseVisualStyleBackColor = false;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.iconPictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(165)))), ((int)(((byte)(245)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.BookOpen;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(165)))), ((int)(((byte)(245)))));
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.Location = new System.Drawing.Point(313, 0);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox1.TabIndex = 5;
+            this.iconPictureBox1.TabStop = false;
             // 
             // FrmJustificativaLeito
             // 
@@ -194,6 +212,7 @@
             this.panel00title.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -210,5 +229,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label lblCaracteres;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }

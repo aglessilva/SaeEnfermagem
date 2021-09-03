@@ -38,11 +38,11 @@ namespace AppInternacao.FrmSae
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCQuartoLeito));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCQuartoLeito));
             this.tabControlQuartoLeito = new System.Windows.Forms.TabControl();
             this.tabPageQuartos = new System.Windows.Forms.TabPage();
             this.dataGridViewQuartos = new System.Windows.Forms.DataGridView();
@@ -50,15 +50,10 @@ namespace AppInternacao.FrmSae
             this.IDSETOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeQuarto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalLeito = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Excluir = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.buttonLimpar = new System.Windows.Forms.Button();
             this.textBoxPesquisaQuarto = new System.Windows.Forms.TextBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.comboBoxSetor = new System.Windows.Forms.ComboBox();
@@ -72,18 +67,14 @@ namespace AppInternacao.FrmSae
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isDisponivel = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBoxPesquisaLeito = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gLeito = new System.Windows.Forms.GroupBox();
+            this.chkLeitoManutencao = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxIdLeitoQuarto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -104,26 +95,35 @@ namespace AppInternacao.FrmSae
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewImageColumn();
+            this.buttonLimpar = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewImageColumn5 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.chkLeitoManutencao = new System.Windows.Forms.CheckBox();
             this.tabControlQuartoLeito.SuspendLayout();
             this.tabPageQuartos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartos)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPageLeito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLeito)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.gLeito.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageInernacao.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlQuartoLeito
@@ -240,28 +240,6 @@ namespace AppInternacao.FrmSae
             this.TotalLeito.ToolTipText = "Toal de Leitos por quarto";
             this.TotalLeito.Width = 30;
             // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "";
-            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
-            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Editar.ToolTipText = "Editar informações";
-            this.Editar.Width = 30;
-            // 
-            // Excluir
-            // 
-            this.Excluir.HeaderText = "";
-            this.Excluir.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
-            this.Excluir.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Excluir.Name = "Excluir";
-            this.Excluir.ReadOnly = true;
-            this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Excluir.ToolTipText = "Remover quarto";
-            this.Excluir.Width = 30;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.panel8);
@@ -284,28 +262,6 @@ namespace AppInternacao.FrmSae
             this.panel8.Size = new System.Drawing.Size(283, 1);
             this.panel8.TabIndex = 20;
             // 
-            // buttonLimpar
-            // 
-            this.buttonLimpar.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLimpar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonLimpar.BackgroundImage")));
-            this.buttonLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.buttonLimpar.FlatAppearance.BorderSize = 0;
-            this.buttonLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.buttonLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.buttonLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLimpar.Location = new System.Drawing.Point(262, 21);
-            this.buttonLimpar.Name = "buttonLimpar";
-            this.buttonLimpar.Size = new System.Drawing.Size(26, 20);
-            this.buttonLimpar.TabIndex = 9;
-            this.buttonLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLimpar.UseVisualStyleBackColor = false;
-            this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
-            // 
             // textBoxPesquisaQuarto
             // 
             this.textBoxPesquisaQuarto.BackColor = System.Drawing.SystemColors.Control;
@@ -316,16 +272,6 @@ namespace AppInternacao.FrmSae
             this.textBoxPesquisaQuarto.Size = new System.Drawing.Size(217, 13);
             this.textBoxPesquisaQuarto.TabIndex = 3;
             this.textBoxPesquisaQuarto.TextChanged += new System.EventHandler(this.textBoxPesquisaQuarto_TextChanged);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(6, 16);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(31, 25);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 21;
-            this.pictureBox4.TabStop = false;
             // 
             // groupBox1
             // 
@@ -346,16 +292,6 @@ namespace AppInternacao.FrmSae
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro de Quartos";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::AppInternacao.Properties.Resources.home_01;
-            this.pictureBox3.Location = new System.Drawing.Point(5, 35);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(31, 25);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
             // 
             // panel7
             // 
@@ -555,28 +491,6 @@ namespace AppInternacao.FrmSae
             this.isDisponivel.ToolTipText = "Disponibilidade de Leitos";
             this.isDisponivel.Width = 30;
             // 
-            // dataGridViewImageColumn3
-            // 
-            this.dataGridViewImageColumn3.HeaderText = "";
-            this.dataGridViewImageColumn3.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn3.Image")));
-            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
-            this.dataGridViewImageColumn3.ReadOnly = true;
-            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn3.ToolTipText = "Editar Informações";
-            this.dataGridViewImageColumn3.Width = 30;
-            // 
-            // dataGridViewImageColumn4
-            // 
-            this.dataGridViewImageColumn4.HeaderText = "";
-            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
-            this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
-            this.dataGridViewImageColumn4.ReadOnly = true;
-            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewImageColumn4.ToolTipText = "Remover Item";
-            this.dataGridViewImageColumn4.Width = 30;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.panel6);
@@ -599,28 +513,6 @@ namespace AppInternacao.FrmSae
             this.panel6.Size = new System.Drawing.Size(283, 1);
             this.panel6.TabIndex = 14;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(262, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 20);
-            this.button1.TabIndex = 10;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // textBoxPesquisaLeito
             // 
             this.textBoxPesquisaLeito.BackColor = System.Drawing.SystemColors.Control;
@@ -631,16 +523,6 @@ namespace AppInternacao.FrmSae
             this.textBoxPesquisaLeito.Size = new System.Drawing.Size(217, 13);
             this.textBoxPesquisaLeito.TabIndex = 2;
             this.textBoxPesquisaLeito.TextChanged += new System.EventHandler(this.textBoxPesquisaLeito_TextChanged);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(6, 16);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(31, 25);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 16;
-            this.pictureBox2.TabStop = false;
             // 
             // gLeito
             // 
@@ -667,6 +549,16 @@ namespace AppInternacao.FrmSae
             this.gLeito.TabStop = false;
             this.gLeito.Text = "Cadastro de Leitos";
             // 
+            // chkLeitoManutencao
+            // 
+            this.chkLeitoManutencao.AutoSize = true;
+            this.chkLeitoManutencao.Location = new System.Drawing.Point(666, 44);
+            this.chkLeitoManutencao.Name = "chkLeitoManutencao";
+            this.chkLeitoManutencao.Size = new System.Drawing.Size(86, 17);
+            this.chkLeitoManutencao.TabIndex = 16;
+            this.chkLeitoManutencao.Text = "Manutenção";
+            this.chkLeitoManutencao.UseVisualStyleBackColor = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -692,16 +584,6 @@ namespace AppInternacao.FrmSae
             this.panel2.Size = new System.Drawing.Size(22, 1);
             this.panel2.TabIndex = 14;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources._48_113667;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
@@ -721,12 +603,12 @@ namespace AppInternacao.FrmSae
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(491, 45);
+            this.label5.Location = new System.Drawing.Point(492, 45);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Total Leitos";
+            this.label5.Text = "Leitos com";
             // 
             // comboBoxQuarto
             // 
@@ -904,6 +786,7 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.ToolTipText = "Editar informações";
             this.dataGridViewImageColumn1.Width = 30;
             // 
             // dataGridViewImageColumn2
@@ -914,7 +797,136 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.ToolTipText = "Remover quarto";
             this.dataGridViewImageColumn2.Width = 30;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "";
+            this.dataGridViewImageColumn3.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn3.Image")));
+            this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.ReadOnly = true;
+            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn3.ToolTipText = "Editar Informações";
+            this.dataGridViewImageColumn3.Width = 30;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "";
+            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
+            this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.ReadOnly = true;
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn4.ToolTipText = "Remover Item";
+            this.dataGridViewImageColumn4.Width = 30;
+            // 
+            // Editar
+            // 
+            this.Editar.HeaderText = "";
+            this.Editar.Image = ((System.Drawing.Image)(resources.GetObject("Editar.Image")));
+            this.Editar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Editar.ToolTipText = "Editar informações";
+            this.Editar.Width = 30;
+            // 
+            // Excluir
+            // 
+            this.Excluir.HeaderText = "";
+            this.Excluir.Image = global::AppInternacao.Properties.Resources.Delete_80_icon_icons_com_57340;
+            this.Excluir.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Excluir.ToolTipText = "Remover quarto";
+            this.Excluir.Width = 30;
+            // 
+            // buttonLimpar
+            // 
+            this.buttonLimpar.BackColor = System.Drawing.Color.Transparent;
+            this.buttonLimpar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonLimpar.BackgroundImage")));
+            this.buttonLimpar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonLimpar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.buttonLimpar.FlatAppearance.BorderSize = 0;
+            this.buttonLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.buttonLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.buttonLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buttonLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLimpar.Location = new System.Drawing.Point(262, 21);
+            this.buttonLimpar.Name = "buttonLimpar";
+            this.buttonLimpar.Size = new System.Drawing.Size(26, 20);
+            this.buttonLimpar.TabIndex = 9;
+            this.buttonLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLimpar.UseVisualStyleBackColor = false;
+            this.buttonLimpar.Click += new System.EventHandler(this.buttonLimpar_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(6, 16);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 21;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::AppInternacao.Properties.Resources.home_01;
+            this.pictureBox3.Location = new System.Drawing.Point(5, 35);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(262, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 20);
+            this.button1.TabIndex = 10;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(6, 16);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 16;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources._48_113667;
+            this.pictureBox1.Location = new System.Drawing.Point(5, 35);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // dataGridViewImageColumn5
             // 
@@ -925,16 +937,6 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn5.ReadOnly = true;
             this.dataGridViewImageColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn5.Width = 30;
-            // 
-            // chkLeitoManutencao
-            // 
-            this.chkLeitoManutencao.AutoSize = true;
-            this.chkLeitoManutencao.Location = new System.Drawing.Point(666, 44);
-            this.chkLeitoManutencao.Name = "chkLeitoManutencao";
-            this.chkLeitoManutencao.Size = new System.Drawing.Size(86, 17);
-            this.chkLeitoManutencao.TabIndex = 16;
-            this.chkLeitoManutencao.Text = "Manutenção";
-            this.chkLeitoManutencao.UseVisualStyleBackColor = true;
             // 
             // UCQuartoLeito
             // 
@@ -951,24 +953,24 @@ namespace AppInternacao.FrmSae
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuartos)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPageLeito.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLeito)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.gLeito.ResumeLayout(false);
             this.gLeito.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageInernacao.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

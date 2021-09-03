@@ -47,13 +47,13 @@ namespace AppInternacao.Presenter
         }
 
 
-        public int BaixarPaciente(BaixarPaciente obj)
+        public int statuInternacao(StatusInernacaoPaciente obj)
         {
             int? ret = 0;
             try
             {
                 crud = new CRUD();
-                ret = crud.Executar(new BaixarPaciente() { Prontuario = obj.Prontuario, IdLeito = obj.IdLeito }, Procedure.SP_BAIXAR_PACIENTE, Acao.Inserir);
+                ret = crud.Executar(obj, Procedure.SP_STATUS_INTERNACAO, Acao.Inserir);
                 if (ret > 1)
                     ret = 1;
             }

@@ -43,7 +43,7 @@ namespace AppInternacao.FrmSae
         public void Carregar(Paciente _paciente = null)
         {
             lst = pacientePresenter.GetPacientes(_paciente);
-            dataGridViewPaciente.DataSource = lst.Where(p => string.IsNullOrWhiteSpace(p.NomeLeito) && p.IsBaixado == false).OrderBy(o => o.Nome).ToList();
+            dataGridViewPaciente.DataSource = lst.Where(p => string.IsNullOrWhiteSpace(p.NomeLeito) && p.TipoBaixa == null).OrderBy(o => o.Nome).ToList();
         }
 
         private void textBoxNome_TextChanged(object sender, EventArgs e)

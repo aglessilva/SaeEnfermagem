@@ -39,12 +39,12 @@
             this.lblLeito = new System.Windows.Forms.Label();
             this.lblQuarto = new System.Windows.Forms.Label();
             this.lblPaciente = new System.Windows.Forms.Label();
-            this.pictureBoxExtFoto = new AppInternacao.Extend.PictureBoxExt();
             this.label3 = new System.Windows.Forms.Label();
             this.pMenuLateral = new System.Windows.Forms.Panel();
+            this.pictureBoxExtFoto = new AppInternacao.Extend.PictureBoxExt();
             this.pUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExtFoto)).BeginInit();
             this.pMenuLateral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExtFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExibirHistorico
@@ -97,7 +97,7 @@
             // 
             // pUsuario
             // 
-            this.pUsuario.BackColor = System.Drawing.Color.LightGray;
+            this.pUsuario.BackColor = System.Drawing.SystemColors.Control;
             this.pUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pUsuario.Controls.Add(this.label5);
             this.pUsuario.Controls.Add(this.label4);
@@ -131,7 +131,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(108, 89);
+            this.label4.Location = new System.Drawing.Point(109, 78);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 8;
@@ -164,7 +164,7 @@
             this.lblUnidadeFuncional.AutoSize = true;
             this.lblUnidadeFuncional.BackColor = System.Drawing.Color.Transparent;
             this.lblUnidadeFuncional.ForeColor = System.Drawing.Color.Black;
-            this.lblUnidadeFuncional.Location = new System.Drawing.Point(139, 89);
+            this.lblUnidadeFuncional.Location = new System.Drawing.Point(140, 78);
             this.lblUnidadeFuncional.Name = "lblUnidadeFuncional";
             this.lblUnidadeFuncional.Size = new System.Drawing.Size(10, 13);
             this.lblUnidadeFuncional.TabIndex = 4;
@@ -175,7 +175,7 @@
             this.lblLeito.AutoSize = true;
             this.lblLeito.BackColor = System.Drawing.Color.Transparent;
             this.lblLeito.ForeColor = System.Drawing.Color.Black;
-            this.lblLeito.Location = new System.Drawing.Point(156, 55);
+            this.lblLeito.Location = new System.Drawing.Point(141, 46);
             this.lblLeito.Name = "lblLeito";
             this.lblLeito.Size = new System.Drawing.Size(10, 13);
             this.lblLeito.TabIndex = 3;
@@ -203,22 +203,12 @@
             this.lblPaciente.TabIndex = 1;
             this.lblPaciente.Text = "-";
             // 
-            // pictureBoxExtFoto
-            // 
-            this.pictureBoxExtFoto.Image = global::AppInternacao.Properties.Resources.user0;
-            this.pictureBoxExtFoto.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxExtFoto.Name = "pictureBoxExtFoto";
-            this.pictureBoxExtFoto.Size = new System.Drawing.Size(115, 109);
-            this.pictureBoxExtFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxExtFoto.TabIndex = 0;
-            this.pictureBoxExtFoto.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(124, 55);
+            this.label3.Location = new System.Drawing.Point(109, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 7;
@@ -234,6 +224,17 @@
             this.pMenuLateral.Size = new System.Drawing.Size(281, 87);
             this.pMenuLateral.TabIndex = 16;
             // 
+            // pictureBoxExtFoto
+            // 
+            this.pictureBoxExtFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxExtFoto.Image = global::AppInternacao.Properties.Resources.user0;
+            this.pictureBoxExtFoto.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxExtFoto.Name = "pictureBoxExtFoto";
+            this.pictureBoxExtFoto.Size = new System.Drawing.Size(90, 88);
+            this.pictureBoxExtFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxExtFoto.TabIndex = 0;
+            this.pictureBoxExtFoto.TabStop = false;
+            // 
             // UCMenuEsquerdo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,8 +248,8 @@
             this.Load += new System.EventHandler(this.UCMenuEsquerdo_Load);
             this.pUsuario.ResumeLayout(false);
             this.pUsuario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExtFoto)).EndInit();
             this.pMenuLateral.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExtFoto)).EndInit();
             this.ResumeLayout(false);
 
         }

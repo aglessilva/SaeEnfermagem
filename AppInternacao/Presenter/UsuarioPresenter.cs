@@ -29,7 +29,7 @@ namespace AppInternacao.Presenter
                     usuario = view.usuario;
                 else
                     usuario = _usuario;
-                Procedure p = usuario == null ? Procedure.SP_UPDT_SENHA_USUARIO : Procedure.SP_ADD_UPDT_USUARIO;
+                Procedure p = Procedure.SP_ADD_UPDT_USUARIO;
                 return crud.Executar(usuario, p, Acao.Inserir);
             }
             catch (Exception exSalvar)
@@ -51,6 +51,19 @@ namespace AppInternacao.Presenter
             catch (Exception exGetuser)
             {
                 throw exGetuser;
+            }
+        }
+
+
+        public int VerificarCPF(string _cpf)
+        {
+            try
+            {
+                return (int)crud.Executar(new Usuario() { Cpf = _cpf }, Procedure.SP_CHK_CPF_USUARIO, Acao.Verificar);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

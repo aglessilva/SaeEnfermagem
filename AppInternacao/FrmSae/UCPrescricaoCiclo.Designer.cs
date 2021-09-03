@@ -42,21 +42,21 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblRotulo = new System.Windows.Forms.Label();
             this.textBoxNomePrescricao = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBoxDataPrescricao = new System.Windows.Forms.ComboBox();
             this.lblCicloPrescricao = new System.Windows.Forms.Label();
             this.btnAddCiclo = new System.Windows.Forms.Button();
+            this.btnValidarPrescricao = new System.Windows.Forms.Button();
+            this.lblValidaPrescricao = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnRemoveDia = new System.Windows.Forms.Button();
             this.btnAddDia = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnValidarPrescricao = new System.Windows.Forms.Button();
-            this.lblValidaPrescricao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrescricoes)).BeginInit();
             this.panel1.SuspendLayout();
             this.pNamePrescricao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewPrescricoes
@@ -141,10 +141,9 @@
             this.pNamePrescricao.Controls.Add(this.lblRotulo);
             this.pNamePrescricao.Controls.Add(this.textBoxNomePrescricao);
             this.pNamePrescricao.Controls.Add(this.pictureBox1);
-            this.pNamePrescricao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pNamePrescricao.Location = new System.Drawing.Point(0, 0);
             this.pNamePrescricao.Name = "pNamePrescricao";
-            this.pNamePrescricao.Size = new System.Drawing.Size(773, 198);
+            this.pNamePrescricao.Size = new System.Drawing.Size(189, 198);
             this.pNamePrescricao.TabIndex = 11;
             this.pNamePrescricao.Visible = false;
             // 
@@ -209,7 +208,7 @@
             this.panel3.BackColor = System.Drawing.Color.DimGray;
             this.panel3.Location = new System.Drawing.Point(228, 90);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(468, 1);
+            this.panel3.Size = new System.Drawing.Size(0, 1);
             this.panel3.TabIndex = 23;
             // 
             // lblRotulo
@@ -234,20 +233,10 @@
             this.textBoxNomePrescricao.Location = new System.Drawing.Point(273, 76);
             this.textBoxNomePrescricao.MaxLength = 50;
             this.textBoxNomePrescricao.Name = "textBoxNomePrescricao";
-            this.textBoxNomePrescricao.Size = new System.Drawing.Size(468, 13);
+            this.textBoxNomePrescricao.Size = new System.Drawing.Size(0, 13);
             this.textBoxNomePrescricao.TabIndex = 21;
             this.textBoxNomePrescricao.WordWrap = false;
             this.textBoxNomePrescricao.TextChanged += new System.EventHandler(this.textBoxNomePrescricao_TextChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.Documents;
-            this.pictureBox1.Location = new System.Drawing.Point(225, 64);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
             // 
             // comboBoxDataPrescricao
             // 
@@ -300,6 +289,62 @@
             this.btnAddCiclo.Visible = false;
             this.btnAddCiclo.Click += new System.EventHandler(this.btnAddCiclo_Click);
             // 
+            // btnValidarPrescricao
+            // 
+            this.btnValidarPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnValidarPrescricao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnValidarPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnValidarPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnValidarPrescricao.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnValidarPrescricao.FlatAppearance.BorderSize = 0;
+            this.btnValidarPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnValidarPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnValidarPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnValidarPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.btnValidarPrescricao.ForeColor = System.Drawing.Color.White;
+            this.btnValidarPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnValidarPrescricao.Location = new System.Drawing.Point(560, 29);
+            this.btnValidarPrescricao.Name = "btnValidarPrescricao";
+            this.btnValidarPrescricao.Size = new System.Drawing.Size(201, 42);
+            this.btnValidarPrescricao.TabIndex = 50;
+            this.btnValidarPrescricao.TabStop = false;
+            this.btnValidarPrescricao.Text = "Checar e Validar Prescrição";
+            this.btnValidarPrescricao.UseVisualStyleBackColor = false;
+            this.btnValidarPrescricao.Visible = false;
+            this.btnValidarPrescricao.Click += new System.EventHandler(this.btnValidarPrescricao_Click);
+            // 
+            // lblValidaPrescricao
+            // 
+            this.lblValidaPrescricao.AutoSize = true;
+            this.lblValidaPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.lblValidaPrescricao.ForeColor = System.Drawing.Color.Red;
+            this.lblValidaPrescricao.Location = new System.Drawing.Point(248, 65);
+            this.lblValidaPrescricao.Name = "lblValidaPrescricao";
+            this.lblValidaPrescricao.Size = new System.Drawing.Size(121, 17);
+            this.lblValidaPrescricao.TabIndex = 51;
+            this.lblValidaPrescricao.Text = "validar Prescrição";
+            this.lblValidaPrescricao.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.dataGridViewPrescricoes);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 198);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(773, 350);
+            this.panel2.TabIndex = 24;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AppInternacao.Properties.Resources.Documents;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 64);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnNewLine
             // 
             this.btnNewLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -350,52 +395,6 @@
             this.btnAddDia.UseVisualStyleBackColor = true;
             this.btnAddDia.Click += new System.EventHandler(this.btnAddDia_Click);
             // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.dataGridViewPrescricoes);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 198);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(773, 350);
-            this.panel2.TabIndex = 24;
-            // 
-            // btnValidarPrescricao
-            // 
-            this.btnValidarPrescricao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnValidarPrescricao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnValidarPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnValidarPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnValidarPrescricao.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnValidarPrescricao.FlatAppearance.BorderSize = 0;
-            this.btnValidarPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnValidarPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnValidarPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnValidarPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btnValidarPrescricao.ForeColor = System.Drawing.Color.White;
-            this.btnValidarPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnValidarPrescricao.Location = new System.Drawing.Point(560, 29);
-            this.btnValidarPrescricao.Name = "btnValidarPrescricao";
-            this.btnValidarPrescricao.Size = new System.Drawing.Size(201, 42);
-            this.btnValidarPrescricao.TabIndex = 50;
-            this.btnValidarPrescricao.TabStop = false;
-            this.btnValidarPrescricao.Text = "Checar e Validar Prescrição";
-            this.btnValidarPrescricao.UseVisualStyleBackColor = false;
-            this.btnValidarPrescricao.Visible = false;
-            this.btnValidarPrescricao.Click += new System.EventHandler(this.btnValidarPrescricao_Click);
-            // 
-            // lblValidaPrescricao
-            // 
-            this.lblValidaPrescricao.AutoSize = true;
-            this.lblValidaPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.lblValidaPrescricao.ForeColor = System.Drawing.Color.Red;
-            this.lblValidaPrescricao.Location = new System.Drawing.Point(248, 65);
-            this.lblValidaPrescricao.Name = "lblValidaPrescricao";
-            this.lblValidaPrescricao.Size = new System.Drawing.Size(121, 17);
-            this.lblValidaPrescricao.TabIndex = 51;
-            this.lblValidaPrescricao.Text = "validar Prescrição";
-            this.lblValidaPrescricao.Visible = false;
-            // 
             // UCPrescricaoCiclo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,8 +410,8 @@
             this.panel1.PerformLayout();
             this.pNamePrescricao.ResumeLayout(false);
             this.pNamePrescricao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

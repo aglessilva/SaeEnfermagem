@@ -130,6 +130,17 @@ namespace AppInternacao.FrmSae
                     errorProvider1.SetError(comboBoxQtdLeitos, null);
                 }
 
+                if (comboBoxSetor.SelectedItem == null)
+                {
+                    errorProvider1.SetError(comboBoxSetor, "Preencha este campo");
+                    errorProvider1.SetIconPadding(comboBoxSetor, 3);
+                    ret[1] = false;
+                }
+                else
+                {
+                    errorProvider1.SetError(comboBoxSetor, null);
+                }
+
                 y = ret.ToList().TrueForAll(v => v);
             }
 
@@ -149,7 +160,7 @@ namespace AppInternacao.FrmSae
                 }
 
 
-                if (comboBoxQuarto.SelectedItem == null)
+                if (comboBoxQuarto.SelectedIndex  == 0  )
                 {
                     errorProvider1.SetError(comboBoxQuarto, "Preencha este campo");
                     errorProvider1.SetIconPadding(comboBoxQuarto, 3);
@@ -248,13 +259,13 @@ namespace AppInternacao.FrmSae
             if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Sessao.Dinamico = obj;
-                Frm.FrmJustificativaLeito frm = new Frm.FrmJustificativaLeito();
+                Frm.FrmJustificativaLeito frm = new Frm.FrmJustificativaLeito(lstObjLeito);
                 DialogResult result = frm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     AlteracaoLeitoPaciente alteracaoLeitoPaciente = (AlteracaoLeitoPaciente)Sessao.Dinamico;
                     if (alteracaoLeitoPaciente.IdStatusAlteracao < 3) // baixa de paciente Obito | Alta
-                        new PacientePresenter().BaixarPaciente(new BaixarPaciente() { Prontuario = obj.Prontuario, IdLeito = obj.Id });
+                        new PacientePresenter().statuInternacao(new StatusInernacaoPaciente() { Prontuario = obj.Prontuario, IdLeito = obj.Id });
 
                     if (alteracaoLeitoPaciente.IdStatusAlteracao == 4) // manutenção de leito
                         obj.IsManutencao = true;
@@ -278,8 +289,8 @@ namespace AppInternacao.FrmSae
         private void AtualizaUserControls()
         {
             SplitterPanel split = Parent.Parent.Controls.OfType<SplitterPanel>().LastOrDefault();
-            UCListaPaciente uC = (UCListaPaciente)split.Controls[0];
-            uC.Carregar();
+           // UCListaPaciente uC = (UCListaPaciente)split.Controls[0];
+           // uC.Carregar();
             PopulaOcupacoes();
         }
 
@@ -287,6 +298,11 @@ namespace AppInternacao.FrmSae
         {
             if (tabControlQuartoLeito.SelectedTab == tabPageLeito)
             {
+                errorProvider1.SetError(textBoxlLeitoQtd, null);
+                errorProvider1.SetError(comboBoxQuarto, null);
+                errorProvider1.SetError(textBoxNomeLeito, null);
+                chkLeitoManutencao.Checked = false;
+
                 Leito = new Leito();
                 comboBoxQuarto.SelectedIndex = 0;
                 textBoxlLeitoQtd.Text = string.Empty;
@@ -294,8 +310,14 @@ namespace AppInternacao.FrmSae
 
             if (tabControlQuartoLeito.SelectedTab == tabPageQuartos)
             {
+                errorProvider1.SetError(comboBoxSetor, null);
+                errorProvider1.SetError(comboBoxQtdLeitos, null);
+                errorProvider1.SetError(textBoxNomeQuarto, null);
+
                 QuartoLeito = new Quarto();
-                comboBoxSetor.SelectedIndex = 0;
+                if (comboBoxSetor.Items.Count > 0)
+                    comboBoxSetor.SelectedIndex = 0;
+                comboBoxQtdLeitos.SelectedIndex = 0;
             }
         }
 
@@ -537,9 +559,19 @@ namespace AppInternacao.FrmSae
         {
             if (comboBoxQuarto.SelectedItem == null)
                 return;
+            
             Quarto item = (Quarto)comboBoxQuarto.SelectedItem;
             textBoxlLeitoQtd.Text = (item.TotalLeito - lstObjLeito?.Count(c => c.IdQuarto.Equals(item.Id))).ToString();
             textBoxTotalLeitos.Text = item.TotalLeito.ToString();
+
+            if (comboBoxQuarto.SelectedIndex == 0)
+                return;
+
+            if (textBoxlLeitoQtd.Text.Equals("0"))
+            {
+                MessageBox.Show($"O quarto {item.NomeQuarto} não tem leito disponivel", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comboBoxQuarto.SelectedIndex = 0;
+            }
         }
 
         private void comboBoxPesquisaQuarto_SelectedIndexChanged(object sender, EventArgs e)

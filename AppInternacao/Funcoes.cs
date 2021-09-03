@@ -92,7 +92,7 @@ namespace AppInternacao
                 mensagem += $"<p>Foi gerada uma nova senha de acesso temporária!<br>Será solicitado alteração de senha temporária para uma senha de sua preferência.</p>";
                 mensagem += $"<div style='border:1px solid black; padding:10px; border-radius: 5px;'>Usuário:<b> {usuario.Login}</b><br/>Senha: <b>{usuario.Senha}</b></div><p>Resposta automático!<br/>Favor não responder este e-mail!!!</p></body></html>";
 
-                login = new NetworkCredential("agles.developer", "290482hbt");
+                login = new NetworkCredential("agles.developer", "gfljmaxbyxtrnwdg");
                 client = new SmtpClient("smtp.gmail.com", 587);
                 client.EnableSsl = true;
                 client.Credentials = login;
@@ -104,9 +104,10 @@ namespace AppInternacao
                 msg.IsBodyHtml = true;
                 msg.Priority = MailPriority.Normal;
                 msg.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-                client.SendCompleted += Client_SendCompleted;
-                string sendStatus = "Enviando...";
-                client.SendAsync(msg, sendStatus);
+              //  client.SendCompleted += Client_SendCompleted;
+              //  string sendStatus = "Enviando...";
+                
+                client.Send(msg);
             }
             catch (Exception exSendEmail)
             {

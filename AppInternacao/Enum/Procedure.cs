@@ -29,7 +29,7 @@
 
         SP_GET_QUARTOS_BYNAME = 13,
 
-        SP_BAIXAR_PACIENTE = 14,
+        SP_STATUS_INTERNACAO = 14,
 
         SP_ADD_HISTORICO_ENFERMAGEM = 15,
 
@@ -76,5 +76,11 @@
         SP_GET_ITENS_TEMPLATE = 36,
 
         SP_DEL_REMOVE_ITENS_TEMPLATE = 37,
+
+        SP_CHK_CPF_USUARIO = 38,
+
+        SP_ADD_UPDT_APARTAMENTO = 39,
+
+        SP_GET_APARTAMENTO = 40
     }
 }

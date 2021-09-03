@@ -36,16 +36,12 @@
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnLimparCampo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLimparCampo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewPaciente
@@ -80,12 +76,12 @@
             this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPaciente.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 51);
             this.dataGridViewPaciente.Name = "dataGridViewPaciente";
             this.dataGridViewPaciente.ReadOnly = true;
             this.dataGridViewPaciente.RowHeadersVisible = false;
             this.dataGridViewPaciente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPaciente.Size = new System.Drawing.Size(322, 475);
+            this.dataGridViewPaciente.Size = new System.Drawing.Size(317, 475);
             this.dataGridViewPaciente.TabIndex = 17;
             this.dataGridViewPaciente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPaciente_CellClick);
             // 
@@ -115,7 +111,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 51);
+            this.panel1.Size = new System.Drawing.Size(317, 51);
             this.panel1.TabIndex = 18;
             // 
             // label2
@@ -126,27 +122,6 @@
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 24;
             this.label2.Text = "Pesquisar Paciente";
-            // 
-            // btnLimparCampo
-            // 
-            this.btnLimparCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLimparCampo.BackColor = System.Drawing.Color.Transparent;
-            this.btnLimparCampo.BackgroundImage = global::AppInternacao.Properties.Resources.Childish_Cross_24996;
-            this.btnLimparCampo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLimparCampo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimparCampo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnLimparCampo.FlatAppearance.BorderSize = 0;
-            this.btnLimparCampo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnLimparCampo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnLimparCampo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimparCampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimparCampo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnLimparCampo.Location = new System.Drawing.Point(290, 18);
-            this.btnLimparCampo.Name = "btnLimparCampo";
-            this.btnLimparCampo.Size = new System.Drawing.Size(29, 24);
-            this.btnLimparCampo.TabIndex = 23;
-            this.btnLimparCampo.UseVisualStyleBackColor = false;
-            this.btnLimparCampo.Click += new System.EventHandler(this.btnLimparCampo_Click);
             // 
             // label1
             // 
@@ -160,19 +135,10 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.DimGray;
-            this.panel4.Controls.Add(this.panel5);
             this.panel4.Location = new System.Drawing.Point(49, 45);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 1);
             this.panel4.TabIndex = 21;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.panel5.Location = new System.Drawing.Point(0, -32);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(310, 1);
-            this.panel5.TabIndex = 8;
             // 
             // textBoxNome
             // 
@@ -189,30 +155,40 @@
             this.textBoxNome.WordWrap = false;
             this.textBoxNome.TextChanged += new System.EventHandler(this.textBoxNome_TextChanged);
             // 
-            // panel2
+            // btnLimparCampo
             // 
-            this.panel2.Controls.Add(this.dataGridViewPaciente);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 51);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(322, 475);
-            this.panel2.TabIndex = 19;
+            this.btnLimparCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLimparCampo.BackColor = System.Drawing.Color.Transparent;
+            this.btnLimparCampo.BackgroundImage = global::AppInternacao.Properties.Resources.Childish_Cross_24996;
+            this.btnLimparCampo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLimparCampo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimparCampo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnLimparCampo.FlatAppearance.BorderSize = 0;
+            this.btnLimparCampo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLimparCampo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnLimparCampo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimparCampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimparCampo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnLimparCampo.Location = new System.Drawing.Point(284, 18);
+            this.btnLimparCampo.Name = "btnLimparCampo";
+            this.btnLimparCampo.Size = new System.Drawing.Size(29, 24);
+            this.btnLimparCampo.TabIndex = 23;
+            this.btnLimparCampo.UseVisualStyleBackColor = false;
+            this.btnLimparCampo.Click += new System.EventHandler(this.btnLimparCampo_Click);
             // 
             // UCListaPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dataGridViewPaciente);
             this.Controls.Add(this.panel1);
             this.Name = "UCListaPaciente";
-            this.Size = new System.Drawing.Size(322, 526);
+            this.Size = new System.Drawing.Size(317, 526);
             this.Load += new System.EventHandler(this.UCListaPaciente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -223,10 +199,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Button btnLimparCampo;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.Label label2;

@@ -68,7 +68,6 @@ namespace AppInternacao.FrmSae
                         paciente.NomeLeito = null;
                         paciente.NomeQuarto = null;
                         paciente.NomeSetor = null;
-                        paciente.IsBaixado = null;
 
                         int ret = pacientePresenter.Salvar(paciente);
                     }

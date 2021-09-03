@@ -19,7 +19,7 @@ namespace AppInternacao.Properties {
     // através de uma ferramenta como ResGen ou Visual Studio.
     // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -136,6 +136,16 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap back4_89388 {
             get {
                 object obj = ResourceManager.GetObject("back4_89388", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backgroudBody {
+            get {
+                object obj = ResourceManager.GetObject("backgroudBody", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -335,7 +345,7 @@ namespace AppInternacao.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Error_80_icon_icons_com_57326 {
             get {
-                object obj = ResourceManager.GetObject("Error-80_icon-icons.com_57326", resourceCulture);
+                object obj = ResourceManager.GetObject("Error_80_icon_icons_com_57326", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -503,16 +513,6 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap key_silhouette_security_tool_interface_symbol_of_password_icon_icons_com_54503 {
-            get {
-                object obj = ResourceManager.GetObject("key-silhouette-security-tool-interface-symbol-of-password_icon-icons.com_54503", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap leftBlue {
             get {
                 object obj = ResourceManager.GetObject("leftBlue", resourceCulture);
@@ -556,6 +556,16 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap LeitoManutencao {
             get {
                 object obj = ResourceManager.GetObject("LeitoManutencao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LeitoOcupado {
+            get {
+                object obj = ResourceManager.GetObject("LeitoOcupado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -636,16 +646,6 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap ok_accept_15562 {
             get {
                 object obj = ResourceManager.GetObject("ok_accept_15562", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ok_accept_155621 {
-            get {
-                object obj = ResourceManager.GetObject("ok_accept_155621", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -886,26 +886,6 @@ namespace AppInternacao.Properties {
         internal static System.Drawing.Bitmap Undergo_Insomnia_icon_icons_com_54126 {
             get {
                 object obj = ResourceManager.GetObject("Undergo_Insomnia_icon-icons.com_54126", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap User_80_icon_icons_com_57249 {
-            get {
-                object obj = ResourceManager.GetObject("User-80_icon-icons.com_57249", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap user_black_close_up_shape_icon_icons_com_56876 {
-            get {
-                object obj = ResourceManager.GetObject("user-black-close-up-shape_icon-icons.com_56876", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

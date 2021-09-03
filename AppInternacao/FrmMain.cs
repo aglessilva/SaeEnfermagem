@@ -2,26 +2,31 @@
 using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace AppInternacao
 {
     public partial class FrmMain : Form, IMain
     {
-        UserControl userControl = null;
+        Form userControl = null;
         PresenterMain Presenter = null;
+        private IconButton currentBtn;
 
         private bool isCollapsed = true;
         public static Button mySalvar;
         public static Button myNovo;
         public static Button myImprimir;
-
+        public static List<Button> listButtons = null;
         public Main Main { get => new Main() { Dominio = Environment.UserDomainName };
             set
             {
@@ -38,44 +43,132 @@ namespace AppInternacao
             mySalvar = btnSalvar;
             myNovo = btnNovo;
             myImprimir = btnImprimir;
+            listButtons = new List<Button>() { myImprimir, mySalvar, myNovo };
         }
 
+        private void DisableButton()
+        {
+            if (currentBtn != null)
+            {
+                currentBtn.TextAlign = ContentAlignment.MiddleRight;
+                currentBtn.TextImageRelation = TextImageRelation.Overlay;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+                currentBtn.BackColor = Color.Transparent;
+            }
+        }
 
-        private void OpenUc()
+        private void ActivateButton(object senderBtn)
+        {
+            if (senderBtn != null)
+            {
+                //Button
+                DisableButton();
+                currentBtn = (IconButton)senderBtn;
+
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+                currentBtn.BackColor = Color.FromArgb(10, 30, 50);
+
+                //Current Child Form Icon
+                iconCurrentChildForm.IconChar = currentBtn.IconChar;
+                lblTitleForm.Text = $"Sistematização da Assistêmcia de Enfermagem - {currentBtn.Text}";
+            }
+        }
+
+        public void OpenUc()
         {
             if (!isCollapsed)
                 timerCollapsed.Start();
 
-            var tt = splitContainer1.Panel1.Controls.OfType<UserControl>().ToList();
+            var tt = splitContainerMain.Panel1.Controls.OfType<Form>().ToList();
 
             if (!tt.Any(cnt => cnt.Name.Equals(userControl.Name)))
             {
                 if (tt.Count > 0)
                     tt[0].Dispose();
-               
-                splitContainer1.Panel1.Controls.Clear();
-                if (!splitContainer1.Panel1.Controls.OfType<Control>().Any(f => f is UserControl))
+
+                listButtons.ForEach(b => RemoveClickEvent(b));
+
+                splitContainerMain.Panel1.Controls.Clear();
+                if (!splitContainerMain.Panel1.Controls.OfType<Control>().Any(f => f is Form))
                 {
-                    splitContainer1.Panel1.Controls.Add(userControl);
                     btnAddSae.Enabled = true;
+                    userControl.TopLevel = false;
+                    splitContainerMain.Panel1.Tag = userControl;
+                    splitContainerMain.Panel1.Controls.Add(userControl);
+                    userControl.Show();
                 }
+            }
+        }
+
+        /// <summary>
+        /// remove os evento Click dos botões
+        /// </summary>
+        public static void RemoveClickEvent(Button _button)
+        {
+            FieldInfo f1 = typeof(Control).GetField("EventClick",BindingFlags.Static | BindingFlags.NonPublic);
+
+            object obj = f1.GetValue(_button);
+            PropertyInfo pi = _button.GetType().GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            EventHandlerList list = (EventHandlerList)pi.GetValue(_button, null);
+            list.RemoveHandler(obj, list[obj]);
+        }
+
+        private void CloseUC()
+        {
+            try
+            {
+              //  splitContainerMain.Panel2Collapsed = true;
+                if ((splitContainerMain.Panel1.Controls.OfType<Form>().ToList().Count == 0) && (splitContainerMain.Panel2.Controls.OfType<Form>().ToList().Count == 0))
+                    return;
+
+                List<Form> lstcontrols = splitContainerMain.Panel1.Controls.OfType<Form>().ToList();
+
+                foreach (var item in lstcontrols)
+                {
+                    item.Close();
+                    item.Dispose();
+                };
+
+                myNovo.Visible = mySalvar.Visible = btnImprimir.Visible = false;
+                
+                if (splitContainerMain.Panel2.Controls.OfType<Form>().ToList().Count == 0)
+                    return;
+
+                lstcontrols = splitContainerMain.Panel2.Controls.OfType<Form>().ToList();
+
+                foreach (Form item in lstcontrols)
+                {
+                    item.Close();
+                    item.Dispose();
+                };
+
+                splitContainerMain.Panel2Collapsed = true;
+            }
+            catch (Exception ex)
+            {
+                Alert(null,exception: ex);
             }
         }
 
         private void OpenUCLateral()
         {
-            var tt = splitContainer1.Panel2.Controls.OfType<UserControl>().ToList();
+            var tt = splitContainerMain.Panel2.Controls.OfType<Form>().ToList();
 
             if (!tt.Any(cnt => cnt.Name.Equals(userControl.Name)))
             {
                 if (tt.Count > 0)
                     tt[0].Dispose();
 
-                splitContainer1.Panel2.Controls.Clear();
-                if (!splitContainer1.Panel2.Controls.OfType<Control>().Any(f => f is UserControl))
+                splitContainerMain.Panel2.Controls.Clear();
+                if (!splitContainerMain.Panel2.Controls.OfType<Form>().Any(f => f is Form))
                 {
-                    splitContainer1.Panel2.Controls.Add(userControl);
-                    splitContainer1.Panel2.Controls[0].Hide();
+                    splitContainerMain.Panel2.Controls.Add(userControl);
+                    userControl.TopLevel = false;
+                    userControl.Show();
+                   splitContainerMain.Panel2.Controls[0].Hide();
                 }
             }
 
@@ -88,9 +181,9 @@ namespace AppInternacao
             btnGerenciamentoLeito.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
             btnPaciente.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
             btnTempalte.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin);
-            btnSalvar.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
-            btnPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos) || Sessao.Usuario.Perfil.HasFlag(Perfil.Tecnico);
-            btnNovo.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos);
+          //  btnSalvar.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial);
+            btnPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.EnfermeiroAdmin) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medico) || Sessao.Usuario.Perfil.HasFlag(Perfil.Tecnico);
+           // btnNovo.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Enfermeiro_Assistemcial) || Sessao.Usuario.Perfil.HasFlag(Perfil.Medico);
         }
 
         private void btnCMAdulto_Click(object sender, EventArgs e)
@@ -100,18 +193,18 @@ namespace AppInternacao
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            if (splitContainer1.Panel1.Controls.Count == 0)
+            if (splitContainerMain.Panel1.Controls.Count == 0)
             {
                 Application.Exit();
                 return;
             }
 
-            Control control = splitContainer1.Panel1.Controls[0];
+            Control control = splitContainerMain.Panel1.Controls[0];
             control.Dispose();
 
-            if (splitContainer1.Panel2.Controls.Count > 0)
+            if (splitContainerMain.Panel2.Controls.Count > 0)
             {
-                control = splitContainer1.Panel2.Controls[0];
+                control = splitContainerMain.Panel2.Controls[0];
                 control.Dispose();
             }
             else
@@ -121,8 +214,9 @@ namespace AppInternacao
         private void btnPaciente_Click(object sender, EventArgs e)
         {
             CloseUC();
-            userControl = new FrmSae.UCPaciente();
+            userControl = new FrmSae.FrmPaciente002();
             OpenUc();
+            ActivateButton(sender);
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -136,7 +230,7 @@ namespace AppInternacao
                 if ((bool)Sessao.Usuario.AlterarSenha)
                 {
                     CloseUC();
-                    userControl = new FrmSae.UCAlterarSenha();
+                //    userControl = new FrmSae.UCAlterarSenha();
                     panelCabecalho.Enabled = panelMenu.Enabled = false;
                     OpenUc();
                 }
@@ -149,24 +243,25 @@ namespace AppInternacao
             }
         }
        
-
         private void btnGerenciamentoLeito_Click(object sender, EventArgs e)
         {
             CloseUC();
-            userControl = new FrmSae.UCQuartoLeito();
+            userControl = new FrmSae.UI004FrmPanel();
+            ActivateButton(sender);
+            splitContainerMain.Panel2Collapsed = false;
             OpenUc();
-            userControl = new FrmSae.UCListaPaciente();
+            userControl = new FrmSae.UI005ListaPaciente();
             OpenUCLateral();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             CloseUC();
-            userControl = new FrmSae.UCTimeLine();
+            //userControl = new FrmSae.UCTimeLine();
             OpenUc();
         }
 
-        public static void Alert(int? tipo, Exception exception = null)
+        public static void Alert(int? tipo = null, Exception exception = null)
         {
             switch (tipo)
             {
@@ -237,11 +332,12 @@ namespace AppInternacao
 
         public void BloquearSistema(bool isAlterSenha = false)
         {
-            splitContainer1.Enabled = panelCabecalho.Enabled = panelMenu.Enabled = isAlterSenha;
+            splitContainerMain.Enabled = panelCabecalho.Enabled = panelMenu.Enabled = isAlterSenha;
         }
 
         private void btnAddSae_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             timerCollapsed.Start();
         }
 
@@ -249,7 +345,7 @@ namespace AppInternacao
         {
             if (isCollapsed)
             {
-                panelDropDown.Height += 10;
+                panelDropDown.Height += 20;
 
                 if (panelDropDown.Size == panelDropDown.MaximumSize)
                 {
@@ -259,7 +355,7 @@ namespace AppInternacao
             }
             else
             {
-                panelDropDown.Height -= 10;
+                panelDropDown.Height -= 30;
 
                 if (panelDropDown.Size == panelDropDown.MinimumSize)
                 {
@@ -275,7 +371,7 @@ namespace AppInternacao
                 timerCollapsed.Start();
 
             CloseUC();
-            userControl = new FrmSae.UCTimeLine();
+           // userControl = new FrmSae.UCTimeLine();
             OpenUc();
         }
 
@@ -284,45 +380,39 @@ namespace AppInternacao
             if (!isCollapsed)
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.UCUsuario();
+            userControl = new FrmSae.FrmUsuario001();
             OpenUc();
         }
 
-        private void CloseUC()
-        {
-            List<UserControl> lstcontrols = splitContainer1.Panel1.Controls.OfType<UserControl>().ToList();
-
-            foreach (UserControl item in lstcontrols)
-            {
-                item.Dispose();
-            };
-
-            lstcontrols = splitContainer1.Panel2.Controls.OfType<UserControl>().ToList();
-
-            foreach (UserControl item in lstcontrols)
-            {
-                item.Dispose();
-            };
-        }
 
         private void btnAlterarSenha_Click(object sender, EventArgs e)
         {
             CloseUC();
-            userControl = new FrmSae.UCAlterarSenha();
+            userControl = new FrmSae.FrmAlterarSenha003();
             OpenUc();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (splitContainer1.Panel1.Controls.OfType<UserControl>().ToList().Count > 0)
+            if (splitContainerMain.Panel1.Controls.OfType<Form>().ToList().Count > 0)
+            {
                 CloseUC();
+                DisableButton();
+                lblTitleForm.Text = "Sistematização da Assistêmcia de Enfermagem";
+                iconCurrentChildForm.IconChar = IconChar.Heartbeat;
+            }
             else
             {
                 Sessao.Usuario = null;
                 Sessao.Cliente = null;
                 Sessao.Paciente = null;
                 Sessao.CodigoCliente = 0;
+                Sessao.Dinamico = null;
+                Sessao.DataValidade = DateTime.Now;
+                Sessao.IsAtivo = false;
+
                 Close();
                 Dispose(true);
                 Application.Exit();
@@ -332,7 +422,8 @@ namespace AppInternacao
         private void btnTempalte_Click(object sender, EventArgs e)
         {
             CloseUC();
-            userControl = new FrmSae.UCNomeTemplate();
+            ActivateButton(sender);
+            userControl = new FrmSae.UI009FrmNomeExameFisico();
             OpenUc();
         }
 
@@ -379,9 +470,20 @@ namespace AppInternacao
             if (!isCollapsed)
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.UC00BarCodeProntuario(true);
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(true);
             OpenUc();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
         }
     }
 }

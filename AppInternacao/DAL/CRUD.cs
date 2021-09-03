@@ -198,14 +198,13 @@ namespace AppInternacao.Model
                 Comando.Parameters["@IDCLIENTE"].Value = Sessao.CodigoCliente;
 
 
-
                 if (acao == Acao.Verificar)
                     retorno = (int?)Comando.ExecuteScalar();
                 else if (acao == Acao.Excluir)
                 {
                     retorno = 0;
                    // Comando.Parameters.Add(new SqlParameter("@RETORNO", SqlDbType.Int)).Direction = ParameterDirection.ReturnValue;
-                    retorno = Comando.ExecuteNonQuery();
+                    retorno = Comando.ExecuteNonQuery() == 1 ? 2 : 200;
                    // retorno = Convert.ToInt32(Comando.Parameters["@RETORNO"].Value);
                 }
                 else
@@ -214,9 +213,12 @@ namespace AppInternacao.Model
                     var newIdParam = Comando.Parameters.Add("@Identity", SqlDbType.Int);
                     newIdParam.Direction = ParameterDirection.Output;
                     retorno = Comando.ExecuteNonQuery();
-
+                   
                     if (newIdParam.Value != DBNull.Value)
                         retorno = Convert.ToInt32(newIdParam.Value);
+
+                    return retorno;
+                   
                 }
             }
             catch (SqlException sqlEx)
@@ -269,6 +271,7 @@ namespace AppInternacao.Model
                 command.Parameters.Add(new SqlParameter("@IdChavePrescricao", prescricaoMedica.IdChavePrescricao ));
                 command.Parameters.Add(new SqlParameter("@IdPaciente", prescricaoMedica.IdPaciente));
                 command.Parameters.Add(new SqlParameter("@Horario", prescricaoMedica.Horario));
+                command.Parameters.Add(new SqlParameter("@Intervalo", prescricaoMedica.Intervalo));
                 command.Parameters.Add(new SqlParameter("@Prescricao", prescricaoMedica.Prescricao));
                 var newIdParam = command.Parameters.Add("@Indentity", SqlDbType.Int);
                 newIdParam.Direction = ParameterDirection.Output;

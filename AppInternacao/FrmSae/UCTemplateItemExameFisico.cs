@@ -14,7 +14,7 @@ namespace AppInternacao.FrmSae
     {
         DataTable tabelaItens = null;
         TemplateExamePresenter templateExamePresenter = null;
-        List<Area_Itens> lstAreaItem = new List<Area_Itens>();
+      //  List<Area_Itens> lstAreaItem = new List<Area_Itens>();
         List<Area_Itens> lst = null;
         Panel accordion = null;
         PictureBox buttonTyp = null;
@@ -233,7 +233,6 @@ namespace AppInternacao.FrmSae
         private void UCTemplateExameFisico_Load(object sender, EventArgs e)
         {
             FrmMain.mySalvar.Click += new EventHandler(Salvar);
-            FrmMain.myNovo.Click -= new EventHandler(MyNovo_Click);
             new ToolTip().SetToolTip(btnStepVoltar, "Voltar para tela anterior");
             tabelaItens = CriarTabela();
             templateExamePresenter = new TemplateExamePresenter(this);
@@ -241,11 +240,6 @@ namespace AppInternacao.FrmSae
             CountItem();
         }
 
-
-        private void MyNovo_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void Salvar(object sender, EventArgs e)
         {
@@ -461,8 +455,11 @@ namespace AppInternacao.FrmSae
         private void btnStepVoltar_Click(object sender, EventArgs e)
         {
             SplitterPanel ctrl = (SplitterPanel)Parent;
-            ctrl.Controls.Add(new UCNomeTemplate());
+            Form form = new UI009FrmNomeExameFisico(Template) { TopLevel = false };
+            ctrl.Controls.Add(form);
+            FrmMain.mySalvar.Click -= Salvar;
             Dispose(true);
+            form.Show();
         }
 
         private void listViewPuplias_ItemDrag(object sender, ItemDragEventArgs e)
@@ -1158,8 +1155,8 @@ namespace AppInternacao.FrmSae
            
             if (accordion.Tag.Equals("0"))
             {
-                accordion.Height += 10;
-                if (accordion.Size.Height == 270)
+                accordion.Height += 50;
+                if (accordion.Size.Height >= 270)
                 {
                     timerAccordion.Stop();
                     accordion.Tag = "1";
@@ -1167,8 +1164,8 @@ namespace AppInternacao.FrmSae
             }
             else
             {
-                accordion.Height -= 10;
-                if (accordion.Size.Height == 0)
+                accordion.Height -= 50;
+                if (accordion.Size.Height <=0)
                 {
                     timerAccordion.Stop();
                     buttonTyp.Image = Properties.Resources.leftBlue;

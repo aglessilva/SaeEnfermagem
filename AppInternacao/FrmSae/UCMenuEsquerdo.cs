@@ -17,7 +17,7 @@ namespace AppInternacao.FrmSae
         private SplitContainer ctrl;
         private void btnExibirHistorico_Click(object sender, EventArgs e)
         {
-            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medicos))
+            if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medico))
             {
                 CloseUC();
                 ctrl.Controls[0].Controls.Add(new UCViewHistoricoEnfermagem());
@@ -33,7 +33,6 @@ namespace AppInternacao.FrmSae
             CloseUC();
             ctrl.Controls[0].Controls.Add(new  UCPrescricaoCiclo());
         }
-
 
         private void CloseUC()
         {

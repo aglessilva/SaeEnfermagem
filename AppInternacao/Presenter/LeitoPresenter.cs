@@ -13,6 +13,8 @@ namespace AppInternacao.Presenter
         private CRUD crud = null;
         private LISTAOBJETOS objeto = null;
 
+        public LeitoPresenter(){}
+
         public LeitoPresenter(ILeito _view)
         {
             view = _view;
@@ -46,14 +48,15 @@ namespace AppInternacao.Presenter
             return ret;
         }
 
-        public int? Salvar(Leito leito)
+        public int? Salvar(Leito leito, bool returnView = true)
         {
             int? ret = null;
             try
             {
                 crud = new CRUD();
                 ret = crud.Executar(leito, Procedure.SP_ADD_UPD_LEITO, Acao.Inserir);
-                Carregar();
+                if (returnView)
+                    Carregar();
             }
             catch (Exception exS)
             {
@@ -90,9 +93,46 @@ namespace AppInternacao.Presenter
                     Obj = new Leito();
 
                 objeto = new LISTAOBJETOS();
-                view.leitos = objeto.ListaGenerica(Procedure.SP_GET_LEITO, Obj );
-                List<Quarto> lst = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
-                view.Quartos = lst;
+                view.Leitos = objeto.ListaGenerica(Procedure.SP_GET_LEITO, Obj );
+            }
+            catch (Exception exC)
+            {
+                throw exC;
+            }
+        }
+
+        public void GetQuartos()
+        {
+            try
+            {
+                objeto = new LISTAOBJETOS();
+                view.Quartos = objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
+            }
+            catch (Exception exC)
+            {
+                throw exC;
+            }
+        }
+
+        public List<Leito> GetListLeitos()
+        {
+            try
+            {
+                objeto = new LISTAOBJETOS();
+                return objeto.ListaGenerica(Procedure.SP_GET_LEITO, new Leito());
+            }
+            catch (Exception exLeitos)
+            {
+                throw exLeitos;
+            }
+        }
+
+        public List<Quarto> GetListQuartos()
+        {
+            try
+            {
+                objeto = new LISTAOBJETOS();
+                return objeto.ListaGenerica(Procedure.SP_GET_QUARTOS, new Quarto());
             }
             catch (Exception exC)
             {

@@ -85,7 +85,7 @@
             this.btnSaiFechar.Location = new System.Drawing.Point(132, 143);
             this.btnSaiFechar.Name = "btnSaiFechar";
             this.btnSaiFechar.Size = new System.Drawing.Size(107, 30);
-            this.btnSaiFechar.TabIndex = 45;
+            this.btnSaiFechar.TabIndex = 2;
             this.btnSaiFechar.TabStop = false;
             this.btnSaiFechar.Text = "Sair e Fechar";
             this.btnSaiFechar.UseVisualStyleBackColor = false;
@@ -107,7 +107,7 @@
             this.btnAlterarSenha.Location = new System.Drawing.Point(244, 143);
             this.btnAlterarSenha.Name = "btnAlterarSenha";
             this.btnAlterarSenha.Size = new System.Drawing.Size(107, 30);
-            this.btnAlterarSenha.TabIndex = 44;
+            this.btnAlterarSenha.TabIndex = 3;
             this.btnAlterarSenha.TabStop = false;
             this.btnAlterarSenha.Text = "Alterar Senha";
             this.btnAlterarSenha.UseVisualStyleBackColor = false;
@@ -132,7 +132,7 @@
             this.textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
             this.textBoxConfirmarSenha.PasswordChar = '*';
             this.textBoxConfirmarSenha.Size = new System.Drawing.Size(161, 19);
-            this.textBoxConfirmarSenha.TabIndex = 39;
+            this.textBoxConfirmarSenha.TabIndex = 1;
             this.textBoxConfirmarSenha.UseSystemPasswordChar = true;
             // 
             // panel7
@@ -153,10 +153,11 @@
             this.textBoxSenha.MaxLength = 10;
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.PasswordChar = '*';
+            this.textBoxSenha.ShortcutsEnabled = false;
             this.textBoxSenha.Size = new System.Drawing.Size(185, 19);
-            this.textBoxSenha.TabIndex = 36;
+            this.textBoxSenha.TabIndex = 0;
             this.textBoxSenha.UseSystemPasswordChar = true;
-            this.textBoxSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSenha_KeyDown);
+            this.textBoxSenha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSenha_KeyPress);
             // 
             // pictureBox2
             // 
