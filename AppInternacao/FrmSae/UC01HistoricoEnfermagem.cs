@@ -34,7 +34,7 @@ namespace AppInternacao.FrmSae
 
         private void UCHistoricoEnfermagem_Load(object sender, EventArgs e)
         {
-            UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
+           // UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
 
             if (Sessao.Paciente.HistoricoEnfermagem != null)
             {
@@ -58,7 +58,7 @@ namespace AppInternacao.FrmSae
                     if (richTextBoxExHistoricoEnfermagem.Text.Length < 500)
                     {
                         MessageBox.Show("Favor informar mais detalhes sobre o hitórico do paciente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        UCTimeLine.ButtonSaeAvanca.Enabled = false;
+                     //   UCTimeLine.ButtonSaeAvanca.Enabled = false;
                     }
                     else
                     {
@@ -86,6 +86,11 @@ namespace AppInternacao.FrmSae
             string msg = "Essa operação irá substituir o conteúdo da caixa de texto por um template pré formatado!\nDeseja seguir com essa operação?";
             if (MessageBox.Show(msg, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 OpenTemplateHistoricoEnfermagem();
+        }
+
+        private void richTextBoxExHistoricoEnfermagem_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

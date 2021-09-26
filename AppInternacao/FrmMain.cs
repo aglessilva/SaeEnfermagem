@@ -51,6 +51,7 @@ namespace AppInternacao
             if (currentBtn != null)
             {
                 currentBtn.TextAlign = ContentAlignment.MiddleRight;
+                currentBtn.IconColor = Color.FromArgb(65, 165, 245); 
                 currentBtn.TextImageRelation = TextImageRelation.Overlay;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
                 currentBtn.BackColor = Color.Transparent;
@@ -66,6 +67,7 @@ namespace AppInternacao
                 currentBtn = (IconButton)senderBtn;
 
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.IconColor = Color.FromArgb(173, 255, 47);
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
                 currentBtn.BackColor = Color.FromArgb(10, 30, 50);
@@ -226,11 +228,9 @@ namespace AppInternacao
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
 
-            //TODO: DESCOMENTAR ESSE BLOCO PARA PARA REALIZAR LOGIN E PRENCHER A SESSÃO DO USUARIO LOGADO
                 if ((bool)Sessao.Usuario.AlterarSenha)
                 {
                     CloseUC();
-                //    userControl = new FrmSae.UCAlterarSenha();
                     panelCabecalho.Enabled = panelMenu.Enabled = false;
                     OpenUc();
                 }
@@ -386,6 +386,16 @@ namespace AppInternacao
             OpenUc();
         }
 
+        private void btnNanda_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed)
+                timerCollapsed.Start();
+
+            ActivateButton(sender);
+            CloseUC();
+            userControl = new FrmSae.UI010FrmNanda();
+            OpenUc();
+        }
 
         private void btnAlterarSenha_Click(object sender, EventArgs e)
         {
@@ -423,7 +433,7 @@ namespace AppInternacao
         {
             CloseUC();
             ActivateButton(sender);
-            userControl = new FrmSae.UI009FrmNomeExameFisico();
+          //  userControl = new FrmSae.UI009FrmNomeExameFisico();
             OpenUc();
         }
 
@@ -472,7 +482,7 @@ namespace AppInternacao
 
             ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.UI006FrmBarCodeProntuario(true);
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI007FrmMenuDireito());
             OpenUc();
         }
 
@@ -484,6 +494,17 @@ namespace AppInternacao
         private void iconButton2_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+        }
+
+        private void btnClinicaMedica_Click_1(object sender, EventArgs e)
+        {
+            if (!isCollapsed)
+                timerCollapsed.Start();
+
+            ActivateButton(sender);
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
+            OpenUc();
         }
     }
 }

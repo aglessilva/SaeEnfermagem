@@ -20,7 +20,7 @@ namespace AppInternacao.FrmSae
 
         private void UCPrescricao_Load(object sender, EventArgs e)
         {
-            UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
+            //UCTimeLine.ButtonSaeAvanca.Click += new EventHandler(ButtonSaeAvanca_Click);
         }
 
         private void ButtonSaeAvanca_Click(object sender, EventArgs e)

@@ -195,7 +195,11 @@ namespace AppInternacao.FrmSae
                 }
                 DataColumn dataColumns = table.Columns.OfType<DataColumn>().LastOrDefault(dc => dc.DataType == typeof(Image) && dc.ColumnName != "Act");
 
-                DateTime newDate = Convert.ToDateTime(dataColumns.ColumnName);
+                DateTime newDate = Convert.ToDateTime(dataColumns.ColumnName).Date;
+
+                if (newDate < DateTime.Now.Date)
+                    newDate = DateTime.Now.Date;
+
                 newDate = newDate.AddDays(1);
 
                 int idDateCiclo = presenterGeneric.Salvar(new CicloPrescricao()

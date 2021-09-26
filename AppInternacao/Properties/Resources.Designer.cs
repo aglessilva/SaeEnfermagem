@@ -423,6 +423,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HP {
+            get {
+                object obj = ResourceManager.GetObject("HP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_account_child_128_28130 {
             get {
                 object obj = ResourceManager.GetObject("ic_account_child_128_28130", resourceCulture);

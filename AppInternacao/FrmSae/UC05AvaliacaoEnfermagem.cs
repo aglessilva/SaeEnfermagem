@@ -20,7 +20,7 @@ namespace AppInternacao.FrmSae
 
         private void UCEvolucaoEnfermagem_Load(object sender, EventArgs e)
         {
-            UCTimeLine.ButtonSaeAvanca.Click += ButtonSaeAvanca_Click;
+            //UCTimeLine.ButtonSaeAvanca.Click += ButtonSaeAvanca_Click;
         }
 
         private void ButtonSaeAvanca_Click(object sender, EventArgs e)

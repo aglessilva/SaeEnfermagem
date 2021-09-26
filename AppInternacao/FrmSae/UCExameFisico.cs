@@ -13,10 +13,8 @@ namespace AppInternacao.FrmSae
     {
         private PresenterGeneric presenterGeneric = null;
         List<EstruturaFisica> lstEstrutura = new List<EstruturaFisica>();
-        List<TemplateName> lstTemplates = new List<TemplateName>();
-        List<Area_Itens> lstAreaItem = new List<Area_Itens>();
         int somaTotalGlasgow = 0;
-        TextBox TextBox = null;
+       // TextBox TextBox = null;
         RadioButtonExt radioButtonItem = null;
 
         List<object> pressaoArterial = new List<object>()
@@ -38,154 +36,154 @@ namespace AppInternacao.FrmSae
             Dock = DockStyle.Fill;
         }
 
-        void Populatemplate()
-        {
-            try
-            {
-                foreach (Area_Itens item in lstAreaItem)
-                {
-                    radioButtonItem = new RadioButtonExt() { Value = item.IdItemArea.ToString(), Text = item.Nome, AutoSize = true };
-                    switch (item.IdArea)
-                    {
-                        case Area.SistemaNeurologico:
-                            {
-                                if (!gSistemaNeurologico.Visible)
-                                    gSistemaNeurologico.Visible = true;
+        //void Populatemplate()
+        //{
+        //    try
+        //    {
+        //        foreach (Area_Itens item in lstAreaItem)
+        //        {
+        //            radioButtonItem = new RadioButtonExt() { Value = item.IdItemArea.ToString(), Text = item.Nome, AutoSize = true };
+        //            switch (item.IdArea)
+        //            {
+        //                case Area.SistemaNeurologico:
+        //                    {
+        //                        if (!gSistemaNeurologico.Visible)
+        //                            gSistemaNeurologico.Visible = true;
 
-                                flpSistemaNerologico.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.Pupilas:
-                            {
-                                if (!gPupilas.Visible)
-                                    gPupilas.Visible = true;
+        //                        flpSistemaNerologico.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.Pupilas:
+        //                    {
+        //                        if (!gPupilas.Visible)
+        //                            gPupilas.Visible = true;
 
-                                flpPupilas.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.RegulacaoTermica:
-                            {
-                                if (!gRegulacaoTermica.Visible)
-                                    gRegulacaoTermica.Visible = true;
+        //                        flpPupilas.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.RegulacaoTermica:
+        //                    {
+        //                        if (!gRegulacaoTermica.Visible)
+        //                            gRegulacaoTermica.Visible = true;
 
-                                if (new int[] { 18, 19 }.Any(s => item.IdItemArea.Equals(s)))
-                                {
-                                    flpRegulacaotermica.Controls.Add(radioButtonItem);
-                                    if (TextBox == null)
-                                        TextBox = new TextBox() { Text = "ºC", Width = 40, TextAlign = HorizontalAlignment.Right };
-                                }
-                                else
-                                    flpRegulacaotermica.Controls.Add(radioButtonItem);
+        //                        if (new int[] { 18, 19 }.Any(s => item.IdItemArea.Equals(s)))
+        //                        {
+        //                            flpRegulacaotermica.Controls.Add(radioButtonItem);
+        //                            if (TextBox == null)
+        //                                TextBox = new TextBox() { Text = "ºC", Width = 40, TextAlign = HorizontalAlignment.Right };
+        //                        }
+        //                        else
+        //                            flpRegulacaotermica.Controls.Add(radioButtonItem);
 
-                                break;
-                            }
-                        case Area.Oxigenacao:
-                            {
-                                if (!gSistemaOxigenacao.Visible)
-                                    gSistemaOxigenacao.Visible = true;
+        //                        break;
+        //                    }
+        //                case Area.Oxigenacao:
+        //                    {
+        //                        if (!gSistemaOxigenacao.Visible)
+        //                            gSistemaOxigenacao.Visible = true;
 
-                                flpOxigenacao.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.Pele:
-                            {
-                                if (!gPele.Visible)
-                                    gPele.Visible = true;
+        //                        flpOxigenacao.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.Pele:
+        //                    {
+        //                        if (!gPele.Visible)
+        //                            gPele.Visible = true;
 
-                                flpPele.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.SistemaGastrointestinal:
-                            {
-                                if (!gSistemaGastroIntestinal.Visible)
-                                    gSistemaGastroIntestinal.Visible = true;
+        //                        flpPele.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.SistemaGastrointestinal:
+        //                    {
+        //                        if (!gSistemaGastroIntestinal.Visible)
+        //                            gSistemaGastroIntestinal.Visible = true;
 
-                                if (new int[] { 40, 41, 42 }.Any(s => item.IdItemArea.Equals(s)))
-                                {
-                                    pGavagem.Visible = item.IdItemArea == 40 ? true : false;
-                                    pEvacuacoes.Visible = item.IdItemArea == 41 ? true : false;
-                                    pFlatos.Visible = item.IdItemArea == 42 ? true : false;
-                                }
-                                else
-                                    flpSistemaGastroIntestinal.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.SistemaVascular:
-                            {
-                                if (!gSistemaVascular.Visible)
-                                    gSistemaVascular.Visible = true;
+        //                        if (new int[] { 40, 41, 42 }.Any(s => item.IdItemArea.Equals(s)))
+        //                        {
+        //                            pGavagem.Visible = item.IdItemArea == 40 ? true : false;
+        //                            pEvacuacoes.Visible = item.IdItemArea == 41 ? true : false;
+        //                            pFlatos.Visible = item.IdItemArea == 42 ? true : false;
+        //                        }
+        //                        else
+        //                            flpSistemaGastroIntestinal.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.SistemaVascular:
+        //                    {
+        //                        if (!gSistemaVascular.Visible)
+        //                            gSistemaVascular.Visible = true;
 
-                                flpSistemaVascular.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.SistemaAbdominal:
-                            {
-                                if (!gSistemaAbdominal.Visible)
-                                    gSistemaAbdominal.Visible = true;
+        //                        flpSistemaVascular.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.SistemaAbdominal:
+        //                    {
+        //                        if (!gSistemaAbdominal.Visible)
+        //                            gSistemaAbdominal.Visible = true;
 
-                                flpSistemaAbdominal.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.SistemaUrinario:
-                            {
-                                if (!gSistemaUrinario.Visible)
-                                    gSistemaUrinario.Visible = true;
+        //                        flpSistemaAbdominal.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.SistemaUrinario:
+        //                    {
+        //                        if (!gSistemaUrinario.Visible)
+        //                            gSistemaUrinario.Visible = true;
 
-                                flpsistemaUrinario.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.LesaoCompressao:
-                            {
-                                if (!gLesaoCompressao.Visible)
-                                    gLesaoCompressao.Visible = true;
+        //                        flpsistemaUrinario.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.LesaoCompressao:
+        //                    {
+        //                        if (!gLesaoCompressao.Visible)
+        //                            gLesaoCompressao.Visible = true;
 
-                                flpLesao.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.GloboPinard:
-                            {
-                                if (!gPinard.Visible)
-                                     gPinard.Visible = true;
+        //                        flpLesao.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.GloboPinard:
+        //                    {
+        //                        if (!gPinard.Visible)
+        //                             gPinard.Visible = true;
 
-                                flpPinard.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.ComaGlasgow:
-                            {
-                                if (!gGlasgow.Visible)
-                                    pFormGlasgow.Visible = gGlasgow.Visible = true;
-                                break;
-                            }
-                        case Area.ControleCateteres:
-                            {
-                                if (!gCateterSonda.Visible)
-                                    gCateterSonda.Visible = true;
+        //                        flpPinard.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.ComaGlasgow:
+        //                    {
+        //                        if (!gGlasgow.Visible)
+        //                            pFormGlasgow.Visible = gGlasgow.Visible = true;
+        //                        break;
+        //                    }
+        //                case Area.ControleCateteres:
+        //                    {
+        //                        if (!gCateterSonda.Visible)
+        //                            gCateterSonda.Visible = true;
 
-                                flpCateteres.Controls.Add(radioButtonItem);
-                                break;
-                            }
-                        case Area.PressaoArterial:
-                            {
-                                if (!gEscalaPressao.Visible)
-                                    gEscalaPressao.Visible = true;
+        //                        flpCateteres.Controls.Add(radioButtonItem);
+        //                        break;
+        //                    }
+        //                case Area.PressaoArterial:
+        //                    {
+        //                        if (!gEscalaPressao.Visible)
+        //                            gEscalaPressao.Visible = true;
 
-                                pPA.Visible = item.IdItemArea == 87 ? true : false; 
-                                break;
-                            }
-                        default:
-                            break;
-                    }
-                }
+        //                        pPA.Visible = item.IdItemArea == 87 ? true : false; 
+        //                        break;
+        //                    }
+        //                default:
+        //                    break;
+        //            }
+        //        }
 
-                if (TextBox != null)
-                    flpRegulacaotermica.Controls.Add(TextBox);
-            }
-            catch (Exception)
-            {
+        //        if (TextBox != null)
+        //            flpRegulacaotermica.Controls.Add(TextBox);
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
 
         void LimparFolowTable()
         {
@@ -276,20 +274,20 @@ namespace AppInternacao.FrmSae
             {
                 LimparFolowTable();
 
-                if (estruturaFisica.Id == 0)
-                {
-                    comboBoxTemplateExameFisico.DataSource = new List<TemplateName>();
-                    return;
-                }
+                //if (estruturaFisica.Id == 0)
+                //{
+                //    comboBoxTemplateExameFisico.DataSource = new List<TemplateName>();
+                //    return;
+                //}
 
-                comboBoxTemplateExameFisico.SelectedIndexChanged -= comboBoxTemplateExameFisico_SelectedIndexChanged;
+                //comboBoxTemplateExameFisico.SelectedIndexChanged -= comboBoxTemplateExameFisico_SelectedIndexChanged;
 
-                lstTemplates = presenterGeneric.GetLista(new TemplateName() { IdEstruturaFisica = estruturaFisica.Id, Ativo = true }, Procedure.SP_GET_TEMPLATE_NAME);
-                if (lstTemplates.Count > 0)
-                    lstTemplates.Insert(0, new TemplateName() { Id = 0, Nome = "Selecione..." });
-                comboBoxTemplateExameFisico.DataSource = lstTemplates;
+                //lstTemplates = presenterGeneric.GetLista(new TemplateName() { IdEstruturaFisica = estruturaFisica.Id, Ativo = true }, Procedure.SP_GET_TEMPLATE_NAME);
+                //if (lstTemplates.Count > 0)
+                //    lstTemplates.Insert(0, new TemplateName() { Id = 0, Nome = "Selecione..." });
+                //comboBoxTemplateExameFisico.DataSource = lstTemplates;
 
-                comboBoxTemplateExameFisico.SelectedIndexChanged += comboBoxTemplateExameFisico_SelectedIndexChanged;
+                //comboBoxTemplateExameFisico.SelectedIndexChanged += comboBoxTemplateExameFisico_SelectedIndexChanged;
                 
             }
             catch (Exception ex)
@@ -303,13 +301,13 @@ namespace AppInternacao.FrmSae
             try
             {
                 LimparFolowTable();
-                TemplateName templateName = (TemplateName)comboBoxTemplateExameFisico.SelectedItem;
+          //      TemplateName templateName = (TemplateName)comboBoxTemplateExameFisico.SelectedItem;
 
-                if (templateName.Id == 0)
-                    return;
+                //if (templateName.Id == 0)
+                //    return;
 
-                lstAreaItem = presenterGeneric.GetLista(new Area_Itens() { IdTemplate  = templateName.Id }, Procedure.SP_GET_ITENS_TEMPLATE);
-                Populatemplate();
+                //lstAreaItem = presenterGeneric.GetLista(new Area_Itens() { IdTemplate  = templateName.Id }, Procedure.SP_GET_ITENS_TEMPLATE);
+              //  Populatemplate();
             }
             catch (Exception ex)
             {

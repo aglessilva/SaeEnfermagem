@@ -23,11 +23,11 @@ namespace AppInternacao.FrmSae
         {
             if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medico))
             {
-                ctrl.Panel1.Controls.Add(new UCViewHistoricoEnfermagem());
+              //  ctrl.Panel1.Controls.Add(new UCViewHistoricoEnfermagem());
             }
             else
             {
-                new FrmExibirHistorico().ShowDialog();
+                //new FrmExibirHistorico().ShowDialog();
             }
         }
 

@@ -50,8 +50,24 @@
             this.flpCateteres = new System.Windows.Forms.FlowLayoutPanel();
             this.gGlasgow = new System.Windows.Forms.GroupBox();
             this.gRespostaVerbal = new System.Windows.Forms.GroupBox();
+            this.radioButtonExt16 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt15 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt14 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt13 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt12 = new AppInternacao.Extend.RadioButtonExt();
             this.gAberturaOcular = new System.Windows.Forms.GroupBox();
+            this.radioButtonExt11 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt10 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt9 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt8 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt7 = new AppInternacao.Extend.RadioButtonExt();
             this.gRespostaMotora = new System.Windows.Forms.GroupBox();
+            this.radioButtonExt6 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt5 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt4 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt3 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt2 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt1 = new AppInternacao.Extend.RadioButtonExt();
             this.pFormGlasgow = new System.Windows.Forms.Panel();
             this.lblSomaGlasgow = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,10 +84,16 @@
             this.gSistemaGastroIntestinal = new System.Windows.Forms.GroupBox();
             this.flpSistemaGastroIntestinal = new System.Windows.Forms.FlowLayoutPanel();
             this.pEvacuacoes = new System.Windows.Forms.Panel();
+            this.radioButtonExt19 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt18 = new AppInternacao.Extend.RadioButtonExt();
             this.label3 = new System.Windows.Forms.Label();
             this.pGavagem = new System.Windows.Forms.Panel();
+            this.radioButtonExt17 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt22 = new AppInternacao.Extend.RadioButtonExt();
             this.label4 = new System.Windows.Forms.Label();
             this.pFlatos = new System.Windows.Forms.Panel();
+            this.radioButtonExt20 = new AppInternacao.Extend.RadioButtonExt();
+            this.radioButtonExt21 = new AppInternacao.Extend.RadioButtonExt();
             this.label5 = new System.Windows.Forms.Label();
             this.gSistemaOxigenacao = new System.Windows.Forms.GroupBox();
             this.flpOxigenacao = new System.Windows.Forms.FlowLayoutPanel();
@@ -83,28 +105,6 @@
             this.flpPupilas = new System.Windows.Forms.FlowLayoutPanel();
             this.gPele = new System.Windows.Forms.GroupBox();
             this.flpPele = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButtonExt16 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt15 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt14 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt13 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt12 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt11 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt10 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt9 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt8 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt7 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt6 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt5 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt4 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt3 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt2 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt1 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt19 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt18 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt17 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt22 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt20 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt21 = new AppInternacao.Extend.RadioButtonExt();
             this.gTipoEstruturaFisica.SuspendLayout();
             this.pBody.SuspendLayout();
             this.gEscalaPressao.SuspendLayout();
@@ -409,6 +409,71 @@
             this.gRespostaVerbal.TabStop = false;
             this.gRespostaVerbal.Text = "Melhor Resposta Verbal";
             // 
+            // radioButtonExt16
+            // 
+            this.radioButtonExt16.AutoSize = true;
+            this.radioButtonExt16.Location = new System.Drawing.Point(406, 19);
+            this.radioButtonExt16.Name = "radioButtonExt16";
+            this.radioButtonExt16.Size = new System.Drawing.Size(94, 17);
+            this.radioButtonExt16.TabIndex = 11;
+            this.radioButtonExt16.TabStop = true;
+            this.radioButtonExt16.Text = "Sem Resposta";
+            this.radioButtonExt16.UseVisualStyleBackColor = true;
+            this.radioButtonExt16.Value = "1";
+            this.radioButtonExt16.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt15
+            // 
+            this.radioButtonExt15.AutoSize = true;
+            this.radioButtonExt15.Location = new System.Drawing.Point(283, 19);
+            this.radioButtonExt15.Name = "radioButtonExt15";
+            this.radioButtonExt15.Size = new System.Drawing.Size(114, 17);
+            this.radioButtonExt15.TabIndex = 10;
+            this.radioButtonExt15.TabStop = true;
+            this.radioButtonExt15.Text = "Sons Ininteligentes";
+            this.radioButtonExt15.UseVisualStyleBackColor = true;
+            this.radioButtonExt15.Value = "2";
+            this.radioButtonExt15.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt14
+            // 
+            this.radioButtonExt14.AutoSize = true;
+            this.radioButtonExt14.Location = new System.Drawing.Point(150, 19);
+            this.radioButtonExt14.Name = "radioButtonExt14";
+            this.radioButtonExt14.Size = new System.Drawing.Size(127, 17);
+            this.radioButtonExt14.TabIndex = 9;
+            this.radioButtonExt14.TabStop = true;
+            this.radioButtonExt14.Text = "Palavras Inaproriadas";
+            this.radioButtonExt14.UseVisualStyleBackColor = true;
+            this.radioButtonExt14.Value = "3";
+            this.radioButtonExt14.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt13
+            // 
+            this.radioButtonExt13.AutoSize = true;
+            this.radioButtonExt13.Location = new System.Drawing.Point(80, 19);
+            this.radioButtonExt13.Name = "radioButtonExt13";
+            this.radioButtonExt13.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonExt13.TabIndex = 8;
+            this.radioButtonExt13.TabStop = true;
+            this.radioButtonExt13.Text = "Confuso";
+            this.radioButtonExt13.UseVisualStyleBackColor = true;
+            this.radioButtonExt13.Value = "4";
+            this.radioButtonExt13.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt12
+            // 
+            this.radioButtonExt12.AutoSize = true;
+            this.radioButtonExt12.Location = new System.Drawing.Point(10, 19);
+            this.radioButtonExt12.Name = "radioButtonExt12";
+            this.radioButtonExt12.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonExt12.TabIndex = 7;
+            this.radioButtonExt12.TabStop = true;
+            this.radioButtonExt12.Text = "Confuso";
+            this.radioButtonExt12.UseVisualStyleBackColor = true;
+            this.radioButtonExt12.Value = "5";
+            this.radioButtonExt12.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
             // gAberturaOcular
             // 
             this.gAberturaOcular.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -425,6 +490,71 @@
             this.gAberturaOcular.TabIndex = 14;
             this.gAberturaOcular.TabStop = false;
             this.gAberturaOcular.Text = "Abertura Ocular";
+            // 
+            // radioButtonExt11
+            // 
+            this.radioButtonExt11.AutoSize = true;
+            this.radioButtonExt11.Location = new System.Drawing.Point(406, 19);
+            this.radioButtonExt11.Name = "radioButtonExt11";
+            this.radioButtonExt11.Size = new System.Drawing.Size(94, 17);
+            this.radioButtonExt11.TabIndex = 11;
+            this.radioButtonExt11.TabStop = true;
+            this.radioButtonExt11.Text = "Sem Resposta";
+            this.radioButtonExt11.UseVisualStyleBackColor = true;
+            this.radioButtonExt11.Value = "0";
+            this.radioButtonExt11.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt10
+            // 
+            this.radioButtonExt10.AutoSize = true;
+            this.radioButtonExt10.Location = new System.Drawing.Point(336, 19);
+            this.radioButtonExt10.Name = "radioButtonExt10";
+            this.radioButtonExt10.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonExt10.TabIndex = 10;
+            this.radioButtonExt10.TabStop = true;
+            this.radioButtonExt10.Text = "Ausente";
+            this.radioButtonExt10.UseVisualStyleBackColor = true;
+            this.radioButtonExt10.Value = "1";
+            this.radioButtonExt10.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt9
+            // 
+            this.radioButtonExt9.AutoSize = true;
+            this.radioButtonExt9.Location = new System.Drawing.Point(211, 19);
+            this.radioButtonExt9.Name = "radioButtonExt9";
+            this.radioButtonExt9.Size = new System.Drawing.Size(119, 17);
+            this.radioButtonExt9.TabIndex = 9;
+            this.radioButtonExt9.TabStop = true;
+            this.radioButtonExt9.Text = "Estimulos Dolorosos";
+            this.radioButtonExt9.UseVisualStyleBackColor = true;
+            this.radioButtonExt9.Value = "2";
+            this.radioButtonExt9.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt8
+            // 
+            this.radioButtonExt8.AutoSize = true;
+            this.radioButtonExt8.Location = new System.Drawing.Point(98, 19);
+            this.radioButtonExt8.Name = "radioButtonExt8";
+            this.radioButtonExt8.Size = new System.Drawing.Size(107, 17);
+            this.radioButtonExt8.TabIndex = 8;
+            this.radioButtonExt8.TabStop = true;
+            this.radioButtonExt8.Text = "Estimulos Verbais";
+            this.radioButtonExt8.UseVisualStyleBackColor = true;
+            this.radioButtonExt8.Value = "3";
+            this.radioButtonExt8.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt7
+            // 
+            this.radioButtonExt7.AutoSize = true;
+            this.radioButtonExt7.Location = new System.Drawing.Point(10, 19);
+            this.radioButtonExt7.Name = "radioButtonExt7";
+            this.radioButtonExt7.Size = new System.Drawing.Size(82, 17);
+            this.radioButtonExt7.TabIndex = 7;
+            this.radioButtonExt7.TabStop = true;
+            this.radioButtonExt7.Text = "Espontanea";
+            this.radioButtonExt7.UseVisualStyleBackColor = true;
+            this.radioButtonExt7.Value = "4";
+            this.radioButtonExt7.Click += new System.EventHandler(this.RadioBtn_Click);
             // 
             // gRespostaMotora
             // 
@@ -443,6 +573,84 @@
             this.gRespostaMotora.TabIndex = 16;
             this.gRespostaMotora.TabStop = false;
             this.gRespostaMotora.Text = "Melhor Resposta Motora";
+            // 
+            // radioButtonExt6
+            // 
+            this.radioButtonExt6.AutoSize = true;
+            this.radioButtonExt6.Location = new System.Drawing.Point(591, 19);
+            this.radioButtonExt6.Name = "radioButtonExt6";
+            this.radioButtonExt6.Size = new System.Drawing.Size(94, 17);
+            this.radioButtonExt6.TabIndex = 11;
+            this.radioButtonExt6.TabStop = true;
+            this.radioButtonExt6.Text = "Sem Resposta";
+            this.radioButtonExt6.UseVisualStyleBackColor = true;
+            this.radioButtonExt6.Value = "1";
+            this.radioButtonExt6.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt5
+            // 
+            this.radioButtonExt5.AutoSize = true;
+            this.radioButtonExt5.Location = new System.Drawing.Point(482, 19);
+            this.radioButtonExt5.Name = "radioButtonExt5";
+            this.radioButtonExt5.Size = new System.Drawing.Size(103, 17);
+            this.radioButtonExt5.TabIndex = 10;
+            this.radioButtonExt5.TabStop = true;
+            this.radioButtonExt5.Text = "Padrão Extensor";
+            this.radioButtonExt5.UseVisualStyleBackColor = true;
+            this.radioButtonExt5.Value = "2";
+            this.radioButtonExt5.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt4
+            // 
+            this.radioButtonExt4.AutoSize = true;
+            this.radioButtonExt4.Location = new System.Drawing.Point(386, 19);
+            this.radioButtonExt4.Name = "radioButtonExt4";
+            this.radioButtonExt4.Size = new System.Drawing.Size(90, 17);
+            this.radioButtonExt4.TabIndex = 9;
+            this.radioButtonExt4.TabStop = true;
+            this.radioButtonExt4.Text = "Padrão Flexor";
+            this.radioButtonExt4.UseVisualStyleBackColor = true;
+            this.radioButtonExt4.Value = "3";
+            this.radioButtonExt4.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt3
+            // 
+            this.radioButtonExt3.AutoSize = true;
+            this.radioButtonExt3.Location = new System.Drawing.Point(255, 19);
+            this.radioButtonExt3.Name = "radioButtonExt3";
+            this.radioButtonExt3.Size = new System.Drawing.Size(125, 17);
+            this.radioButtonExt3.TabIndex = 8;
+            this.radioButtonExt3.TabStop = true;
+            this.radioButtonExt3.Text = "Retirada Inespecifica";
+            this.radioButtonExt3.UseVisualStyleBackColor = true;
+            this.radioButtonExt3.Value = "4";
+            this.radioButtonExt3.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt2
+            // 
+            this.radioButtonExt2.AutoSize = true;
+            this.radioButtonExt2.Location = new System.Drawing.Point(138, 19);
+            this.radioButtonExt2.Name = "radioButtonExt2";
+            this.radioButtonExt2.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonExt2.TabIndex = 7;
+            this.radioButtonExt2.TabStop = true;
+            this.radioButtonExt2.Text = "Localiza Estimulos";
+            this.radioButtonExt2.UseVisualStyleBackColor = true;
+            this.radioButtonExt2.Value = "5";
+            this.radioButtonExt2.Click += new System.EventHandler(this.RadioBtn_Click);
+            // 
+            // radioButtonExt1
+            // 
+            this.radioButtonExt1.AutoSize = true;
+            this.radioButtonExt1.Location = new System.Drawing.Point(10, 19);
+            this.radioButtonExt1.Name = "radioButtonExt1";
+            this.radioButtonExt1.Size = new System.Drawing.Size(122, 17);
+            this.radioButtonExt1.TabIndex = 6;
+            this.radioButtonExt1.TabStop = true;
+            this.radioButtonExt1.Text = "Obedece Comandos";
+            this.radioButtonExt1.UseVisualStyleBackColor = true;
+            this.radioButtonExt1.Value = "6";
+            this.radioButtonExt1.Click += new System.EventHandler(this.RadioBtn_Click);
             // 
             // pFormGlasgow
             // 
@@ -613,7 +821,6 @@
             // 
             // pEvacuacoes
             // 
-            this.pEvacuacoes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pEvacuacoes.Controls.Add(this.radioButtonExt19);
             this.pEvacuacoes.Controls.Add(this.radioButtonExt18);
             this.pEvacuacoes.Controls.Add(this.label3);
@@ -622,6 +829,30 @@
             this.pEvacuacoes.Size = new System.Drawing.Size(235, 31);
             this.pEvacuacoes.TabIndex = 3;
             this.pEvacuacoes.Visible = false;
+            // 
+            // radioButtonExt19
+            // 
+            this.radioButtonExt19.AutoSize = true;
+            this.radioButtonExt19.Location = new System.Drawing.Point(163, 4);
+            this.radioButtonExt19.Name = "radioButtonExt19";
+            this.radioButtonExt19.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonExt19.TabIndex = 8;
+            this.radioButtonExt19.TabStop = true;
+            this.radioButtonExt19.Text = "Ausente";
+            this.radioButtonExt19.UseVisualStyleBackColor = true;
+            this.radioButtonExt19.Value = "";
+            // 
+            // radioButtonExt18
+            // 
+            this.radioButtonExt18.AutoSize = true;
+            this.radioButtonExt18.Location = new System.Drawing.Point(90, 4);
+            this.radioButtonExt18.Name = "radioButtonExt18";
+            this.radioButtonExt18.Size = new System.Drawing.Size(67, 17);
+            this.radioButtonExt18.TabIndex = 7;
+            this.radioButtonExt18.TabStop = true;
+            this.radioButtonExt18.Text = "Presente";
+            this.radioButtonExt18.UseVisualStyleBackColor = true;
+            this.radioButtonExt18.Value = "";
             // 
             // label3
             // 
@@ -635,7 +866,6 @@
             // 
             // pGavagem
             // 
-            this.pGavagem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pGavagem.Controls.Add(this.radioButtonExt17);
             this.pGavagem.Controls.Add(this.radioButtonExt22);
             this.pGavagem.Controls.Add(this.label4);
@@ -644,6 +874,30 @@
             this.pGavagem.Size = new System.Drawing.Size(203, 31);
             this.pGavagem.TabIndex = 4;
             this.pGavagem.Visible = false;
+            // 
+            // radioButtonExt17
+            // 
+            this.radioButtonExt17.AutoSize = true;
+            this.radioButtonExt17.Location = new System.Drawing.Point(134, 4);
+            this.radioButtonExt17.Name = "radioButtonExt17";
+            this.radioButtonExt17.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonExt17.TabIndex = 12;
+            this.radioButtonExt17.TabStop = true;
+            this.radioButtonExt17.Text = "Emese";
+            this.radioButtonExt17.UseVisualStyleBackColor = true;
+            this.radioButtonExt17.Value = "";
+            // 
+            // radioButtonExt22
+            // 
+            this.radioButtonExt22.AutoSize = true;
+            this.radioButtonExt22.Location = new System.Drawing.Point(76, 4);
+            this.radioButtonExt22.Name = "radioButtonExt22";
+            this.radioButtonExt22.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonExt22.TabIndex = 11;
+            this.radioButtonExt22.TabStop = true;
+            this.radioButtonExt22.Text = "Aberta";
+            this.radioButtonExt22.UseVisualStyleBackColor = true;
+            this.radioButtonExt22.Value = "";
             // 
             // label4
             // 
@@ -657,7 +911,6 @@
             // 
             // pFlatos
             // 
-            this.pFlatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pFlatos.Controls.Add(this.radioButtonExt20);
             this.pFlatos.Controls.Add(this.radioButtonExt21);
             this.pFlatos.Controls.Add(this.label5);
@@ -666,6 +919,30 @@
             this.pFlatos.Size = new System.Drawing.Size(205, 31);
             this.pFlatos.TabIndex = 5;
             this.pFlatos.Visible = false;
+            // 
+            // radioButtonExt20
+            // 
+            this.radioButtonExt20.AutoSize = true;
+            this.radioButtonExt20.Location = new System.Drawing.Point(130, 4);
+            this.radioButtonExt20.Name = "radioButtonExt20";
+            this.radioButtonExt20.Size = new System.Drawing.Size(64, 17);
+            this.radioButtonExt20.TabIndex = 10;
+            this.radioButtonExt20.TabStop = true;
+            this.radioButtonExt20.Text = "Ausente";
+            this.radioButtonExt20.UseVisualStyleBackColor = true;
+            this.radioButtonExt20.Value = "";
+            // 
+            // radioButtonExt21
+            // 
+            this.radioButtonExt21.AutoSize = true;
+            this.radioButtonExt21.Location = new System.Drawing.Point(57, 4);
+            this.radioButtonExt21.Name = "radioButtonExt21";
+            this.radioButtonExt21.Size = new System.Drawing.Size(67, 17);
+            this.radioButtonExt21.TabIndex = 9;
+            this.radioButtonExt21.TabStop = true;
+            this.radioButtonExt21.Text = "Presente";
+            this.radioButtonExt21.UseVisualStyleBackColor = true;
+            this.radioButtonExt21.Value = "";
             // 
             // label5
             // 
@@ -786,286 +1063,6 @@
             this.flpPele.Name = "flpPele";
             this.flpPele.Size = new System.Drawing.Size(798, 60);
             this.flpPele.TabIndex = 0;
-            // 
-            // radioButtonExt16
-            // 
-            this.radioButtonExt16.AutoSize = true;
-            this.radioButtonExt16.Location = new System.Drawing.Point(406, 19);
-            this.radioButtonExt16.Name = "radioButtonExt16";
-            this.radioButtonExt16.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt16.TabIndex = 11;
-            this.radioButtonExt16.TabStop = true;
-            this.radioButtonExt16.Text = "Sem Resposta";
-            this.radioButtonExt16.UseVisualStyleBackColor = true;
-            this.radioButtonExt16.Value = "1";
-            this.radioButtonExt16.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt15
-            // 
-            this.radioButtonExt15.AutoSize = true;
-            this.radioButtonExt15.Location = new System.Drawing.Point(283, 19);
-            this.radioButtonExt15.Name = "radioButtonExt15";
-            this.radioButtonExt15.Size = new System.Drawing.Size(114, 17);
-            this.radioButtonExt15.TabIndex = 10;
-            this.radioButtonExt15.TabStop = true;
-            this.radioButtonExt15.Text = "Sons Ininteligentes";
-            this.radioButtonExt15.UseVisualStyleBackColor = true;
-            this.radioButtonExt15.Value = "2";
-            this.radioButtonExt15.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt14
-            // 
-            this.radioButtonExt14.AutoSize = true;
-            this.radioButtonExt14.Location = new System.Drawing.Point(150, 19);
-            this.radioButtonExt14.Name = "radioButtonExt14";
-            this.radioButtonExt14.Size = new System.Drawing.Size(127, 17);
-            this.radioButtonExt14.TabIndex = 9;
-            this.radioButtonExt14.TabStop = true;
-            this.radioButtonExt14.Text = "Palavras Inaproriadas";
-            this.radioButtonExt14.UseVisualStyleBackColor = true;
-            this.radioButtonExt14.Value = "3";
-            this.radioButtonExt14.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt13
-            // 
-            this.radioButtonExt13.AutoSize = true;
-            this.radioButtonExt13.Location = new System.Drawing.Point(80, 19);
-            this.radioButtonExt13.Name = "radioButtonExt13";
-            this.radioButtonExt13.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt13.TabIndex = 8;
-            this.radioButtonExt13.TabStop = true;
-            this.radioButtonExt13.Text = "Confuso";
-            this.radioButtonExt13.UseVisualStyleBackColor = true;
-            this.radioButtonExt13.Value = "4";
-            this.radioButtonExt13.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt12
-            // 
-            this.radioButtonExt12.AutoSize = true;
-            this.radioButtonExt12.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt12.Name = "radioButtonExt12";
-            this.radioButtonExt12.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt12.TabIndex = 7;
-            this.radioButtonExt12.TabStop = true;
-            this.radioButtonExt12.Text = "Confuso";
-            this.radioButtonExt12.UseVisualStyleBackColor = true;
-            this.radioButtonExt12.Value = "5";
-            this.radioButtonExt12.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt11
-            // 
-            this.radioButtonExt11.AutoSize = true;
-            this.radioButtonExt11.Location = new System.Drawing.Point(406, 19);
-            this.radioButtonExt11.Name = "radioButtonExt11";
-            this.radioButtonExt11.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt11.TabIndex = 11;
-            this.radioButtonExt11.TabStop = true;
-            this.radioButtonExt11.Text = "Sem Resposta";
-            this.radioButtonExt11.UseVisualStyleBackColor = true;
-            this.radioButtonExt11.Value = "0";
-            this.radioButtonExt11.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt10
-            // 
-            this.radioButtonExt10.AutoSize = true;
-            this.radioButtonExt10.Location = new System.Drawing.Point(336, 19);
-            this.radioButtonExt10.Name = "radioButtonExt10";
-            this.radioButtonExt10.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt10.TabIndex = 10;
-            this.radioButtonExt10.TabStop = true;
-            this.radioButtonExt10.Text = "Ausente";
-            this.radioButtonExt10.UseVisualStyleBackColor = true;
-            this.radioButtonExt10.Value = "1";
-            this.radioButtonExt10.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt9
-            // 
-            this.radioButtonExt9.AutoSize = true;
-            this.radioButtonExt9.Location = new System.Drawing.Point(211, 19);
-            this.radioButtonExt9.Name = "radioButtonExt9";
-            this.radioButtonExt9.Size = new System.Drawing.Size(119, 17);
-            this.radioButtonExt9.TabIndex = 9;
-            this.radioButtonExt9.TabStop = true;
-            this.radioButtonExt9.Text = "Estimulos Dolorosos";
-            this.radioButtonExt9.UseVisualStyleBackColor = true;
-            this.radioButtonExt9.Value = "2";
-            this.radioButtonExt9.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt8
-            // 
-            this.radioButtonExt8.AutoSize = true;
-            this.radioButtonExt8.Location = new System.Drawing.Point(98, 19);
-            this.radioButtonExt8.Name = "radioButtonExt8";
-            this.radioButtonExt8.Size = new System.Drawing.Size(107, 17);
-            this.radioButtonExt8.TabIndex = 8;
-            this.radioButtonExt8.TabStop = true;
-            this.radioButtonExt8.Text = "Estimulos Verbais";
-            this.radioButtonExt8.UseVisualStyleBackColor = true;
-            this.radioButtonExt8.Value = "3";
-            this.radioButtonExt8.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt7
-            // 
-            this.radioButtonExt7.AutoSize = true;
-            this.radioButtonExt7.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt7.Name = "radioButtonExt7";
-            this.radioButtonExt7.Size = new System.Drawing.Size(82, 17);
-            this.radioButtonExt7.TabIndex = 7;
-            this.radioButtonExt7.TabStop = true;
-            this.radioButtonExt7.Text = "Espontanea";
-            this.radioButtonExt7.UseVisualStyleBackColor = true;
-            this.radioButtonExt7.Value = "4";
-            this.radioButtonExt7.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt6
-            // 
-            this.radioButtonExt6.AutoSize = true;
-            this.radioButtonExt6.Location = new System.Drawing.Point(591, 19);
-            this.radioButtonExt6.Name = "radioButtonExt6";
-            this.radioButtonExt6.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt6.TabIndex = 11;
-            this.radioButtonExt6.TabStop = true;
-            this.radioButtonExt6.Text = "Sem Resposta";
-            this.radioButtonExt6.UseVisualStyleBackColor = true;
-            this.radioButtonExt6.Value = "1";
-            this.radioButtonExt6.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt5
-            // 
-            this.radioButtonExt5.AutoSize = true;
-            this.radioButtonExt5.Location = new System.Drawing.Point(482, 19);
-            this.radioButtonExt5.Name = "radioButtonExt5";
-            this.radioButtonExt5.Size = new System.Drawing.Size(103, 17);
-            this.radioButtonExt5.TabIndex = 10;
-            this.radioButtonExt5.TabStop = true;
-            this.radioButtonExt5.Text = "Padrão Extensor";
-            this.radioButtonExt5.UseVisualStyleBackColor = true;
-            this.radioButtonExt5.Value = "2";
-            this.radioButtonExt5.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt4
-            // 
-            this.radioButtonExt4.AutoSize = true;
-            this.radioButtonExt4.Location = new System.Drawing.Point(386, 19);
-            this.radioButtonExt4.Name = "radioButtonExt4";
-            this.radioButtonExt4.Size = new System.Drawing.Size(90, 17);
-            this.radioButtonExt4.TabIndex = 9;
-            this.radioButtonExt4.TabStop = true;
-            this.radioButtonExt4.Text = "Padrão Flexor";
-            this.radioButtonExt4.UseVisualStyleBackColor = true;
-            this.radioButtonExt4.Value = "3";
-            this.radioButtonExt4.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt3
-            // 
-            this.radioButtonExt3.AutoSize = true;
-            this.radioButtonExt3.Location = new System.Drawing.Point(255, 19);
-            this.radioButtonExt3.Name = "radioButtonExt3";
-            this.radioButtonExt3.Size = new System.Drawing.Size(125, 17);
-            this.radioButtonExt3.TabIndex = 8;
-            this.radioButtonExt3.TabStop = true;
-            this.radioButtonExt3.Text = "Retirada Inespecifica";
-            this.radioButtonExt3.UseVisualStyleBackColor = true;
-            this.radioButtonExt3.Value = "4";
-            this.radioButtonExt3.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt2
-            // 
-            this.radioButtonExt2.AutoSize = true;
-            this.radioButtonExt2.Location = new System.Drawing.Point(138, 19);
-            this.radioButtonExt2.Name = "radioButtonExt2";
-            this.radioButtonExt2.Size = new System.Drawing.Size(111, 17);
-            this.radioButtonExt2.TabIndex = 7;
-            this.radioButtonExt2.TabStop = true;
-            this.radioButtonExt2.Text = "Localiza Estimulos";
-            this.radioButtonExt2.UseVisualStyleBackColor = true;
-            this.radioButtonExt2.Value = "5";
-            this.radioButtonExt2.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt1
-            // 
-            this.radioButtonExt1.AutoSize = true;
-            this.radioButtonExt1.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt1.Name = "radioButtonExt1";
-            this.radioButtonExt1.Size = new System.Drawing.Size(122, 17);
-            this.radioButtonExt1.TabIndex = 6;
-            this.radioButtonExt1.TabStop = true;
-            this.radioButtonExt1.Text = "Obedece Comandos";
-            this.radioButtonExt1.UseVisualStyleBackColor = true;
-            this.radioButtonExt1.Value = "6";
-            this.radioButtonExt1.Click += new System.EventHandler(this.RadioBtn_Click);
-            // 
-            // radioButtonExt19
-            // 
-            this.radioButtonExt19.AutoSize = true;
-            this.radioButtonExt19.Location = new System.Drawing.Point(163, 4);
-            this.radioButtonExt19.Name = "radioButtonExt19";
-            this.radioButtonExt19.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt19.TabIndex = 8;
-            this.radioButtonExt19.TabStop = true;
-            this.radioButtonExt19.Text = "Ausente";
-            this.radioButtonExt19.UseVisualStyleBackColor = true;
-            this.radioButtonExt19.Value = "";
-            // 
-            // radioButtonExt18
-            // 
-            this.radioButtonExt18.AutoSize = true;
-            this.radioButtonExt18.Location = new System.Drawing.Point(90, 4);
-            this.radioButtonExt18.Name = "radioButtonExt18";
-            this.radioButtonExt18.Size = new System.Drawing.Size(67, 17);
-            this.radioButtonExt18.TabIndex = 7;
-            this.radioButtonExt18.TabStop = true;
-            this.radioButtonExt18.Text = "Presente";
-            this.radioButtonExt18.UseVisualStyleBackColor = true;
-            this.radioButtonExt18.Value = "";
-            // 
-            // radioButtonExt17
-            // 
-            this.radioButtonExt17.AutoSize = true;
-            this.radioButtonExt17.Location = new System.Drawing.Point(134, 4);
-            this.radioButtonExt17.Name = "radioButtonExt17";
-            this.radioButtonExt17.Size = new System.Drawing.Size(57, 17);
-            this.radioButtonExt17.TabIndex = 12;
-            this.radioButtonExt17.TabStop = true;
-            this.radioButtonExt17.Text = "Emese";
-            this.radioButtonExt17.UseVisualStyleBackColor = true;
-            this.radioButtonExt17.Value = "";
-            // 
-            // radioButtonExt22
-            // 
-            this.radioButtonExt22.AutoSize = true;
-            this.radioButtonExt22.Location = new System.Drawing.Point(76, 4);
-            this.radioButtonExt22.Name = "radioButtonExt22";
-            this.radioButtonExt22.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonExt22.TabIndex = 11;
-            this.radioButtonExt22.TabStop = true;
-            this.radioButtonExt22.Text = "Aberta";
-            this.radioButtonExt22.UseVisualStyleBackColor = true;
-            this.radioButtonExt22.Value = "";
-            // 
-            // radioButtonExt20
-            // 
-            this.radioButtonExt20.AutoSize = true;
-            this.radioButtonExt20.Location = new System.Drawing.Point(130, 4);
-            this.radioButtonExt20.Name = "radioButtonExt20";
-            this.radioButtonExt20.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt20.TabIndex = 10;
-            this.radioButtonExt20.TabStop = true;
-            this.radioButtonExt20.Text = "Ausente";
-            this.radioButtonExt20.UseVisualStyleBackColor = true;
-            this.radioButtonExt20.Value = "";
-            // 
-            // radioButtonExt21
-            // 
-            this.radioButtonExt21.AutoSize = true;
-            this.radioButtonExt21.Location = new System.Drawing.Point(57, 4);
-            this.radioButtonExt21.Name = "radioButtonExt21";
-            this.radioButtonExt21.Size = new System.Drawing.Size(67, 17);
-            this.radioButtonExt21.TabIndex = 9;
-            this.radioButtonExt21.TabStop = true;
-            this.radioButtonExt21.Text = "Presente";
-            this.radioButtonExt21.UseVisualStyleBackColor = true;
-            this.radioButtonExt21.Value = "";
             // 
             // UCExameFisico
             // 

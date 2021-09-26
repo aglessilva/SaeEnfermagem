@@ -244,6 +244,7 @@ namespace AppInternacao.FrmSae
             this.btnEnviarCodigoBarra.BackColor = System.Drawing.Color.Transparent;
             this.btnEnviarCodigoBarra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEnviarCodigoBarra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEnviarCodigoBarra.Enabled = false;
             this.btnEnviarCodigoBarra.FlatAppearance.BorderSize = 0;
             this.btnEnviarCodigoBarra.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnEnviarCodigoBarra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
@@ -320,11 +321,10 @@ namespace AppInternacao.FrmSae
             this.textBoxProntuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxProntuario.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.textBoxProntuario.Location = new System.Drawing.Point(79, 87);
-            this.textBoxProntuario.MaxLength = 18;
+            this.textBoxProntuario.MaxLength = 12;
             this.textBoxProntuario.Name = "textBoxProntuario";
             this.textBoxProntuario.Size = new System.Drawing.Size(248, 25);
             this.textBoxProntuario.TabIndex = 0;
-            this.textBoxProntuario.Text = "562021443327090101";
             this.textBoxProntuario.TextChanged += new System.EventHandler(this.textBoxProntuario_TextChanged);
             this.textBoxProntuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxProntuario_KeyPress);
             // 

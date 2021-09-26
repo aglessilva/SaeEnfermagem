@@ -170,12 +170,14 @@ namespace AppInternacao.Model
                                     }
                                 case TypeCode.Object:
                                     {
-                                        byte[] valor = (byte[])item.GetValue(obejto, null);
-
-                                        if (valor != null)
+                                        if (tipo.IsArray)
                                         {
-                                            Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.VarBinary));
-                                            Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
+                                            byte[] valor = (byte[])item.GetValue(obejto, null);
+                                            if (valor != null)
+                                            {
+                                                Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.VarBinary));
+                                                Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
+                                            }
                                         }
                                         break;
                                     }
@@ -214,6 +216,7 @@ namespace AppInternacao.Model
             {
                 Type tipoObjeto = typeof(T);
                 PropertyInfo[] propriedadesObj = tipoObjeto.GetProperties();
+
 
                 if (obj != null)
                 {

@@ -20,7 +20,7 @@ namespace AppInternacao.FrmSae
                 components.Dispose();
             }
 
-            UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
+            //UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
             base.Dispose(disposing);
         }
 

@@ -8,11 +8,11 @@ namespace AppInternacao.FrmSae
 {
     public partial class UI006FrmBarCodeProntuario : UI000FrmTemplate
     {
-        bool isMedico = false;
-        public UI006FrmBarCodeProntuario(bool _isMedico = false)
+        private Form frm = null;
+        public UI006FrmBarCodeProntuario(Form _form)
         {
             InitializeComponent();
-            isMedico = _isMedico;
+            frm = _form;
         }
 
         PacientePresenter PacientePresenter = null;
@@ -24,7 +24,7 @@ namespace AppInternacao.FrmSae
                 if (string.IsNullOrWhiteSpace(textBoxProntuario.Text))
                     return;
 
-                if (!Regex.IsMatch(textBoxProntuario.Text, @"(^\d{1,18}$)"))
+                if (!Regex.IsMatch(textBoxProntuario.Text, @"(^\d{1,12}$)"))
                 {
                     MessageBox.Show($"Neste campo é permitido somente caracteres numéricos\nDados inconsistentes: {textBoxProntuario.Text}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     textBoxProntuario.Text = string.Empty;
@@ -34,7 +34,7 @@ namespace AppInternacao.FrmSae
 
                 textBoxProntuario.Text = Regex.Replace(textBoxProntuario.Text.Trim(), @"[^0-9$]", string.Empty);
 
-                if (textBoxProntuario.Text.Length == 18)
+                if (textBoxProntuario.Text.Length == 12)
                 {
                     PacientePresenter = new PacientePresenter();
                     PacientePresenter.SessaoPaciente(Convert.ToInt64(textBoxProntuario.Text));
@@ -55,14 +55,14 @@ namespace AppInternacao.FrmSae
                         {
                             lblObs.Visible = true;
                             lblObs.Text = "PARA CONTINUAR É NECESSÁRIO ASSOCIAR O PACIENTE À UM LEITO";
-                            if (!isMedico)
-                                UCTimeLine.ButtonSaeAvanca.Enabled = false;
+                            //if (!isMedico)
+                              //  UCTimeLine.ButtonSaeAvanca.Enabled = false;
                         }
 
                         lblObs.Visible = string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
-                        if (!isMedico)
-                            UCTimeLine.ButtonSaeAvanca.Enabled = !lblObs.Visible;
-                        btnEnviarCodigoBarra.Visible = (isMedico && !lblObs.Visible);
+                      //f (!isMedico)
+                            //UCTimeLine.ButtonSaeAvanca.Enabled = !lblObs.Visible;
+                        btnEnviarCodigoBarra.Enabled = !lblObs.Visible;
                         gDadosPaciente.Visible = true;
                         lblNaoLocaizado.Visible = false;
                         pbOk.Image = Properties.Resources.ok_accept_15562;
@@ -74,8 +74,8 @@ namespace AppInternacao.FrmSae
                     }
                     else
                     {
-                        if (!isMedico)
-                             UCTimeLine.ButtonSaeAvanca.Enabled = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
+                       // if (!isMedico)
+                             //UCTimeLine.ButtonSaeAvanca.Enabled = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
 
                         lblObs.Visible = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
                         gDadosPaciente.Visible = false;
@@ -85,7 +85,7 @@ namespace AppInternacao.FrmSae
                     }
                 }
                 else
-                    btnEnviarCodigoBarra.Visible = textBoxProntuario.Text.Length == 18;
+                    btnEnviarCodigoBarra.Enabled = textBoxProntuario.Text.Length == 12;
 
             }
             catch (Exception exL)
@@ -99,6 +99,7 @@ namespace AppInternacao.FrmSae
         {
             gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
             textBoxProntuario.Text = string.Empty;
+            btnEnviarCodigoBarra.Enabled = false;
             textBoxProntuario.Focus();
         }
 
@@ -111,18 +112,28 @@ namespace AppInternacao.FrmSae
         private void btnEnviarCodigoBarra_Click(object sender, EventArgs e)
         {
             SplitContainer ctrl = (SplitContainer)Parent.Parent;
-            ctrl.Panel2Collapsed = false;
-            Dispose(true);
-            Form frm = new UI007FrmMenuDireito { TopLevel = false };
-            ctrl.Controls[1].Controls.Add(frm);
+
+            if (frm.Name.Equals("UI007FrmMenuDireito"))
+            {
+                ctrl.Panel2Collapsed = false;
+                Dispose(true);
+                ctrl.Controls[1].Controls.Add(frm);
+            }
+            
+            if (frm.Name.Equals("UI011FrmTimeLine"))
+            {
+                ctrl.Panel2Collapsed = true;
+                ctrl.Controls[0].Controls.Add(frm);
+            }
+
             frm.Show();
         }
 
         private void UI006FrmBarCodeProntuario_Load(object sender, EventArgs e)
         {
             textBoxProntuario.Focus();
-            if (!isMedico)
-                UCTimeLine.ButtonSaeAvanca.Enabled = false;
+           // if (!isMedico)
+               // UCTimeLine.ButtonSaeAvanca.Enabled = false;
         }
     }
 }

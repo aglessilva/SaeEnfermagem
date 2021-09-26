@@ -6,6 +6,7 @@ using System.Text;
 using System.Net;
 using System.Net.Mail;
 using AppInternacao.Model;
+using AppInternacao.Enum;
 
 namespace AppInternacao
 {
@@ -78,7 +79,6 @@ namespace AppInternacao
             }
         }
 
-
         public static int EnviarEmail(Usuario usuario, bool isNovoUsuario = false)
         {
             NetworkCredential login;
@@ -128,5 +128,7 @@ namespace AppInternacao
                 retornoEmail = 0;
 
         }
+
+      
     }
 }

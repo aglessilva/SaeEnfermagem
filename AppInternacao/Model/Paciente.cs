@@ -9,7 +9,7 @@ namespace AppInternacao.Model
         public Paciente()
         {
             Nome = string.Empty;
-
+            Sae = new SAE();
         }
         public int Id { get; set; }
         public char Sexo { get; set; }
@@ -22,23 +22,37 @@ namespace AppInternacao.Model
         public string NomeQuarto { get; set; }
         public string NomeSetor { get; set; }
         public Enum.StatusInternacao Status { get; set; }
-        public string HistoricoEnfermagem { get; set; }
         public string Telefone { get; set; }
-        public SAE Sae { get; set; }
+        public DateTime? Data { get; set; }
+        public bool? HasDiagnosticoEnfermagem { get; set; }
+        public bool? HasPrescricaoEnfermagem { get; set; }
+        public bool? HasEnvolucaoEnfermagem { get; set; }
+        public bool? HasAvaliacaoEnfermagem { get; set; }
+        public bool? HasHistoricoEnfermagem { get; set; }
+        public SAE Sae { get;set; }
        // public Endereco Endereco { get; set; }
     }
 
     public sealed class SAE
     {
+        public SAE()
+        {
+            HistoricoEnfermagem = new HistoricoEnfermagem();
+            DiagnosticoEnfermagem = new DiagnosticoEnfermagem();
+            PrescricaoEnfermagem = new PrescricaoEnfermagem();
+            EvolucaoEnfermagem = new EvolucaoEnfermagem();
+            AvaliacaoEnfermagem = new AvaliacaoEnfermagem();
+        }
         public int Id { get; set; }
         public int IdCiente { get; set; }
         public int IdPaciente { get; set; }
         public int IdUsuario { get; set; }
         public DateTime DataSae { get; set; }
-        public bool DiagnosticoEnfermagem { get; set; }
-        public bool PrescricaoEnfermagem { get; set; }
-        public bool EnvolucaoEnfermagem { get; set; }
-        public bool AvaliacaoEnfermagem { get; set; }
+        public HistoricoEnfermagem HistoricoEnfermagem { get; set; }
+        public DiagnosticoEnfermagem DiagnosticoEnfermagem { get; set; }
+        public PrescricaoEnfermagem PrescricaoEnfermagem { get; set; }
+        public EvolucaoEnfermagem EvolucaoEnfermagem { get; set; }
+        public AvaliacaoEnfermagem AvaliacaoEnfermagem { get; set; }
         public bool IsConcluido { get; set; }
     }
 

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPaciente002));
             this.label20 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -88,26 +88,24 @@
             this.textProntuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRotulo = new System.Windows.Forms.Label();
-            this.printDocumentCracha = new System.Drawing.Printing.PrintDocument();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textTelefone = new System.Windows.Forms.MaskedTextBox();
             this.btnAddPicture = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textBoxLeito = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelCracha = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.textBoxLeitoCracha = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.pbBarcodeCracha = new System.Windows.Forms.PictureBox();
             this.textBoxIdadeCracha = new System.Windows.Forms.TextBox();
             this.pictureBoxImgCracha = new System.Windows.Forms.PictureBox();
             this.textBoxCliente = new System.Windows.Forms.TextBox();
             this.textBoxNomeCrachar = new System.Windows.Forms.TextBox();
             this.textBoxDataCracha = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBoxProntuarioCracha = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBoxIdade = new System.Windows.Forms.TextBox();
@@ -115,7 +113,6 @@
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.textTelefone = new System.Windows.Forms.MaskedTextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPaciente)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -132,7 +129,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(298, 76);
+            this.label20.Location = new System.Drawing.Point(319, 76);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 13);
             this.label20.TabIndex = 52;
@@ -272,18 +269,18 @@
             this.dataGridViewPaciente.AllowUserToAddRows = false;
             this.dataGridViewPaciente.AllowUserToDeleteRows = false;
             this.dataGridViewPaciente.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewPaciente.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewPaciente.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewPaciente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPaciente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPaciente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPaciente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPaciente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -293,14 +290,14 @@
             this.Sexo,
             this.Prontuario,
             this.Editar});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPaciente.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewPaciente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPaciente.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewPaciente.Location = new System.Drawing.Point(0, 0);
@@ -534,7 +531,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(366, 23);
+            this.label12.Location = new System.Drawing.Point(346, 23);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 13);
             this.label12.TabIndex = 29;
@@ -545,7 +542,7 @@
             this.comboBoxEstruturaFisica.DisplayMember = "Nome";
             this.comboBoxEstruturaFisica.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEstruturaFisica.FormattingEnabled = true;
-            this.comboBoxEstruturaFisica.Location = new System.Drawing.Point(369, 44);
+            this.comboBoxEstruturaFisica.Location = new System.Drawing.Point(349, 44);
             this.comboBoxEstruturaFisica.Name = "comboBoxEstruturaFisica";
             this.comboBoxEstruturaFisica.Size = new System.Drawing.Size(108, 21);
             this.comboBoxEstruturaFisica.TabIndex = 1;
@@ -629,7 +626,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.DimGray;
-            this.panel3.Location = new System.Drawing.Point(224, 89);
+            this.panel3.Location = new System.Drawing.Point(226, 89);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(43, 1);
             this.panel3.TabIndex = 18;
@@ -666,7 +663,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(184, 76);
+            this.label1.Location = new System.Drawing.Point(186, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 7;
@@ -742,6 +739,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cadastro resumido de paciente";
             // 
+            // textTelefone
+            // 
+            this.textTelefone.BackColor = System.Drawing.SystemColors.Control;
+            this.textTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textTelefone.Location = new System.Drawing.Point(377, 76);
+            this.textTelefone.Mask = "(99) 00000-0000";
+            this.textTelefone.Name = "textTelefone";
+            this.textTelefone.Size = new System.Drawing.Size(100, 13);
+            this.textTelefone.TabIndex = 5;
+            this.textTelefone.Leave += new System.EventHandler(this.textTelefone_Leave);
+            // 
             // btnAddPicture
             // 
             this.btnAddPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -752,7 +760,7 @@
             this.btnAddPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPicture.Image = global::AppInternacao.Properties.Resources.Photobooth;
             this.btnAddPicture.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddPicture.Location = new System.Drawing.Point(728, 260);
+            this.btnAddPicture.Location = new System.Drawing.Point(728, 269);
             this.btnAddPicture.Name = "btnAddPicture";
             this.btnAddPicture.Size = new System.Drawing.Size(166, 35);
             this.btnAddPicture.TabIndex = 17;
@@ -795,41 +803,21 @@
             this.panelCracha.BackColor = System.Drawing.Color.Transparent;
             this.panelCracha.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelCracha.BackgroundImage")));
             this.panelCracha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panelCracha.Controls.Add(this.label6);
-            this.panelCracha.Controls.Add(this.label7);
             this.panelCracha.Controls.Add(this.textBoxLeitoCracha);
+            this.panelCracha.Controls.Add(this.label6);
             this.panelCracha.Controls.Add(this.label5);
-            this.panelCracha.Controls.Add(this.label8);
             this.panelCracha.Controls.Add(this.pbBarcodeCracha);
             this.panelCracha.Controls.Add(this.textBoxIdadeCracha);
             this.panelCracha.Controls.Add(this.pictureBoxImgCracha);
             this.panelCracha.Controls.Add(this.textBoxCliente);
             this.panelCracha.Controls.Add(this.textBoxNomeCrachar);
             this.panelCracha.Controls.Add(this.textBoxDataCracha);
-            this.panelCracha.Controls.Add(this.label2);
             this.panelCracha.Controls.Add(this.textBoxProntuarioCracha);
-            this.panelCracha.Location = new System.Drawing.Point(647, 26);
+            this.panelCracha.Controls.Add(this.label7);
+            this.panelCracha.Location = new System.Drawing.Point(647, 50);
             this.panelCracha.Name = "panelCracha";
-            this.panelCracha.Size = new System.Drawing.Size(306, 203);
+            this.panelCracha.Size = new System.Drawing.Size(304, 209);
             this.panelCracha.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 104);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 13);
-            this.label6.TabIndex = 46;
-            this.label6.Text = "Leito:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(195, 106);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 47;
-            this.label7.Text = "Data:";
             // 
             // textBoxLeitoCracha
             // 
@@ -837,37 +825,37 @@
             this.textBoxLeitoCracha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxLeitoCracha.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxLeitoCracha.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            this.textBoxLeitoCracha.Location = new System.Drawing.Point(70, 106);
+            this.textBoxLeitoCracha.Location = new System.Drawing.Point(63, 106);
             this.textBoxLeitoCracha.Name = "textBoxLeitoCracha";
             this.textBoxLeitoCracha.ReadOnly = true;
-            this.textBoxLeitoCracha.Size = new System.Drawing.Size(128, 11);
+            this.textBoxLeitoCracha.Size = new System.Drawing.Size(95, 11);
             this.textBoxLeitoCracha.TabIndex = 40;
             this.textBoxLeitoCracha.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(30, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "Leito:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(213, 71);
+            this.label5.Location = new System.Drawing.Point(95, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 45;
             this.label5.Text = "Idade:";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 127);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 13);
-            this.label8.TabIndex = 48;
-            this.label8.Text = "Prontuario:";
-            // 
             // pbBarcodeCracha
             // 
             this.pbBarcodeCracha.Image = ((System.Drawing.Image)(resources.GetObject("pbBarcodeCracha.Image")));
-            this.pbBarcodeCracha.Location = new System.Drawing.Point(36, 144);
+            this.pbBarcodeCracha.Location = new System.Drawing.Point(33, 142);
             this.pbBarcodeCracha.Name = "pbBarcodeCracha";
-            this.pbBarcodeCracha.Size = new System.Drawing.Size(237, 54);
+            this.pbBarcodeCracha.Size = new System.Drawing.Size(243, 51);
             this.pbBarcodeCracha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbBarcodeCracha.TabIndex = 37;
             this.pbBarcodeCracha.TabStop = false;
@@ -878,7 +866,7 @@
             this.textBoxIdadeCracha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxIdadeCracha.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxIdadeCracha.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            this.textBoxIdadeCracha.Location = new System.Drawing.Point(253, 72);
+            this.textBoxIdadeCracha.Location = new System.Drawing.Point(133, 91);
             this.textBoxIdadeCracha.Name = "textBoxIdadeCracha";
             this.textBoxIdadeCracha.ReadOnly = true;
             this.textBoxIdadeCracha.Size = new System.Drawing.Size(37, 11);
@@ -919,7 +907,7 @@
             this.textBoxNomeCrachar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxNomeCrachar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxNomeCrachar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            this.textBoxNomeCrachar.Location = new System.Drawing.Point(100, 88);
+            this.textBoxNomeCrachar.Location = new System.Drawing.Point(97, 75);
             this.textBoxNomeCrachar.Name = "textBoxNomeCrachar";
             this.textBoxNomeCrachar.ReadOnly = true;
             this.textBoxNomeCrachar.Size = new System.Drawing.Size(199, 11);
@@ -932,50 +920,52 @@
             this.textBoxDataCracha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxDataCracha.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxDataCracha.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            this.textBoxDataCracha.Location = new System.Drawing.Point(228, 106);
+            this.textBoxDataCracha.Location = new System.Drawing.Point(221, 106);
             this.textBoxDataCracha.Name = "textBoxDataCracha";
             this.textBoxDataCracha.ReadOnly = true;
             this.textBoxDataCracha.Size = new System.Drawing.Size(70, 11);
             this.textBoxDataCracha.TabIndex = 41;
             this.textBoxDataCracha.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 44;
-            this.label2.Text = "Nome:";
-            // 
             // textBoxProntuarioCracha
             // 
+            this.textBoxProntuarioCracha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxProntuarioCracha.BackColor = System.Drawing.Color.White;
             this.textBoxProntuarioCracha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxProntuarioCracha.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxProntuarioCracha.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            this.textBoxProntuarioCracha.Location = new System.Drawing.Point(96, 128);
+            this.textBoxProntuarioCracha.Location = new System.Drawing.Point(80, 128);
             this.textBoxProntuarioCracha.Name = "textBoxProntuarioCracha";
             this.textBoxProntuarioCracha.ReadOnly = true;
             this.textBoxProntuarioCracha.Size = new System.Drawing.Size(154, 11);
             this.textBoxProntuarioCracha.TabIndex = 42;
             this.textBoxProntuarioCracha.TabStop = false;
+            this.textBoxProntuarioCracha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(191, 105);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 47;
+            this.label7.Text = "Data:";
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(5, 74);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(62, 17);
+            this.radioButton2.Size = new System.Drawing.Size(70, 17);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Fermino";
+            this.radioButton2.Text = "Ferminino";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(73, 74);
+            this.radioButton1.Location = new System.Drawing.Point(81, 74);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(73, 17);
             this.radioButton1.TabIndex = 3;
@@ -987,11 +977,12 @@
             // 
             this.textBoxIdade.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxIdade.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxIdade.Location = new System.Drawing.Point(224, 74);
+            this.textBoxIdade.Location = new System.Drawing.Point(226, 74);
             this.textBoxIdade.MaxLength = 2;
             this.textBoxIdade.Name = "textBoxIdade";
             this.textBoxIdade.Size = new System.Drawing.Size(44, 13);
             this.textBoxIdade.TabIndex = 4;
+            this.textBoxIdade.TextChanged += new System.EventHandler(this.textBoxIdade_TextChanged);
             this.textBoxIdade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxIdade_KeyPress);
             // 
             // textBoxPaciente
@@ -1042,17 +1033,6 @@
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.ToolTipText = "Liberar Leito!";
             this.dataGridViewImageColumn2.Width = 30;
-            // 
-            // textTelefone
-            // 
-            this.textTelefone.BackColor = System.Drawing.SystemColors.Control;
-            this.textTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textTelefone.Location = new System.Drawing.Point(369, 76);
-            this.textTelefone.Mask = "(99) 00000-0000";
-            this.textTelefone.Name = "textTelefone";
-            this.textTelefone.Size = new System.Drawing.Size(100, 13);
-            this.textTelefone.TabIndex = 5;
-            this.textTelefone.Leave += new System.EventHandler(this.textTelefone_Leave);
             // 
             // FrmPaciente002
             // 
@@ -1106,14 +1086,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxLeitoCracha;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pbBarcodeCracha;
         private System.Windows.Forms.TextBox textBoxIdadeCracha;
         private System.Windows.Forms.PictureBox pictureBoxImgCracha;
         private System.Windows.Forms.TextBox textBoxCliente;
         private System.Windows.Forms.TextBox textBoxNomeCrachar;
         private System.Windows.Forms.TextBox textBoxDataCracha;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxProntuarioCracha;
         private System.Windows.Forms.Button btnAddPicture;
         private System.Windows.Forms.Button buttonLimpar;
@@ -1159,7 +1137,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBoxIdade;
         private System.Windows.Forms.TextBox textBoxPaciente;
-        private System.Drawing.Printing.PrintDocument printDocumentCracha;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;

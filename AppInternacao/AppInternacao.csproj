@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AppInternacao</RootNamespace>
     <AssemblyName>AppInternacao</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -29,6 +29,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,6 +83,24 @@
     <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="NetSpell.SpellChecker">
       <HintPath>..\packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
     </Reference>
@@ -98,6 +117,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -108,6 +128,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Vip.Printer, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vip.Printer.1.0.22\lib\net45\Vip.Printer.dll</HintPath>
+    </Reference>
     <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
       <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
     </Reference>
@@ -135,12 +158,6 @@
     </Compile>
     <Compile Include="Extend\TextBoxExtcs.Designer.cs">
       <DependentUpon>TextBoxExtcs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmExibirHistorico.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmExibirHistorico.Designer.cs">
-      <DependentUpon>FrmExibirHistorico.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -220,85 +237,13 @@
     <Compile Include="FrmSae\UCExameFisico.Designer.cs">
       <DependentUpon>UCExameFisico.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCViewHistoricoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCViewHistoricoEnfermagem.Designer.cs">
-      <DependentUpon>UCViewHistoricoEnfermagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC03PrescricaoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC03PrescricaoEnfermagem.Designer.cs">
-      <DependentUpon>UC03PrescricaoEnfermagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC00BarCodeProntuario.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC00BarCodeProntuario.Designer.cs">
-      <DependentUpon>UC00BarCodeProntuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC02DiagnosticoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC02DiagnosticoEnfermagem.Designer.cs">
-      <DependentUpon>UC02DiagnosticoEnfermagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC05AvaliacaoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC05AvaliacaoEnfermagem.Designer.cs">
-      <DependentUpon>UC05AvaliacaoEnfermagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC01HistoricoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC01HistoricoEnfermagem.Designer.cs">
-      <DependentUpon>UC01HistoricoEnfermagem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UC04EvolucaoEnfermagem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UC04EvolucaoEnfermagem.Designer.cs">
-      <DependentUpon>UC04EvolucaoEnfermagem.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSae\UCAlterarSenha.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FrmSae\UCAlterarSenha.Designer.cs">
       <DependentUpon>UCAlterarSenha.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCMenuEsquerdo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCMenuEsquerdo.Designer.cs">
-      <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCNomeTemplate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCNomeTemplate.Designer.cs">
-      <DependentUpon>UCNomeTemplate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCPrescricaoCiclo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCPrescricaoCiclo.Designer.cs">
-      <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAL\DBConn.cs" />
-    <Compile Include="FrmSae\UCTemplateItemExameFisico.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCTemplateItemExameFisico.Designer.cs">
-      <DependentUpon>UCTemplateItemExameFisico.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmSae\UCTimeLine.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCTimeLine.Designer.cs">
-      <DependentUpon>UCTimeLine.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSae\UI006FrmBarCodeProntuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,11 +262,23 @@
     <Compile Include="FrmSae\UI008FrmPrescricaoCiclo.Designer.cs">
       <DependentUpon>UI008FrmPrescricaoCiclo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UI009FrmNomeExameFisico.cs">
+    <Compile Include="FrmSae\UI010FrmNanda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSae\UI009FrmNomeExameFisico.Designer.cs">
-      <DependentUpon>UI009FrmNomeExameFisico.cs</DependentUpon>
+    <Compile Include="FrmSae\UI010FrmNanda.Designer.cs">
+      <DependentUpon>UI010FrmNanda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI011FrmTimeLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI011FrmTimeLine.Designer.cs">
+      <DependentUpon>UI011FrmTimeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI012FrmSaeHistoricoEnfermagem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI012FrmSaeHistoricoEnfermagem.Designer.cs">
+      <DependentUpon>UI012FrmSaeHistoricoEnfermagem.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmViewTemplate.cs">
       <SubType>Form</SubType>
@@ -349,30 +306,40 @@
     </Compile>
     <Compile Include="Funcoes.cs" />
     <Compile Include="Model\AlteracaoLeitoPaciente.cs" />
-    <Compile Include="Model\Area_Itens.cs" />
+    <Compile Include="Model\AvaliacaoEnfermagem.cs" />
     <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
+    <Compile Include="Model\DiagnosticoEnfermagem.cs" />
+    <Compile Include="Model\EvolucaoEnfermagem.cs" />
+    <Compile Include="Model\HistoricoEnfermagem.cs" />
+    <Compile Include="Model\NandaCaracteristicaDefinidora.cs" />
+    <Compile Include="Model\NandaClasse.cs" />
+    <Compile Include="Model\NandaCondicaoAssociada.cs" />
+    <Compile Include="Model\NandaDiagnostico.cs" />
+    <Compile Include="Model\NandaDominio.cs" />
     <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\EstruturaFisica.cs" />
     <Compile Include="Model\Leito.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\Main.cs" />
+    <Compile Include="Model\NandaFatorRelacionado.cs" />
+    <Compile Include="Model\NandaFatorRisco.cs" />
+    <Compile Include="Model\NandaPopulacaoRisco.cs" />
     <Compile Include="Model\Paciente.cs" />
+    <Compile Include="Model\PrescricaoEnfermagem.cs" />
     <Compile Include="Model\PrescricaoMedica.cs" />
     <Compile Include="Model\PrescricaoPaciente.cs" />
     <Compile Include="Model\Quarto.cs" />
     <Compile Include="Model\ExameFisico.cs" />
     <Compile Include="Model\Setor.cs" />
-    <Compile Include="Model\TemplateName.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Presenter\HistoricoEnfermagemPresenter.cs" />
     <Compile Include="Presenter\LeitoPresenter.cs" />
     <Compile Include="Presenter\LoginPresenter.cs" />
     <Compile Include="Presenter\PacientePresenter.cs" />
     <Compile Include="Presenter\PresenterGeneric.cs" />
     <Compile Include="Presenter\PresenterMain.cs" />
     <Compile Include="Presenter\QuartoPresenter.cs" />
-    <Compile Include="Presenter\TemplateExamePresenter.cs" />
-    <Compile Include="Presenter\TemplateNamePresenter.cs" />
     <Compile Include="Presenter\UsuarioPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -382,20 +349,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sessao.cs" />
-    <Compile Include="View\IArea_Itens.cs" />
     <Compile Include="View\IEstruturaFisica.cs" />
+    <Compile Include="View\IHistoricoEnfermagem.cs" />
     <Compile Include="View\ILeito.cs" />
     <Compile Include="View\ILogin.cs" />
     <Compile Include="View\IMain.cs" />
     <Compile Include="View\IPaciente.cs" />
     <Compile Include="View\IQuarto.cs" />
-    <Compile Include="View\ITemplateName.cs" />
     <Compile Include="View\IUsuario.cs" />
     <EmbeddedResource Include="Extend\TextBoxExtcs.resx">
       <DependentUpon>TextBoxExtcs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmExibirHistorico.resx">
-      <DependentUpon>FrmExibirHistorico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -436,44 +399,8 @@
     <EmbeddedResource Include="FrmSae\UCExameFisico.resx">
       <DependentUpon>UCExameFisico.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCViewHistoricoEnfermagem.resx">
-      <DependentUpon>UCViewHistoricoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC03PrescricaoEnfermagem.resx">
-      <DependentUpon>UC03PrescricaoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC00BarCodeProntuario.resx">
-      <DependentUpon>UC00BarCodeProntuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC02DiagnosticoEnfermagem.resx">
-      <DependentUpon>UC02DiagnosticoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC05AvaliacaoEnfermagem.resx">
-      <DependentUpon>UC05AvaliacaoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC01HistoricoEnfermagem.resx">
-      <DependentUpon>UC01HistoricoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UC04EvolucaoEnfermagem.resx">
-      <DependentUpon>UC04EvolucaoEnfermagem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCAlterarSenha.resx">
       <DependentUpon>UCAlterarSenha.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCMenuEsquerdo.resx">
-      <DependentUpon>UCMenuEsquerdo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCNomeTemplate.resx">
-      <DependentUpon>UCNomeTemplate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCPrescricaoCiclo.resx">
-      <DependentUpon>UCPrescricaoCiclo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCTemplateItemExameFisico.resx">
-      <DependentUpon>UCTemplateItemExameFisico.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCTimeLine.resx">
-      <DependentUpon>UCTimeLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI006FrmBarCodeProntuario.resx">
       <DependentUpon>UI006FrmBarCodeProntuario.cs</DependentUpon>
@@ -484,8 +411,14 @@
     <EmbeddedResource Include="FrmSae\UI008FrmPrescricaoCiclo.resx">
       <DependentUpon>UI008FrmPrescricaoCiclo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UI009FrmNomeExameFisico.resx">
-      <DependentUpon>UI009FrmNomeExameFisico.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UI010FrmNanda.resx">
+      <DependentUpon>UI010FrmNanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI011FrmTimeLine.resx">
+      <DependentUpon>UI011FrmTimeLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI012FrmSaeHistoricoEnfermagem.resx">
+      <DependentUpon>UI012FrmSaeHistoricoEnfermagem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewTemplate.resx">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
@@ -595,6 +528,8 @@
     <None Include="Resources\liberar.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\HP.bmp" />
+    <Content Include="ZplPrint\TemplateEtiquetaZPL.txt" />
     <None Include="Resources\LeitoOcupado.png" />
     <None Include="Resources\IsOkset.png" />
     <None Include="Resources\Wait.png" />
@@ -691,7 +626,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
+    <Folder Include="Ultil\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

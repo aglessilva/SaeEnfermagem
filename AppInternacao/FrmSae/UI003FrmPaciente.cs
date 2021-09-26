@@ -10,9 +10,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
+using Vip.Printer;
+using Vip.Printer.Enums;
 
 namespace AppInternacao.FrmSae
 {
@@ -26,8 +29,6 @@ namespace AppInternacao.FrmSae
         PacientePresenter PacientePresenter = null;
         private Paciente objPeciente = null;
         byte[] _criptyPicture = null;
-
-        Bitmap _cracha = null;
 
         public Paciente paciente
         {
@@ -74,6 +75,7 @@ namespace AppInternacao.FrmSae
                 textNumero.Text = value.Numero;
                 textBoxProntuarioCracha.Text = textProntuario.Text = value.Prontuario.ToString();
                 comboBoxEstruturaFisica.SelectedValue = value.IdEstruturaFisica;
+                textBoxDataCracha.Text = value.Data.HasValue? value.Data.Value.ToShortDateString() : textBoxDataCracha.Text;
                 GeraProntuario();
                 if (value.Foto != null)
                 {
@@ -173,10 +175,10 @@ namespace AppInternacao.FrmSae
             if (paciente.Id == 0)
             {
                 string barcode = $"{DateTime.Now.Second}{Regex.Replace(Guid.NewGuid().ToString() + DateTime.Now.ToString(), @"[^0-9$]", "")}";
-                textProntuario.Text = barcode.PadLeft(18, '0').Substring(0, 18);
+                textProntuario.Text = barcode.PadLeft(12, '0').Substring(0, 12);
             }
             Zen.Barcode.Code128BarcodeDraw code128Barcode = Zen.Barcode.BarcodeDrawFactory.Code128WithChecksum;
-            pbBarcodeCracha.Image = code128Barcode.Draw(textProntuario.Text, 18);
+            pbBarcodeCracha.Image = code128Barcode.Draw(textProntuario.Text, 12);
             textBoxProntuarioCracha.Text = textProntuario.Text;
         }
 
@@ -188,14 +190,11 @@ namespace AppInternacao.FrmSae
                 {
                     if (paciente.Id == 0)
                         GeraProntuario();
-                    //textBoxLeitoCracha.Text = comboBoxLeito.Text;
                     PacientePresenter = new PacientePresenter(this);
 
                     if (paciente.Id == 0)
                     {
                         ImprimirCarcha();
-                        printDocumentCracha.DocumentName = textBoxNomeCrachar.Text;
-                        printDocumentCracha.Print();
                     }
                     FrmMain.Alert(PacientePresenter.Salvar());
                     MyNovo_Click(null, null);
@@ -229,19 +228,37 @@ namespace AppInternacao.FrmSae
             dataGridViewPaciente.RowEnter += dataGridViewPaciente_RowEnter;
         }
 
+
         private void MyImprimir_Click(object sender, EventArgs e)
         {
-            if (validaCampos())
+           // if (validaCampos())
             {
-                ImprimirCarcha();
-                printDocumentCracha.DocumentName = textBoxNomeCrachar.Text;
-                printDocumentCracha.Print();
+
+                var printer = new Printer("POS-58", PrinterType.Epson, Encoding.GetEncoding(28591));
+                string dadosPaci = $"Nome:{objPeciente.Nome}\nIdade:{objPeciente.Idade}\nLeito:{objPeciente.NomeLeito}\nData:{textBoxDataCracha.Text}";
+                //Image image = Properties.Resources.HP;
+                //printer.Image(image);
+                printer.AlignCenter();
+                printer.NormalWidth();
+                printer.WriteLine("HOSPITAL CENTRAL DE GUAIANAZES");
+                printer.WriteLine("H-C-G");
+                printer.Separator();
+                printer.AlignLeft();
+                printer.WriteLine(dadosPaci);
+                printer.AlignCenter();
+                printer.Code128(objPeciente.Prontuario.ToString());
+                printer.WriteLine(objPeciente.Prontuario.ToString());
+                printer.NewLines(3);
+
+                printer.PartialPaperCut();
+                printer.PrintDocument();
             }
+
         }
 
         private void MyNovo_Click(object sender, EventArgs e)
         {
-            FrmMain.myImprimir.Visible = false;
+           // FrmMain.myImprimir.Visible = false;
             FrmMain.mySalvar.Enabled = true;
 
             TextBox[] textBoxesIgnore = { textBoxLeito, textBoxQuarto, textBoxSetor };
@@ -257,15 +274,15 @@ namespace AppInternacao.FrmSae
                 errorProvider1.SetError(item, null);
             }
 
-            textTelefone.Text = string.Empty;
+            
             errorProvider1.SetError(textTelefone, null);
             errorProvider1.SetError(comboBoxEstruturaFisica, null);
             errorProvider1.SetError(radioButton1, null);
 
             paciente = new Paciente();
             pbBarcodeCracha.Image = Properties.Resources.barcode;
-            textProntuario.Text = string.Empty;
             dataGridViewPaciente.ClearSelection();
+            textTelefone.Text  = textProntuario.Text = textBoxProntuarioCracha.Text = textBoxDataCracha.Text = string.Empty;
         }
 
         private void textBoxIdade_KeyPress(object sender, KeyPressEventArgs e)
@@ -288,7 +305,6 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-               
                 var senderGrid = (DataGridView)sender;
 
                 foreach (DataGridViewRow row in senderGrid.Rows)
@@ -382,17 +398,62 @@ namespace AppInternacao.FrmSae
 
         }
 
-        private void printDocumentCracha_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            e.Graphics.DrawImage(_cracha, 0, 0);
-        }
-
         void ImprimirCarcha()
         {
-            Graphics g = panelCracha.CreateGraphics();
-            _cracha = new Bitmap(panelCracha.Size.Width, panelCracha.Size.Height, g);
+            StringBuilder stringBuilder = new StringBuilder();
 
-            panelCracha.DrawToBitmap(_cracha, new Rectangle(0, 0, panelCracha.Width, panelCracha.Height));
+            List<string> lstPrint = new List<string> { objPeciente.Nome, $"Idade:{objPeciente.Idade.ToString()}",$"Entrada:{DateTime.Now.ToShortDateString()}", $"Leito:{objPeciente.NomeLeito}", objPeciente.Prontuario.ToString() };
+            using (StreamReader stream = new StreamReader(@"..\..\ZplPrint\TemplateEtiquetaZPL.txt"))
+            {
+                string linha = string.Empty;
+                int i = 0;
+                while(!stream.EndOfStream)
+                {
+                    linha = stream.ReadLine();
+                    if (string.IsNullOrWhiteSpace(linha))
+                        continue;
+
+                    if(linha.Split(' ').Any(s => s.Contains("{#}")))
+                    {
+                        linha = linha.Replace("{#}", lstPrint[i++]);
+                    }
+                    stringBuilder.AppendLine(linha);
+                }
+            }
+
+            NetworkStream ns = null;
+            Socket socket = null;
+            EndPoint printerIP = null;
+            try
+            {
+                if (printerIP == null)
+                {
+                    /*IP is a string property for the printer's IP address. */
+                    /*6101 is the common port of all our Zebra printers. */
+                    printerIP = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9100);
+                  //  printerIP = new IPEndPoint(IPAddress.Parse("192.168.1.100"),9100 );
+                }
+
+                socket = new Socket(AddressFamily.InterNetwork,
+                    SocketType.Stream,
+                    ProtocolType.Tcp);
+                socket.Connect(printerIP);
+
+                ns = new NetworkStream(socket);
+
+                byte[] toSend = Encoding.ASCII.GetBytes(stringBuilder.ToString());
+                ns.Write(toSend, 0, toSend.Length);
+            }
+            finally
+            {
+                if (ns != null)
+                    ns.Close();
+
+                if (socket != null && socket.Connected)
+                    socket.Close();
+            }
+
+
         }
 
         private void textCep_KeyPress(object sender, KeyPressEventArgs e)

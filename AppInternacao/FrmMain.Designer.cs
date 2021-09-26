@@ -41,6 +41,7 @@
             this.panelScreen = new System.Windows.Forms.Panel();
             this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnNanda = new FontAwesome.Sharp.IconButton();
             this.btnAdmUsuario = new FontAwesome.Sharp.IconButton();
             this.btnPaciente = new FontAwesome.Sharp.IconButton();
             this.pLogoff = new System.Windows.Forms.Panel();
@@ -54,7 +55,7 @@
             this.iconBtnClinicaObstetrica = new FontAwesome.Sharp.IconButton();
             this.iconBtnClinicaCirurgica = new FontAwesome.Sharp.IconButton();
             this.iconBtnClinicaPediatrica = new FontAwesome.Sharp.IconButton();
-            this.iconBtnClinicaMedica = new FontAwesome.Sharp.IconButton();
+            this.btnClinicaMedica = new FontAwesome.Sharp.IconButton();
             this.btnAddSae = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.SuspendLayout();
@@ -242,6 +243,7 @@
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.panelMenu.BackgroundImage = global::AppInternacao.Properties.Resources.backgroudMenu001;
+            this.panelMenu.Controls.Add(this.btnNanda);
             this.panelMenu.Controls.Add(this.btnAdmUsuario);
             this.panelMenu.Controls.Add(this.btnPaciente);
             this.panelMenu.Controls.Add(this.pLogoff);
@@ -255,6 +257,32 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(169, 531);
             this.panelMenu.TabIndex = 2;
+            // 
+            // btnNanda
+            // 
+            this.btnNanda.BackColor = System.Drawing.Color.Transparent;
+            this.btnNanda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNanda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNanda.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNanda.FlatAppearance.BorderSize = 0;
+            this.btnNanda.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnNanda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnNanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNanda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnNanda.IconChar = FontAwesome.Sharp.IconChar.BookMedical;
+            this.btnNanda.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(165)))), ((int)(((byte)(245)))));
+            this.btnNanda.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNanda.IconSize = 30;
+            this.btnNanda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNanda.Location = new System.Drawing.Point(0, 240);
+            this.btnNanda.Name = "btnNanda";
+            this.btnNanda.Size = new System.Drawing.Size(169, 40);
+            this.btnNanda.TabIndex = 105;
+            this.btnNanda.TabStop = false;
+            this.btnNanda.Text = "Diagnósticos Nanda";
+            this.btnNanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNanda.UseVisualStyleBackColor = false;
+            this.btnNanda.Click += new System.EventHandler(this.btnNanda_Click);
             // 
             // btnAdmUsuario
             // 
@@ -454,7 +482,7 @@
             this.panelDropDown.Controls.Add(this.iconBtnClinicaObstetrica);
             this.panelDropDown.Controls.Add(this.iconBtnClinicaCirurgica);
             this.panelDropDown.Controls.Add(this.iconBtnClinicaPediatrica);
-            this.panelDropDown.Controls.Add(this.iconBtnClinicaMedica);
+            this.panelDropDown.Controls.Add(this.btnClinicaMedica);
             this.panelDropDown.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelDropDown.Location = new System.Drawing.Point(0, 40);
             this.panelDropDown.MaximumSize = new System.Drawing.Size(169, 200);
@@ -563,30 +591,31 @@
             this.iconBtnClinicaPediatrica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnClinicaPediatrica.UseVisualStyleBackColor = false;
             // 
-            // iconBtnClinicaMedica
+            // btnClinicaMedica
             // 
-            this.iconBtnClinicaMedica.BackColor = System.Drawing.Color.Transparent;
-            this.iconBtnClinicaMedica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.iconBtnClinicaMedica.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconBtnClinicaMedica.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconBtnClinicaMedica.FlatAppearance.BorderSize = 0;
-            this.iconBtnClinicaMedica.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.iconBtnClinicaMedica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.iconBtnClinicaMedica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnClinicaMedica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconBtnClinicaMedica.IconChar = FontAwesome.Sharp.IconChar.BookMedical;
-            this.iconBtnClinicaMedica.IconColor = System.Drawing.Color.WhiteSmoke;
-            this.iconBtnClinicaMedica.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnClinicaMedica.IconSize = 30;
-            this.iconBtnClinicaMedica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBtnClinicaMedica.Location = new System.Drawing.Point(0, 0);
-            this.iconBtnClinicaMedica.Name = "iconBtnClinicaMedica";
-            this.iconBtnClinicaMedica.Size = new System.Drawing.Size(169, 40);
-            this.iconBtnClinicaMedica.TabIndex = 105;
-            this.iconBtnClinicaMedica.TabStop = false;
-            this.iconBtnClinicaMedica.Text = "Clinica Médica";
-            this.iconBtnClinicaMedica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconBtnClinicaMedica.UseVisualStyleBackColor = false;
+            this.btnClinicaMedica.BackColor = System.Drawing.Color.Transparent;
+            this.btnClinicaMedica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClinicaMedica.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClinicaMedica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnClinicaMedica.FlatAppearance.BorderSize = 0;
+            this.btnClinicaMedica.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnClinicaMedica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnClinicaMedica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClinicaMedica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClinicaMedica.IconChar = FontAwesome.Sharp.IconChar.BookMedical;
+            this.btnClinicaMedica.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnClinicaMedica.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnClinicaMedica.IconSize = 30;
+            this.btnClinicaMedica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClinicaMedica.Location = new System.Drawing.Point(0, 0);
+            this.btnClinicaMedica.Name = "btnClinicaMedica";
+            this.btnClinicaMedica.Size = new System.Drawing.Size(169, 40);
+            this.btnClinicaMedica.TabIndex = 105;
+            this.btnClinicaMedica.TabStop = false;
+            this.btnClinicaMedica.Text = "Clinica Médica";
+            this.btnClinicaMedica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClinicaMedica.UseVisualStyleBackColor = false;
+            this.btnClinicaMedica.Click += new System.EventHandler(this.btnClinicaMedica_Click_1);
             // 
             // btnAddSae
             // 
@@ -667,11 +696,12 @@
         private FontAwesome.Sharp.IconButton btnAdmUsuario;
         private FontAwesome.Sharp.IconButton btnAddSae;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
-        private FontAwesome.Sharp.IconButton iconBtnClinicaMedica;
+        private FontAwesome.Sharp.IconButton btnClinicaMedica;
         private FontAwesome.Sharp.IconButton iconBtnUrgenciaEmergencia;
         private FontAwesome.Sharp.IconButton iconBtnClinicaObstetrica;
         private FontAwesome.Sharp.IconButton iconBtnClinicaCirurgica;
         private FontAwesome.Sharp.IconButton iconBtnClinicaPediatrica;
+        private FontAwesome.Sharp.IconButton btnNanda;
     }
 }
 

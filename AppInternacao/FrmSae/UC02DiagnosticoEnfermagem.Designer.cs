@@ -20,7 +20,7 @@ namespace AppInternacao.FrmSae
                 components.Dispose();
             }
             base.Dispose(disposing);
-            UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
+            //UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
         }
 
         #region Código gerado pelo Designer de Componentes

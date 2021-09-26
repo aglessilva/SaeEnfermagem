@@ -21,7 +21,7 @@ namespace AppInternacao.FrmSae
             }
             base.Dispose(disposing);
 
-            UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
+            //UCTimeLine.ButtonSaeAvanca.Click -= new EventHandler(ButtonSaeAvanca_Click);
         }
 
       
@@ -54,12 +54,14 @@ namespace AppInternacao.FrmSae
             this.richTextBoxExHistoricoEnfermagem.FilePath = "";
             this.richTextBoxExHistoricoEnfermagem.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxExHistoricoEnfermagem.Name = "richTextBoxExHistoricoEnfermagem";
-            this.richTextBoxExHistoricoEnfermagem.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n\\" +
-    "viewkind4\\uc1\\pard\\fs20\\par\r\n}\r\n";
+            this.richTextBoxExHistoricoEnfermagem.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1046{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.19041}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.richTextBoxExHistoricoEnfermagem.SetColorWithFont = true;
             this.richTextBoxExHistoricoEnfermagem.ShowToolStrip = true;
             this.richTextBoxExHistoricoEnfermagem.Size = new System.Drawing.Size(813, 474);
             this.richTextBoxExHistoricoEnfermagem.TabIndex = 0;
+            this.richTextBoxExHistoricoEnfermagem.Load += new System.EventHandler(this.richTextBoxExHistoricoEnfermagem_Load);
             // 
             // spelling1
             // 
