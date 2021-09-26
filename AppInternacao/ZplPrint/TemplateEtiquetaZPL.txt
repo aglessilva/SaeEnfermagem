@@ -1,0 +1,27 @@
+^XA
+^FX Top section with logo, name and address.
+^CF0,30
+^FO15,15^GB60,60,13^FS
+^FO40,40^FR^GB50,13,50^FS
+
+^FO140,10^FDHospital Central HCG^FS
+^CF0,19
+^FO140,40^FDRua Cabo Jose Teixeira, 189^FS
+^FO140,60^FDVila Yolanda, Sao Paulo,SP^FS
+^FO140,80^FDCEP 08451-010^FS
+
+^FO2,100^GB580,2,2^FS
+^FX Second section with recipient address and permit information.
+^CFA,20
+^FO30,110^FD {#} ^FS
+^FO30,135^FD {#} ^FS
+^FO30,158^FD {#} ^FS
+^FO30,183^FD {#} ^FS
+
+^CFA,15
+
+^FO2,208^GB580,2,2^FS
+
+^FX Third section with bar code.
+^BY2,3,100,^FO50,220^BCN,,,,,A^FD {#} ^FS
+^XZ
