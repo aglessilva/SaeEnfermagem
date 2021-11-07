@@ -36,6 +36,14 @@
             this.flpPressao = new System.Windows.Forms.FlowLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pPA = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxPad = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxPas = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBoxPressaoArterial = new System.Windows.Forms.ComboBox();
             this.pCateteres = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -112,14 +120,6 @@
             this.pSistemaNeurologico = new System.Windows.Forms.Panel();
             this.gSistemaNeurologico = new System.Windows.Forms.GroupBox();
             this.flpSistemaNerologico = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxPad = new System.Windows.Forms.TextBox();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxPas = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.comboBoxPressaoArterial = new System.Windows.Forms.ComboBox();
             this.panel00title.SuspendLayout();
             this.panel01Body.SuspendLayout();
             this.pPressao.SuspendLayout();
@@ -226,7 +226,7 @@
             // 
             this.pPressao.Controls.Add(this.groupBox13);
             this.pPressao.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pPressao.Location = new System.Drawing.Point(5, 1275);
+            this.pPressao.Location = new System.Drawing.Point(5, 1250);
             this.pPressao.Name = "pPressao";
             this.pPressao.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.pPressao.Size = new System.Drawing.Size(1008, 130);
@@ -280,12 +280,88 @@
             this.pPA.TabIndex = 1;
             this.pPA.Visible = false;
             // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.DimGray;
+            this.panel11.Location = new System.Drawing.Point(98, 88);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(55, 1);
+            this.panel11.TabIndex = 1016;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(95, 56);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(29, 13);
+            this.label14.TabIndex = 1015;
+            this.label14.Text = "PAD";
+            // 
+            // textBoxPad
+            // 
+            this.textBoxPad.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxPad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPad.Location = new System.Drawing.Point(98, 73);
+            this.textBoxPad.MaxLength = 2;
+            this.textBoxPad.Name = "textBoxPad";
+            this.textBoxPad.ReadOnly = true;
+            this.textBoxPad.Size = new System.Drawing.Size(51, 13);
+            this.textBoxPad.TabIndex = 1014;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.DimGray;
+            this.panel10.Location = new System.Drawing.Point(19, 88);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(55, 1);
+            this.panel10.TabIndex = 1013;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 56);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(28, 13);
+            this.label13.TabIndex = 1012;
+            this.label13.Text = "PAS";
+            // 
+            // textBoxPas
+            // 
+            this.textBoxPas.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxPas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPas.Location = new System.Drawing.Point(19, 73);
+            this.textBoxPas.MaxLength = 2;
+            this.textBoxPas.Name = "textBoxPas";
+            this.textBoxPas.ReadOnly = true;
+            this.textBoxPas.Size = new System.Drawing.Size(51, 13);
+            this.textBoxPas.TabIndex = 1011;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(16, 8);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(133, 13);
+            this.label12.TabIndex = 1010;
+            this.label12.Text = " Escala de Pressão Arterial";
+            // 
+            // comboBoxPressaoArterial
+            // 
+            this.comboBoxPressaoArterial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPressaoArterial.FormattingEnabled = true;
+            this.comboBoxPressaoArterial.Location = new System.Drawing.Point(19, 27);
+            this.comboBoxPressaoArterial.Name = "comboBoxPressaoArterial";
+            this.comboBoxPressaoArterial.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxPressaoArterial.TabIndex = 1009;
+            this.comboBoxPressaoArterial.TabStop = false;
+            this.comboBoxPressaoArterial.SelectedIndexChanged += new System.EventHandler(this.comboBoxPressaoArterial_SelectedIndexChanged);
+            // 
             // pCateteres
             // 
             this.pCateteres.Controls.Add(this.panel6);
             this.pCateteres.Controls.Add(this.groupBox12);
             this.pCateteres.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pCateteres.Location = new System.Drawing.Point(5, 1194);
+            this.pCateteres.Location = new System.Drawing.Point(5, 1169);
             this.pCateteres.Name = "pCateteres";
             this.pCateteres.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.pCateteres.Size = new System.Drawing.Size(1008, 81);
@@ -329,7 +405,7 @@
             this.pglasgow.Location = new System.Drawing.Point(5, 896);
             this.pglasgow.Name = "pglasgow";
             this.pglasgow.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.pglasgow.Size = new System.Drawing.Size(1008, 298);
+            this.pglasgow.Size = new System.Drawing.Size(1008, 273);
             this.pglasgow.TabIndex = 13;
             this.pglasgow.Visible = false;
             // 
@@ -340,7 +416,7 @@
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox10.Location = new System.Drawing.Point(0, 10);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(1008, 288);
+            this.groupBox10.Size = new System.Drawing.Size(1008, 263);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Escala de Coma de Glasgow";
@@ -352,7 +428,7 @@
             this.flpGlasgow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpGlasgow.Location = new System.Drawing.Point(3, 16);
             this.flpGlasgow.Name = "flpGlasgow";
-            this.flpGlasgow.Size = new System.Drawing.Size(1002, 269);
+            this.flpGlasgow.Size = new System.Drawing.Size(1002, 244);
             this.flpGlasgow.TabIndex = 0;
             // 
             // pFormGlasgow
@@ -366,7 +442,7 @@
             this.pFormGlasgow.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFormGlasgow.Location = new System.Drawing.Point(3, 3);
             this.pFormGlasgow.Name = "pFormGlasgow";
-            this.pFormGlasgow.Size = new System.Drawing.Size(371, 263);
+            this.pFormGlasgow.Size = new System.Drawing.Size(710, 238);
             this.pFormGlasgow.TabIndex = 0;
             this.pFormGlasgow.Visible = false;
             // 
@@ -374,7 +450,7 @@
             // 
             this.lblSomaGlasgow.AutoSize = true;
             this.lblSomaGlasgow.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSomaGlasgow.Location = new System.Drawing.Point(5, 246);
+            this.lblSomaGlasgow.Location = new System.Drawing.Point(6, 221);
             this.lblSomaGlasgow.Name = "lblSomaGlasgow";
             this.lblSomaGlasgow.Size = new System.Drawing.Size(64, 17);
             this.lblSomaGlasgow.TabIndex = 6;
@@ -388,9 +464,9 @@
             this.gRespostaMotora.Controls.Add(this.radioButton13);
             this.gRespostaMotora.Controls.Add(this.radioButton14);
             this.gRespostaMotora.Controls.Add(this.radioButton15);
-            this.gRespostaMotora.Location = new System.Drawing.Point(3, 178);
+            this.gRespostaMotora.Location = new System.Drawing.Point(3, 153);
             this.gRespostaMotora.Name = "gRespostaMotora";
-            this.gRespostaMotora.Size = new System.Drawing.Size(365, 65);
+            this.gRespostaMotora.Size = new System.Drawing.Size(704, 65);
             this.gRespostaMotora.TabIndex = 5;
             this.gRespostaMotora.TabStop = false;
             this.gRespostaMotora.Text = "Melhor Resposta Motora";
@@ -398,7 +474,7 @@
             // radioButton16
             // 
             this.radioButton16.AutoSize = true;
-            this.radioButton16.Location = new System.Drawing.Point(129, 42);
+            this.radioButton16.Location = new System.Drawing.Point(478, 19);
             this.radioButton16.Name = "radioButton16";
             this.radioButton16.Size = new System.Drawing.Size(103, 17);
             this.radioButton16.TabIndex = 5;
@@ -411,7 +487,7 @@
             // radioButton11
             // 
             this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(239, 19);
+            this.radioButton11.Location = new System.Drawing.Point(251, 19);
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(125, 17);
             this.radioButton11.TabIndex = 4;
@@ -424,7 +500,7 @@
             // radioButton12
             // 
             this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(6, 42);
+            this.radioButton12.Location = new System.Drawing.Point(382, 19);
             this.radioButton12.Name = "radioButton12";
             this.radioButton12.Size = new System.Drawing.Size(90, 17);
             this.radioButton12.TabIndex = 3;
@@ -437,7 +513,7 @@
             // radioButton13
             // 
             this.radioButton13.AutoSize = true;
-            this.radioButton13.Location = new System.Drawing.Point(239, 42);
+            this.radioButton13.Location = new System.Drawing.Point(587, 19);
             this.radioButton13.Name = "radioButton13";
             this.radioButton13.Size = new System.Drawing.Size(94, 17);
             this.radioButton13.TabIndex = 2;
@@ -450,7 +526,7 @@
             // radioButton14
             // 
             this.radioButton14.AutoSize = true;
-            this.radioButton14.Location = new System.Drawing.Point(129, 19);
+            this.radioButton14.Location = new System.Drawing.Point(134, 19);
             this.radioButton14.Name = "radioButton14";
             this.radioButton14.Size = new System.Drawing.Size(111, 17);
             this.radioButton14.TabIndex = 1;
@@ -480,9 +556,9 @@
             this.gRespostaVerbal.Controls.Add(this.radioButton8);
             this.gRespostaVerbal.Controls.Add(this.radioButton9);
             this.gRespostaVerbal.Controls.Add(this.radioButton10);
-            this.gRespostaVerbal.Location = new System.Drawing.Point(3, 103);
+            this.gRespostaVerbal.Location = new System.Drawing.Point(3, 82);
             this.gRespostaVerbal.Name = "gRespostaVerbal";
-            this.gRespostaVerbal.Size = new System.Drawing.Size(364, 65);
+            this.gRespostaVerbal.Size = new System.Drawing.Size(704, 65);
             this.gRespostaVerbal.TabIndex = 2;
             this.gRespostaVerbal.TabStop = false;
             this.gRespostaVerbal.Text = "Melhor Resposta Verbal";
@@ -490,7 +566,7 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(222, 19);
+            this.radioButton6.Location = new System.Drawing.Point(153, 19);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(127, 17);
             this.radioButton6.TabIndex = 4;
@@ -503,7 +579,7 @@
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(6, 42);
+            this.radioButton7.Location = new System.Drawing.Point(286, 19);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(114, 17);
             this.radioButton7.TabIndex = 3;
@@ -516,7 +592,7 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(129, 42);
+            this.radioButton8.Location = new System.Drawing.Point(406, 19);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(94, 17);
             this.radioButton8.TabIndex = 2;
@@ -529,7 +605,7 @@
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(129, 19);
+            this.radioButton9.Location = new System.Drawing.Point(83, 19);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(64, 17);
             this.radioButton9.TabIndex = 1;
@@ -561,7 +637,7 @@
             this.gAberturaOcular.Controls.Add(this.radioButton1);
             this.gAberturaOcular.Location = new System.Drawing.Point(3, 25);
             this.gAberturaOcular.Name = "gAberturaOcular";
-            this.gAberturaOcular.Size = new System.Drawing.Size(364, 65);
+            this.gAberturaOcular.Size = new System.Drawing.Size(704, 51);
             this.gAberturaOcular.TabIndex = 1;
             this.gAberturaOcular.TabStop = false;
             this.gAberturaOcular.Text = "Abertura Ocular";
@@ -569,7 +645,7 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(222, 19);
+            this.radioButton5.Location = new System.Drawing.Point(207, 19);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(119, 17);
             this.radioButton5.TabIndex = 4;
@@ -582,7 +658,7 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 42);
+            this.radioButton4.Location = new System.Drawing.Point(332, 19);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(64, 17);
             this.radioButton4.TabIndex = 3;
@@ -595,7 +671,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(109, 42);
+            this.radioButton3.Location = new System.Drawing.Point(402, 19);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(94, 17);
             this.radioButton3.TabIndex = 2;
@@ -608,7 +684,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(109, 19);
+            this.radioButton2.Location = new System.Drawing.Point(94, 19);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(107, 17);
             this.radioButton2.TabIndex = 1;
@@ -1127,82 +1203,6 @@
             this.flpSistemaNerologico.Name = "flpSistemaNerologico";
             this.flpSistemaNerologico.Size = new System.Drawing.Size(1002, 50);
             this.flpSistemaNerologico.TabIndex = 0;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.DimGray;
-            this.panel11.Location = new System.Drawing.Point(98, 88);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(55, 1);
-            this.panel11.TabIndex = 1016;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(95, 56);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 13);
-            this.label14.TabIndex = 1015;
-            this.label14.Text = "PAD";
-            // 
-            // textBoxPad
-            // 
-            this.textBoxPad.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxPad.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPad.Location = new System.Drawing.Point(98, 73);
-            this.textBoxPad.MaxLength = 2;
-            this.textBoxPad.Name = "textBoxPad";
-            this.textBoxPad.ReadOnly = true;
-            this.textBoxPad.Size = new System.Drawing.Size(51, 13);
-            this.textBoxPad.TabIndex = 1014;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.DimGray;
-            this.panel10.Location = new System.Drawing.Point(19, 88);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(55, 1);
-            this.panel10.TabIndex = 1013;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(18, 56);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(28, 13);
-            this.label13.TabIndex = 1012;
-            this.label13.Text = "PAS";
-            // 
-            // textBoxPas
-            // 
-            this.textBoxPas.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxPas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPas.Location = new System.Drawing.Point(19, 73);
-            this.textBoxPas.MaxLength = 2;
-            this.textBoxPas.Name = "textBoxPas";
-            this.textBoxPas.ReadOnly = true;
-            this.textBoxPas.Size = new System.Drawing.Size(51, 13);
-            this.textBoxPas.TabIndex = 1011;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 8);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 13);
-            this.label12.TabIndex = 1010;
-            this.label12.Text = " Escala de Pressão Arterial";
-            // 
-            // comboBoxPressaoArterial
-            // 
-            this.comboBoxPressaoArterial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPressaoArterial.FormattingEnabled = true;
-            this.comboBoxPressaoArterial.Location = new System.Drawing.Point(19, 27);
-            this.comboBoxPressaoArterial.Name = "comboBoxPressaoArterial";
-            this.comboBoxPressaoArterial.Size = new System.Drawing.Size(130, 21);
-            this.comboBoxPressaoArterial.TabIndex = 1009;
-            this.comboBoxPressaoArterial.TabStop = false;
-            this.comboBoxPressaoArterial.SelectedIndexChanged += new System.EventHandler(this.comboBoxPressaoArterial_SelectedIndexChanged);
             // 
             // FrmViewTemplate
             // 

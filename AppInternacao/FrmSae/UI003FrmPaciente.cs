@@ -225,9 +225,9 @@ namespace AppInternacao.FrmSae
             PacientePresenter = new PacientePresenter(this);
             PacientePresenter.Carregar();
             textBoxPaciente.Focus();
-            dataGridViewPaciente.RowEnter += dataGridViewPaciente_RowEnter;
+          //  dataGridViewPaciente.RowEnter += dataGridViewPaciente_RowEnter;
+          
         }
-
 
         private void MyImprimir_Click(object sender, EventArgs e)
         {
@@ -306,7 +306,6 @@ namespace AppInternacao.FrmSae
             try
             {
                 var senderGrid = (DataGridView)sender;
-
                 foreach (DataGridViewRow row in senderGrid.Rows)
                 {
                     if (row.Index < e.RowIndex)
@@ -527,9 +526,8 @@ namespace AppInternacao.FrmSae
         private void dataGridViewPaciente_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             var sendGrid = (DataGridView)sender;
-
             objPeciente = (Paciente)dataGridViewPaciente.Rows[e.RowIndex].DataBoundItem;
-
+            
             FrmMain.mySalvar.Enabled = !(StatusInternacao.Alta | StatusInternacao.Obito).HasFlag(objPeciente.Status) && Sessao.Usuario.Perfil != Enum.Perfil.Tecnico;
 
             paciente = (Paciente)dataGridViewPaciente.Rows[e.RowIndex].DataBoundItem;

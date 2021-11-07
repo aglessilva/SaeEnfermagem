@@ -2,30 +2,23 @@
 using AppInternacao.Model;
 using AppInternacao.Presenter;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace AppInternacao.Frm
 {
     public partial class FrmJustificarChecagem : Form
     {
-        DataRow dataRow = null;
-        bool viewEnable = true;
         ChavePrescricao chavePrescricao = null;
         PresenterGeneric presenterGeneric = null;
+        private readonly int tipo = 0;
+        private readonly int itemPrescricao = 0;
 
-        public FrmJustificarChecagem(DataRow _dataRow = null, bool eneble = true)
-        {
-            InitializeComponent();
-            dataRow = _dataRow;
-            textBoxJustificativa.Focus();
-            viewEnable = eneble;
-        }
-
-        public FrmJustificarChecagem(ChavePrescricao chave)
+        public FrmJustificarChecagem(ChavePrescricao chave, int _itemPrescricao = 0, int _tipo = 0)
         {
             InitializeComponent();
             chavePrescricao = chave;
+            tipo = _tipo;
+            itemPrescricao = _itemPrescricao;
             textBoxJustificativa.Focus();
         }
 
@@ -38,36 +31,43 @@ namespace AppInternacao.Frm
                 btnConfirmar.Enabled = textBoxJustificativa.Text.Length >= 50;
             }
 
-            if (textBoxJustificativa.Text.Length >= 60)
+            if (textBoxJustificativa.Text.Length >= 51)
                 lblCaracteres.Text = $"Máximo de 500 caracteres: {500 - textBoxJustificativa.Text.Length}";
+
+            btnConfirmar.Enabled = textBoxJustificativa.Text.Length >= 50 && textBoxJustificativa.ReadOnly == false;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            string texto = textBoxJustificativa.Text;
             try
             {
-                string strTexto = $"Checado por:{Sessao.Usuario.Nome}{Environment.NewLine}" +
-                   $"Data:{ DateTime.Now.Date:dd/MM/yyyy}{Environment.NewLine}{textBoxJustificativa.Text} |";
+                presenterGeneric = new PresenterGeneric();
+                var obj = new JustificativaAnotacao()
+                {
+                    IdPrescricao = chavePrescricao.Id,
+                    IdPaciente = Sessao.Paciente.Id,
+                    IdUsuario = Sessao.Usuario.Id,
+                    TipoMsg = tipo,
+                    ItemData = chavePrescricao.StatusPrescricao == 3 ? $"{itemPrescricao}#{textBoxData.Text}" : null
+                };
 
-                if (chavePrescricao == null)
-                {
-                    dataRow["Justificativa"] += strTexto;
-                    DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    presenterGeneric = new PresenterGeneric();
-                    presenterGeneric.Salvar(new ChavePrescricao() 
-                    { 
-                        Id = chavePrescricao.Id,
-                        NomePrescricao = chavePrescricao.NomePrescricao,
-                        IdPaciente = Sessao.Paciente.Id, 
-                        ObservacaoDevolucao = strTexto,
-                        IsValidado =  false
-                    }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
-                    DialogResult = DialogResult.OK;
-                }
-                Dispose();
+                // Anotação do tecnico de enfermagem (falta de medicamento, material de trabalho etc etc etc)
+                if (tipo == 0)
+                    obj.AnotacaoItemPrescricao = textBoxJustificativa.Text;
+
+                // justificativa para de prescricao medica, devoução entre medico e enfermeiro
+                if (tipo == 1)
+                    obj.ObervacaoDevolucao = textBoxJustificativa.Text;
+
+                // justificativa para informar a não checagem dos itens de prescrição
+                if (tipo == 2)
+                    obj.Justificativa = textBoxJustificativa.Text;
+
+                presenterGeneric.Salvar(obj, Procedure.SP_ADD_JUSTIFICATIVA);
+                DialogResult = DialogResult.OK;
+                Dispose(true);
+
             }
             catch (Exception exErroJus)
             {
@@ -75,45 +75,85 @@ namespace AppInternacao.Frm
             }
         }
 
-        private void FrmJustificarChecagem_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (DialogResult == DialogResult.Cancel)
-                e.Cancel = true;
-            else
-                e.Cancel = false;
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Dispose();
+            this.DialogResult = DialogResult.Cancel;
+            Dispose(true);
         }
 
         private void FrmJustificarChecagem_Load(object sender, EventArgs e)
         {
-            string texto = string.Empty;
-            if (chavePrescricao == null)
+            try
             {
-                if (!viewEnable)
+                dataGridViewJustificativa.AutoGenerateColumns = false;
+
+                if (tipo == 0)
                 {
-                    string[] txtJustificativas = dataRow["Justificativa"].ToString().Split('|');
-                    textBoxJustificativa.MaxLength = 1000;
-                    lblCaracteres.Visible = false;
-
-                    foreach (var item in txtJustificativas)
-                    {
-                        texto +=  item.ToString() + Environment.NewLine + Environment.NewLine ;
-                    }
-
-                    textBoxJustificativa.Text = texto;
+                    dataGridViewJustificativa.Columns["AnotacaoItemPrescricao"].Visible = true;
+                    panelItemData.Visible = true;
+                    textBoxItem.Text = itemPrescricao.ToString();
+                    textBoxData.Text = "Note";
+                    lblData.Visible = false;
                 }
-            }
-            else
-            {
-                lblTitle.Text = "Justificar Devolução de Prescrição.";
+                if (tipo == 1)
+                    dataGridViewJustificativa.Columns["ObervacaoDevolucao"].Visible = true;
+
+                if (tipo == 2)
+                {
+                    dataGridViewJustificativa.Columns["Justificativa"].Visible = true;
+                    panelItemData.Visible = true;
+                    textBoxItem.Text = itemPrescricao.ToString();
+                    textBoxData.Text = DateTime.Now.Date.ToString("dd/MM");
+                }
+
                 textBoxJustificativa.MaxLength = 500;
                 lblCaracteres.Visible = false;
+                presenterGeneric = new PresenterGeneric();
+                dataGridViewJustificativa.DataSource = presenterGeneric.GetLista(new JustificativaAnotacao() { IdPrescricao = chavePrescricao.Id, TipoMsg = tipo }, Procedure.SP_GET_JUSTIFICATIVA);
             }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception:ex);
+            }
+
+        }
+
+        private void dataGridViewJustificativa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBoxJustificativa.ReadOnly = true;
+            textBoxJustificativa.Clear();
+            JustificativaAnotacao objeto = (JustificativaAnotacao)dataGridViewJustificativa.Rows[e.RowIndex].DataBoundItem;
+            if (tipo == 0)
+            {
+                textBoxJustificativa.Text = objeto.AnotacaoItemPrescricao;
+                if(!objeto.ItemData.Split('#')[1].Contains("Note"))
+                {
+                    textBoxItem.Text = objeto.ItemData.Split('#')[0].Trim();
+                    textBoxData.Text = objeto.ItemData.Split('#')[1].Trim();
+                    lblData.Visible = true;
+                }
+                else
+                {
+                    textBoxItem.Text = itemPrescricao.ToString();
+                    textBoxData.Text = "Note";
+                    lblData.Visible = false;
+                }
+            }
+            if (tipo == 1)
+                textBoxJustificativa.Text = objeto.ObervacaoDevolucao;
+            if (tipo == 2)
+            {
+                textBoxJustificativa.Text = objeto.Justificativa;
+                textBoxItem.Text = objeto.ItemData.Split('#')[0].Trim();
+                textBoxData.Text = objeto.ItemData.Split('#')[1].Trim();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            textBoxJustificativa.Text = string.Empty;
+            textBoxJustificativa.ReadOnly = false;
+            textBoxJustificativa.Focus();
         }
     }
 }

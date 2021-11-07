@@ -29,10 +29,10 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewPrescricoes = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +42,6 @@ namespace AppInternacao.FrmSae
             this.Prescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Intervalo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Horario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Justificativa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblContaCaracter = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.comboBoxDataPrescricao = new System.Windows.Forms.ComboBox();
@@ -63,7 +62,6 @@ namespace AppInternacao.FrmSae
             this.btnAddDia = new System.Windows.Forms.Button();
             this.btnAddCiclo = new FontAwesome.Sharp.IconButton();
             this.btnDevolverPrescricao = new FontAwesome.Sharp.IconButton();
-            this.textBoxObservacaoDevolucao = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrescricoes)).BeginInit();
             this.panel1.SuspendLayout();
@@ -85,8 +83,8 @@ namespace AppInternacao.FrmSae
             // 
             this.dataGridViewPrescricoes.AllowUserToAddRows = false;
             this.dataGridViewPrescricoes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
-            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
+            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewPrescricoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPrescricoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -95,22 +93,20 @@ namespace AppInternacao.FrmSae
             this.IdPaciente,
             this.Prescricao,
             this.Intervalo,
-            this.Horario,
-            this.Justificativa});
+            this.Horario});
             this.dataGridViewPrescricoes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPrescricoes.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridViewPrescricoes.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPrescricoes.Name = "dataGridViewPrescricoes";
             this.dataGridViewPrescricoes.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewPrescricoes.RowTemplate.Height = 40;
             this.dataGridViewPrescricoes.Size = new System.Drawing.Size(849, 357);
             this.dataGridViewPrescricoes.TabIndex = 17;
             this.dataGridViewPrescricoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellContentClick);
             this.dataGridViewPrescricoes.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellContentDoubleClick);
             this.dataGridViewPrescricoes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellEndEdit);
-            this.dataGridViewPrescricoes.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPrescricoes_CellEnter);
             this.dataGridViewPrescricoes.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewPrescricoes_DataError);
             this.dataGridViewPrescricoes.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewPrescricoes_RowsAdded);
             // 
@@ -158,9 +154,9 @@ namespace AppInternacao.FrmSae
             // 
             this.Intervalo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Intervalo.DataPropertyName = "Intervalo";
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Intervalo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "t";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Intervalo.DefaultCellStyle = dataGridViewCellStyle6;
             this.Intervalo.HeaderText = "Intervalo";
             this.Intervalo.Name = "Intervalo";
             this.Intervalo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -169,20 +165,13 @@ namespace AppInternacao.FrmSae
             // Horario
             // 
             this.Horario.DataPropertyName = "Horario";
-            dataGridViewCellStyle3.Format = "t";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Horario.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Format = "t";
+            dataGridViewCellStyle7.NullValue = null;
+            this.Horario.DefaultCellStyle = dataGridViewCellStyle7;
             this.Horario.HeaderText = "Horário";
             this.Horario.Name = "Horario";
             this.Horario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Horario.ToolTipText = "Indica o horário que iniciará o procedimento";
-            // 
-            // Justificativa
-            // 
-            this.Justificativa.DataPropertyName = "Justificativa";
-            this.Justificativa.HeaderText = "Justificativa";
-            this.Justificativa.Name = "Justificativa";
-            this.Justificativa.ToolTipText = "Justificativa para o item da prescrição não realizada na data.";
             // 
             // lblContaCaracter
             // 
@@ -214,7 +203,7 @@ namespace AppInternacao.FrmSae
             this.comboBoxDataPrescricao.Location = new System.Drawing.Point(248, 42);
             this.comboBoxDataPrescricao.MaxDropDownItems = 11;
             this.comboBoxDataPrescricao.Name = "comboBoxDataPrescricao";
-            this.comboBoxDataPrescricao.Size = new System.Drawing.Size(227, 21);
+            this.comboBoxDataPrescricao.Size = new System.Drawing.Size(349, 21);
             this.comboBoxDataPrescricao.TabIndex = 11;
             this.comboBoxDataPrescricao.ValueMember = "Id";
             // 
@@ -270,7 +259,7 @@ namespace AppInternacao.FrmSae
             this.lblValidaPrescricao.AutoSize = true;
             this.lblValidaPrescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblValidaPrescricao.ForeColor = System.Drawing.Color.Red;
-            this.lblValidaPrescricao.Location = new System.Drawing.Point(481, 42);
+            this.lblValidaPrescricao.Location = new System.Drawing.Point(248, 66);
             this.lblValidaPrescricao.Name = "lblValidaPrescricao";
             this.lblValidaPrescricao.Size = new System.Drawing.Size(104, 15);
             this.lblValidaPrescricao.TabIndex = 51;
@@ -291,7 +280,6 @@ namespace AppInternacao.FrmSae
             this.panel1.Controls.Add(this.lblTotalPrescricao);
             this.panel1.Controls.Add(this.btnAddCiclo);
             this.panel1.Controls.Add(this.btnDevolverPrescricao);
-            this.panel1.Controls.Add(this.textBoxObservacaoDevolucao);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -521,20 +509,6 @@ namespace AppInternacao.FrmSae
             this.btnDevolverPrescricao.Visible = false;
             this.btnDevolverPrescricao.Click += new System.EventHandler(this.btnDevolverPrescricao_Click);
             // 
-            // textBoxObservacaoDevolucao
-            // 
-            this.textBoxObservacaoDevolucao.BackColor = System.Drawing.Color.White;
-            this.textBoxObservacaoDevolucao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxObservacaoDevolucao.Location = new System.Drawing.Point(248, 93);
-            this.textBoxObservacaoDevolucao.MaxLength = 300;
-            this.textBoxObservacaoDevolucao.Multiline = true;
-            this.textBoxObservacaoDevolucao.Name = "textBoxObservacaoDevolucao";
-            this.textBoxObservacaoDevolucao.ReadOnly = true;
-            this.textBoxObservacaoDevolucao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxObservacaoDevolucao.Size = new System.Drawing.Size(370, 92);
-            this.textBoxObservacaoDevolucao.TabIndex = 108;
-            this.textBoxObservacaoDevolucao.Visible = false;
-            // 
             // UI008FrmPrescricaoCiclo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -580,7 +554,6 @@ namespace AppInternacao.FrmSae
         private FontAwesome.Sharp.IconButton btnValidarPrescricao;
         private FontAwesome.Sharp.IconButton btnAddCiclo;
         private FontAwesome.Sharp.IconButton btnDevolverPrescricao;
-        private System.Windows.Forms.TextBox textBoxObservacaoDevolucao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdChavePrescricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
@@ -588,6 +561,5 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.DataGridViewTextBoxColumn Prescricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Intervalo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Horario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Justificativa;
     }
 }

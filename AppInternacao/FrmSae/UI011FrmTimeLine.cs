@@ -13,11 +13,15 @@ namespace AppInternacao.FrmSae
     {
         public static IconButton iconButtonAvanca;
         public static IconButton IconButtonVolta;
+        public static Panel ctrl;
+        public static Label lblRotuloSae;
         public UI011FrmTimeLine()
         {
             InitializeComponent();
             iconButtonAvanca = BtnAvancar;
             IconButtonVolta = btnVoltar;
+            ctrl = pFrmBody;
+            lblRotuloSae = lblNameStepSae;
         }
 
         void OpenFormSae()

@@ -3,13 +3,7 @@ using AppInternacao.Presenter;
 using AppInternacao.View;
 using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
@@ -44,14 +38,12 @@ namespace AppInternacao.FrmSae
                     rdoMasculino.Checked = true;
             }
         }
-
+       
         public UI012FrmSaeHistoricoEnfermagem()
         {
             InitializeComponent();
             txtTitulo.Text = $"HISTÓRICO DE ENFERMAGEM – ADMISSÃO DE CRITÉRIOS E AVALIAÇÃO DE PADRÕES FUNCIONAIS DE SAÚDE";
         }
-
-       
 
         private void btnButtonStep_Click(object sender, EventArgs e)
         {
@@ -68,7 +60,14 @@ namespace AppInternacao.FrmSae
             {
                 if(ValidarCampo())
                 {
-                    Sessao.Paciente.Sae.HistoricoEnfermagem = this.HistoricoEnfermagem; ;
+                    Sessao.Paciente.Sae.HistoricoEnfermagem = this.HistoricoEnfermagem;
+                    UI011FrmTimeLine.iconButtonAvanca.Click -= btnButtonStep_Click;
+                    UI011FrmTimeLine.IconButtonVolta.Click -= btnButtonStep_Click;
+                    UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
+                    Form frm = new UI010FrmNanda(true) { TopLevel = false };
+                    UI011FrmTimeLine.ctrl.Controls.Add(frm);
+                    UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
+                    frm.Show();
                 }
             }
             catch (Exception Ex)
@@ -123,6 +122,34 @@ namespace AppInternacao.FrmSae
             else
                 errorProvider1.SetError(gpAvaliacaoSaude, null);
 
+            if ((radioButton19.Checked || radioButton18.Checked) && textBoxDoencaCorelacionada.Text.Length < 10)
+            {
+                errorProvider1.SetError(radioButton19, "preencha este campo");
+                errorProvider1.SetIconPadding(radioButton19, 3);
+                ret[0] = false;
+            }
+            else
+                errorProvider1.SetError(radioButton19, null);
+
+
+            if (radioButton5.Checked && textBoxEspecifiqueInstituicao.Text.Length < 10)
+            {
+                errorProvider1.SetError(label7, "preencha este campo");
+                errorProvider1.SetIconPadding(label7, 3);
+                ret[3] = false;
+            }
+            else
+                errorProvider1.SetError(label7, null);
+
+            if (textBoxMotivoInternacao.Text.Length < 50)
+            {
+                errorProvider1.SetError(label6, "preencha este campo");
+                errorProvider1.SetIconPadding(label6, 3);
+                ret[3] = false;
+            }
+            else
+                errorProvider1.SetError(label6, null);
+
             return ret.ToList().TrueForAll(t => t == true);
         }
 
@@ -130,8 +157,24 @@ namespace AppInternacao.FrmSae
         {
             UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
             UI011FrmTimeLine.IconButtonVolta.Click += btnButtonStep_Click;
+            
             presenterHitoricoEnfermagem = new HistoricoEnfermagemPresenter(this);
             HistoricoEnfermagem = new HistoricoEnfermagem();
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlEspecifique.Enabled = radioButton5.Checked;
+        }
+
+        private void radioButton19_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlEspecifiqueOutrasDoencas.Enabled = (radioButton19.Checked || radioButton18.Checked);
+        }
+
+        private void radioButton18_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButton19_CheckedChanged(sender, e);
         }
     }
 }

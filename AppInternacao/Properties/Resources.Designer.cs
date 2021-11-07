@@ -203,6 +203,26 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_delete_forever_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_delete_forever_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_error_outline_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_error_outline_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cabecalho02 {
             get {
                 object obj = ResourceManager.GetObject("Cabecalho02", resourceCulture);

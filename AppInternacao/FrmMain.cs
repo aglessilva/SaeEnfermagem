@@ -433,7 +433,7 @@ namespace AppInternacao
         {
             CloseUC();
             ActivateButton(sender);
-          //  userControl = new FrmSae.UI009FrmNomeExameFisico();
+            userControl = new FrmSae.UI015FrmArea();
             OpenUc();
         }
 
@@ -503,7 +503,19 @@ namespace AppInternacao
 
             ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
+            //  userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
+            userControl = new FrmSae.UI014FrmExameFisico();
+            OpenUc();
+        }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            if (!isCollapsed)
+                timerCollapsed.Start();
+
+            ActivateButton(sender);
+            CloseUC();
+            userControl = new FrmSae.UI013FrmViewDiagnostico();
             OpenUc();
         }
     }

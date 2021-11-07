@@ -171,6 +171,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSae\UI013FrmViewDiagnostico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI013FrmViewDiagnostico.Designer.cs">
+      <DependentUpon>UI013FrmViewDiagnostico.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSae\UI002FrmAlterarSenha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,18 @@
     <Compile Include="FrmSae\UI012FrmSaeHistoricoEnfermagem.Designer.cs">
       <DependentUpon>UI012FrmSaeHistoricoEnfermagem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSae\UI014FrmExameFisico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI014FrmExameFisico.Designer.cs">
+      <DependentUpon>UI014FrmExameFisico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI015FrmArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI015FrmArea.Designer.cs">
+      <DependentUpon>UI015FrmArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmViewTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,12 +324,15 @@
     </Compile>
     <Compile Include="Funcoes.cs" />
     <Compile Include="Model\AlteracaoLeitoPaciente.cs" />
+    <Compile Include="Model\AreaCategoria.cs" />
+    <Compile Include="Model\AreaCategoriaItem.cs" />
     <Compile Include="Model\AvaliacaoEnfermagem.cs" />
     <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
     <Compile Include="Model\DiagnosticoEnfermagem.cs" />
     <Compile Include="Model\EvolucaoEnfermagem.cs" />
     <Compile Include="Model\HistoricoEnfermagem.cs" />
+    <Compile Include="Model\JustificativaAnotacao.cs" />
     <Compile Include="Model\NandaCaracteristicaDefinidora.cs" />
     <Compile Include="Model\NandaClasse.cs" />
     <Compile Include="Model\NandaCondicaoAssociada.cs" />
@@ -349,6 +370,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Sessao.cs" />
+    <Compile Include="View\IAreaCategoria.cs" />
     <Compile Include="View\IEstruturaFisica.cs" />
     <Compile Include="View\IHistoricoEnfermagem.cs" />
     <Compile Include="View\ILeito.cs" />
@@ -365,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI013FrmViewDiagnostico.resx">
+      <DependentUpon>UI013FrmViewDiagnostico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI002FrmAlterarSenha.resx">
       <DependentUpon>UI002FrmAlterarSenha.cs</DependentUpon>
@@ -419,6 +444,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI012FrmSaeHistoricoEnfermagem.resx">
       <DependentUpon>UI012FrmSaeHistoricoEnfermagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI014FrmExameFisico.resx">
+      <DependentUpon>UI014FrmExameFisico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI015FrmArea.resx">
+      <DependentUpon>UI015FrmArea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewTemplate.resx">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
@@ -528,6 +559,8 @@
     <None Include="Resources\liberar.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\baseline_error_outline_black_18dp.png" />
+    <None Include="Resources\baseline_delete_forever_black_18dp.png" />
     <Content Include="Resources\HP.bmp" />
     <Content Include="ZplPrint\TemplateEtiquetaZPL.txt" />
     <None Include="Resources\LeitoOcupado.png" />

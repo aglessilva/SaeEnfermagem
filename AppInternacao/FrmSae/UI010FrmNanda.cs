@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,9 @@ namespace AppInternacao.FrmSae
 {
     public partial class UI010FrmNanda : UI000FrmTemplate
     {
-        public UI010FrmNanda()
+        private readonly bool isSAE;
+
+        public UI010FrmNanda(bool _isSae = false)
         {
             InitializeComponent();
             dataGridViewFatoresRelacionados.AutoGenerateColumns = false;
@@ -19,6 +22,7 @@ namespace AppInternacao.FrmSae
             dataGridViewCondicoesAssociada.AutoGenerateColumns = false;
             dataGridViewPopulacaoRisco.AutoGenerateColumns = false;
             dataGridViewFatoresRiscos.AutoGenerateColumns = false;
+            isSAE = _isSae;
         }
 
         PresenterGeneric presenterGeneric = null;
@@ -34,8 +38,12 @@ namespace AppInternacao.FrmSae
 
         private void UI010FrmNanda_Load(object sender, EventArgs e)
         {
+            if(isSAE)
+            {
+                UI011FrmTimeLine.iconButtonAvanca.Click += BtnVizualizarDiagnostico_Click;
+            }
             presenterGeneric = new PresenterGeneric();
-
+            BtnVizualizarDiagnostico.Visible = isSAE;
             nandaDominios = presenterGeneric.GetLista(new NandaDominio(), Procedure.SP_GET_DOMINIO);
             nandaClasses = presenterGeneric.GetLista(new NandaClasse(), Procedure.SP_GET_CLASSE);
             nandaFatorRelacionados = presenterGeneric.GetLista(new NandaFatorRelacionado(), Procedure.SP_GET_FATORES_RELACIONADOS);
@@ -139,6 +147,8 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                BtnVizualizarDiagnostico.Enabled = e.Node.Level >= 3 && isSAE;
+                
                 if (e.Node.Tag == null || e.Node.Level < 3)
                     return;
 
@@ -189,6 +199,53 @@ namespace AppInternacao.FrmSae
             }
             if (textBoxPesquisaDiagnostico.Text.Length > 4)
                 FilterByName();
+        }
+
+        private void BtnVizualizarDiagnostico_Click(object sender, EventArgs e)
+        {
+            SAE sae = new SAE();
+
+            IconButton iconButton = (IconButton)sender;
+
+            sae.DiagnosticoEnfermagem.Diagnostico = (NandaDiagnostico)treeView1.SelectedNode.Tag;
+            sae.DiagnosticoEnfermagem.NomeDominio = nandaDominios.FirstOrDefault(d => d.Id.Equals(sae.DiagnosticoEnfermagem.Diagnostico.IdDominio)).Dominio;
+            sae.DiagnosticoEnfermagem.NomeClasse = nandaClasses.FirstOrDefault(s => s.Codigo.Equals(sae.DiagnosticoEnfermagem.Diagnostico.Codigo)).Classe;
+
+            DataGridViewSelectedRowCollection dataGridViewSelected = dataGridViewFatoresRelacionados.SelectedRows;
+            if(dataGridViewSelected.Count > 0)
+            foreach (DataGridViewRow item in dataGridViewSelected)
+               sae.DiagnosticoEnfermagem.FatorRelacionados.Add((NandaFatorRelacionado)item.DataBoundItem);
+
+            dataGridViewSelected = dataGridViewCaracteristicasDefinidoras.SelectedRows;
+            if (dataGridViewSelected.Count > 0)
+                foreach (DataGridViewRow item in dataGridViewSelected)
+                sae.DiagnosticoEnfermagem.CaracteristicaDefinidoras.Add((NandaCaracteristicaDefinidora)item.DataBoundItem);
+
+            dataGridViewSelected = dataGridViewCondicoesAssociada.SelectedRows;
+            if (dataGridViewSelected.Count > 0)
+                foreach (DataGridViewRow item in dataGridViewSelected)
+                sae.DiagnosticoEnfermagem.CondicaoAssociadas.Add((NandaCondicaoAssociada)item.DataBoundItem);
+
+            dataGridViewSelected = dataGridViewFatoresRiscos.SelectedRows;
+            if (dataGridViewSelected.Count > 0)
+                foreach (DataGridViewRow item in dataGridViewSelected)
+                sae.DiagnosticoEnfermagem.FatorRiscos.Add((NandaFatorRisco)item.DataBoundItem);
+
+            dataGridViewSelected = dataGridViewPopulacaoRisco.SelectedRows;
+            if (dataGridViewSelected.Count > 0)
+                foreach (DataGridViewRow item in dataGridViewSelected)
+                    sae.DiagnosticoEnfermagem.PopulacaoRiscos.Add((NandaPopulacaoRisco)item.DataBoundItem);
+
+            Sessao.Paciente.Sae = sae;
+            UI011FrmTimeLine.iconButtonAvanca.Enabled = UI011FrmTimeLine.IconButtonVolta.Enabled = false;
+
+            if (!iconButton.Name.Equals("BtnAvancar"))
+            {
+                var f = new UI013FrmViewDiagnostico() { TopLevel = false };
+                UI011FrmTimeLine.ctrl.Controls.Add(f);
+                f.BringToFront();
+                f.Show();
+            }
         }
     }
 }

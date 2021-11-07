@@ -67,7 +67,7 @@
 
         SP_DEL_CHAVE_PRESCRICAO = 34,
 
-        SP_UPDT_JUSTIFICATIVA = 35,
+        SP_ADD_JUSTIFICATIVA = 35,
 
         SP_CHK_CPF_USUARIO = 38,
 
@@ -90,5 +90,11 @@
         SP_GET_FATORES_RISCO = 47,
 
         SP_GET_POPULACAO_RISCO = 48,
+
+        SP_GET_JUSTIFICATIVA = 49,
+
+        SP_GET_CATEGORIAS_AREA = 50,
+
+        SP_GET_CATEGORIAS_AREA_ITEMS = 51
     }
 }

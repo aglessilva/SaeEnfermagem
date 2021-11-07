@@ -30,7 +30,6 @@
         {
             this.comboBoxEstruturaFisica = new System.Windows.Forms.ComboBox();
             this.gTipoEstruturaFisica = new System.Windows.Forms.GroupBox();
-            this.btnReplicarExameFisico = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAnotacaoAdicionais = new System.Windows.Forms.TextBox();
             this.comboBoxTemplateExameFisico = new System.Windows.Forms.ComboBox();
@@ -105,6 +104,7 @@
             this.flpPupilas = new System.Windows.Forms.FlowLayoutPanel();
             this.gPele = new System.Windows.Forms.GroupBox();
             this.flpPele = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnReplicarExameFisico = new System.Windows.Forms.Button();
             this.gTipoEstruturaFisica.SuspendLayout();
             this.pBody.SuspendLayout();
             this.gEscalaPressao.SuspendLayout();
@@ -160,39 +160,15 @@
             this.gTipoEstruturaFisica.TabStop = false;
             this.gTipoEstruturaFisica.Text = "Selecione uma Estrutura Física do Paciente.";
             // 
-            // btnReplicarExameFisico
-            // 
-            this.btnReplicarExameFisico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReplicarExameFisico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnReplicarExameFisico.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReplicarExameFisico.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReplicarExameFisico.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnReplicarExameFisico.FlatAppearance.BorderSize = 0;
-            this.btnReplicarExameFisico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnReplicarExameFisico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnReplicarExameFisico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReplicarExameFisico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnReplicarExameFisico.ForeColor = System.Drawing.Color.White;
-            this.btnReplicarExameFisico.Image = global::AppInternacao.Properties.Resources.Copy;
-            this.btnReplicarExameFisico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReplicarExameFisico.Location = new System.Drawing.Point(587, 13);
-            this.btnReplicarExameFisico.Name = "btnReplicarExameFisico";
-            this.btnReplicarExameFisico.Size = new System.Drawing.Size(194, 40);
-            this.btnReplicarExameFisico.TabIndex = 45;
-            this.btnReplicarExameFisico.TabStop = false;
-            this.btnReplicarExameFisico.Text = "Replicar Último Exame Físico";
-            this.btnReplicarExameFisico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReplicarExameFisico.UseVisualStyleBackColor = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(452, 13);
+            this.label1.Size = new System.Drawing.Size(446, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Campo Livre / Desc de Alergiasv/ Oboservações relevantes / Anotações do Enfermeir" +
-    "o / Etc.";
+            this.label1.Text = "Campo Livre / Desc de Alergias/ Oboservações relevantes / Anotações do Enfermeiro" +
+    " / Etc.";
             // 
             // txtAnotacaoAdicionais
             // 
@@ -1063,6 +1039,31 @@
             this.flpPele.Name = "flpPele";
             this.flpPele.Size = new System.Drawing.Size(798, 60);
             this.flpPele.TabIndex = 0;
+            // 
+            // btnReplicarExameFisico
+            // 
+            this.btnReplicarExameFisico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReplicarExameFisico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnReplicarExameFisico.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReplicarExameFisico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReplicarExameFisico.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.btnReplicarExameFisico.FlatAppearance.BorderSize = 0;
+            this.btnReplicarExameFisico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnReplicarExameFisico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnReplicarExameFisico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReplicarExameFisico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnReplicarExameFisico.ForeColor = System.Drawing.Color.White;
+            this.btnReplicarExameFisico.Image = global::AppInternacao.Properties.Resources.Copy;
+            this.btnReplicarExameFisico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReplicarExameFisico.Location = new System.Drawing.Point(587, 13);
+            this.btnReplicarExameFisico.Name = "btnReplicarExameFisico";
+            this.btnReplicarExameFisico.Size = new System.Drawing.Size(194, 40);
+            this.btnReplicarExameFisico.TabIndex = 45;
+            this.btnReplicarExameFisico.TabStop = false;
+            this.btnReplicarExameFisico.Text = "Replicar Último Exame Físico";
+            this.btnReplicarExameFisico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReplicarExameFisico.UseVisualStyleBackColor = false;
+            this.btnReplicarExameFisico.Click += new System.EventHandler(this.btnReplicarExameFisico_Click);
             // 
             // UCExameFisico
             // 

@@ -83,6 +83,7 @@ namespace AppInternacao.FrmSae
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
+            this.BtnVizualizarDiagnostico = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFatoresRelacionados)).BeginInit();
@@ -107,7 +108,7 @@ namespace AppInternacao.FrmSae
             this.treeView1.Location = new System.Drawing.Point(0, 38);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(309, 620);
+            this.treeView1.Size = new System.Drawing.Size(309, 675);
             this.treeView1.TabIndex = 2;
             this.treeView1.TabStop = false;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -136,7 +137,8 @@ namespace AppInternacao.FrmSae
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 4);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.label1.Location = new System.Drawing.Point(22, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(260, 25);
             this.label1.TabIndex = 27;
@@ -167,7 +169,7 @@ namespace AppInternacao.FrmSae
             this.buttonLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLimpar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.buttonLimpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLimpar.Location = new System.Drawing.Point(1178, 6);
+            this.buttonLimpar.Location = new System.Drawing.Point(1171, 6);
             this.buttonLimpar.Name = "buttonLimpar";
             this.buttonLimpar.Size = new System.Drawing.Size(26, 20);
             this.buttonLimpar.TabIndex = 1;
@@ -180,11 +182,11 @@ namespace AppInternacao.FrmSae
             this.textBoxPesquisaDiagnostico.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxPesquisaDiagnostico.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPesquisaDiagnostico.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxPesquisaDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPesquisaDiagnostico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.textBoxPesquisaDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.textBoxPesquisaDiagnostico.ForeColor = System.Drawing.Color.Black;
             this.textBoxPesquisaDiagnostico.Location = new System.Drawing.Point(336, 6);
             this.textBoxPesquisaDiagnostico.Name = "textBoxPesquisaDiagnostico";
-            this.textBoxPesquisaDiagnostico.Size = new System.Drawing.Size(638, 19);
+            this.textBoxPesquisaDiagnostico.Size = new System.Drawing.Size(458, 15);
             this.textBoxPesquisaDiagnostico.TabIndex = 0;
             this.textBoxPesquisaDiagnostico.TextChanged += new System.EventHandler(this.textBoxPesquisaDiagnostico_TextChanged);
             // 
@@ -207,7 +209,7 @@ namespace AppInternacao.FrmSae
             // 
             this.lblDominio.AutoSize = true;
             this.lblDominio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDominio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.lblDominio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.lblDominio.Location = new System.Drawing.Point(334, 39);
             this.lblDominio.Name = "lblDominio";
             this.lblDominio.Size = new System.Drawing.Size(71, 20);
@@ -252,7 +254,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.label2.Location = new System.Drawing.Point(310, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 20);
@@ -292,7 +294,6 @@ namespace AppInternacao.FrmSae
             this.dataGridViewFatoresRelacionados.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewFatoresRelacionados.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewFatoresRelacionados.Location = new System.Drawing.Point(315, 219);
-            this.dataGridViewFatoresRelacionados.MultiSelect = false;
             this.dataGridViewFatoresRelacionados.Name = "dataGridViewFatoresRelacionados";
             this.dataGridViewFatoresRelacionados.ReadOnly = true;
             this.dataGridViewFatoresRelacionados.RowHeadersVisible = false;
@@ -304,7 +305,7 @@ namespace AppInternacao.FrmSae
             // icone
             // 
             this.icone.HeaderText = "icone";
-            this.icone.Image = global::AppInternacao.Properties.Resources.check;
+            this.icone.Image = global::AppInternacao.Properties.Resources.baseline_error_outline_black_18dp;
             this.icone.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.icone.Name = "icone";
             this.icone.ReadOnly = true;
@@ -351,7 +352,6 @@ namespace AppInternacao.FrmSae
             this.dataGridViewCaracteristicasDefinidoras.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewCaracteristicasDefinidoras.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewCaracteristicasDefinidoras.Location = new System.Drawing.Point(611, 219);
-            this.dataGridViewCaracteristicasDefinidoras.MultiSelect = false;
             this.dataGridViewCaracteristicasDefinidoras.Name = "dataGridViewCaracteristicasDefinidoras";
             this.dataGridViewCaracteristicasDefinidoras.ReadOnly = true;
             this.dataGridViewCaracteristicasDefinidoras.RowHeadersVisible = false;
@@ -363,7 +363,7 @@ namespace AppInternacao.FrmSae
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "icone";
-            this.dataGridViewImageColumn1.Image = global::AppInternacao.Properties.Resources.check;
+            this.dataGridViewImageColumn1.Image = global::AppInternacao.Properties.Resources.baseline_error_outline_black_18dp;
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
@@ -381,7 +381,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.label3.Location = new System.Drawing.Point(606, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(199, 20);
@@ -392,8 +392,8 @@ namespace AppInternacao.FrmSae
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.label4.Location = new System.Drawing.Point(310, 94);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.label4.Location = new System.Drawing.Point(310, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 20);
             this.label4.TabIndex = 37;
@@ -406,20 +406,20 @@ namespace AppInternacao.FrmSae
             this.textBoxDefinicao.BackColor = System.Drawing.Color.White;
             this.textBoxDefinicao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDefinicao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.textBoxDefinicao.Location = new System.Drawing.Point(313, 121);
+            this.textBoxDefinicao.Location = new System.Drawing.Point(313, 128);
             this.textBoxDefinicao.Multiline = true;
             this.textBoxDefinicao.Name = "textBoxDefinicao";
             this.textBoxDefinicao.ReadOnly = true;
-            this.textBoxDefinicao.Size = new System.Drawing.Size(888, 66);
+            this.textBoxDefinicao.Size = new System.Drawing.Size(888, 62);
             this.textBoxDefinicao.TabIndex = 38;
             this.textBoxDefinicao.TabStop = false;
             // 
             // iconPictureBox2
             // 
             this.iconPictureBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 25;
             this.iconPictureBox2.Location = new System.Drawing.Point(315, 39);
@@ -431,9 +431,9 @@ namespace AppInternacao.FrmSae
             // iconPictureBox3
             // 
             this.iconPictureBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.iconPictureBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconPictureBox3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 25;
             this.iconPictureBox3.Location = new System.Drawing.Point(796, 41);
@@ -445,9 +445,9 @@ namespace AppInternacao.FrmSae
             // iconPictureBox4
             // 
             this.iconPictureBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.AngleRight;
-            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox4.IconSize = 25;
             this.iconPictureBox4.Location = new System.Drawing.Point(315, 66);
@@ -489,7 +489,6 @@ namespace AppInternacao.FrmSae
             this.dataGridViewCondicoesAssociada.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewCondicoesAssociada.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewCondicoesAssociada.Location = new System.Drawing.Point(907, 219);
-            this.dataGridViewCondicoesAssociada.MultiSelect = false;
             this.dataGridViewCondicoesAssociada.Name = "dataGridViewCondicoesAssociada";
             this.dataGridViewCondicoesAssociada.ReadOnly = true;
             this.dataGridViewCondicoesAssociada.RowHeadersVisible = false;
@@ -501,7 +500,7 @@ namespace AppInternacao.FrmSae
             // dataGridViewImageColumn2
             // 
             this.dataGridViewImageColumn2.HeaderText = "icone";
-            this.dataGridViewImageColumn2.Image = global::AppInternacao.Properties.Resources.check;
+            this.dataGridViewImageColumn2.Image = global::AppInternacao.Properties.Resources.baseline_error_outline_black_18dp;
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
@@ -519,7 +518,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.label5.Location = new System.Drawing.Point(902, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(170, 20);
@@ -530,7 +529,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.label6.Location = new System.Drawing.Point(315, 458);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(130, 20);
@@ -570,19 +569,18 @@ namespace AppInternacao.FrmSae
             this.dataGridViewFatoresRiscos.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewFatoresRiscos.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewFatoresRiscos.Location = new System.Drawing.Point(319, 481);
-            this.dataGridViewFatoresRiscos.MultiSelect = false;
             this.dataGridViewFatoresRiscos.Name = "dataGridViewFatoresRiscos";
             this.dataGridViewFatoresRiscos.ReadOnly = true;
             this.dataGridViewFatoresRiscos.RowHeadersVisible = false;
             this.dataGridViewFatoresRiscos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFatoresRiscos.Size = new System.Drawing.Size(283, 177);
+            this.dataGridViewFatoresRiscos.Size = new System.Drawing.Size(283, 227);
             this.dataGridViewFatoresRiscos.TabIndex = 45;
             this.dataGridViewFatoresRiscos.TabStop = false;
             // 
             // dataGridViewImageColumn3
             // 
             this.dataGridViewImageColumn3.HeaderText = "icone";
-            this.dataGridViewImageColumn3.Image = global::AppInternacao.Properties.Resources.check;
+            this.dataGridViewImageColumn3.Image = global::AppInternacao.Properties.Resources.baseline_error_outline_black_18dp;
             this.dataGridViewImageColumn3.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.ReadOnly = true;
@@ -629,19 +627,18 @@ namespace AppInternacao.FrmSae
             this.dataGridViewPopulacaoRisco.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewPopulacaoRisco.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewPopulacaoRisco.Location = new System.Drawing.Point(611, 481);
-            this.dataGridViewPopulacaoRisco.MultiSelect = false;
             this.dataGridViewPopulacaoRisco.Name = "dataGridViewPopulacaoRisco";
             this.dataGridViewPopulacaoRisco.ReadOnly = true;
             this.dataGridViewPopulacaoRisco.RowHeadersVisible = false;
             this.dataGridViewPopulacaoRisco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPopulacaoRisco.Size = new System.Drawing.Size(283, 177);
+            this.dataGridViewPopulacaoRisco.Size = new System.Drawing.Size(283, 227);
             this.dataGridViewPopulacaoRisco.TabIndex = 47;
             this.dataGridViewPopulacaoRisco.TabStop = false;
             // 
             // dataGridViewImageColumn4
             // 
             this.dataGridViewImageColumn4.HeaderText = "icone";
-            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.check;
+            this.dataGridViewImageColumn4.Image = global::AppInternacao.Properties.Resources.baseline_error_outline_black_18dp;
             this.dataGridViewImageColumn4.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             this.dataGridViewImageColumn4.ReadOnly = true;
@@ -659,17 +656,45 @@ namespace AppInternacao.FrmSae
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
             this.label7.Location = new System.Drawing.Point(607, 458);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(154, 20);
             this.label7.TabIndex = 46;
             this.label7.Text = "População em Risco";
             // 
+            // BtnVizualizarDiagnostico
+            // 
+            this.BtnVizualizarDiagnostico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnVizualizarDiagnostico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.BtnVizualizarDiagnostico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVizualizarDiagnostico.Enabled = false;
+            this.BtnVizualizarDiagnostico.FlatAppearance.BorderSize = 0;
+            this.BtnVizualizarDiagnostico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BtnVizualizarDiagnostico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.BtnVizualizarDiagnostico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVizualizarDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.BtnVizualizarDiagnostico.ForeColor = System.Drawing.Color.White;
+            this.BtnVizualizarDiagnostico.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.BtnVizualizarDiagnostico.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BtnVizualizarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnVizualizarDiagnostico.IconSize = 28;
+            this.BtnVizualizarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnVizualizarDiagnostico.Location = new System.Drawing.Point(1087, 94);
+            this.BtnVizualizarDiagnostico.Name = "BtnVizualizarDiagnostico";
+            this.BtnVizualizarDiagnostico.Size = new System.Drawing.Size(113, 32);
+            this.BtnVizualizarDiagnostico.TabIndex = 28;
+            this.BtnVizualizarDiagnostico.Text = "Vizualizar Itens";
+            this.BtnVizualizarDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnVizualizarDiagnostico.UseVisualStyleBackColor = false;
+            this.BtnVizualizarDiagnostico.Visible = false;
+            this.BtnVizualizarDiagnostico.Click += new System.EventHandler(this.BtnVizualizarDiagnostico_Click);
+            // 
             // UI010FrmNanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1203, 658);
+            this.ClientSize = new System.Drawing.Size(1203, 713);
+            this.Controls.Add(this.BtnVizualizarDiagnostico);
             this.Controls.Add(this.dataGridViewPopulacaoRisco);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridViewFatoresRiscos);
@@ -726,28 +751,29 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Label lblTituloDiagnostico;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridViewFatoresRelacionados;
-        private System.Windows.Forms.DataGridViewImageColumn icone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FatorRelacionado;
         private System.Windows.Forms.DataGridView dataGridViewCaracteristicasDefinidoras;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxDefinicao;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private System.Windows.Forms.DataGridView dataGridViewCondicoesAssociada;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridViewFatoresRiscos;
         private System.Windows.Forms.DataGridView dataGridViewPopulacaoRisco;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewImageColumn icone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FatorRelacionado;
+        private FontAwesome.Sharp.IconButton BtnVizualizarDiagnostico;
     }
 }
