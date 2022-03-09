@@ -131,7 +131,10 @@ namespace AppInternacao.FrmSae
                 if (Valida())
                 {
                     presenterQuarto = new QuartoPresenter(this);
-                    FrmMain.Alert(presenterQuarto.Salvar());
+
+                    if (presenterQuarto.Salvar() == 1)
+                        FrmMain.Alert(Enum.Alerts.InsertSuccess);
+
                     Quarto = new Quarto();
                 }
             }
@@ -210,7 +213,9 @@ namespace AppInternacao.FrmSae
                         if (MessageBox.Show($"Deseja excluir o quarto {ob.NomeQuarto} ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             presenterQuarto = new QuartoPresenter(this);
-                            FrmMain.Alert(presenterQuarto.Excluir(ob.Id));
+
+                            if (presenterQuarto.Excluir(ob.Id) == 1)
+                                FrmMain.Alert(Enum.Alerts.DeleteSuccess);
                         }
                     }
                 }

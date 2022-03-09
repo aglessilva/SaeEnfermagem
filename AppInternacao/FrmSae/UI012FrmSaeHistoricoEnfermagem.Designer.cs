@@ -690,6 +690,7 @@ namespace AppInternacao.FrmSae
             this.Controls.Add(this.pnlTitulo);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "UI012FrmSaeHistoricoEnfermagem";
+            this.Tag = "1";
             this.Load += new System.EventHandler(this.UI012FrmSaeHistoricoEnfermagem_Load);
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();

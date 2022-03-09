@@ -1,4 +1,5 @@
-﻿using AppInternacao.Model;
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
 using System;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class _004FrmQuartoLeito : UI000FrmTemplate, IQuarto, ILeito
+    public partial class UI004FrmQuartoLeito : UI000FrmTemplate, IQuarto, ILeito
     {
-        public _004FrmQuartoLeito()
+        public UI004FrmQuartoLeito()
         {
             InitializeComponent();
             dataGridViewQuartos.AutoGenerateColumns = false;
@@ -335,7 +336,7 @@ namespace AppInternacao.FrmSae
                 if (Valida(tabPageQuartos))
                 {
                     presenterQuarto = new QuartoPresenter(this);
-                    FrmMain.Alert(presenterQuarto.Salvar());
+                    FrmMain.Alert((Alerts)presenterQuarto.Salvar());
                     Quarto = new Quarto();
                 }
             }
@@ -354,7 +355,7 @@ namespace AppInternacao.FrmSae
                     }
                     presenterLeito = new LeitoPresenter(this);
                     Leito = new Leito();
-                    FrmMain.Alert(presenterLeito.Salvar());
+                    FrmMain.Alert((Alerts)presenterLeito.Salvar());
                     PopulaOcupacoes();
                 }
             }
@@ -427,7 +428,7 @@ namespace AppInternacao.FrmSae
                     if (MessageBox.Show($"Deseja excluir o quarto {ob.NomeQuarto} ?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         presenterQuarto = new QuartoPresenter(this);
-                        FrmMain.Alert(presenterQuarto.Excluir(ob.Id));
+                        FrmMain.Alert((Alerts)presenterQuarto.Excluir(ob.Id));
                     }
                 }
                 comboBoxSetor.SelectedIndexChanged += comboBoxSetor_SelectedIndexChanged;
@@ -521,7 +522,7 @@ namespace AppInternacao.FrmSae
                             Leito = obj;
                             presenterLeito = new LeitoPresenter(this);
                             Leito = new Leito();
-                            FrmMain.Alert(presenterLeito.Excluir());
+                            FrmMain.Alert((Alerts)presenterLeito.Excluir());
                         }
                     }
                 }

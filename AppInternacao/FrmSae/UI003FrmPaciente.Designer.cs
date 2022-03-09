@@ -1,6 +1,6 @@
 ﻿namespace AppInternacao.FrmSae
 {
-    partial class FrmPaciente002
+    partial class FrmPaciente
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPaciente002));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPaciente));
             this.label20 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();

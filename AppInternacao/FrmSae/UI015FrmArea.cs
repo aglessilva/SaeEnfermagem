@@ -11,6 +11,10 @@ namespace AppInternacao.FrmSae
 {
     public partial class UI015FrmArea : UI000FrmTemplate
     {
+        private CRUD dbCrud = null;
+        Panel panelAviso =  null;
+        Label LabelAvisoPanel = null;
+
         public UI015FrmArea()
         {
             InitializeComponent();
@@ -36,8 +40,29 @@ namespace AppInternacao.FrmSae
             presenterGeneric = new PresenterGeneric();
             areaCategorias = presenterGeneric.GetLista(new AreaCategoria(), Procedure.SP_GET_CATEGORIAS_AREA);
             areaCategoriaItems = presenterGeneric.GetLista(new AreaCategoriaItem(), Procedure.SP_GET_CATEGORIAS_AREA_ITEMS);
-           
-            areaCategorias.ForEach(n => {
+
+           LabelAvisoPanel = new Label
+            {
+                Text = $"SELECIONE OS ITENS DAS CATEGORIAS AO LADO PARA CRIAR UM MODELO DE EXAME FÍSICO.{Environment.NewLine}" +
+                $"ESSE MODELO DE EXAME PODERÁ SER UTILIZADO NA EVOLUÇÃO DO PACIENTE DURANTE A 'SAE'.",
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 12),
+                ForeColor = System.Drawing.Color.FromArgb(13, 87, 134),
+                AutoSize = true,
+                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                Location = new System.Drawing.Point(70,200)
+            };
+
+            panelAviso = new Panel 
+            { 
+                Dock = DockStyle.Fill,
+                Visible = true, 
+                BackColor = System.Drawing.Color.White,
+            };
+            panelAviso.Controls.Add(LabelAvisoPanel);
+            panelBody.Controls.Add(panelAviso);
+
+            areaCategorias.ForEach(n =>
+            {
                 treeViewCategorias.Nodes.Add(new TreeNode { Text = Name = n.Nome, Tag = n });
             });
 
@@ -53,7 +78,95 @@ namespace AppInternacao.FrmSae
             comboBoxPressaoArterial.ValueMember = "Codigo";
             comboBoxPressaoArterial.DisplayMember = "Titulo";
             comboBoxPressaoArterial.DataSource = pressaoArterial;
+
+            FrmMain.mySalvar.Click += Salvar_Click;
         }
+
+        private void Salvar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Frm.FrmSalvarTemplate frm = new Frm.FrmSalvarTemplate() { TopLevel = true };
+                var retorno = frm.ShowDialog();
+
+                if (retorno == DialogResult.Cancel)
+                    return;
+
+                dbCrud = new CRUD();
+
+                var codigoTemplate = dbCrud.Executar(new { NomeTemplate = frm.NomeTemplate, DescricaoTemplate = frm.DescricaoTemplate }, Procedure.SP_ADD_NAME_TEMPLATE_EXAME_FISICO, Acao.Inserir);
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add(new DataColumn("IdTemplate", typeof(int)));
+                dataTable.Columns.Add(new DataColumn("IdCliente", typeof(int)));
+                dataTable.Columns.Add(new DataColumn("IdItem", typeof(string)));
+                dataTable.Columns.Add(new DataColumn("IdArea", typeof(int)));
+                
+                DataRow dataRow = null;
+                
+                var flowLayoutPanels = panelBody.Controls.OfType<GroupBox>().Where(g => g.Visible).Select(s => s.Controls.OfType<FlowLayoutPanel>()).ToArray();
+                List<AreaCategoriaItem> lstRadiosButton = null;
+                List<string> lstIdItem = new List<string>();
+                AreaCategoria areaCategoria = null;
+
+
+
+                foreach (var item in flowLayoutPanels)
+                {
+                    lstIdItem.Clear();
+                    lstRadiosButton?.Clear();
+
+                    if (item.FirstOrDefault() == null)
+                    {
+                        areaCategoria = (AreaCategoria)panelBody.Controls.OfType<GroupBox>().Where(g => g.Visible && g.Tag != null).FirstOrDefault(s => ((AreaCategoria)s.Tag).Id == 12).Tag;
+
+                        if (gGlasgow.Visible)
+                        {
+                            gGlasgow.Controls.OfType<GroupBox>().Where(g => g.Visible).ToList()
+                                .ForEach(f =>
+                                {
+                                    AreaCategoriaItem areaItem = (AreaCategoriaItem)f.Tag;
+                                    lstIdItem.Add(areaItem.Id.ToString());
+                                });
+                        }
+                    }
+                    else
+                    {
+                        lstRadiosButton = item.Select(d => d.Controls.OfType<RadioButton>().Select(s => (AreaCategoriaItem)s.Tag).ToList()).Select(s => s).FirstOrDefault().ToList();
+                        if (lstRadiosButton.Count > 0)
+                            foreach (var itemRadio in lstRadiosButton)
+                                lstIdItem.Add(itemRadio.Id.ToString());
+
+                        areaCategoria = (AreaCategoria)item.FirstOrDefault().Tag;
+                    }
+
+                    dataRow = dataTable.NewRow();
+                    dataRow["IdTemplate"] = codigoTemplate;
+                    dataRow["IdCliente"] = Sessao.CodigoCliente;
+                    dataRow["IdItem"] = lstIdItem?.Count > 0 ? string.Join(",", lstIdItem) : areaCategoria.Id.ToString();
+                    dataRow["IdArea"] = lstRadiosButton?.Count > 0 ? lstRadiosButton[0].IdArea : areaCategoria.Id;
+                    dataTable.Rows.Add(dataRow);
+                }
+
+                if (dataTable.Rows.Count > 0)
+                {
+                   var ret = dbCrud.BulkInsert(dataTable, "TB_Template_Exame_Fisico");
+
+                    if (ret > 0)
+                    {
+                        FrmMain.Alert(Alerts.InsertSuccess);
+                        FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
+                        this.Close();
+                    }
+                    else
+                        FrmMain.Alert((Alerts)ret);
+                }
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
+
 
         private void treeViewCategorias_AfterCheck(object sender, TreeViewEventArgs e)
         {
@@ -76,6 +189,20 @@ namespace AppInternacao.FrmSae
                     PopularItens(e.Node);
                 }
 
+                FrmMain.mySalvar.Visible = panelBody.Controls.OfType<GroupBox>().Any(g => g.Visible);
+                panelAviso.Visible = !FrmMain.mySalvar.Visible;
+
+                OrdenarGroup();
+
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
+
+        void OrdenarGroup()
+        { 
                 if (gSistemaNeurologico.Visible)
                     gSistemaNeurologico.SendToBack();
 
@@ -117,11 +244,7 @@ namespace AppInternacao.FrmSae
 
                 if (gEscalaPressao.Visible)
                     gEscalaPressao.BringToFront();
-            }
-            catch (Exception ex)
-            {
-                FrmMain.Alert(exception: ex);
-            }
+
         }
 
         private void AddItensArea(TreeNode treeNode, FlowLayoutPanel flowLayoutPanel)
@@ -287,15 +410,25 @@ namespace AppInternacao.FrmSae
                             if (item.Checked)
                             {
                                 if (areaCategoria.Id == 86)
+                                {
                                     gRespostaMotora.Visible = true;
+                                    gRespostaMotora.Tag = areaCategoria;
+                                }
                                 if (areaCategoria.Id == 85)
+                                {
                                     gRespostaVerbal.Visible = true;
+                                    gRespostaVerbal.Tag = areaCategoria;
+                                }
                                 if (areaCategoria.Id == 84)
+                                {
                                     gAberturaOcular.Visible = true;
+                                    gAberturaOcular.Tag = areaCategoria;
+                                }
                             }
                         }
 
                         gGlasgow.Visible = treeNode.Parent.Checked;
+                        gGlasgow.Tag = new AreaCategoria { Id = areaCategoria.IdArea, StatusArea = areaCategoria.IsAtivo, Nome = areaCategoria.Descricao };
                         break;
                     }
                 case Area.ControleCateteres:
@@ -311,6 +444,7 @@ namespace AppInternacao.FrmSae
                 case Area.PressaoArterial:
                     {
                         gEscalaPressao.Visible = treeNode.Parent.Checked;
+                        flpPressaoArterial.Tag = gEscalaPressao.Tag = (AreaCategoria)treeNode.Parent.Tag;
                         break;
                     }
                 default:

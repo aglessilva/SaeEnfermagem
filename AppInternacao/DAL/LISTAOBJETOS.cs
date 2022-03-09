@@ -11,7 +11,7 @@ namespace AppInternacao.Model
     public class LISTAOBJETOS : SQLDBCONNECTION
     {
         #region VARIAVEIS DE AMBIENTE
-        CRUD DB = null;
+        private CRUD DB = null;
         SqlCommand cmd = null;
         #endregion
 

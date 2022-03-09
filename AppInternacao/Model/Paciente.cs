@@ -1,5 +1,6 @@
 ﻿using AppInternacao.Enum;
 using System;
+using System.Collections.Generic;
 
 namespace AppInternacao.Model
 {
@@ -38,19 +39,18 @@ namespace AppInternacao.Model
         public SAE()
         {
             HistoricoEnfermagem = new HistoricoEnfermagem();
-            DiagnosticoEnfermagem = new DiagnosticoEnfermagem();
-            PrescricaoEnfermagem = new PrescricaoEnfermagem();
+            ExameFisico = new ExameFisico();
+            DiagnosticoEnfermagem = new List<DiagnosticoEnfermagem>();
+            IntervencaoEnfermagem = new IntervencaoEnfermagem();
             EvolucaoEnfermagem = new EvolucaoEnfermagem();
             AvaliacaoEnfermagem = new AvaliacaoEnfermagem();
         }
-        public int Id { get; set; }
-        public int IdCiente { get; set; }
-        public int IdPaciente { get; set; }
-        public int IdUsuario { get; set; }
+       
         public DateTime DataSae { get; set; }
         public HistoricoEnfermagem HistoricoEnfermagem { get; set; }
-        public DiagnosticoEnfermagem DiagnosticoEnfermagem { get; set; }
-        public PrescricaoEnfermagem PrescricaoEnfermagem { get; set; }
+        public ExameFisico  ExameFisico { get; set; }
+        public List<DiagnosticoEnfermagem> DiagnosticoEnfermagem { get; set; }
+        public IntervencaoEnfermagem IntervencaoEnfermagem { get; set; }
         public EvolucaoEnfermagem EvolucaoEnfermagem { get; set; }
         public AvaliacaoEnfermagem AvaliacaoEnfermagem { get; set; }
         public bool IsConcluido { get; set; }

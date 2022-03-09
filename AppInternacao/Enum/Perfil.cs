@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace AppInternacao.Enum
 {
-    [Flags]
+    [Flags, Description]
     public enum Perfil : int
     {
         Nenhum = 0,

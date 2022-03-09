@@ -33,21 +33,26 @@
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
+            this.btnAddDiagnostico = new FontAwesome.Sharp.IconButton();
+            this.btnSalvar = new FontAwesome.Sharp.IconButton();
+            this.btnNovo = new FontAwesome.Sharp.IconButton();
+            this.btnImprimir = new FontAwesome.Sharp.IconButton();
             this.lblTitleForm = new System.Windows.Forms.Label();
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelScreen = new System.Windows.Forms.Panel();
             this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnNanda = new FontAwesome.Sharp.IconButton();
             this.btnAdmUsuario = new FontAwesome.Sharp.IconButton();
             this.btnPaciente = new FontAwesome.Sharp.IconButton();
+            this.btnPrescricao = new FontAwesome.Sharp.IconButton();
+            this.panelDropDownTemplate = new System.Windows.Forms.Panel();
+            this.btnListarModelo = new FontAwesome.Sharp.IconButton();
+            this.btnCriarTemplate = new FontAwesome.Sharp.IconButton();
             this.pLogoff = new System.Windows.Forms.Panel();
             this.btnAlterarSenha = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnPrescricao = new FontAwesome.Sharp.IconButton();
             this.btnTempalte = new FontAwesome.Sharp.IconButton();
             this.btnGerenciamentoLeito = new FontAwesome.Sharp.IconButton();
             this.panelDropDown = new System.Windows.Forms.Panel();
@@ -57,6 +62,7 @@
             this.iconBtnClinicaPediatrica = new FontAwesome.Sharp.IconButton();
             this.btnClinicaMedica = new FontAwesome.Sharp.IconButton();
             this.btnAddSae = new FontAwesome.Sharp.IconButton();
+            this.timerCollapsedTemplate = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -64,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelScreen.SuspendLayout();
             this.panelMenu.SuspendLayout();
+            this.panelDropDownTemplate.SuspendLayout();
             this.pLogoff.SuspendLayout();
             this.panelDropDown.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +108,7 @@
             this.panelTitle.Controls.Add(this.panelCabecalho);
             this.panelTitle.Controls.Add(this.lblTitleForm);
             this.panelTitle.Controls.Add(this.iconCurrentChildForm);
+            this.panelTitle.Controls.Add(this.panel1);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Name = "panelTitle";
@@ -110,14 +118,40 @@
             // panelCabecalho
             // 
             this.panelCabecalho.BackColor = System.Drawing.Color.Transparent;
+            this.panelCabecalho.Controls.Add(this.btnAddDiagnostico);
             this.panelCabecalho.Controls.Add(this.btnSalvar);
             this.panelCabecalho.Controls.Add(this.btnNovo);
             this.panelCabecalho.Controls.Add(this.btnImprimir);
             this.panelCabecalho.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelCabecalho.Location = new System.Drawing.Point(0, 0);
+            this.panelCabecalho.Location = new System.Drawing.Point(169, 0);
             this.panelCabecalho.Name = "panelCabecalho";
-            this.panelCabecalho.Size = new System.Drawing.Size(315, 30);
+            this.panelCabecalho.Size = new System.Drawing.Size(443, 30);
             this.panelCabecalho.TabIndex = 5;
+            // 
+            // btnAddDiagnostico
+            // 
+            this.btnAddDiagnostico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddDiagnostico.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAddDiagnostico.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddDiagnostico.FlatAppearance.BorderSize = 0;
+            this.btnAddDiagnostico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAddDiagnostico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnAddDiagnostico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAddDiagnostico.ForeColor = System.Drawing.Color.White;
+            this.btnAddDiagnostico.IconChar = FontAwesome.Sharp.IconChar.ClipboardCheck;
+            this.btnAddDiagnostico.IconColor = System.Drawing.Color.Chartreuse;
+            this.btnAddDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddDiagnostico.IconSize = 28;
+            this.btnAddDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddDiagnostico.Location = new System.Drawing.Point(240, 0);
+            this.btnAddDiagnostico.Name = "btnAddDiagnostico";
+            this.btnAddDiagnostico.Size = new System.Drawing.Size(182, 30);
+            this.btnAddDiagnostico.TabIndex = 106;
+            this.btnAddDiagnostico.Text = "Adicionar Diagnóstico";
+            this.btnAddDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddDiagnostico.UseVisualStyleBackColor = false;
+            this.btnAddDiagnostico.Visible = false;
             // 
             // btnSalvar
             // 
@@ -125,19 +159,21 @@
             this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalvar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSalvar.FlatAppearance.BorderSize = 0;
             this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSalvar.Image = global::AppInternacao.Properties.Resources.Save_Icon_icon_icons_com_69139;
+            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalvar.ForeColor = System.Drawing.Color.White;
+            this.btnSalvar.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnSalvar.IconColor = System.Drawing.Color.Chartreuse;
+            this.btnSalvar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSalvar.IconSize = 30;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(170, 0);
+            this.btnSalvar.Location = new System.Drawing.Point(160, 0);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(85, 30);
-            this.btnSalvar.TabIndex = 3;
+            this.btnSalvar.Size = new System.Drawing.Size(80, 30);
+            this.btnSalvar.TabIndex = 103;
             this.btnSalvar.TabStop = false;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -150,19 +186,21 @@
             this.btnNovo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNovo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNovo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnNovo.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNovo.FlatAppearance.BorderSize = 0;
             this.btnNovo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnNovo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnNovo.Image = global::AppInternacao.Properties.Resources.newFile;
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNovo.ForeColor = System.Drawing.Color.White;
+            this.btnNovo.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
+            this.btnNovo.IconColor = System.Drawing.Color.Yellow;
+            this.btnNovo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNovo.IconSize = 30;
             this.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNovo.Location = new System.Drawing.Point(85, 0);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(85, 30);
-            this.btnNovo.TabIndex = 4;
+            this.btnNovo.Size = new System.Drawing.Size(75, 30);
+            this.btnNovo.TabIndex = 104;
             this.btnNovo.TabStop = false;
             this.btnNovo.Text = "Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -172,22 +210,25 @@
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
-            this.btnImprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnImprimir.BackgroundImage = global::AppInternacao.Properties.Resources.PhotoPrint_6314;
+            this.btnImprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImprimir.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnImprimir.FlatAppearance.BorderSize = 0;
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnImprimir.Image = global::AppInternacao.Properties.Resources.PhotoPrint_6314;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.ForeColor = System.Drawing.Color.White;
+            this.btnImprimir.IconChar = FontAwesome.Sharp.IconChar.Print;
+            this.btnImprimir.IconColor = System.Drawing.Color.Transparent;
+            this.btnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnImprimir.IconSize = 30;
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImprimir.Location = new System.Drawing.Point(0, 0);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(85, 30);
-            this.btnImprimir.TabIndex = 3;
+            this.btnImprimir.TabIndex = 105;
             this.btnImprimir.TabStop = false;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,13 +239,14 @@
             // 
             this.lblTitleForm.AutoSize = true;
             this.lblTitleForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTitleForm.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblTitleForm.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13F);
+            this.lblTitleForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitleForm.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F);
             this.lblTitleForm.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblTitleForm.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblTitleForm.Location = new System.Drawing.Point(793, 0);
+            this.lblTitleForm.Location = new System.Drawing.Point(779, 0);
             this.lblTitleForm.Name = "lblTitleForm";
-            this.lblTitleForm.Size = new System.Drawing.Size(430, 21);
+            this.lblTitleForm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblTitleForm.Size = new System.Drawing.Size(444, 22);
             this.lblTitleForm.TabIndex = 0;
             this.lblTitleForm.Text = "Sistematização da Assistêmcia de Enfermagem";
             this.lblTitleForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -224,6 +266,14 @@
             this.iconCurrentChildForm.Size = new System.Drawing.Size(38, 30);
             this.iconCurrentChildForm.TabIndex = 7;
             this.iconCurrentChildForm.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(169, 30);
+            this.panel1.TabIndex = 0;
             // 
             // panelScreen
             // 
@@ -246,8 +296,9 @@
             this.panelMenu.Controls.Add(this.btnNanda);
             this.panelMenu.Controls.Add(this.btnAdmUsuario);
             this.panelMenu.Controls.Add(this.btnPaciente);
-            this.panelMenu.Controls.Add(this.pLogoff);
             this.panelMenu.Controls.Add(this.btnPrescricao);
+            this.panelMenu.Controls.Add(this.panelDropDownTemplate);
+            this.panelMenu.Controls.Add(this.pLogoff);
             this.panelMenu.Controls.Add(this.btnTempalte);
             this.panelMenu.Controls.Add(this.btnGerenciamentoLeito);
             this.panelMenu.Controls.Add(this.panelDropDown);
@@ -274,7 +325,7 @@
             this.btnNanda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNanda.IconSize = 30;
             this.btnNanda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNanda.Location = new System.Drawing.Point(0, 240);
+            this.btnNanda.Location = new System.Drawing.Point(0, 520);
             this.btnNanda.Name = "btnNanda";
             this.btnNanda.Size = new System.Drawing.Size(169, 40);
             this.btnNanda.TabIndex = 105;
@@ -300,7 +351,7 @@
             this.btnAdmUsuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdmUsuario.IconSize = 30;
             this.btnAdmUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 200);
+            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 480);
             this.btnAdmUsuario.Name = "btnAdmUsuario";
             this.btnAdmUsuario.Size = new System.Drawing.Size(169, 40);
             this.btnAdmUsuario.TabIndex = 103;
@@ -326,7 +377,7 @@
             this.btnPaciente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPaciente.IconSize = 30;
             this.btnPaciente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaciente.Location = new System.Drawing.Point(0, 160);
+            this.btnPaciente.Location = new System.Drawing.Point(0, 440);
             this.btnPaciente.Name = "btnPaciente";
             this.btnPaciente.Size = new System.Drawing.Size(169, 40);
             this.btnPaciente.TabIndex = 102;
@@ -335,6 +386,96 @@
             this.btnPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPaciente.UseVisualStyleBackColor = false;
             this.btnPaciente.Click += new System.EventHandler(this.btnPaciente_Click);
+            // 
+            // btnPrescricao
+            // 
+            this.btnPrescricao.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrescricao.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPrescricao.FlatAppearance.BorderSize = 0;
+            this.btnPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnPrescricao.IconChar = FontAwesome.Sharp.IconChar.Edge;
+            this.btnPrescricao.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(165)))), ((int)(((byte)(245)))));
+            this.btnPrescricao.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPrescricao.IconSize = 30;
+            this.btnPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrescricao.Location = new System.Drawing.Point(0, 400);
+            this.btnPrescricao.Name = "btnPrescricao";
+            this.btnPrescricao.Size = new System.Drawing.Size(169, 40);
+            this.btnPrescricao.TabIndex = 14;
+            this.btnPrescricao.TabStop = false;
+            this.btnPrescricao.Text = "Ciclos de Prescrições";
+            this.btnPrescricao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrescricao.UseVisualStyleBackColor = false;
+            this.btnPrescricao.Click += new System.EventHandler(this.btnPrescricao_Click);
+            // 
+            // panelDropDownTemplate
+            // 
+            this.panelDropDownTemplate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.panelDropDownTemplate.Controls.Add(this.btnListarModelo);
+            this.panelDropDownTemplate.Controls.Add(this.btnCriarTemplate);
+            this.panelDropDownTemplate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelDropDownTemplate.Location = new System.Drawing.Point(0, 320);
+            this.panelDropDownTemplate.MaximumSize = new System.Drawing.Size(169, 80);
+            this.panelDropDownTemplate.MinimumSize = new System.Drawing.Size(169, 0);
+            this.panelDropDownTemplate.Name = "panelDropDownTemplate";
+            this.panelDropDownTemplate.Size = new System.Drawing.Size(169, 80);
+            this.panelDropDownTemplate.TabIndex = 110;
+            // 
+            // btnListarModelo
+            // 
+            this.btnListarModelo.BackColor = System.Drawing.Color.Transparent;
+            this.btnListarModelo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnListarModelo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnListarModelo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnListarModelo.FlatAppearance.BorderSize = 0;
+            this.btnListarModelo.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnListarModelo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnListarModelo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListarModelo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnListarModelo.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnListarModelo.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnListarModelo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnListarModelo.IconSize = 30;
+            this.btnListarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnListarModelo.Location = new System.Drawing.Point(0, 40);
+            this.btnListarModelo.Name = "btnListarModelo";
+            this.btnListarModelo.Size = new System.Drawing.Size(169, 40);
+            this.btnListarModelo.TabIndex = 109;
+            this.btnListarModelo.TabStop = false;
+            this.btnListarModelo.Text = "Listar Modelo de Exame";
+            this.btnListarModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListarModelo.UseVisualStyleBackColor = false;
+            // 
+            // btnCriarTemplate
+            // 
+            this.btnCriarTemplate.BackColor = System.Drawing.Color.Transparent;
+            this.btnCriarTemplate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCriarTemplate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCriarTemplate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCriarTemplate.FlatAppearance.BorderSize = 0;
+            this.btnCriarTemplate.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCriarTemplate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnCriarTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCriarTemplate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCriarTemplate.IconChar = FontAwesome.Sharp.IconChar.Blackberry;
+            this.btnCriarTemplate.IconColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCriarTemplate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCriarTemplate.IconSize = 30;
+            this.btnCriarTemplate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCriarTemplate.Location = new System.Drawing.Point(0, 0);
+            this.btnCriarTemplate.Name = "btnCriarTemplate";
+            this.btnCriarTemplate.Size = new System.Drawing.Size(169, 40);
+            this.btnCriarTemplate.TabIndex = 108;
+            this.btnCriarTemplate.TabStop = false;
+            this.btnCriarTemplate.Text = "Criar Modelo de Exame";
+            this.btnCriarTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCriarTemplate.UseVisualStyleBackColor = false;
+            this.btnCriarTemplate.Click += new System.EventHandler(this.btnCriarTemplate_Click);
             // 
             // pLogoff
             // 
@@ -397,32 +538,6 @@
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnPrescricao
-            // 
-            this.btnPrescricao.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrescricao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrescricao.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPrescricao.FlatAppearance.BorderSize = 0;
-            this.btnPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnPrescricao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnPrescricao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrescricao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnPrescricao.IconChar = FontAwesome.Sharp.IconChar.Edge;
-            this.btnPrescricao.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(165)))), ((int)(((byte)(245)))));
-            this.btnPrescricao.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPrescricao.IconSize = 30;
-            this.btnPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrescricao.Location = new System.Drawing.Point(0, 120);
-            this.btnPrescricao.Name = "btnPrescricao";
-            this.btnPrescricao.Size = new System.Drawing.Size(169, 40);
-            this.btnPrescricao.TabIndex = 14;
-            this.btnPrescricao.TabStop = false;
-            this.btnPrescricao.Text = "Ciclos de Prescrições";
-            this.btnPrescricao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrescricao.UseVisualStyleBackColor = false;
-            this.btnPrescricao.Click += new System.EventHandler(this.btnPrescricao_Click);
-            // 
             // btnTempalte
             // 
             this.btnTempalte.BackColor = System.Drawing.Color.Transparent;
@@ -439,12 +554,12 @@
             this.btnTempalte.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTempalte.IconSize = 30;
             this.btnTempalte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTempalte.Location = new System.Drawing.Point(0, 80);
+            this.btnTempalte.Location = new System.Drawing.Point(0, 280);
             this.btnTempalte.Name = "btnTempalte";
             this.btnTempalte.Size = new System.Drawing.Size(169, 40);
             this.btnTempalte.TabIndex = 50;
             this.btnTempalte.TabStop = false;
-            this.btnTempalte.Text = "Template Exame Físico";
+            this.btnTempalte.Text = "Modelo de Exame Físico";
             this.btnTempalte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTempalte.UseVisualStyleBackColor = false;
             this.btnTempalte.Click += new System.EventHandler(this.btnTempalte_Click);
@@ -465,7 +580,7 @@
             this.btnGerenciamentoLeito.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGerenciamentoLeito.IconSize = 30;
             this.btnGerenciamentoLeito.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 40);
+            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 240);
             this.btnGerenciamentoLeito.Name = "btnGerenciamentoLeito";
             this.btnGerenciamentoLeito.Size = new System.Drawing.Size(169, 40);
             this.btnGerenciamentoLeito.TabIndex = 101;
@@ -488,7 +603,7 @@
             this.panelDropDown.MaximumSize = new System.Drawing.Size(169, 200);
             this.panelDropDown.MinimumSize = new System.Drawing.Size(169, 0);
             this.panelDropDown.Name = "panelDropDown";
-            this.panelDropDown.Size = new System.Drawing.Size(169, 0);
+            this.panelDropDown.Size = new System.Drawing.Size(169, 200);
             this.panelDropDown.TabIndex = 10;
             // 
             // iconBtnUrgenciaEmergencia
@@ -643,6 +758,11 @@
             this.btnAddSae.UseVisualStyleBackColor = false;
             this.btnAddSae.Click += new System.EventHandler(this.btnAddSae_Click);
             // 
+            // timerCollapsedTemplate
+            // 
+            this.timerCollapsedTemplate.Interval = 15;
+            this.timerCollapsedTemplate.Tick += new System.EventHandler(this.timerCollapsedTemplate_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +788,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelScreen.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
+            this.panelDropDownTemplate.ResumeLayout(false);
             this.pLogoff.ResumeLayout(false);
             this.panelDropDown.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -676,13 +797,10 @@
 
         #endregion
         public System.Windows.Forms.SplitContainer splitContainerMain;
-        private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelScreen;
         private System.Windows.Forms.Label lblTitleForm;
-        private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Panel panelCabecalho;
         private System.Windows.Forms.Panel panelDropDown;
         private System.Windows.Forms.Timer timerCollapsed;
@@ -702,6 +820,15 @@
         private FontAwesome.Sharp.IconButton iconBtnClinicaCirurgica;
         private FontAwesome.Sharp.IconButton iconBtnClinicaPediatrica;
         private FontAwesome.Sharp.IconButton btnNanda;
+        private FontAwesome.Sharp.IconButton btnSalvar;
+        private System.Windows.Forms.Panel panelDropDownTemplate;
+        private FontAwesome.Sharp.IconButton btnListarModelo;
+        private FontAwesome.Sharp.IconButton btnCriarTemplate;
+        private System.Windows.Forms.Timer timerCollapsedTemplate;
+        private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconButton btnNovo;
+        private FontAwesome.Sharp.IconButton btnImprimir;
+        private FontAwesome.Sharp.IconButton btnAddDiagnostico;
     }
 }
 

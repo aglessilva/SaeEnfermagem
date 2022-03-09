@@ -6,6 +6,5 @@
         public int IdArea { get; set; }
         public string Descricao { get; set; }
         public bool? IsAtivo { get; set; }
-
-    }
+}
 }

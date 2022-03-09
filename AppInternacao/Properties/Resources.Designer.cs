@@ -743,6 +743,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Reload_1s_177px {
+            get {
+                object obj = ResourceManager.GetObject("Reload-1s-177px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Remove_40970 {
             get {
                 object obj = ResourceManager.GetObject("Remove_40970", resourceCulture);

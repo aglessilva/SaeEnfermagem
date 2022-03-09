@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class FrmAlterarSenha003 : AppInternacao.FrmSae.UI000FrmTemplate
+    public partial class FrmAlterarSenha: AppInternacao.FrmSae.UI000FrmTemplate
     {
-        public FrmAlterarSenha003()
+        public FrmAlterarSenha()
         {
             InitializeComponent();
         }
@@ -56,18 +56,18 @@ namespace AppInternacao.FrmSae
                 int ret = (int)usuarioPresenter.Salvar(Sessao.Usuario);
                 if (ret == 1)
                 {
-                    FrmMain.Alert(5);
+                    FrmMain.Alert(Enum.Alerts.InsertSuccess);
                     frmMain.BloquearSistema(true);
                     Dispose();
                 }
                 else
-                    FrmMain.Alert(ret);
+                    FrmMain.Alert();
                 //  }
             }
 
             catch (Exception exalter)
             {
-                FrmMain.Alert(0, exalter);
+                FrmMain.Alert(exception: exalter);
             }
         }
 

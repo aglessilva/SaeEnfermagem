@@ -292,7 +292,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception ex)
             {
-                FrmMain.Alert(100, ex);
+                FrmMain.Alert(exception: ex);
             }
         }
 
@@ -311,7 +311,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception ex)
             {
-                FrmMain.Alert(100, ex);
+                FrmMain.Alert(exception: ex);
             }
         }
 

@@ -104,7 +104,9 @@ namespace AppInternacao.FrmSae
                     }
                     presenterLeito = new LeitoPresenter(this);
                     MyNovo_Click(sender, e);
-                    FrmMain.Alert(presenterLeito.Salvar());
+
+                    if (presenterLeito.Salvar() == 1)
+                        FrmMain.Alert(Enum.Alerts.InsertSuccess);
                 }
             }
             catch (Exception exSalvar)
@@ -257,7 +259,8 @@ namespace AppInternacao.FrmSae
                             Leito = obj;
                             presenterLeito = new LeitoPresenter(this);
                             Leito = new Leito();
-                            FrmMain.Alert(presenterLeito.Excluir());
+                            if (presenterLeito.Excluir() == 1)
+                                FrmMain.Alert(Enum.Alerts.DeleteSuccess);
                         }
                     }
                 }

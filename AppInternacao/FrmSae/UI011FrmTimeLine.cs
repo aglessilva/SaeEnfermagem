@@ -26,15 +26,25 @@ namespace AppInternacao.FrmSae
 
         void OpenFormSae()
         {
-            if (!(bool)Sessao.Paciente.HasHistoricoEnfermagem)
+            try
             {
-                Form controlForm = new UI012FrmSaeHistoricoEnfermagem
+                Form controlForm = null;
+                if (!Sessao.Paciente.HasHistoricoEnfermagem.Value)
                 {
-                    TopLevel = false
-                };
+                    controlForm = new UI012FrmSaeHistoricoEnfermagem { TopLevel = false };
+                    lblNameStepSae.Text = "Histórico de Enfermagem";
+                }
+                else
+                {
+                    controlForm = new UI014FrmSaeExameFisico { TopLevel = false };
+                    lblNameStepSae.Text = "Investigação (coleta de dados e exame físico)";
+                }
                 pFrmBody.Controls.Add(controlForm);
-                lblNameStepSae.Text = "Histórico de Enfermagem";
                 controlForm.Show();
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
             }
         }
         

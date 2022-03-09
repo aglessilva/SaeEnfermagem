@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppInternacao.Model
 {
-    public class PrescricaoEnfermagem
+    public class IntervencaoEnfermagem
     {
     }
 }

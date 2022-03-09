@@ -67,7 +67,7 @@ namespace AppInternacao.Model
                                         }
                                     case TypeCode.Int32:
                                         {
-                                            int? valor = (int?)item.GetValue(obejto, null);
+                                            int valor = (int)item.GetValue(obejto, null);
                                             if (valor > 0)
                                             {
                                                 Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.Int));
@@ -146,7 +146,9 @@ namespace AppInternacao.Model
                                         }
                                     case TypeCode.Object:
                                         {
-                                            byte[] valor = (byte[])item.GetValue(obejto, null);
+                                            byte[] valor = null;
+                                            if (item.PropertyType.IsArray)
+                                                valor = (byte[])item.GetValue(obejto, null);
 
                                             if (valor != null)
                                             {

@@ -30,19 +30,19 @@ namespace AppInternacao.FrmSae
         private void InitializeComponent()
         {
             this.pTopButtons = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTitleFromSAE = new System.Windows.Forms.Panel();
             this.lblNameStepSae = new System.Windows.Forms.Label();
             this.BtnAvancar = new FontAwesome.Sharp.IconButton();
             this.btnVoltar = new FontAwesome.Sharp.IconButton();
             this.pFrmBody = new System.Windows.Forms.Panel();
             this.pTopButtons.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelTitleFromSAE.SuspendLayout();
             this.SuspendLayout();
             // 
             // pTopButtons
             // 
             this.pTopButtons.BackColor = System.Drawing.Color.Silver;
-            this.pTopButtons.Controls.Add(this.panel1);
+            this.pTopButtons.Controls.Add(this.panelTitleFromSAE);
             this.pTopButtons.Controls.Add(this.BtnAvancar);
             this.pTopButtons.Controls.Add(this.btnVoltar);
             this.pTopButtons.Dock = System.Windows.Forms.DockStyle.Top;
@@ -51,26 +51,28 @@ namespace AppInternacao.FrmSae
             this.pTopButtons.Size = new System.Drawing.Size(849, 60);
             this.pTopButtons.TabIndex = 0;
             // 
-            // panel1
+            // panelTitleFromSAE
             // 
-            this.panel1.Controls.Add(this.lblNameStepSae);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(140, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(569, 60);
-            this.panel1.TabIndex = 2;
+            this.panelTitleFromSAE.BackColor = System.Drawing.Color.Silver;
+            this.panelTitleFromSAE.Controls.Add(this.lblNameStepSae);
+            this.panelTitleFromSAE.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTitleFromSAE.Location = new System.Drawing.Point(140, 0);
+            this.panelTitleFromSAE.Name = "panelTitleFromSAE";
+            this.panelTitleFromSAE.Size = new System.Drawing.Size(569, 60);
+            this.panelTitleFromSAE.TabIndex = 2;
             // 
             // lblNameStepSae
             // 
             this.lblNameStepSae.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblNameStepSae.AutoSize = true;
-            this.lblNameStepSae.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.lblNameStepSae.BackColor = System.Drawing.Color.Silver;
+            this.lblNameStepSae.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameStepSae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.lblNameStepSae.Location = new System.Drawing.Point(169, 19);
+            this.lblNameStepSae.Location = new System.Drawing.Point(6, 16);
             this.lblNameStepSae.Name = "lblNameStepSae";
-            this.lblNameStepSae.Size = new System.Drawing.Size(285, 24);
+            this.lblNameStepSae.Size = new System.Drawing.Size(557, 24);
             this.lblNameStepSae.TabIndex = 1;
             this.lblNameStepSae.Text = "Nome de cada passo do SAE";
+            this.lblNameStepSae.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnAvancar
             // 
@@ -98,6 +100,7 @@ namespace AppInternacao.FrmSae
             // 
             this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVoltar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnVoltar.Enabled = false;
             this.btnVoltar.FlatAppearance.BorderSize = 0;
             this.btnVoltar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -134,8 +137,7 @@ namespace AppInternacao.FrmSae
             this.Name = "UI011FrmTimeLine";
             this.Load += new System.EventHandler(this.UI011FrmTimeLine_Load);
             this.pTopButtons.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelTitleFromSAE.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -147,6 +149,6 @@ namespace AppInternacao.FrmSae
         private FontAwesome.Sharp.IconButton btnVoltar;
         private System.Windows.Forms.Label lblNameStepSae;
         private System.Windows.Forms.Panel pFrmBody;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTitleFromSAE;
     }
 }

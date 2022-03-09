@@ -9,17 +9,20 @@ namespace AppInternacao.Frm
     public partial class FrmJustificarChecagem : Form
     {
         ChavePrescricao chavePrescricao = null;
+        CicloPrescricao cicloPrescricao = null;
         PresenterGeneric presenterGeneric = null;
         private readonly int tipo = 0;
         private readonly int itemPrescricao = 0;
 
-        public FrmJustificarChecagem(ChavePrescricao chave, int _itemPrescricao = 0, int _tipo = 0)
+        public FrmJustificarChecagem(ChavePrescricao chave, int _itemPrescricao = 0, int _tipo = 0, CicloPrescricao _cicloPrescricao = null)
         {
             InitializeComponent();
             chavePrescricao = chave;
             tipo = _tipo;
             itemPrescricao = _itemPrescricao;
+            cicloPrescricao = _cicloPrescricao;
             textBoxJustificativa.Focus();
+          
         }
 
         private void textBoxJustificativa_TextChanged(object sender, EventArgs e)
@@ -110,6 +113,14 @@ namespace AppInternacao.Frm
                 lblCaracteres.Visible = false;
                 presenterGeneric = new PresenterGeneric();
                 dataGridViewJustificativa.DataSource = presenterGeneric.GetLista(new JustificativaAnotacao() { IdPrescricao = chavePrescricao.Id, TipoMsg = tipo }, Procedure.SP_GET_JUSTIFICATIVA);
+
+                if (cicloPrescricao != null)
+                {
+                    btnConfirmar.Enabled = DateTime.Now.Date < cicloPrescricao.DataCiclo;
+                    btnLimpar.Enabled = DateTime.Now.Date < cicloPrescricao.DataCiclo;
+                }
+
+
             }
             catch (Exception ex)
             {

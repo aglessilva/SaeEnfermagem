@@ -38,12 +38,20 @@ namespace AppInternacao.FrmSae
 
         private void UI010FrmNanda_Load(object sender, EventArgs e)
         {
-            if(isSAE)
+            if (isSAE)
             {
-                UI011FrmTimeLine.iconButtonAvanca.Click += BtnVizualizarDiagnostico_Click;
+                FrmMain.listButtons.ForEach(b => 
+                { 
+                     if(b.Name.Equals("btnAddDiagnostico"))
+                    {
+                        b.Visible = true;
+                        b.Click += AddDiagnostrico_Click;
+                    }
+                });
+
+                UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
             }
             presenterGeneric = new PresenterGeneric();
-            BtnVizualizarDiagnostico.Visible = isSAE;
             nandaDominios = presenterGeneric.GetLista(new NandaDominio(), Procedure.SP_GET_DOMINIO);
             nandaClasses = presenterGeneric.GetLista(new NandaClasse(), Procedure.SP_GET_CLASSE);
             nandaFatorRelacionados = presenterGeneric.GetLista(new NandaFatorRelacionado(), Procedure.SP_GET_FATORES_RELACIONADOS);
@@ -97,7 +105,7 @@ namespace AppInternacao.FrmSae
                 }
                 else
                 {
-                    List<NandaDiagnostico> lstDiagnosttico = nandaDiagnosticos.Where(d => d.Diagnostico.StartsWith(textBoxPesquisaDiagnostico.Text.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+                    List<NandaDiagnostico> lstDiagnosttico = nandaDiagnosticos.Where(d => d.Diagnostico.ToUpper().Contains(textBoxPesquisaDiagnostico.Text.Trim()) || d.Codigo.StartsWith(textBoxPesquisaDiagnostico.Text.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
                     List<NandaClasse> lstClasse = nandaClasses.Where(c => lstDiagnosttico.Any(d => d.Codigo == c.Codigo)).ToList();
                     List<NandaDominio> lstDominio = nandaDominios.Where(d => lstClasse.Any(c => c.IdDominio == d.Id && lstDiagnosttico.Any(g => g.Codigo == c.Codigo))).ToList();
 
@@ -147,27 +155,26 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                BtnVizualizarDiagnostico.Enabled = e.Node.Level >= 3 && isSAE;
-                
+
                 if (e.Node.Tag == null || e.Node.Level < 3)
                     return;
 
-                NandaDiagnostico objNandaDiagnostico  = (NandaDiagnostico)e.Node.Tag;
+                NandaDiagnostico objNandaDiagnostico = (NandaDiagnostico)e.Node.Tag;
                 lblDominio.Text = e.Node.Parent.Parent.Text;
                 lblClasse.Text = e.Node.Parent.Text;
                 textBoxDefinicao.Text = objNandaDiagnostico.Definicao;
-                lblTituloDiagnostico.Text = $"Diagnóstico:{objNandaDiagnostico.Diagnostico}";
-                dataGridViewFatoresRelacionados.DataSource = nandaFatorRelacionados.Where(f => f.Codigo == objNandaDiagnostico.Codigo).ToList();
-                dataGridViewCaracteristicasDefinidoras.DataSource = nandaCaracteristicaDefinidoras.Where(c => c.Codigo == objNandaDiagnostico.Codigo).ToList();
-                dataGridViewCondicoesAssociada.DataSource = nandaCondicaoAssociadas.Where(a => a.Codigo == objNandaDiagnostico.Codigo).ToList();
-                dataGridViewFatoresRiscos.DataSource = nandaFatorRiscos.Where(t => t.Codigo == objNandaDiagnostico.Codigo).ToList();
-                dataGridViewPopulacaoRisco.DataSource = nandaPopulacaoRiscos.Where(p => p.Codigo == objNandaDiagnostico.Codigo).ToList();
+                lblTituloDiagnostico.Text = $"Diagnóstico: {objNandaDiagnostico.Codigo} - {objNandaDiagnostico.Diagnostico}";
+                dataGridViewFatoresRelacionados.DataSource = nandaFatorRelacionados.Where(f => f.Codigo.Trim() == objNandaDiagnostico.Codigo.Trim()).ToList();
+                dataGridViewCaracteristicasDefinidoras.DataSource = nandaCaracteristicaDefinidoras.Where(c => c.Codigo.Trim() == objNandaDiagnostico.Codigo.Trim()).ToList();
+                dataGridViewCondicoesAssociada.DataSource = nandaCondicaoAssociadas.Where(a => a.Codigo.Trim() == objNandaDiagnostico.Codigo.Trim()).ToList();
+                dataGridViewFatoresRiscos.DataSource = nandaFatorRiscos.Where(t => t.Codigo.Trim() == objNandaDiagnostico.Codigo.Trim()).ToList();
+                dataGridViewPopulacaoRisco.DataSource = nandaPopulacaoRiscos.Where(p => p.Codigo.Trim() == objNandaDiagnostico.Codigo.Trim()).ToList();
                 dataGridViewCondicoesAssociada.ClearSelection();
                 dataGridViewCaracteristicasDefinidoras.ClearSelection();
                 dataGridViewFatoresRelacionados.ClearSelection();
                 dataGridViewFatoresRiscos.ClearSelection();
                 dataGridViewPopulacaoRisco.ClearSelection();
-               
+
             }
             catch (Exception exTree)
             {
@@ -185,9 +192,16 @@ namespace AppInternacao.FrmSae
             dataGridViewCondicoesAssociada.DataSource = null;
             dataGridViewFatoresRelacionados.DataSource = null;
             dataGridViewFatoresRiscos.DataSource = null;
-            dataGridViewPopulacaoRisco.DataSource =  null;
+            dataGridViewPopulacaoRisco.DataSource = null;
             textBoxPesquisaDiagnostico.Text = string.Empty;
             textBoxPesquisaDiagnostico.Focus();
+
+            foreach (TreeNode item in treeView1.Nodes[0].Nodes)
+            {
+                if (item.IsExpanded)
+                    item.Collapse();
+            }
+            
         }
 
         private void textBoxPesquisaDiagnostico_TextChanged(object sender, EventArgs e)
@@ -203,49 +217,92 @@ namespace AppInternacao.FrmSae
 
         private void BtnVizualizarDiagnostico_Click(object sender, EventArgs e)
         {
-            SAE sae = new SAE();
+            
+            var f = new UI013FrmSaeViewDiagnostico() { TopLevel = false };
+            UI011FrmTimeLine.ctrl.Controls.Add(f);
+            f.BringToFront();
+            f.Show();
 
-            IconButton iconButton = (IconButton)sender;
-
-            sae.DiagnosticoEnfermagem.Diagnostico = (NandaDiagnostico)treeView1.SelectedNode.Tag;
-            sae.DiagnosticoEnfermagem.NomeDominio = nandaDominios.FirstOrDefault(d => d.Id.Equals(sae.DiagnosticoEnfermagem.Diagnostico.IdDominio)).Dominio;
-            sae.DiagnosticoEnfermagem.NomeClasse = nandaClasses.FirstOrDefault(s => s.Codigo.Equals(sae.DiagnosticoEnfermagem.Diagnostico.Codigo)).Classe;
-
-            DataGridViewSelectedRowCollection dataGridViewSelected = dataGridViewFatoresRelacionados.SelectedRows;
-            if(dataGridViewSelected.Count > 0)
-            foreach (DataGridViewRow item in dataGridViewSelected)
-               sae.DiagnosticoEnfermagem.FatorRelacionados.Add((NandaFatorRelacionado)item.DataBoundItem);
-
-            dataGridViewSelected = dataGridViewCaracteristicasDefinidoras.SelectedRows;
-            if (dataGridViewSelected.Count > 0)
-                foreach (DataGridViewRow item in dataGridViewSelected)
-                sae.DiagnosticoEnfermagem.CaracteristicaDefinidoras.Add((NandaCaracteristicaDefinidora)item.DataBoundItem);
-
-            dataGridViewSelected = dataGridViewCondicoesAssociada.SelectedRows;
-            if (dataGridViewSelected.Count > 0)
-                foreach (DataGridViewRow item in dataGridViewSelected)
-                sae.DiagnosticoEnfermagem.CondicaoAssociadas.Add((NandaCondicaoAssociada)item.DataBoundItem);
-
-            dataGridViewSelected = dataGridViewFatoresRiscos.SelectedRows;
-            if (dataGridViewSelected.Count > 0)
-                foreach (DataGridViewRow item in dataGridViewSelected)
-                sae.DiagnosticoEnfermagem.FatorRiscos.Add((NandaFatorRisco)item.DataBoundItem);
-
-            dataGridViewSelected = dataGridViewPopulacaoRisco.SelectedRows;
-            if (dataGridViewSelected.Count > 0)
-                foreach (DataGridViewRow item in dataGridViewSelected)
-                    sae.DiagnosticoEnfermagem.PopulacaoRiscos.Add((NandaPopulacaoRisco)item.DataBoundItem);
-
-            Sessao.Paciente.Sae = sae;
             UI011FrmTimeLine.iconButtonAvanca.Enabled = UI011FrmTimeLine.IconButtonVolta.Enabled = false;
+        }
 
-            if (!iconButton.Name.Equals("BtnAvancar"))
+        private void AddDiagnostrico_Click(object sender, EventArgs e)
+        {
+            try
             {
-                var f = new UI013FrmViewDiagnostico() { TopLevel = false };
-                UI011FrmTimeLine.ctrl.Controls.Add(f);
-                f.BringToFront();
-                f.Show();
+                if(!(treeView1?.SelectedNode?.Level > 2))
+                {
+                    MessageBox.Show("Selecione um diagnóstico e e seus items relacionados","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DiagnosticoEnfermagem diagnosticoEnfermagem = new DiagnosticoEnfermagem();
+
+                diagnosticoEnfermagem.Diagnostico = (NandaDiagnostico)treeView1.SelectedNode.Tag;
+                diagnosticoEnfermagem.NomeDominio = nandaDominios.FirstOrDefault(d => d.Id.Equals(diagnosticoEnfermagem.Diagnostico.IdDominio)).Dominio;
+                diagnosticoEnfermagem.NomeClasse = nandaClasses.FirstOrDefault(s => s.Codigo.Equals(diagnosticoEnfermagem.Diagnostico.Codigo)).Classe;
+
+                if (Sessao.Paciente.Sae.DiagnosticoEnfermagem.Exists(x => x.Diagnostico.Codigo.Equals(diagnosticoEnfermagem.Diagnostico.Codigo)))
+                {
+                    MessageBox.Show("Você já adicionou esse diagnóstico na lista.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                DataGridViewSelectedRowCollection dataGridViewSelected = dataGridViewFatoresRelacionados.SelectedRows;
+                if (dataGridViewSelected.Count > 0)
+                    foreach (DataGridViewRow item in dataGridViewSelected)
+                        diagnosticoEnfermagem.FatorRelacionados.Add((NandaFatorRelacionado)item.DataBoundItem);
+
+                dataGridViewSelected = dataGridViewCaracteristicasDefinidoras.SelectedRows;
+                if (dataGridViewSelected.Count > 0)
+                    foreach (DataGridViewRow item in dataGridViewSelected)
+                        diagnosticoEnfermagem.CaracteristicaDefinidoras.Add((NandaCaracteristicaDefinidora)item.DataBoundItem);
+
+                dataGridViewSelected = dataGridViewCondicoesAssociada.SelectedRows;
+                if (dataGridViewSelected.Count > 0)
+                    foreach (DataGridViewRow item in dataGridViewSelected)
+                        diagnosticoEnfermagem.CondicaoAssociadas.Add((NandaCondicaoAssociada)item.DataBoundItem);
+
+                dataGridViewSelected = dataGridViewFatoresRiscos.SelectedRows;
+                if (dataGridViewSelected.Count > 0)
+                    foreach (DataGridViewRow item in dataGridViewSelected)
+                        diagnosticoEnfermagem.FatorRiscos.Add((NandaFatorRisco)item.DataBoundItem);
+
+                dataGridViewSelected = dataGridViewPopulacaoRisco.SelectedRows;
+                if (dataGridViewSelected.Count > 0)
+                    foreach (DataGridViewRow item in dataGridViewSelected)
+                        diagnosticoEnfermagem.PopulacaoRiscos.Add((NandaPopulacaoRisco)item.DataBoundItem);
+
+                Sessao.Paciente.Sae.DiagnosticoEnfermagem.Add(diagnosticoEnfermagem);
+                BtnVizualizarDiagnostico.Visible = true;
+                BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count > 0;
+                BtnVizualizarDiagnostico.Text = $"Visualizar iten(s) {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
             }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(Alerts.ErrorException, exception: ex);
+            }
+        }
+
+        private void btnButtonStep_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+                FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+
+                UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
+
+                Form frm = new UI016FrmIntervencaoEnfermagem() { TopLevel = false };
+                UI011FrmTimeLine.ctrl.Controls.Add(frm);
+                UI011FrmTimeLine.lblRotuloSae.Text = "Prescrição - Intervenção de Enfermagem";
+                frm.Show();
+            }
+            catch (Exception Ex)
+            {
+                FrmMain.Alert(exception: Ex);
+            }
+
         }
     }
 }

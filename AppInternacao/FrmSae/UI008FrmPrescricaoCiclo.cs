@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
@@ -146,7 +147,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exCiclo)
             {
-                FrmMain.Alert(100, exCiclo);
+                FrmMain.Alert(exception: exCiclo);
             }
         }
 
@@ -176,7 +177,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exNewLinhe)
             {
-                FrmMain.Alert(100, exNewLinhe);
+                FrmMain.Alert(exception: exNewLinhe);
             }
         }
 
@@ -231,7 +232,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exEAddDia)
             {
-                FrmMain.Alert(100, exEAddDia);
+                FrmMain.Alert(exception: exEAddDia);
             }
         }
 
@@ -264,7 +265,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exRemovDia)
             {
-                FrmMain.Alert(100, exRemovDia);
+                FrmMain.Alert(exception: exRemovDia);
             }
         }
 
@@ -385,7 +386,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exChekPrescricao)
             {
-                FrmMain.Alert(100, exChekPrescricao);
+                FrmMain.Alert(exception: exChekPrescricao);
             }
         }
 
@@ -421,7 +422,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exEditRow)
             {
-                FrmMain.Alert(100, exEditRow);
+                FrmMain.Alert(exception: exEditRow);
             }
         }
 
@@ -464,7 +465,7 @@ namespace AppInternacao.FrmSae
                         }
                         catch (Exception exRemoveItem)
                         {
-                            FrmMain.Alert(100, exRemoveItem);
+                            FrmMain.Alert(exception: exRemoveItem);
                         }
                     }
                 }
@@ -472,8 +473,9 @@ namespace AppInternacao.FrmSae
                 if (coluna.DataPropertyName.Equals("Note"))
                 {
                     ChavePrescricao chave = (ChavePrescricao)comboBoxDataPrescricao.SelectedItem;
+                    CicloPrescricao cicloPrescricao  = lstCiclo.LastOrDefault();
                     int _id = Convert.ToInt32(table.Rows[e.RowIndex][0]);
-                    new Frm.FrmJustificarChecagem(chave, _id).ShowDialog();
+                    new Frm.FrmJustificarChecagem(chave, _id,_cicloPrescricao:cicloPrescricao).ShowDialog();
                 }
             }
         }
@@ -498,7 +500,7 @@ namespace AppInternacao.FrmSae
                 {
                     //int cont = table.AsEnumerable().Count(c => c.Field<TimeSpan>("Horario").Duration() == TimeSpan.Parse("00:00:00"));
                     int idPrescricao = Convert.ToInt32(comboBoxDataPrescricao.SelectedValue);
-                    FrmMain.Alert(presenterGeneric.Salvar(new ChavePrescricao() { IdPaciente = Sessao.Paciente.Id, Id = idPrescricao, StatusPrescricao = 3 }, Procedure.SP_ADD_CHAVE_PRESCRICAO));
+                    FrmMain.Alert((Alerts)presenterGeneric.Salvar(new ChavePrescricao() { IdPaciente = Sessao.Paciente.Id, Id = idPrescricao, StatusPrescricao = 3 }, Procedure.SP_ADD_CHAVE_PRESCRICAO));
                     GetDatas();
                     btnValidarPrescricao.Visible = btnDevolverPrescricao.Visible = false;
                     comboBoxDataPrescricao.SelectedValue = idPrescricao;
@@ -506,7 +508,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception ex)
             {
-                FrmMain.Alert(100, ex);
+                FrmMain.Alert(exception: ex);
                 throw;
             }
         }
@@ -647,7 +649,7 @@ namespace AppInternacao.FrmSae
             }
             catch (Exception exNewLn)
             {
-                FrmMain.Alert(100, exNewLn);
+                FrmMain.Alert(exception: exNewLn);
             }
         }
 
@@ -856,7 +858,7 @@ namespace AppInternacao.FrmSae
                     }, Procedure.SP_ADD_CHAVE_PRESCRICAO);
 
                     if (ret > 0)
-                        FrmMain.Alert(1);
+                        FrmMain.Alert(Alerts.InsertSuccess);
 
                     lstChavePrescricoes.Where(w => w.Id == chave.Id).ToList().ForEach(s => { s.StatusPrescricao = 1; });
 

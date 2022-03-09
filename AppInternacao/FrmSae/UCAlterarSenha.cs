@@ -1,4 +1,5 @@
-﻿using AppInternacao.Presenter;
+﻿using AppInternacao.Enum;
+using AppInternacao.Presenter;
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -58,12 +59,12 @@ namespace AppInternacao.FrmSae
                     int ret = (int)usuarioPresenter.Salvar(Sessao.Usuario);
                     if (ret == 1)
                     {
-                        FrmMain.Alert(5);
+                        FrmMain.Alert(Alerts.InsertSuccess);
                         frmMain.BloquearSistema(true);
                         Dispose();
                     }
                     else
-                        FrmMain.Alert(ret);
+                        FrmMain.Alert();
               //  }
             }
 

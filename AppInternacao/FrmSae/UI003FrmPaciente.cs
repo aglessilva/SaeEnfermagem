@@ -19,9 +19,9 @@ using Vip.Printer.Enums;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class FrmPaciente002 :UI000FrmTemplate, IPaciente
+    public partial class FrmPaciente :UI000FrmTemplate, IPaciente
     {
-        public FrmPaciente002()
+        public FrmPaciente()
         {
             InitializeComponent();
         }
@@ -196,14 +196,16 @@ namespace AppInternacao.FrmSae
                     {
                         ImprimirCarcha();
                     }
-                    FrmMain.Alert(PacientePresenter.Salvar());
+                    if (PacientePresenter.Salvar() == 1)
+                        FrmMain.Alert(Alerts.InsertSuccess);
+
                     MyNovo_Click(null, null);
                 }
 
             }
             catch (Exception exsalvar)
             {
-                throw new Exception(exsalvar.Message);
+                FrmMain.Alert(exception:exsalvar);
             }
 
         }
@@ -225,15 +227,14 @@ namespace AppInternacao.FrmSae
             PacientePresenter = new PacientePresenter(this);
             PacientePresenter.Carregar();
             textBoxPaciente.Focus();
-          //  dataGridViewPaciente.RowEnter += dataGridViewPaciente_RowEnter;
+            dataGridViewPaciente.RowEnter += dataGridViewPaciente_RowEnter;
           
         }
 
         private void MyImprimir_Click(object sender, EventArgs e)
         {
-           // if (validaCampos())
+            if (validaCampos())
             {
-
                 var printer = new Printer("POS-58", PrinterType.Epson, Encoding.GetEncoding(28591));
                 string dadosPaci = $"Nome:{objPeciente.Nome}\nIdade:{objPeciente.Idade}\nLeito:{objPeciente.NomeLeito}\nData:{textBoxDataCracha.Text}";
                 //Image image = Properties.Resources.HP;
@@ -258,7 +259,7 @@ namespace AppInternacao.FrmSae
 
         private void MyNovo_Click(object sender, EventArgs e)
         {
-           // FrmMain.myImprimir.Visible = false;
+            FrmMain.myImprimir.Enabled = false;
             FrmMain.mySalvar.Enabled = true;
 
             TextBox[] textBoxesIgnore = { textBoxLeito, textBoxQuarto, textBoxSetor };

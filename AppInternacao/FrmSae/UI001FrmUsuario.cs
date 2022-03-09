@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class FrmUsuario001 : AppInternacao.FrmSae.UI000FrmTemplate, IUsuario
+    public partial class FrmUsuario : UI000FrmTemplate, IUsuario
     {
-        public FrmUsuario001()
+        public FrmUsuario()
         {
             InitializeComponent();
             dataGridViewUsuarios.AutoGenerateColumns = false;
@@ -59,7 +59,6 @@ namespace AppInternacao.FrmSae
                 }
                 comboBoxPerfil.SelectedItem = (Perfil)value.Perfil;
             }
-
         }
 
         void Carregar()
@@ -152,7 +151,7 @@ namespace AppInternacao.FrmSae
                         objUsuario = null;
                     }
                     else
-                        FrmMain.Alert(retorno);
+                        FrmMain.Alert(Alerts.InsertSuccess);
 
                     Carregar();
                     MyNovo_Click(null, null);
@@ -287,6 +286,7 @@ namespace AppInternacao.FrmSae
                 }
             }
         }
+
         private void dataGridViewUsuarios_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             var sendGrid = (DataGridView)sender;

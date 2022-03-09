@@ -1,6 +1,6 @@
 ﻿namespace AppInternacao.FrmSae
 {
-    partial class FrmAlterarSenha003
+    partial class FrmAlterarSenha
     {
         /// <summary>
         /// Variável de designer necessária.

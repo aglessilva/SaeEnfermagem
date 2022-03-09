@@ -22,11 +22,11 @@ namespace AppInternacao
         PresenterMain Presenter = null;
         private IconButton currentBtn;
 
-        private bool isCollapsed = true;
-        public static Button mySalvar;
-        public static Button myNovo;
-        public static Button myImprimir;
-        public static List<Button> listButtons = null;
+        private bool[] isCollapsed = { true, true };
+        public static IconButton mySalvar;
+        public static IconButton myNovo;
+        public static IconButton myImprimir;
+        public static List<IconButton> listButtons = null;
         public Main Main { get => new Main() { Dominio = Environment.UserDomainName };
             set
             {
@@ -43,7 +43,7 @@ namespace AppInternacao
             mySalvar = btnSalvar;
             myNovo = btnNovo;
             myImprimir = btnImprimir;
-            listButtons = new List<Button>() { myImprimir, mySalvar, myNovo };
+            listButtons = new List<IconButton>() { myImprimir, mySalvar, myNovo, btnAddDiagnostico };
         }
 
         private void DisableButton()
@@ -80,7 +80,7 @@ namespace AppInternacao
 
         public void OpenUc()
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
 
             var tt = splitContainerMain.Panel1.Controls.OfType<Form>().ToList();
@@ -118,7 +118,7 @@ namespace AppInternacao
             list.RemoveHandler(obj, list[obj]);
         }
 
-        private void CloseUC()
+        public void CloseUC()
         {
             try
             {
@@ -134,7 +134,7 @@ namespace AppInternacao
                     item.Dispose();
                 };
 
-                myNovo.Visible = mySalvar.Visible = btnImprimir.Visible = false;
+                listButtons.ForEach(b => b.Visible = false);
                 
                 if (splitContainerMain.Panel2.Controls.OfType<Form>().ToList().Count == 0)
                     return;
@@ -151,7 +151,7 @@ namespace AppInternacao
             }
             catch (Exception ex)
             {
-                Alert(null,exception: ex);
+                Alert(exception: ex);
             }
         }
 
@@ -215,8 +215,14 @@ namespace AppInternacao
 
         private void btnPaciente_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
             CloseUC();
-            userControl = new FrmSae.FrmPaciente002();
+            userControl = new FrmSae.FrmPaciente();
             OpenUc();
             ActivateButton(sender);
         }
@@ -225,6 +231,8 @@ namespace AppInternacao
         {
             try
             {
+                panelDropDown.Height = panelDropDownTemplate.Height = 0;
+
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
 
@@ -245,6 +253,12 @@ namespace AppInternacao
        
         private void btnGerenciamentoLeito_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
             CloseUC();
             userControl = new FrmSae.UI004FrmPanel();
             ActivateButton(sender);
@@ -261,42 +275,37 @@ namespace AppInternacao
             OpenUc();
         }
 
-        public static void Alert(int? tipo = null, Exception exception = null)
+        public static void Alert(Alerts tipo = Alerts.ErrorException, Exception exception = null)
         {
             switch (tipo)
             {
-                case 1:
+                case Alerts.InsertSuccess:
                     {
                         MessageBox.Show("Dados registrado com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                case 2:
+                case Alerts.DeleteSuccess:
                     {
-                        MessageBox.Show("Registro excluído com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Registro excluído com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
-                case 3:
+                case Alerts.NotFind:
                     {
                         MessageBox.Show("Registro não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                     }
-                case 4:
+                case Alerts.ExistRegistry:
                     {
                         MessageBox.Show("Informação já cadastrada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         break;
                     }
-                case 5:
-                    {
-                        MessageBox.Show("Senha Alterada com sucesso!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        break;
-                    }
-                case 200:
+                case Alerts.DeleteForeignKeyERRO:
                     {
                         MessageBox.Show("Não é possível excluir esse registro!!!\nPois o mesmo está associado a outra informação em uso no momento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         break;
                     }
                 default:
-                    MessageBox.Show($"ocorreu um erro\n{exception.Message}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"ocorreu um erro e não foi possível completar a operação:\n{(exception == null ? "O Erro não foi Tratado, por favor contatar o administrado do sistema" : exception.Message)}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
@@ -337,20 +346,24 @@ namespace AppInternacao
 
         private void btnAddSae_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
             ActivateButton(sender);
             timerCollapsed.Start();
         }
 
         private void timerCollapsed_Tick(object sender, EventArgs e)
         {
-            if (isCollapsed)
+
+            if (isCollapsed[0])
             {
                 panelDropDown.Height += 20;
 
                 if (panelDropDown.Size == panelDropDown.MaximumSize)
                 {
                     timerCollapsed.Stop();
-                    isCollapsed = false;
+                    isCollapsed[0] = false;
                 }
             }
             else
@@ -360,14 +373,38 @@ namespace AppInternacao
                 if (panelDropDown.Size == panelDropDown.MinimumSize)
                 {
                     timerCollapsed.Stop();
-                    isCollapsed = true;
+                    isCollapsed[0] = true;
+                }
+            }
+        }
+
+        private void timerCollapsedTemplate_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed[1])
+            {
+                panelDropDownTemplate.Height += 20;
+
+                if (panelDropDownTemplate.Size == panelDropDownTemplate.MaximumSize)
+                {
+                    timerCollapsedTemplate.Stop();
+                    isCollapsed[1] = false;
+                }
+            }
+            else
+            {
+                panelDropDownTemplate.Height -= 30;
+
+                if (panelDropDownTemplate.Size == panelDropDownTemplate.MinimumSize)
+                {
+                    timerCollapsedTemplate.Stop();
+                    isCollapsed[1] = true;
                 }
             }
         }
 
         private void btnClinicaMedica_Click(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
 
             CloseUC();
@@ -377,19 +414,25 @@ namespace AppInternacao
 
         private void btnAdmUsuario_Click(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
 
             ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.FrmUsuario001();
+            userControl = new FrmSae.FrmUsuario();
             OpenUc();
         }
 
         private void btnNanda_Click(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
 
             ActivateButton(sender);
             CloseUC();
@@ -399,13 +442,25 @@ namespace AppInternacao
 
         private void btnAlterarSenha_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
             CloseUC();
-            userControl = new FrmSae.FrmAlterarSenha003();
+            userControl = new FrmSae.FrmAlterarSenha();
             OpenUc();
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        public void btnLogout_Click(object sender, EventArgs e)
         {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
             if (splitContainerMain.Panel1.Controls.OfType<Form>().ToList().Count > 0)
             {
                 CloseUC();
@@ -431,10 +486,16 @@ namespace AppInternacao
 
         private void btnTempalte_Click(object sender, EventArgs e)
         {
-            CloseUC();
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
             ActivateButton(sender);
-            userControl = new FrmSae.UI015FrmArea();
-            OpenUc();
+            timerCollapsedTemplate.Start();
+
+            //CloseUC();
+            //ActivateButton(sender);
+            //userControl = new FrmSae.UI015FrmArea();
+            //OpenUc();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -477,8 +538,11 @@ namespace AppInternacao
 
         private void btnPrescricao_Click(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
 
             ActivateButton(sender);
             CloseUC();
@@ -498,24 +562,36 @@ namespace AppInternacao
 
         private void btnClinicaMedica_Click_1(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
 
-            ActivateButton(sender);
             CloseUC();
-            //  userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
-            userControl = new FrmSae.UI014FrmExameFisico();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
+            //userControl = new FrmSae.UI014FrmExameFisico();
             OpenUc();
         }
 
         private void iconButton1_Click_1(object sender, EventArgs e)
         {
-            if (!isCollapsed)
+            if (!isCollapsed[0])
                 timerCollapsed.Start();
+
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
 
             ActivateButton(sender);
             CloseUC();
-            userControl = new FrmSae.UI013FrmViewDiagnostico();
+            userControl = new FrmSae.UI013FrmSaeViewDiagnostico();
+            OpenUc();
+        }
+
+        private void btnCriarTemplate_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+            
+            CloseUC();
+            userControl = new FrmSae.UI015FrmArea();
             OpenUc();
         }
     }
