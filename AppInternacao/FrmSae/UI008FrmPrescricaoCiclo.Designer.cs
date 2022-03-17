@@ -29,10 +29,10 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewPrescricoes = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,8 +83,8 @@ namespace AppInternacao.FrmSae
             // 
             this.dataGridViewPrescricoes.AllowUserToAddRows = false;
             this.dataGridViewPrescricoes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
-            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
+            this.dataGridViewPrescricoes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewPrescricoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPrescricoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -99,8 +99,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewPrescricoes.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPrescricoes.Name = "dataGridViewPrescricoes";
             this.dataGridViewPrescricoes.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewPrescricoes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewPrescricoes.RowTemplate.Height = 40;
             this.dataGridViewPrescricoes.Size = new System.Drawing.Size(849, 357);
             this.dataGridViewPrescricoes.TabIndex = 17;
@@ -154,9 +154,9 @@ namespace AppInternacao.FrmSae
             // 
             this.Intervalo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Intervalo.DataPropertyName = "Intervalo";
-            dataGridViewCellStyle10.Format = "t";
-            dataGridViewCellStyle10.NullValue = null;
-            this.Intervalo.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Format = "t";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Intervalo.DefaultCellStyle = dataGridViewCellStyle2;
             this.Intervalo.HeaderText = "Intervalo";
             this.Intervalo.Name = "Intervalo";
             this.Intervalo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -165,9 +165,9 @@ namespace AppInternacao.FrmSae
             // Horario
             // 
             this.Horario.DataPropertyName = "Horario";
-            dataGridViewCellStyle11.Format = "t";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Horario.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Format = "t";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Horario.DefaultCellStyle = dataGridViewCellStyle3;
             this.Horario.HeaderText = "Horário";
             this.Horario.Name = "Horario";
             this.Horario.Resizable = System.Windows.Forms.DataGridViewTriState.False;

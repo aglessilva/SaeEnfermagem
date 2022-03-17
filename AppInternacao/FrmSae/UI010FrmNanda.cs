@@ -38,14 +38,16 @@ namespace AppInternacao.FrmSae
 
         private void UI010FrmNanda_Load(object sender, EventArgs e)
         {
+            new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(buttonLimpar, "Limpar campo e pesquisa");
             if (isSAE)
             {
                 FrmMain.listButtons.ForEach(b => 
                 { 
-                     if(b.Name.Equals("btnAddDiagnostico"))
+                     if(b.Name.Equals("btnAddGeneric"))
                     {
                         b.Visible = true;
                         b.Click += AddDiagnostrico_Click;
+                        b.Text = "Adicionar Diagnóstico".Trim();
                     }
                 });
 
@@ -213,6 +215,7 @@ namespace AppInternacao.FrmSae
             }
             if (textBoxPesquisaDiagnostico.Text.Length > 4)
                 FilterByName();
+
         }
 
         private void BtnVizualizarDiagnostico_Click(object sender, EventArgs e)
@@ -290,12 +293,14 @@ namespace AppInternacao.FrmSae
             {
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+                FrmMain.RemoveClickEvent(FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")));
+                FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
 
                 UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
 
-                Form frm = new UI016FrmIntervencaoEnfermagem() { TopLevel = false };
+                Form frm = new UI016FrmSaePlanejamentoEnfermagem() { TopLevel = false };
                 UI011FrmTimeLine.ctrl.Controls.Add(frm);
-                UI011FrmTimeLine.lblRotuloSae.Text = "Prescrição - Intervenção de Enfermagem";
+                UI011FrmTimeLine.lblRotuloSae.Text = "Planejamento - Intervenção/Prescrição de Enfermagem";
                 frm.Show();
             }
             catch (Exception Ex)

@@ -43,6 +43,7 @@ namespace AppInternacao.FrmSae
             this.lblPaciente = new System.Windows.Forms.Label();
             this.pictureBoxExtFoto = new AppInternacao.Extend.PictureBoxExt();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnPrescricaoIntervencaoEnfermagem = new System.Windows.Forms.Button();
             this.pMenuLateral.SuspendLayout();
             this.pUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExtFoto)).BeginInit();
@@ -51,6 +52,7 @@ namespace AppInternacao.FrmSae
             // pMenuLateral
             // 
             this.pMenuLateral.Controls.Add(this.btnExibirHistorico);
+            this.pMenuLateral.Controls.Add(this.btnPrescricaoIntervencaoEnfermagem);
             this.pMenuLateral.Controls.Add(this.btnPrecricaoMedica);
             this.pMenuLateral.Dock = System.Windows.Forms.DockStyle.Top;
             this.pMenuLateral.Location = new System.Drawing.Point(0, 157);
@@ -71,13 +73,13 @@ namespace AppInternacao.FrmSae
             this.btnExibirHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnExibirHistorico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnExibirHistorico.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExibirHistorico.Location = new System.Drawing.Point(0, 30);
+            this.btnExibirHistorico.Location = new System.Drawing.Point(0, 60);
             this.btnExibirHistorico.Margin = new System.Windows.Forms.Padding(1);
             this.btnExibirHistorico.Name = "btnExibirHistorico";
             this.btnExibirHistorico.Size = new System.Drawing.Size(849, 30);
             this.btnExibirHistorico.TabIndex = 13;
             this.btnExibirHistorico.TabStop = false;
-            this.btnExibirHistorico.Text = "Exibir Historico de Enfermagem";
+            this.btnExibirHistorico.Text = "Histórico de Enfermagem";
             this.btnExibirHistorico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExibirHistorico.UseVisualStyleBackColor = false;
             this.btnExibirHistorico.Click += new System.EventHandler(this.btnExibirHistorico_Click);
@@ -236,6 +238,30 @@ namespace AppInternacao.FrmSae
             this.label3.TabIndex = 7;
             this.label3.Text = "Leito:";
             // 
+            // btnPrescricaoIntervencaoEnfermagem
+            // 
+            this.btnPrescricaoIntervencaoEnfermagem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnPrescricaoIntervencaoEnfermagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrescricaoIntervencaoEnfermagem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrescricaoIntervencaoEnfermagem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPrescricaoIntervencaoEnfermagem.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPrescricaoIntervencaoEnfermagem.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPrescricaoIntervencaoEnfermagem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnPrescricaoIntervencaoEnfermagem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrescricaoIntervencaoEnfermagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btnPrescricaoIntervencaoEnfermagem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnPrescricaoIntervencaoEnfermagem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrescricaoIntervencaoEnfermagem.Location = new System.Drawing.Point(0, 30);
+            this.btnPrescricaoIntervencaoEnfermagem.Margin = new System.Windows.Forms.Padding(1);
+            this.btnPrescricaoIntervencaoEnfermagem.Name = "btnPrescricaoIntervencaoEnfermagem";
+            this.btnPrescricaoIntervencaoEnfermagem.Size = new System.Drawing.Size(849, 30);
+            this.btnPrescricaoIntervencaoEnfermagem.TabIndex = 15;
+            this.btnPrescricaoIntervencaoEnfermagem.TabStop = false;
+            this.btnPrescricaoIntervencaoEnfermagem.Text = "Prescrição de Enfermagem";
+            this.btnPrescricaoIntervencaoEnfermagem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrescricaoIntervencaoEnfermagem.UseVisualStyleBackColor = false;
+            this.btnPrescricaoIntervencaoEnfermagem.Click += new System.EventHandler(this.btnPrescricaoIntervencaoEnfermagem_Click);
+            // 
             // UI007FrmMenuDireito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,5 +295,6 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Label lblPaciente;
         private Extend.PictureBoxExt pictureBoxExtFoto;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnPrescricaoIntervencaoEnfermagem;
     }
 }

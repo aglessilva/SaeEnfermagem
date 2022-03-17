@@ -17,10 +17,12 @@ namespace AppInternacao.FrmSae
             InitializeComponent();
         }
         private Form uc = null;
+        Button currentBtn = null;
 
         private SplitContainer ctrl;
         private void btnExibirHistorico_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             if (Sessao.Usuario.Perfil.HasFlag(Perfil.Medico))
             {
               //  ctrl.Panel1.Controls.Add(new UCViewHistoricoEnfermagem());
@@ -33,7 +35,15 @@ namespace AppInternacao.FrmSae
 
         private void btnPrecricaoMedica_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender);
             uc = new UI008FrmPrescricaoCiclo() { TopLevel = false };
+            OpenUC();
+        }
+
+        private void btnPrescricaoIntervencaoEnfermagem_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uc = new UI019FrmPrescricaoEnfermagem() { TopLevel = false };
             OpenUC();
         }
 
@@ -78,5 +88,28 @@ namespace AppInternacao.FrmSae
             MemoryStream ms = new MemoryStream(Sessao.Paciente.Foto);
             pictureBoxExtFoto.Image = Image.FromStream(ms);
         }
+
+
+        private void ActivateButton(object senderBtn)
+        {
+            if (senderBtn != null)
+            {
+                //Button
+                DisableButton();
+                currentBtn = (Button)senderBtn;
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.BackColor = Color.FromArgb(13, 87, 134);
+            }
+        }
+
+        private void DisableButton()
+        {
+            if (currentBtn != null)
+            {
+                currentBtn.TextAlign = ContentAlignment.MiddleRight;
+                currentBtn.BackColor = Color.FromArgb(6, 39, 69);
+            }
+        }
+
     }
 }

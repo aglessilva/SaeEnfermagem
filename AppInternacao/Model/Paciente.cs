@@ -41,7 +41,7 @@ namespace AppInternacao.Model
             HistoricoEnfermagem = new HistoricoEnfermagem();
             ExameFisico = new ExameFisico();
             DiagnosticoEnfermagem = new List<DiagnosticoEnfermagem>();
-            IntervencaoEnfermagem = new IntervencaoEnfermagem();
+            IntervencaoEnfermagem = new List<IntervencaoEnfermagem>();
             EvolucaoEnfermagem = new EvolucaoEnfermagem();
             AvaliacaoEnfermagem = new AvaliacaoEnfermagem();
         }
@@ -50,7 +50,7 @@ namespace AppInternacao.Model
         public HistoricoEnfermagem HistoricoEnfermagem { get; set; }
         public ExameFisico  ExameFisico { get; set; }
         public List<DiagnosticoEnfermagem> DiagnosticoEnfermagem { get; set; }
-        public IntervencaoEnfermagem IntervencaoEnfermagem { get; set; }
+        public List<IntervencaoEnfermagem> IntervencaoEnfermagem { get; set; }
         public EvolucaoEnfermagem EvolucaoEnfermagem { get; set; }
         public AvaliacaoEnfermagem AvaliacaoEnfermagem { get; set; }
         public bool IsConcluido { get; set; }

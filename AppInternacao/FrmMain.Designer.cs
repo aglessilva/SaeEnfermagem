@@ -33,7 +33,7 @@
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
-            this.btnAddDiagnostico = new FontAwesome.Sharp.IconButton();
+            this.btnAddGeneric = new FontAwesome.Sharp.IconButton();
             this.btnSalvar = new FontAwesome.Sharp.IconButton();
             this.btnNovo = new FontAwesome.Sharp.IconButton();
             this.btnImprimir = new FontAwesome.Sharp.IconButton();
@@ -118,7 +118,7 @@
             // panelCabecalho
             // 
             this.panelCabecalho.BackColor = System.Drawing.Color.Transparent;
-            this.panelCabecalho.Controls.Add(this.btnAddDiagnostico);
+            this.panelCabecalho.Controls.Add(this.btnAddGeneric);
             this.panelCabecalho.Controls.Add(this.btnSalvar);
             this.panelCabecalho.Controls.Add(this.btnNovo);
             this.panelCabecalho.Controls.Add(this.btnImprimir);
@@ -128,30 +128,30 @@
             this.panelCabecalho.Size = new System.Drawing.Size(443, 30);
             this.panelCabecalho.TabIndex = 5;
             // 
-            // btnAddDiagnostico
+            // btnAddGeneric
             // 
-            this.btnAddDiagnostico.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddDiagnostico.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAddDiagnostico.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAddDiagnostico.FlatAppearance.BorderSize = 0;
-            this.btnAddDiagnostico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnAddDiagnostico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
-            this.btnAddDiagnostico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAddDiagnostico.ForeColor = System.Drawing.Color.White;
-            this.btnAddDiagnostico.IconChar = FontAwesome.Sharp.IconChar.ClipboardCheck;
-            this.btnAddDiagnostico.IconColor = System.Drawing.Color.Chartreuse;
-            this.btnAddDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAddDiagnostico.IconSize = 28;
-            this.btnAddDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddDiagnostico.Location = new System.Drawing.Point(240, 0);
-            this.btnAddDiagnostico.Name = "btnAddDiagnostico";
-            this.btnAddDiagnostico.Size = new System.Drawing.Size(182, 30);
-            this.btnAddDiagnostico.TabIndex = 106;
-            this.btnAddDiagnostico.Text = "Adicionar Diagnóstico";
-            this.btnAddDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddDiagnostico.UseVisualStyleBackColor = false;
-            this.btnAddDiagnostico.Visible = false;
+            this.btnAddGeneric.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddGeneric.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAddGeneric.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAddGeneric.FlatAppearance.BorderSize = 0;
+            this.btnAddGeneric.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAddGeneric.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnAddGeneric.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddGeneric.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAddGeneric.ForeColor = System.Drawing.Color.White;
+            this.btnAddGeneric.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnAddGeneric.IconColor = System.Drawing.Color.Chartreuse;
+            this.btnAddGeneric.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddGeneric.IconSize = 28;
+            this.btnAddGeneric.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddGeneric.Location = new System.Drawing.Point(240, 0);
+            this.btnAddGeneric.Name = "btnAddGeneric";
+            this.btnAddGeneric.Size = new System.Drawing.Size(182, 30);
+            this.btnAddGeneric.TabIndex = 106;
+            this.btnAddGeneric.Text = "Adicionar Diagnóstico";
+            this.btnAddGeneric.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddGeneric.UseVisualStyleBackColor = false;
+            this.btnAddGeneric.Visible = false;
             // 
             // btnSalvar
             // 
@@ -330,7 +330,7 @@
             this.btnNanda.Size = new System.Drawing.Size(169, 40);
             this.btnNanda.TabIndex = 105;
             this.btnNanda.TabStop = false;
-            this.btnNanda.Text = "Diagnósticos Nanda";
+            this.btnNanda.Text = "Pesquisar Diagnósticos";
             this.btnNanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNanda.UseVisualStyleBackColor = false;
             this.btnNanda.Click += new System.EventHandler(this.btnNanda_Click);
@@ -408,7 +408,7 @@
             this.btnPrescricao.Size = new System.Drawing.Size(169, 40);
             this.btnPrescricao.TabIndex = 14;
             this.btnPrescricao.TabStop = false;
-            this.btnPrescricao.Text = "Ciclos de Prescrições";
+            this.btnPrescricao.Text = "Itens de Evolução Clinica";
             this.btnPrescricao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrescricao.UseVisualStyleBackColor = false;
             this.btnPrescricao.Click += new System.EventHandler(this.btnPrescricao_Click);
@@ -753,7 +753,7 @@
             this.btnAddSae.Size = new System.Drawing.Size(169, 40);
             this.btnAddSae.TabIndex = 104;
             this.btnAddSae.TabStop = false;
-            this.btnAddSae.Text = "Administrar Evolução SAE";
+            this.btnAddSae.Text = "Administração da SAE";
             this.btnAddSae.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddSae.UseVisualStyleBackColor = false;
             this.btnAddSae.Click += new System.EventHandler(this.btnAddSae_Click);
@@ -828,7 +828,7 @@
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnNovo;
         private FontAwesome.Sharp.IconButton btnImprimir;
-        private FontAwesome.Sharp.IconButton btnAddDiagnostico;
+        private FontAwesome.Sharp.IconButton btnAddGeneric;
     }
 }
 

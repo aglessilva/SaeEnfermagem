@@ -43,7 +43,7 @@ namespace AppInternacao
             mySalvar = btnSalvar;
             myNovo = btnNovo;
             myImprimir = btnImprimir;
-            listButtons = new List<IconButton>() { myImprimir, mySalvar, myNovo, btnAddDiagnostico };
+            listButtons = new List<IconButton>() { myImprimir, mySalvar, myNovo, btnAddGeneric };
         }
 
         private void DisableButton()

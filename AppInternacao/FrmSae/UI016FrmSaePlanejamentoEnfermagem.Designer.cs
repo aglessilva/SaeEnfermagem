@@ -1,7 +1,7 @@
 ﻿
 namespace AppInternacao.FrmSae
 {
-    partial class UI016FrmIntervencaoEnfermagem
+    partial class UI016FrmSaePlanejamentoEnfermagem
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,10 +29,13 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.groupBoxClassificacao = new System.Windows.Forms.GroupBox();
             this.dataGridViewClassificacao = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Classificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLimparCampo = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBoxClassificacao = new System.Windows.Forms.TextBox();
@@ -40,6 +43,11 @@ namespace AppInternacao.FrmSae
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxIndicadores = new System.Windows.Forms.GroupBox();
+            this.dataGridViewIndicadores = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoIndicador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Indicador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnLimparIndicadores = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxIndicadores = new System.Windows.Forms.TextBox();
@@ -48,38 +56,31 @@ namespace AppInternacao.FrmSae
             this.lblDefinicao = new System.Windows.Forms.Label();
             this.comboBoxDiagnostico = new System.Windows.Forms.ComboBox();
             this.textBoxDescricaoIndicadores = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Classificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewIndicadores = new System.Windows.Forms.DataGridView();
-            this.CodigoIndicador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Indicador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxClassificacao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassificacao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.groupBoxIndicadores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIndicadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIndicadores)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxClassificacao
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBoxClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.dataGridViewClassificacao);
-            this.groupBox1.Controls.Add(this.btnLimparCampo);
-            this.groupBox1.Controls.Add(this.panel4);
-            this.groupBox1.Controls.Add(this.textBoxClassificacao);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.iconPictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 86);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(486, 418);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
+            this.groupBoxClassificacao.Controls.Add(this.dataGridViewClassificacao);
+            this.groupBoxClassificacao.Controls.Add(this.btnLimparCampo);
+            this.groupBoxClassificacao.Controls.Add(this.panel4);
+            this.groupBoxClassificacao.Controls.Add(this.textBoxClassificacao);
+            this.groupBoxClassificacao.Controls.Add(this.label2);
+            this.groupBoxClassificacao.Controls.Add(this.iconPictureBox1);
+            this.groupBoxClassificacao.Location = new System.Drawing.Point(12, 86);
+            this.groupBoxClassificacao.Name = "groupBoxClassificacao";
+            this.groupBoxClassificacao.Size = new System.Drawing.Size(486, 418);
+            this.groupBoxClassificacao.TabIndex = 1;
+            this.groupBoxClassificacao.TabStop = false;
+            this.groupBoxClassificacao.Visible = false;
             // 
             // dataGridViewClassificacao
             // 
@@ -87,8 +88,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.AllowUserToDeleteRows = false;
             this.dataGridViewClassificacao.AllowUserToResizeColumns = false;
             this.dataGridViewClassificacao.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -112,6 +113,27 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.TabIndex = 58;
             this.dataGridViewClassificacao.TabStop = false;
             this.dataGridViewClassificacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassificacao_CellContentClick);
+            // 
+            // Codigo
+            // 
+            this.Codigo.DataPropertyName = "Codigo";
+            this.Codigo.HeaderText = "";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.Visible = false;
+            // 
+            // Checked
+            // 
+            this.Checked.DataPropertyName = "Checked";
+            this.Checked.HeaderText = "";
+            this.Checked.Name = "Checked";
+            this.Checked.Width = 30;
+            // 
+            // Classificacao
+            // 
+            this.Classificacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Classificacao.DataPropertyName = "Classificacao";
+            this.Classificacao.HeaderText = "";
+            this.Classificacao.Name = "Classificacao";
             // 
             // btnLimparCampo
             // 
@@ -148,7 +170,7 @@ namespace AppInternacao.FrmSae
             this.textBoxClassificacao.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxClassificacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.textBoxClassificacao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxClassificacao.Location = new System.Drawing.Point(37, 38);
+            this.textBoxClassificacao.Location = new System.Drawing.Point(37, 41);
             this.textBoxClassificacao.MaxLength = 50;
             this.textBoxClassificacao.Name = "textBoxClassificacao";
             this.textBoxClassificacao.Size = new System.Drawing.Size(407, 16);
@@ -213,6 +235,70 @@ namespace AppInternacao.FrmSae
             this.groupBoxIndicadores.TabIndex = 29;
             this.groupBoxIndicadores.TabStop = false;
             // 
+            // dataGridViewIndicadores
+            // 
+            this.dataGridViewIndicadores.AllowUserToAddRows = false;
+            this.dataGridViewIndicadores.AllowUserToDeleteRows = false;
+            this.dataGridViewIndicadores.AllowUserToResizeColumns = false;
+            this.dataGridViewIndicadores.AllowUserToResizeRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewIndicadores.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewIndicadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewIndicadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridViewIndicadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewIndicadores.ColumnHeadersVisible = false;
+            this.dataGridViewIndicadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.CodigoIndicador,
+            this.dataGridViewCheckBoxColumn1,
+            this.Indicador});
+            this.dataGridViewIndicadores.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataGridViewIndicadores.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewIndicadores.Location = new System.Drawing.Point(8, 76);
+            this.dataGridViewIndicadores.MultiSelect = false;
+            this.dataGridViewIndicadores.Name = "dataGridViewIndicadores";
+            this.dataGridViewIndicadores.RowHeadersVisible = false;
+            this.dataGridViewIndicadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewIndicadores.Size = new System.Drawing.Size(472, 336);
+            this.dataGridViewIndicadores.TabIndex = 59;
+            this.dataGridViewIndicadores.TabStop = false;
+            this.dataGridViewIndicadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_CellContentClick);
+            this.dataGridViewIndicadores.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_CellEnter);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            this.Id.Width = 20;
+            // 
+            // CodigoIndicador
+            // 
+            this.CodigoIndicador.DataPropertyName = "Codigo";
+            this.CodigoIndicador.HeaderText = "";
+            this.CodigoIndicador.Name = "CodigoIndicador";
+            this.CodigoIndicador.Visible = false;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Checked";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 30;
+            // 
+            // Indicador
+            // 
+            this.Indicador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Indicador.DataPropertyName = "Indicador";
+            this.Indicador.HeaderText = "";
+            this.Indicador.Name = "Indicador";
+            this.Indicador.ReadOnly = true;
+            // 
             // btnLimparIndicadores
             // 
             this.btnLimparIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -227,11 +313,12 @@ namespace AppInternacao.FrmSae
             this.btnLimparIndicadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimparIndicadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimparIndicadores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnLimparIndicadores.Location = new System.Drawing.Point(448, 33);
+            this.btnLimparIndicadores.Location = new System.Drawing.Point(447, 33);
             this.btnLimparIndicadores.Name = "btnLimparIndicadores";
             this.btnLimparIndicadores.Size = new System.Drawing.Size(29, 24);
             this.btnLimparIndicadores.TabIndex = 37;
             this.btnLimparIndicadores.UseVisualStyleBackColor = false;
+            this.btnLimparIndicadores.Click += new System.EventHandler(this.btnLimparIndicadores_Click);
             // 
             // panel1
             // 
@@ -247,12 +334,13 @@ namespace AppInternacao.FrmSae
             this.textBoxIndicadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxIndicadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.textBoxIndicadores.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxIndicadores.Location = new System.Drawing.Point(36, 38);
+            this.textBoxIndicadores.Location = new System.Drawing.Point(36, 41);
             this.textBoxIndicadores.MaxLength = 50;
             this.textBoxIndicadores.Name = "textBoxIndicadores";
             this.textBoxIndicadores.Size = new System.Drawing.Size(407, 16);
             this.textBoxIndicadores.TabIndex = 35;
             this.textBoxIndicadores.WordWrap = false;
+            this.textBoxIndicadores.TextChanged += new System.EventHandler(this.textBoxIndicadores_TextChanged);
             // 
             // iconPictureBox2
             // 
@@ -314,7 +402,8 @@ namespace AppInternacao.FrmSae
             this.textBoxDescricaoIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescricaoIndicadores.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxDescricaoIndicadores.Location = new System.Drawing.Point(12, 531);
+            this.textBoxDescricaoIndicadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.textBoxDescricaoIndicadores.Location = new System.Drawing.Point(12, 525);
             this.textBoxDescricaoIndicadores.Multiline = true;
             this.textBoxDescricaoIndicadores.Name = "textBoxDescricaoIndicadores";
             this.textBoxDescricaoIndicadores.ReadOnly = true;
@@ -322,123 +411,37 @@ namespace AppInternacao.FrmSae
             this.textBoxDescricaoIndicadores.Size = new System.Drawing.Size(1037, 59);
             this.textBoxDescricaoIndicadores.TabIndex = 31;
             this.textBoxDescricaoIndicadores.TabStop = false;
+            this.textBoxDescricaoIndicadores.Visible = false;
             // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.label3.Location = new System.Drawing.Point(441, 508);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 18);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Descrição dos Indicadores";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // Codigo
-            // 
-            this.Codigo.DataPropertyName = "Codigo";
-            this.Codigo.HeaderText = "";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.Visible = false;
-            // 
-            // Checked
-            // 
-            this.Checked.DataPropertyName = "Checked";
-            this.Checked.HeaderText = "";
-            this.Checked.Name = "Checked";
-            this.Checked.Width = 30;
-            // 
-            // Classificacao
-            // 
-            this.Classificacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Classificacao.DataPropertyName = "Classificacao";
-            this.Classificacao.HeaderText = "";
-            this.Classificacao.Name = "Classificacao";
-            // 
-            // dataGridViewIndicadores
-            // 
-            this.dataGridViewIndicadores.AllowUserToAddRows = false;
-            this.dataGridViewIndicadores.AllowUserToDeleteRows = false;
-            this.dataGridViewIndicadores.AllowUserToResizeColumns = false;
-            this.dataGridViewIndicadores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewIndicadores.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewIndicadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridViewIndicadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dataGridViewIndicadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewIndicadores.ColumnHeadersVisible = false;
-            this.dataGridViewIndicadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodigoIndicador,
-            this.dataGridViewCheckBoxColumn1,
-            this.Indicador});
-            this.dataGridViewIndicadores.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataGridViewIndicadores.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewIndicadores.Location = new System.Drawing.Point(8, 76);
-            this.dataGridViewIndicadores.MultiSelect = false;
-            this.dataGridViewIndicadores.Name = "dataGridViewIndicadores";
-            this.dataGridViewIndicadores.RowHeadersVisible = false;
-            this.dataGridViewIndicadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewIndicadores.Size = new System.Drawing.Size(472, 336);
-            this.dataGridViewIndicadores.TabIndex = 59;
-            this.dataGridViewIndicadores.TabStop = false;
-            // 
-            // CodigoIndicador
-            // 
-            this.CodigoIndicador.DataPropertyName = "Codigo";
-            this.CodigoIndicador.HeaderText = "";
-            this.CodigoIndicador.Name = "CodigoIndicador";
-            this.CodigoIndicador.Visible = false;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Checked";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.Width = 30;
-            // 
-            // Indicador
-            // 
-            this.Indicador.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Indicador.DataPropertyName = "Indicador";
-            this.Indicador.HeaderText = "";
-            this.Indicador.Name = "Indicador";
-            // 
-            // UI016FrmIntervencaoEnfermagem
+            // UI016FrmSaePlanejamentoEnfermagem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(1061, 593);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxDescricaoIndicadores);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBoxIndicadores);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxClassificacao);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "UI016FrmIntervencaoEnfermagem";
+            this.Name = "UI016FrmSaePlanejamentoEnfermagem";
             this.Tag = "4";
             this.Load += new System.EventHandler(this.UI016FrmIntervencaoEnfermagem_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxClassificacao.ResumeLayout(false);
+            this.groupBoxClassificacao.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassificacao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.groupBoxIndicadores.ResumeLayout(false);
             this.groupBoxIndicadores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIndicadores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIndicadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxClassificacao;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBoxIndicadores;
@@ -453,13 +456,13 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.TextBox textBoxIndicadores;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private System.Windows.Forms.TextBox textBoxDescricaoIndicadores;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblDefinicao;
         private System.Windows.Forms.DataGridView dataGridViewClassificacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn Classificacao;
         private System.Windows.Forms.DataGridView dataGridViewIndicadores;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoIndicador;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Indicador;
