@@ -1,33 +1,31 @@
-﻿using AppInternacao.Enum;
-using AppInternacao.Model;
-using AppInternacao.Presenter;
+﻿using AppInternacao.Model;
 using FontAwesome.Sharp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UI017FrmSaeImplementacao : AppInternacao.FrmSae.UI000FrmTemplate
+    public partial class UI017FrmSaeImplementacao : UI000FrmTemplate
     {
         
         DataRow dataRow = null;
-        DataTable dataTable, dataTableIdicadores;
-        PresenterGeneric presenterGeneric = null;
-        List<NicClassificacao> listClasifficacao = null;
-        List<NicIndicador> listIndicadores = null;
+        DataTable dataTable, dataTableIdicadores, _dataTable, _dataTableIdicadores;
         IntervencaoEnfermagem intervencao = null;
         NandaDiagnostico diagnostico = null;
+        int idIndicador = 0;
 
-        public UI017FrmSaeImplementacao()
+        public UI017FrmSaeImplementacao(DataTable[] dataTables)
         {
             InitializeComponent();
-            presenterGeneric = new PresenterGeneric();
+            _dataTable = dataTables[0];
+            _dataTableIdicadores = dataTables[1];
+
+            dataTables = null;
         }
 
         void CarregarItens()
@@ -45,8 +43,6 @@ namespace AppInternacao.FrmSae
             comboBoxDiagnostico.SelectedIndex = 0;
 
 
-            listIndicadores = presenterGeneric.GetLista(new NicIndicador(), Procedure.SP_GET_NIC_INDICADORES);
-            listClasifficacao = presenterGeneric.GetLista(new NicClassificacao(), Procedure.SP_GET_NIC_CLASSIFICACAO);
 
             dataTable = new DataTable();
             dataTable.Columns.Add("Codigo", typeof(int));
@@ -55,36 +51,37 @@ namespace AppInternacao.FrmSae
 
             dataTableIdicadores = new DataTable();
             dataTableIdicadores.Columns.Add("Id", typeof(int));
-            dataTableIdicadores.Columns.Add("CodigoIndicador", typeof(int));
+            dataTableIdicadores.Columns.Add("IdClassificacao", typeof(int));
             dataTableIdicadores.Columns.Add("Indicador", typeof(string));
             dataTableIdicadores.Columns.Add("StatusImgIndic", typeof(Image));
 
-            listClasifficacao.ForEach(c => {
+            foreach (DataRow item in _dataTable.Rows)
+            {
                 dataRow = dataTable.NewRow();
-                dataRow[0] = c.Codigo;
-                dataRow[1] = c.Classificacao;
+                dataRow[0] = item[0];
+                dataRow[1] = item[2];
                 dataRow[2] = Properties.Resources.infoflat_105980;
                 dataTable.Rows.Add(dataRow);
-            });
+            }
 
+            _dataTable = null;
 
-            listClasifficacao.Clear();
-           
             dataGridViewClassificacao.DataSource = dataTable;
             dataGridViewClassificacao.Cursor = Cursors.Hand;
 
             dataRow = null;
-            listIndicadores.ForEach(c =>
+
+            foreach (DataRow item in _dataTableIdicadores.Rows)
             {
                 dataRow = dataTableIdicadores.NewRow();
-                dataRow[0] = c.Id;
-                dataRow[1] = c.Codigo;
-                dataRow[2] = c.Indicador;
+                dataRow[0] = item[0];
+                dataRow[1] = item[1];
+                dataRow[2] = item[3];
                 dataRow[3] = Properties.Resources.Wait;
                 dataTableIdicadores.Rows.Add(dataRow);
-            });
+            }
 
-            listIndicadores.Clear();
+            _dataTableIdicadores = null;
 
             dataGridViewIndicadores.DataSource = dataTableIdicadores;
         }
@@ -92,12 +89,76 @@ namespace AppInternacao.FrmSae
         private void UI017FrmSaeImplementacao_Load(object sender, EventArgs e)
         {
             CarregarItens();
+            intervencao = new IntervencaoEnfermagem();
             UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStepAvanca_Click;
         }
 
-        private void dataGridViewClassificacao_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void comboBoxDiagnostico_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            try
+            {
+                if (comboBoxDiagnostico.SelectedIndex == 0)
+                {
+                    groupBoxClassificacao.Visible = groupBoxIndicadores.Visible = pnlTextBox.Visible = pnlButton.Visible = false;
+                    return;
+                }
 
+                groupBoxClassificacao.Visible = comboBoxDiagnostico.SelectedIndex > 0;
+                groupBoxIndicadores.Visible = false;
+                diagnostico = (NandaDiagnostico)comboBoxDiagnostico.SelectedItem;
+
+                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.Find(d => d.CodigoDiagnostico.Equals(diagnostico.Codigo));
+                
+                dataTable.DefaultView.RowFilter = $"Codigo in({intervencao.Classificacao})";
+                dataTableIdicadores.DefaultView.RowFilter = "IdClassificacao = 0";
+                dataGridViewIndicadores.ClearSelection();
+                dataGridViewClassificacao.ClearSelection();
+                pnlTextBox.Visible = pnlButton.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
+
+        private void btnAddPrescricao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pnlTextBox.Visible = !pnlTextBox.Visible;
+
+                if (!pnlTextBox.Visible)
+                {
+                    pnlButton.SendToBack();
+                    btnAddPrescricao.Text = "Inserir Observação/Prescrição de Enfermagem";
+                    btnAddPrescricao.Size = new Size(270, 30);
+                    btnAddPrescricao.IconChar = IconChar.PlusCircle;
+                    if (!string.IsNullOrWhiteSpace(textBoxDescricaoIndicadores.Text))
+                    {
+                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.RemoveAll(r => r.Key == idIndicador);
+                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Add(new KeyValuePair<int, string>(idIndicador, textBoxDescricaoIndicadores.Text));
+                        textBoxDescricaoIndicadores.Text = string.Empty;
+                    }
+                    else
+                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.RemoveAll(r => r.Key == idIndicador);
+                }
+                else
+                {
+                    pnlButton.BringToFront();
+                    btnAddPrescricao.Text = sender != null ? "Adicionar ítem" : "Atualizar ítem";
+                    btnAddPrescricao.IconChar = IconChar.Edit;
+                    btnAddPrescricao.Size = new Size(115, 30);
+                    textBoxDescricaoIndicadores.Text = intervencao.KeyPairAnotacaoPrescricaoEnfermagem.FirstOrDefault(n => n.Key == idIndicador).Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
+
+        private void dataGridViewClassificacao_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
             if (e.RowIndex < 0)
                 return;
             try
@@ -107,21 +168,7 @@ namespace AppInternacao.FrmSae
                 if (sendGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewImageCell)
                 {
                     int codigo = Convert.ToInt32(sendGrid.Rows[e.RowIndex].Cells[0].Value);
-                    List<int> codigoInsicadores = new List<int>();
-
-                    intervencao.Indicadores.Split('|').ToList()
-                        .ForEach(f =>
-                        {
-                            if (Convert.ToInt32(f.Split(',')[0]) == codigo)
-                                codigoInsicadores.Add(int.Parse(f.Split(',')[1]));
-                        });
-
-                    dataTableIdicadores.DefaultView.RowFilter = $"CodigoIndicador = {codigo} and Id in({string.Join(",", codigoInsicadores.ToArray())})";
-
-                    dataGridViewIndicadores.Columns[0].Visible = false;
-                    dataGridViewIndicadores.DataSource = dataTableIdicadores;
-                    groupBoxIndicadores.Visible = dataTableIdicadores.DefaultView.Count > 0;
-                    groupBoxDescricaoIndicadores.Visible = false;
+                    dataTableIdicadores.DefaultView.RowFilter = $"IdClassificacao = {codigo} and Id in({string.Join(",", intervencao.KeyPairIndicadores.Select(s => s.Value).ToArray())})";
                 }
             }
             catch (Exception ex)
@@ -130,7 +177,35 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void dataGridViewIndicadores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewIndicadores_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0)
+                    return;
+
+                var sendGrid = (DataGridView)sender;
+
+                if (!(sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn))
+                {
+                    idIndicador = Convert.ToInt32(sendGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    pnlButton.Visible = true;
+                    pnlTextBox.Visible = false;
+                    btnAddPrescricao.Text = "Inserir Observação/Prescrição de Enfermagem";
+                    btnAddPrescricao.Size = new Size(270, 30);
+
+                    if (intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Any(n => n.Key == idIndicador))
+                        btnAddPrescricao_Click(null, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
+
+        private void dataGridViewIndicadores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -141,8 +216,8 @@ namespace AppInternacao.FrmSae
 
                 if (e.ColumnIndex == 2)
                 {
-                    textBoxDescricaoIndicadores.Text = sendGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    groupBoxDescricaoIndicadores.Visible = true;
+                    var idIdicador = sendGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    panel2.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -151,19 +226,30 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void comboBoxDiagnostico_SelectionChangeCommitted(object sender, EventArgs e)
+        private void dataGridViewClassificacao_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            groupBoxClassificacao.Visible = comboBoxDiagnostico.SelectedIndex > 0;
-
-            if (comboBoxDiagnostico.SelectedIndex == 0)
+            if (e.RowIndex < 0)
                 return;
+            try
+            {
+                var sendGrid = (DataGridView)sender;
 
-            diagnostico = (NandaDiagnostico)comboBoxDiagnostico.SelectedItem;
+                if (!(sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn))
+                {
+                    pnlButton.Visible = pnlTextBox.Visible = false;
+                    int codigo = Convert.ToInt32(sendGrid.Rows[e.RowIndex].Cells[0].Value);
 
-            intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.Find(d => d.CodigoDiagnostico.Equals(diagnostico.Codigo));
-            intervencao.Indicadores = intervencao.Indicadores.Replace("[", "").Replace("]", "").Trim();
+                    dataTableIdicadores.DefaultView.RowFilter = $"IdClassificacao = {codigo} and Id in({string.Join(",", intervencao.KeyPairIndicadores.Select(s => s.Value).ToArray())})";
 
-            dataTable.DefaultView.RowFilter = $"Codigo in({intervencao.Classificacao})";
+                    dataGridViewIndicadores.Columns[0].Visible = false;
+                    groupBoxIndicadores.Visible = dataTableIdicadores.DefaultView.Count > 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
         }
 
         private void btnButtonStepAvanca_Click(object sender, EventArgs e)
@@ -172,6 +258,14 @@ namespace AppInternacao.FrmSae
             {
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+
+                Sessao.Paciente.Sae.IntervencaoEnfermagem.ForEach(n => { 
+                    n.AnotacaoPrescricaoEnfermagem = JsonConvert.SerializeObject(n.KeyPairAnotacaoPrescricaoEnfermagem, Formatting.None);
+                    n.Indicadores = JsonConvert.SerializeObject(n.KeyPairIndicadores, Formatting.None);
+                    n.KeyPairAnotacaoPrescricaoEnfermagem = null;
+                    n.KeyPairIndicadores = null;
+                });
+
 
                 UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
 

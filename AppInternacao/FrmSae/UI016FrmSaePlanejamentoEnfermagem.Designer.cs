@@ -29,8 +29,8 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxClassificacao = new System.Windows.Forms.GroupBox();
             this.dataGridViewClassificacao = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,8 +88,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.AllowUserToDeleteRows = false;
             this.dataGridViewClassificacao.AllowUserToResizeColumns = false;
             this.dataGridViewClassificacao.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -212,7 +212,7 @@ namespace AppInternacao.FrmSae
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.75F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.label1.Location = new System.Drawing.Point(184, 16);
+            this.label1.Location = new System.Drawing.Point(207, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 18);
             this.label1.TabIndex = 28;
@@ -221,7 +221,8 @@ namespace AppInternacao.FrmSae
             // 
             // groupBoxIndicadores
             // 
-            this.groupBoxIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBoxIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxIndicadores.Controls.Add(this.dataGridViewIndicadores);
             this.groupBoxIndicadores.Controls.Add(this.btnLimparIndicadores);
@@ -229,9 +230,9 @@ namespace AppInternacao.FrmSae
             this.groupBoxIndicadores.Controls.Add(this.textBoxIndicadores);
             this.groupBoxIndicadores.Controls.Add(this.iconPictureBox2);
             this.groupBoxIndicadores.Controls.Add(this.label1);
-            this.groupBoxIndicadores.Location = new System.Drawing.Point(563, 86);
+            this.groupBoxIndicadores.Location = new System.Drawing.Point(517, 86);
             this.groupBoxIndicadores.Name = "groupBoxIndicadores";
-            this.groupBoxIndicadores.Size = new System.Drawing.Size(486, 418);
+            this.groupBoxIndicadores.Size = new System.Drawing.Size(532, 418);
             this.groupBoxIndicadores.TabIndex = 29;
             this.groupBoxIndicadores.TabStop = false;
             // 
@@ -241,8 +242,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.AllowUserToDeleteRows = false;
             this.dataGridViewIndicadores.AllowUserToResizeColumns = false;
             this.dataGridViewIndicadores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -263,7 +264,7 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.Name = "dataGridViewIndicadores";
             this.dataGridViewIndicadores.RowHeadersVisible = false;
             this.dataGridViewIndicadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewIndicadores.Size = new System.Drawing.Size(472, 336);
+            this.dataGridViewIndicadores.Size = new System.Drawing.Size(518, 336);
             this.dataGridViewIndicadores.TabIndex = 59;
             this.dataGridViewIndicadores.TabStop = false;
             this.dataGridViewIndicadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_CellContentClick);
@@ -313,7 +314,7 @@ namespace AppInternacao.FrmSae
             this.btnLimparIndicadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimparIndicadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimparIndicadores.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnLimparIndicadores.Location = new System.Drawing.Point(447, 33);
+            this.btnLimparIndicadores.Location = new System.Drawing.Point(495, 33);
             this.btnLimparIndicadores.Name = "btnLimparIndicadores";
             this.btnLimparIndicadores.Size = new System.Drawing.Size(29, 24);
             this.btnLimparIndicadores.TabIndex = 37;
@@ -322,14 +323,18 @@ namespace AppInternacao.FrmSae
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.DimGray;
             this.panel1.Location = new System.Drawing.Point(7, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(470, 1);
+            this.panel1.Size = new System.Drawing.Size(518, 1);
             this.panel1.TabIndex = 36;
             // 
             // textBoxIndicadores
             // 
+            this.textBoxIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxIndicadores.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxIndicadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxIndicadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -337,7 +342,7 @@ namespace AppInternacao.FrmSae
             this.textBoxIndicadores.Location = new System.Drawing.Point(36, 41);
             this.textBoxIndicadores.MaxLength = 50;
             this.textBoxIndicadores.Name = "textBoxIndicadores";
-            this.textBoxIndicadores.Size = new System.Drawing.Size(407, 16);
+            this.textBoxIndicadores.Size = new System.Drawing.Size(441, 16);
             this.textBoxIndicadores.TabIndex = 35;
             this.textBoxIndicadores.WordWrap = false;
             this.textBoxIndicadores.TextChanged += new System.EventHandler(this.textBoxIndicadores_TextChanged);
@@ -372,10 +377,11 @@ namespace AppInternacao.FrmSae
             // 
             // lblDefinicao
             // 
+            this.lblDefinicao.AutoEllipsis = true;
             this.lblDefinicao.AutoSize = true;
             this.lblDefinicao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.lblDefinicao.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblDefinicao.Location = new System.Drawing.Point(5, 47);
+            this.lblDefinicao.Location = new System.Drawing.Point(5, 41);
             this.lblDefinicao.Name = "lblDefinicao";
             this.lblDefinicao.Size = new System.Drawing.Size(59, 15);
             this.lblDefinicao.TabIndex = 35;

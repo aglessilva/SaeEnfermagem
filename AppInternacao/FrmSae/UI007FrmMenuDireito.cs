@@ -43,7 +43,7 @@ namespace AppInternacao.FrmSae
         private void btnPrescricaoIntervencaoEnfermagem_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
-            uc = new UI019FrmPrescricaoEnfermagem() { TopLevel = false };
+            uc = new UI017FrmSaeImplementacao(null) { TopLevel = false };
             OpenUC();
         }
 
