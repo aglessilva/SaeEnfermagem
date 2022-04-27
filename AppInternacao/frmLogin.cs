@@ -37,7 +37,7 @@ namespace AppInternacao
         private void frmLogin_Load(object sender, EventArgs e)
         {
             #if DEBUG
-                 textBoxUserName.Text = "xb225ha";
+                textBoxUserName.Text = "xb225ha";
                  textBoxPassWord.Text = "hbt123";
             #endif
 
@@ -75,11 +75,20 @@ namespace AppInternacao
                             frmMain.Show();
                         }
                         else
-                            MessageBox.Show($"Usuario {textBoxUserName.Text} não foi localizado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        {
+                            MessageBox.Show($"Usuario {textBoxUserName.Text} ou senha incorreta", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            textBoxUserName.Focus();
+                        }
                     }
                 }
                 else
                 {
+                    if (string.IsNullOrWhiteSpace(textBoxLoginEsqueciSenha.Text.Trim()) || string.IsNullOrWhiteSpace(textBoxCpf.Text.Trim()))
+                    {
+                        MessageBox.Show("Preencha os campos usuário e CPF corretamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        return;
+                    }
+
                     LoginPresenter loginPresenter = new LoginPresenter(this);
                     Usuario obj = loginPresenter.AutenticarUsuario(new Usuario() { Login = textBoxLoginEsqueciSenha.Text.Trim(), Cpf = textBoxCpf.Text.Trim()});
                     UsuarioPresenter usuarioPresenter = new UsuarioPresenter();
@@ -122,8 +131,6 @@ namespace AppInternacao
                 MessageBox.Show("ocorreu um erro ao tentar iniciar o sistema\n contate o administrador para verificar o problema\n\n"+ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-      
 
         private void lblEsqueciMinhaSenha_Click(object sender, EventArgs e)
         {

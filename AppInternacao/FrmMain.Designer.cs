@@ -42,6 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelScreen = new System.Windows.Forms.Panel();
             this.timerCollapsed = new System.Windows.Forms.Timer(this.components);
+            this.timerCollapsedTemplate = new System.Windows.Forms.Timer(this.components);
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnNanda = new FontAwesome.Sharp.IconButton();
             this.btnAdmUsuario = new FontAwesome.Sharp.IconButton();
@@ -62,7 +63,6 @@
             this.iconBtnClinicaPediatrica = new FontAwesome.Sharp.IconButton();
             this.btnClinicaMedica = new FontAwesome.Sharp.IconButton();
             this.btnAddSae = new FontAwesome.Sharp.IconButton();
-            this.timerCollapsedTemplate = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -96,7 +96,7 @@
             // 
             this.splitContainerMain.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(1092, 531);
+            this.splitContainerMain.Size = new System.Drawing.Size(1075, 531);
             this.splitContainerMain.SplitterDistance = 870;
             this.splitContainerMain.SplitterWidth = 2;
             this.splitContainerMain.TabIndex = 0;
@@ -123,7 +123,7 @@
             this.panelCabecalho.Controls.Add(this.btnNovo);
             this.panelCabecalho.Controls.Add(this.btnImprimir);
             this.panelCabecalho.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelCabecalho.Location = new System.Drawing.Point(169, 0);
+            this.panelCabecalho.Location = new System.Drawing.Point(186, 0);
             this.panelCabecalho.Name = "panelCabecalho";
             this.panelCabecalho.Size = new System.Drawing.Size(443, 30);
             this.panelCabecalho.TabIndex = 5;
@@ -148,6 +148,7 @@
             this.btnAddGeneric.Name = "btnAddGeneric";
             this.btnAddGeneric.Size = new System.Drawing.Size(182, 30);
             this.btnAddGeneric.TabIndex = 106;
+            this.btnAddGeneric.TabStop = false;
             this.btnAddGeneric.Text = "Adicionar Diagnóstico";
             this.btnAddGeneric.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddGeneric.UseVisualStyleBackColor = false;
@@ -272,16 +273,16 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(169, 30);
+            this.panel1.Size = new System.Drawing.Size(186, 30);
             this.panel1.TabIndex = 0;
             // 
             // panelScreen
             // 
             this.panelScreen.Controls.Add(this.splitContainerMain);
             this.panelScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelScreen.Location = new System.Drawing.Point(169, 30);
+            this.panelScreen.Location = new System.Drawing.Point(186, 30);
             this.panelScreen.Name = "panelScreen";
-            this.panelScreen.Size = new System.Drawing.Size(1092, 531);
+            this.panelScreen.Size = new System.Drawing.Size(1075, 531);
             this.panelScreen.TabIndex = 0;
             // 
             // timerCollapsed
@@ -289,12 +290,16 @@
             this.timerCollapsed.Interval = 15;
             this.timerCollapsed.Tick += new System.EventHandler(this.timerCollapsed_Tick);
             // 
+            // timerCollapsedTemplate
+            // 
+            this.timerCollapsedTemplate.Interval = 15;
+            this.timerCollapsedTemplate.Tick += new System.EventHandler(this.timerCollapsedTemplate_Tick);
+            // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.panelMenu.BackgroundImage = global::AppInternacao.Properties.Resources.backgroudMenu001;
             this.panelMenu.Controls.Add(this.btnNanda);
-            this.panelMenu.Controls.Add(this.btnAdmUsuario);
             this.panelMenu.Controls.Add(this.btnPaciente);
             this.panelMenu.Controls.Add(this.btnPrescricao);
             this.panelMenu.Controls.Add(this.panelDropDownTemplate);
@@ -303,10 +308,11 @@
             this.panelMenu.Controls.Add(this.btnGerenciamentoLeito);
             this.panelMenu.Controls.Add(this.panelDropDown);
             this.panelMenu.Controls.Add(this.btnAddSae);
+            this.panelMenu.Controls.Add(this.btnAdmUsuario);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 30);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(169, 531);
+            this.panelMenu.Size = new System.Drawing.Size(186, 531);
             this.panelMenu.TabIndex = 2;
             // 
             // btnNanda
@@ -327,7 +333,7 @@
             this.btnNanda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNanda.Location = new System.Drawing.Point(0, 520);
             this.btnNanda.Name = "btnNanda";
-            this.btnNanda.Size = new System.Drawing.Size(169, 40);
+            this.btnNanda.Size = new System.Drawing.Size(186, 40);
             this.btnNanda.TabIndex = 105;
             this.btnNanda.TabStop = false;
             this.btnNanda.Text = "Pesquisar Diagnósticos";
@@ -351,12 +357,12 @@
             this.btnAdmUsuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdmUsuario.IconSize = 30;
             this.btnAdmUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 480);
+            this.btnAdmUsuario.Location = new System.Drawing.Point(0, 0);
             this.btnAdmUsuario.Name = "btnAdmUsuario";
-            this.btnAdmUsuario.Size = new System.Drawing.Size(169, 40);
+            this.btnAdmUsuario.Size = new System.Drawing.Size(186, 40);
             this.btnAdmUsuario.TabIndex = 103;
             this.btnAdmUsuario.TabStop = false;
-            this.btnAdmUsuario.Text = "Adiministrar Usuários";
+            this.btnAdmUsuario.Text = "Adiministração de Usuários";
             this.btnAdmUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdmUsuario.UseVisualStyleBackColor = false;
             this.btnAdmUsuario.Click += new System.EventHandler(this.btnAdmUsuario_Click);
@@ -377,9 +383,9 @@
             this.btnPaciente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPaciente.IconSize = 30;
             this.btnPaciente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaciente.Location = new System.Drawing.Point(0, 440);
+            this.btnPaciente.Location = new System.Drawing.Point(0, 480);
             this.btnPaciente.Name = "btnPaciente";
-            this.btnPaciente.Size = new System.Drawing.Size(169, 40);
+            this.btnPaciente.Size = new System.Drawing.Size(186, 40);
             this.btnPaciente.TabIndex = 102;
             this.btnPaciente.TabStop = false;
             this.btnPaciente.Text = "Admissão de Pacientes";
@@ -403,9 +409,9 @@
             this.btnPrescricao.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPrescricao.IconSize = 30;
             this.btnPrescricao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrescricao.Location = new System.Drawing.Point(0, 400);
+            this.btnPrescricao.Location = new System.Drawing.Point(0, 440);
             this.btnPrescricao.Name = "btnPrescricao";
-            this.btnPrescricao.Size = new System.Drawing.Size(169, 40);
+            this.btnPrescricao.Size = new System.Drawing.Size(186, 40);
             this.btnPrescricao.TabIndex = 14;
             this.btnPrescricao.TabStop = false;
             this.btnPrescricao.Text = "Itens de Evolução Clinica";
@@ -419,11 +425,11 @@
             this.panelDropDownTemplate.Controls.Add(this.btnListarModelo);
             this.panelDropDownTemplate.Controls.Add(this.btnCriarTemplate);
             this.panelDropDownTemplate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDropDownTemplate.Location = new System.Drawing.Point(0, 320);
-            this.panelDropDownTemplate.MaximumSize = new System.Drawing.Size(169, 80);
-            this.panelDropDownTemplate.MinimumSize = new System.Drawing.Size(169, 0);
+            this.panelDropDownTemplate.Location = new System.Drawing.Point(0, 360);
+            this.panelDropDownTemplate.MaximumSize = new System.Drawing.Size(189, 80);
+            this.panelDropDownTemplate.MinimumSize = new System.Drawing.Size(189, 0);
             this.panelDropDownTemplate.Name = "panelDropDownTemplate";
-            this.panelDropDownTemplate.Size = new System.Drawing.Size(169, 80);
+            this.panelDropDownTemplate.Size = new System.Drawing.Size(189, 80);
             this.panelDropDownTemplate.TabIndex = 110;
             // 
             // btnListarModelo
@@ -444,12 +450,13 @@
             this.btnListarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnListarModelo.Location = new System.Drawing.Point(0, 40);
             this.btnListarModelo.Name = "btnListarModelo";
-            this.btnListarModelo.Size = new System.Drawing.Size(169, 40);
+            this.btnListarModelo.Size = new System.Drawing.Size(189, 40);
             this.btnListarModelo.TabIndex = 109;
             this.btnListarModelo.TabStop = false;
-            this.btnListarModelo.Text = "Listar Modelo de Exame";
+            this.btnListarModelo.Text = "Associar Modelo à Setores";
             this.btnListarModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnListarModelo.UseVisualStyleBackColor = false;
+            this.btnListarModelo.Click += new System.EventHandler(this.btnListarModelo_Click);
             // 
             // btnCriarTemplate
             // 
@@ -469,10 +476,10 @@
             this.btnCriarTemplate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCriarTemplate.Location = new System.Drawing.Point(0, 0);
             this.btnCriarTemplate.Name = "btnCriarTemplate";
-            this.btnCriarTemplate.Size = new System.Drawing.Size(169, 40);
+            this.btnCriarTemplate.Size = new System.Drawing.Size(189, 40);
             this.btnCriarTemplate.TabIndex = 108;
             this.btnCriarTemplate.TabStop = false;
-            this.btnCriarTemplate.Text = "Criar Modelo de Exame";
+            this.btnCriarTemplate.Text = "Modelo de Exame Físico";
             this.btnCriarTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCriarTemplate.UseVisualStyleBackColor = false;
             this.btnCriarTemplate.Click += new System.EventHandler(this.btnCriarTemplate_Click);
@@ -485,7 +492,7 @@
             this.pLogoff.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pLogoff.Location = new System.Drawing.Point(0, 444);
             this.pLogoff.Name = "pLogoff";
-            this.pLogoff.Size = new System.Drawing.Size(169, 87);
+            this.pLogoff.Size = new System.Drawing.Size(186, 87);
             this.pLogoff.TabIndex = 13;
             // 
             // btnAlterarSenha
@@ -505,7 +512,7 @@
             this.btnAlterarSenha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAlterarSenha.Location = new System.Drawing.Point(0, 7);
             this.btnAlterarSenha.Name = "btnAlterarSenha";
-            this.btnAlterarSenha.Size = new System.Drawing.Size(169, 40);
+            this.btnAlterarSenha.Size = new System.Drawing.Size(186, 40);
             this.btnAlterarSenha.TabIndex = 12;
             this.btnAlterarSenha.TabStop = false;
             this.btnAlterarSenha.Text = "Alterar Senha de Acesso";
@@ -530,7 +537,7 @@
             this.btnLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogout.Location = new System.Drawing.Point(0, 47);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(169, 40);
+            this.btnLogout.Size = new System.Drawing.Size(186, 40);
             this.btnLogout.TabIndex = 11;
             this.btnLogout.TabStop = false;
             this.btnLogout.Text = "Sair / Fechar";
@@ -554,12 +561,12 @@
             this.btnTempalte.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTempalte.IconSize = 30;
             this.btnTempalte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTempalte.Location = new System.Drawing.Point(0, 280);
+            this.btnTempalte.Location = new System.Drawing.Point(0, 320);
             this.btnTempalte.Name = "btnTempalte";
-            this.btnTempalte.Size = new System.Drawing.Size(169, 40);
+            this.btnTempalte.Size = new System.Drawing.Size(186, 40);
             this.btnTempalte.TabIndex = 50;
             this.btnTempalte.TabStop = false;
-            this.btnTempalte.Text = "Modelo de Exame Físico";
+            this.btnTempalte.Text = "Administração de Template";
             this.btnTempalte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTempalte.UseVisualStyleBackColor = false;
             this.btnTempalte.Click += new System.EventHandler(this.btnTempalte_Click);
@@ -580,9 +587,9 @@
             this.btnGerenciamentoLeito.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGerenciamentoLeito.IconSize = 30;
             this.btnGerenciamentoLeito.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 240);
+            this.btnGerenciamentoLeito.Location = new System.Drawing.Point(0, 280);
             this.btnGerenciamentoLeito.Name = "btnGerenciamentoLeito";
-            this.btnGerenciamentoLeito.Size = new System.Drawing.Size(169, 40);
+            this.btnGerenciamentoLeito.Size = new System.Drawing.Size(186, 40);
             this.btnGerenciamentoLeito.TabIndex = 101;
             this.btnGerenciamentoLeito.TabStop = false;
             this.btnGerenciamentoLeito.Text = "Administração de  Leitos";
@@ -599,11 +606,11 @@
             this.panelDropDown.Controls.Add(this.iconBtnClinicaPediatrica);
             this.panelDropDown.Controls.Add(this.btnClinicaMedica);
             this.panelDropDown.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDropDown.Location = new System.Drawing.Point(0, 40);
-            this.panelDropDown.MaximumSize = new System.Drawing.Size(169, 200);
-            this.panelDropDown.MinimumSize = new System.Drawing.Size(169, 0);
+            this.panelDropDown.Location = new System.Drawing.Point(0, 80);
+            this.panelDropDown.MaximumSize = new System.Drawing.Size(189, 200);
+            this.panelDropDown.MinimumSize = new System.Drawing.Size(189, 0);
             this.panelDropDown.Name = "panelDropDown";
-            this.panelDropDown.Size = new System.Drawing.Size(169, 200);
+            this.panelDropDown.Size = new System.Drawing.Size(189, 200);
             this.panelDropDown.TabIndex = 10;
             // 
             // iconBtnUrgenciaEmergencia
@@ -624,12 +631,13 @@
             this.iconBtnUrgenciaEmergencia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconBtnUrgenciaEmergencia.Location = new System.Drawing.Point(0, 160);
             this.iconBtnUrgenciaEmergencia.Name = "iconBtnUrgenciaEmergencia";
-            this.iconBtnUrgenciaEmergencia.Size = new System.Drawing.Size(169, 40);
+            this.iconBtnUrgenciaEmergencia.Size = new System.Drawing.Size(189, 40);
             this.iconBtnUrgenciaEmergencia.TabIndex = 109;
             this.iconBtnUrgenciaEmergencia.TabStop = false;
             this.iconBtnUrgenciaEmergencia.Text = "Urgência/Emergência";
             this.iconBtnUrgenciaEmergencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnUrgenciaEmergencia.UseVisualStyleBackColor = false;
+            this.iconBtnUrgenciaEmergencia.Click += new System.EventHandler(this.iconBtnUrgenciaEmergencia_Click);
             // 
             // iconBtnClinicaObstetrica
             // 
@@ -649,12 +657,13 @@
             this.iconBtnClinicaObstetrica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconBtnClinicaObstetrica.Location = new System.Drawing.Point(0, 120);
             this.iconBtnClinicaObstetrica.Name = "iconBtnClinicaObstetrica";
-            this.iconBtnClinicaObstetrica.Size = new System.Drawing.Size(169, 40);
+            this.iconBtnClinicaObstetrica.Size = new System.Drawing.Size(189, 40);
             this.iconBtnClinicaObstetrica.TabIndex = 108;
             this.iconBtnClinicaObstetrica.TabStop = false;
             this.iconBtnClinicaObstetrica.Text = "Clinica Obstétrica";
             this.iconBtnClinicaObstetrica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnClinicaObstetrica.UseVisualStyleBackColor = false;
+            this.iconBtnClinicaObstetrica.Click += new System.EventHandler(this.iconBtnClinicaObstetrica_Click);
             // 
             // iconBtnClinicaCirurgica
             // 
@@ -674,12 +683,13 @@
             this.iconBtnClinicaCirurgica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconBtnClinicaCirurgica.Location = new System.Drawing.Point(0, 80);
             this.iconBtnClinicaCirurgica.Name = "iconBtnClinicaCirurgica";
-            this.iconBtnClinicaCirurgica.Size = new System.Drawing.Size(169, 40);
+            this.iconBtnClinicaCirurgica.Size = new System.Drawing.Size(189, 40);
             this.iconBtnClinicaCirurgica.TabIndex = 107;
             this.iconBtnClinicaCirurgica.TabStop = false;
             this.iconBtnClinicaCirurgica.Text = "Clinica Cirurgica";
             this.iconBtnClinicaCirurgica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnClinicaCirurgica.UseVisualStyleBackColor = false;
+            this.iconBtnClinicaCirurgica.Click += new System.EventHandler(this.iconBtnClinicaCirurgica_Click);
             // 
             // iconBtnClinicaPediatrica
             // 
@@ -699,12 +709,13 @@
             this.iconBtnClinicaPediatrica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconBtnClinicaPediatrica.Location = new System.Drawing.Point(0, 40);
             this.iconBtnClinicaPediatrica.Name = "iconBtnClinicaPediatrica";
-            this.iconBtnClinicaPediatrica.Size = new System.Drawing.Size(169, 40);
+            this.iconBtnClinicaPediatrica.Size = new System.Drawing.Size(189, 40);
             this.iconBtnClinicaPediatrica.TabIndex = 106;
             this.iconBtnClinicaPediatrica.TabStop = false;
             this.iconBtnClinicaPediatrica.Text = "Clinica Pediátrica";
             this.iconBtnClinicaPediatrica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconBtnClinicaPediatrica.UseVisualStyleBackColor = false;
+            this.iconBtnClinicaPediatrica.Click += new System.EventHandler(this.iconBtnClinicaPediatrica_Click);
             // 
             // btnClinicaMedica
             // 
@@ -724,7 +735,7 @@
             this.btnClinicaMedica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClinicaMedica.Location = new System.Drawing.Point(0, 0);
             this.btnClinicaMedica.Name = "btnClinicaMedica";
-            this.btnClinicaMedica.Size = new System.Drawing.Size(169, 40);
+            this.btnClinicaMedica.Size = new System.Drawing.Size(189, 40);
             this.btnClinicaMedica.TabIndex = 105;
             this.btnClinicaMedica.TabStop = false;
             this.btnClinicaMedica.Text = "Clinica Médica";
@@ -748,20 +759,15 @@
             this.btnAddSae.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAddSae.IconSize = 30;
             this.btnAddSae.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddSae.Location = new System.Drawing.Point(0, 0);
+            this.btnAddSae.Location = new System.Drawing.Point(0, 40);
             this.btnAddSae.Name = "btnAddSae";
-            this.btnAddSae.Size = new System.Drawing.Size(169, 40);
+            this.btnAddSae.Size = new System.Drawing.Size(186, 40);
             this.btnAddSae.TabIndex = 104;
             this.btnAddSae.TabStop = false;
             this.btnAddSae.Text = "Administração da SAE";
             this.btnAddSae.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddSae.UseVisualStyleBackColor = false;
             this.btnAddSae.Click += new System.EventHandler(this.btnAddSae_Click);
-            // 
-            // timerCollapsedTemplate
-            // 
-            this.timerCollapsedTemplate.Interval = 15;
-            this.timerCollapsedTemplate.Tick += new System.EventHandler(this.timerCollapsedTemplate_Tick);
             // 
             // FrmMain
             // 

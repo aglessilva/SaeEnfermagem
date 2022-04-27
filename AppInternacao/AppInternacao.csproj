@@ -146,8 +146,9 @@
     <Compile Include="Enum\Area.cs" />
     <Compile Include="Enum\Perfil.cs" />
     <Compile Include="Enum\Procedure.cs" />
+    <Compile Include="Enum\SetorSae.cs" />
     <Compile Include="Enum\StatusInternacao.cs" />
-    <Compile Include="Enum\StepSae.cs" />
+    <Compile Include="Enum\Sae.cs" />
     <Compile Include="Extend\CheckBoxExt.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -241,12 +242,6 @@
     <Compile Include="FrmSae\UI005ListaPaciente.Designer.cs">
       <DependentUpon>UI005ListaPaciente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UCExameFisico.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FrmSae\UCExameFisico.Designer.cs">
-      <DependentUpon>UCExameFisico.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSae\UCAlterarSenha.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -296,11 +291,11 @@
     <Compile Include="FrmSae\UI014FrmSaeExameFisico.Designer.cs">
       <DependentUpon>UI014FrmSaeExameFisico.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UI015FrmArea.cs">
+    <Compile Include="FrmSae\UI020FrmSaeTemplateArea.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSae\UI015FrmArea.Designer.cs">
-      <DependentUpon>UI015FrmArea.cs</DependentUpon>
+    <Compile Include="FrmSae\UI020FrmSaeTemplateArea.Designer.cs">
+      <DependentUpon>UI020FrmSaeTemplateArea.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSae\UI016FrmSaePlanejamentoEnfermagem.cs">
       <SubType>Form</SubType>
@@ -320,11 +315,17 @@
     <Compile Include="FrmSae\UI018FrmSaeAvaliacao.Designer.cs">
       <DependentUpon>UI018FrmSaeAvaliacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSae\UI019FrmPrescricaoEnfermagem.cs">
+    <Compile Include="FrmSae\UI019FrmSaeAvisoEtapa1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSae\UI019FrmPrescricaoEnfermagem.Designer.cs">
-      <DependentUpon>UI019FrmPrescricaoEnfermagem.cs</DependentUpon>
+    <Compile Include="FrmSae\UI019FrmSaeAvisoEtapa1.Designer.cs">
+      <DependentUpon>UI019FrmSaeAvisoEtapa1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSae\UI21FrmSaeTemplateList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSae\UI21FrmSaeTemplateList.Designer.cs">
+      <DependentUpon>UI21FrmSaeTemplateList.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmViewTemplate.cs">
       <SubType>Form</SubType>
@@ -364,8 +365,8 @@
     <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
     <Compile Include="Model\DiagnosticoEnfermagem.cs" />
+    <Compile Include="Model\DiagnosticoEnfermagemDTO.cs" />
     <Compile Include="Model\EvolucaoEnfermagem.cs" />
-    <Compile Include="Model\ExameFisicoDTO.cs" />
     <Compile Include="Model\HistoricoEnfermagem.cs" />
     <Compile Include="Model\JustificativaAnotacao.cs" />
     <Compile Include="Model\NandaCaracteristicaDefinidora.cs" />
@@ -389,6 +390,7 @@
     <Compile Include="Model\PrescricaoPaciente.cs" />
     <Compile Include="Model\Quarto.cs" />
     <Compile Include="Model\ExameFisico.cs" />
+    <Compile Include="Model\SaeStatus.cs" />
     <Compile Include="Model\Setor.cs" />
     <Compile Include="Model\TemplateExameFisico.cs" />
     <Compile Include="Model\TemplateNameExameFisico.cs" />
@@ -460,9 +462,6 @@
     <EmbeddedResource Include="FrmSae\UI005ListaPaciente.resx">
       <DependentUpon>UI005ListaPaciente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UCExameFisico.resx">
-      <DependentUpon>UCExameFisico.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UCAlterarSenha.resx">
       <DependentUpon>UCAlterarSenha.cs</DependentUpon>
     </EmbeddedResource>
@@ -487,8 +486,8 @@
     <EmbeddedResource Include="FrmSae\UI014FrmSaeExameFisico.resx">
       <DependentUpon>UI014FrmSaeExameFisico.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UI015FrmArea.resx">
-      <DependentUpon>UI015FrmArea.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UI020FrmSaeTemplateArea.resx">
+      <DependentUpon>UI020FrmSaeTemplateArea.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI016FrmSaePlanejamentoEnfermagem.resx">
       <DependentUpon>UI016FrmSaePlanejamentoEnfermagem.cs</DependentUpon>
@@ -499,8 +498,11 @@
     <EmbeddedResource Include="FrmSae\UI018FrmSaeAvaliacao.resx">
       <DependentUpon>UI018FrmSaeAvaliacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSae\UI019FrmPrescricaoEnfermagem.resx">
-      <DependentUpon>UI019FrmPrescricaoEnfermagem.cs</DependentUpon>
+    <EmbeddedResource Include="FrmSae\UI019FrmSaeAvisoEtapa1.resx">
+      <DependentUpon>UI019FrmSaeAvisoEtapa1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSae\UI21FrmSaeTemplateList.resx">
+      <DependentUpon>UI21FrmSaeTemplateList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmViewTemplate.resx">
       <DependentUpon>FrmViewTemplate.cs</DependentUpon>
@@ -583,9 +585,6 @@
     <None Include="Resources\file-edit_114433.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\exit_close_error_15565.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ok_accept_15562.png" />
   </ItemGroup>
   <ItemGroup>
@@ -604,9 +603,6 @@
     <None Include="Resources\icons8-excluir-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete_40623.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Delete-80_icon-icons.com_57340.png" />
   </ItemGroup>
   <ItemGroup>
@@ -615,6 +611,8 @@
   <ItemGroup>
     <None Include="Resources\baseline_error_outline_black_18dp.png" />
     <None Include="Resources\baseline_delete_forever_black_18dp.png" />
+    <None Include="Resources\aam-website-as20201028.png" />
+    <Content Include="Resources\backgroudLogin.png" />
     <Content Include="Resources\HP.bmp" />
     <None Include="Resources\Reload-1s-177px.gif" />
     <Content Include="ZplPrint\TemplateEtiquetaZPL.txt" />
@@ -644,28 +642,18 @@
     <None Include="Resources\tipotemplate.png" />
     <None Include="Resources\template01.png" />
     <None Include="Resources\templateExame.png" />
-    <None Include="Resources\NovoCracha.jpg" />
     <None Include="Resources\loginFrm2.png" />
-    <None Include="Resources\key-silhouette-security-tool-interface-symbol-of-password_icon-icons.com_54503.png" />
-    <None Include="Resources\user-black-close-up-shape_icon-icons.com_56876.png" />
     <None Include="Resources\iconfinder-securityprotectlockshield43-4021443_113114.png" />
-    <None Include="Resources\loginFrm1.png" />
-    <None Include="Resources\loginFrm.png" />
-    <None Include="Resources\iconfinder-securityprotectlockshield26-4021460_113100.png" />
     <None Include="Resources\Undergo_Insomnia_icon-icons.com_54126.png" />
     <None Include="Resources\home 01.png" />
     <None Include="Resources\home.png" />
-    <None Include="Resources\private_company.png" />
     <None Include="Resources\Search_find_magnifier_248.png" />
     <None Include="Resources\LeitoDisable.png" />
     <None Include="Resources\LeitoEnable.png" />
     <None Include="Resources\internet_lock_locked_padlock_password_secure_security_icon_127100.png" />
     <None Include="Resources\people_47795.png" />
-    <None Include="Resources\User-80_icon-icons.com_57249.png" />
-    <None Include="Resources\User_Group-80_icon-icons.com_57247.png" />
     <None Include="Resources\preview_search_find_locate_1551.png" />
     <None Include="Resources\file-search_114412.png" />
-    <None Include="Resources\user_accounts_15362.png" />
     <None Include="Resources\key_password_lock_800.png" />
     <None Include="Resources\toddler.png" />
     <None Include="Resources\hospital_doctor_10739.png" />
@@ -674,7 +662,6 @@
     <None Include="Resources\vector-scan-barcode-4-transparent.png" />
     <None Include="Resources\tag_user_card_16777.png" />
     <None Include="Resources\infoflat_105980.png" />
-    <None Include="Resources\ok_accept_155621.png" />
     <None Include="Resources\next6_89384.png" />
     <None Include="Resources\TimiLineStep.png" />
     <None Include="Resources\userExit.png" />
@@ -708,7 +695,6 @@
     <None Include="Resources\Copy.png" />
     <Content Include="Resources\backgroudBody.png" />
     <Content Include="Resources\Error-80_icon-icons.com_57326.png" />
-    <None Include="Resources\Error-80_icon-icons.com_573261.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

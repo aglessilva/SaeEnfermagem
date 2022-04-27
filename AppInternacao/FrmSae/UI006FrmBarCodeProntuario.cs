@@ -36,8 +36,10 @@ namespace AppInternacao.FrmSae
 
                 if (textBoxProntuario.Text.Length == 12)
                 {
+                    int setorSae = frm.Tag == null ? 0 :(int)frm.Tag;
+
                     PacientePresenter = new PacientePresenter();
-                    PacientePresenter.SessaoPaciente(Convert.ToInt64(textBoxProntuario.Text));
+                    PacientePresenter.SessaoPaciente(Convert.ToInt64(textBoxProntuario.Text), setorSae);
 
                     pbOk.Visible = Sessao.Paciente.Id > 0;
 
@@ -55,13 +57,9 @@ namespace AppInternacao.FrmSae
                         {
                             lblObs.Visible = true;
                             lblObs.Text = "PARA CONTINUAR É NECESSÁRIO ASSOCIAR O PACIENTE À UM LEITO";
-                            //if (!isMedico)
-                              //  UCTimeLine.ButtonSaeAvanca.Enabled = false;
                         }
 
                         lblObs.Visible = string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
-                      //f (!isMedico)
-                            //UCTimeLine.ButtonSaeAvanca.Enabled = !lblObs.Visible;
                         btnEnviarCodigoBarra.Enabled = !lblObs.Visible;
                         gDadosPaciente.Visible = true;
                         lblNaoLocaizado.Visible = false;
@@ -74,9 +72,6 @@ namespace AppInternacao.FrmSae
                     }
                     else
                     {
-                       // if (!isMedico)
-                             //UCTimeLine.ButtonSaeAvanca.Enabled = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
-
                         lblObs.Visible = !string.IsNullOrWhiteSpace(Sessao.Paciente.NomeLeito);
                         gDadosPaciente.Visible = false;
                         lblNaoLocaizado.Visible = true;
@@ -126,14 +121,16 @@ namespace AppInternacao.FrmSae
                 ctrl.Controls[0].Controls.Add(frm);
             }
 
+            this.Close();
             frm.Show();
         }
 
         private void UI006FrmBarCodeProntuario_Load(object sender, EventArgs e)
         {
+#if DEBUG
+            textBoxProntuario.Text = "562021443327";
+#endif
             textBoxProntuario.Focus();
-           // if (!isMedico)
-               // UCTimeLine.ButtonSaeAvanca.Enabled = false;
         }
     }
 }

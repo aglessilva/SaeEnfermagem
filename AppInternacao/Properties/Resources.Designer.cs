@@ -153,6 +153,16 @@ namespace AppInternacao.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgroudLogin {
+            get {
+                object obj = ResourceManager.GetObject("backgroudLogin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap backgroudMenu001 {
             get {
                 object obj = ResourceManager.GetObject("backgroudMenu001", resourceCulture);

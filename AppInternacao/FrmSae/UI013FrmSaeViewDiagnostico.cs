@@ -1,4 +1,5 @@
-﻿using AppInternacao.Model;
+﻿using AppInternacao.Enum;
+using AppInternacao.Model;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,8 @@ namespace AppInternacao.FrmSae
                     ResetForm();
                     return;
                 }
-                btnRemover.Enabled = true;
+
+                btnRemover.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
 
                 lblDominio.Text = $"Domínio: {Sessao.Paciente.Sae.DiagnosticoEnfermagem.FirstOrDefault(d => d.Diagnostico.IdDominio == nandaDiagnostico.IdDominio).NomeDominio}";
                 lblClasse.Text = $"Classe: {Sessao.Paciente.Sae.DiagnosticoEnfermagem.FirstOrDefault(d => d.Diagnostico.IdDominio == nandaDiagnostico.IdDominio).NomeClasse}";
@@ -103,6 +105,7 @@ namespace AppInternacao.FrmSae
         private void btnRemover_Click(object sender, EventArgs e)
         {
             Sessao.Paciente.Sae.DiagnosticoEnfermagem.RemoveAll(f => f.Diagnostico.Codigo.Equals(nandaDiagnostico.Codigo));
+            Sessao.Paciente.Sae?.IntervencaoEnfermagem.RemoveAll(f => f.CodigoDiagnostico.Equals(nandaDiagnostico.Codigo));
             ResetForm();
             PopulaComboDiagnostico();
 
@@ -114,7 +117,12 @@ namespace AppInternacao.FrmSae
         {
             Dispose(true);
             Close();
-            UI011FrmTimeLine.iconButtonAvanca.Enabled = UI011FrmTimeLine.IconButtonVolta.Enabled = true;
+
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = Sessao.Paciente.SaeStatus.Status == Sae.Edicao; 
+
+            UI011FrmTimeLine.IconButtonVolta.Enabled = true;
+            UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+            
             Form f = (UI010FrmNanda)UI011FrmTimeLine.ctrl.Controls[0];
 
             IconButton btnVisualizar = f.Controls.OfType<IconButton>().FirstOrDefault();
@@ -122,10 +130,10 @@ namespace AppInternacao.FrmSae
             if (Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count == 0)
             {
                 btnVisualizar.Visible = false;
-                btnVisualizar.Text = "Visualizar iten(s)"; 
+                btnVisualizar.Text = "Visualizar Itens"; 
             }
             else
-                btnVisualizar.Text = $"Visualizar iten(s) {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
+                btnVisualizar.Text = $"Visualizar Itens {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
         }
     }
 }

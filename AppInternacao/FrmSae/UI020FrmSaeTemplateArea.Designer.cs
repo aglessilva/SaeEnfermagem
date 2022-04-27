@@ -1,7 +1,7 @@
 ﻿
 namespace AppInternacao.FrmSae
 {
-    partial class UI015FrmArea
+    partial class UI020FrmSaeTemplateArea
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -52,27 +52,11 @@ namespace AppInternacao.FrmSae
             this.flpCateteres = new System.Windows.Forms.FlowLayoutPanel();
             this.gGlasgow = new System.Windows.Forms.GroupBox();
             this.gRespostaVerbal = new System.Windows.Forms.GroupBox();
-            this.radioButtonExt16 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt15 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt14 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt13 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt12 = new AppInternacao.Extend.RadioButtonExt();
+            this.flpRespostaVerbal = new System.Windows.Forms.FlowLayoutPanel();
             this.gAberturaOcular = new System.Windows.Forms.GroupBox();
-            this.radioButtonExt11 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt10 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt9 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt8 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt7 = new AppInternacao.Extend.RadioButtonExt();
+            this.flpRespostaOcular = new System.Windows.Forms.FlowLayoutPanel();
             this.gRespostaMotora = new System.Windows.Forms.GroupBox();
-            this.radioButtonExt6 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt5 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt4 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt3 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt2 = new AppInternacao.Extend.RadioButtonExt();
-            this.radioButtonExt1 = new AppInternacao.Extend.RadioButtonExt();
-            this.pFormGlasgow = new System.Windows.Forms.Panel();
-            this.lblSomaGlasgow = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.flpRespostaMotora = new System.Windows.Forms.FlowLayoutPanel();
             this.gPinard = new System.Windows.Forms.GroupBox();
             this.flpPinard = new System.Windows.Forms.FlowLayoutPanel();
             this.gLesaoCompressao = new System.Windows.Forms.GroupBox();
@@ -108,7 +92,6 @@ namespace AppInternacao.FrmSae
             this.gRespostaVerbal.SuspendLayout();
             this.gAberturaOcular.SuspendLayout();
             this.gRespostaMotora.SuspendLayout();
-            this.pFormGlasgow.SuspendLayout();
             this.gPinard.SuspendLayout();
             this.gLesaoCompressao.SuspendLayout();
             this.gSistemaUrinario.SuspendLayout();
@@ -133,7 +116,7 @@ namespace AppInternacao.FrmSae
             this.treeViewCategorias.ItemHeight = 20;
             this.treeViewCategorias.Location = new System.Drawing.Point(0, 0);
             this.treeViewCategorias.Name = "treeViewCategorias";
-            this.treeViewCategorias.Size = new System.Drawing.Size(266, 457);
+            this.treeViewCategorias.Size = new System.Drawing.Size(266, 511);
             this.treeViewCategorias.TabIndex = 109;
             this.treeViewCategorias.TabStop = false;
             this.treeViewCategorias.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewCategorias_AfterCheck);
@@ -145,7 +128,7 @@ namespace AppInternacao.FrmSae
             this.pnlLateral.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlLateral.Location = new System.Drawing.Point(777, 0);
             this.pnlLateral.Name = "pnlLateral";
-            this.pnlLateral.Size = new System.Drawing.Size(267, 494);
+            this.pnlLateral.Size = new System.Drawing.Size(267, 548);
             this.pnlLateral.TabIndex = 110;
             // 
             // pnlArea
@@ -155,7 +138,7 @@ namespace AppInternacao.FrmSae
             this.pnlArea.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlArea.Location = new System.Drawing.Point(-1, 0);
             this.pnlArea.Name = "pnlArea";
-            this.pnlArea.Size = new System.Drawing.Size(266, 492);
+            this.pnlArea.Size = new System.Drawing.Size(266, 546);
             this.pnlArea.TabIndex = 111;
             // 
             // panel2
@@ -164,7 +147,7 @@ namespace AppInternacao.FrmSae
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 35);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(266, 457);
+            this.panel2.Size = new System.Drawing.Size(266, 511);
             this.panel2.TabIndex = 111;
             // 
             // panel1
@@ -214,7 +197,7 @@ namespace AppInternacao.FrmSae
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(0, 0);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(777, 494);
+            this.panelBody.Size = new System.Drawing.Size(777, 548);
             this.panelBody.TabIndex = 1000;
             // 
             // gEscalaPressao
@@ -222,14 +205,14 @@ namespace AppInternacao.FrmSae
             this.gEscalaPressao.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gEscalaPressao.Controls.Add(this.flpPressaoArterial);
             this.gEscalaPressao.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gEscalaPressao.Location = new System.Drawing.Point(0, 900);
+            this.gEscalaPressao.Location = new System.Drawing.Point(0, 889);
             this.gEscalaPressao.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
             this.gEscalaPressao.Name = "gEscalaPressao";
             this.gEscalaPressao.Size = new System.Drawing.Size(760, 85);
             this.gEscalaPressao.TabIndex = 14;
             this.gEscalaPressao.TabStop = false;
             this.gEscalaPressao.Tag = "";
-            this.gEscalaPressao.Text = "Escala de Pressão Arterial";
+            this.gEscalaPressao.Text = "Pressão Arterial";
             this.gEscalaPressao.Visible = false;
             // 
             // flpPressaoArterial
@@ -320,9 +303,9 @@ namespace AppInternacao.FrmSae
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(16, 8);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(133, 13);
+            this.label12.Size = new System.Drawing.Size(42, 13);
             this.label12.TabIndex = 1010;
-            this.label12.Text = " Escala de Pressão Arterial";
+            this.label12.Text = " Escala";
             // 
             // comboBoxPressaoArterial
             // 
@@ -349,13 +332,13 @@ namespace AppInternacao.FrmSae
             this.gCateterSonda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gCateterSonda.Controls.Add(this.flpCateteres);
             this.gCateterSonda.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gCateterSonda.Location = new System.Drawing.Point(0, 840);
+            this.gCateterSonda.Location = new System.Drawing.Point(0, 829);
             this.gCateterSonda.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
             this.gCateterSonda.Name = "gCateterSonda";
             this.gCateterSonda.Size = new System.Drawing.Size(760, 60);
             this.gCateterSonda.TabIndex = 13;
             this.gCateterSonda.TabStop = false;
-            this.gCateterSonda.Text = "Controle de Cateres e Sondas";
+            this.gCateterSonda.Text = "Cateres e Sondas";
             this.gCateterSonda.Visible = false;
             // 
             // flpCateteres
@@ -372,290 +355,75 @@ namespace AppInternacao.FrmSae
             this.gGlasgow.Controls.Add(this.gRespostaVerbal);
             this.gGlasgow.Controls.Add(this.gAberturaOcular);
             this.gGlasgow.Controls.Add(this.gRespostaMotora);
-            this.gGlasgow.Controls.Add(this.pFormGlasgow);
             this.gGlasgow.Dock = System.Windows.Forms.DockStyle.Top;
             this.gGlasgow.Location = new System.Drawing.Point(0, 660);
             this.gGlasgow.Name = "gGlasgow";
-            this.gGlasgow.Size = new System.Drawing.Size(760, 180);
+            this.gGlasgow.Size = new System.Drawing.Size(760, 169);
             this.gGlasgow.TabIndex = 25;
             this.gGlasgow.TabStop = false;
             this.gGlasgow.Tag = "12";
-            this.gGlasgow.Text = "Escala de Coma de Glasgow";
+            this.gGlasgow.Text = "Coma /Melhor Resposta";
             this.gGlasgow.Visible = false;
             // 
             // gRespostaVerbal
             // 
-            this.gRespostaVerbal.Controls.Add(this.radioButtonExt16);
-            this.gRespostaVerbal.Controls.Add(this.radioButtonExt15);
-            this.gRespostaVerbal.Controls.Add(this.radioButtonExt14);
-            this.gRespostaVerbal.Controls.Add(this.radioButtonExt13);
-            this.gRespostaVerbal.Controls.Add(this.radioButtonExt12);
+            this.gRespostaVerbal.Controls.Add(this.flpRespostaVerbal);
             this.gRespostaVerbal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gRespostaVerbal.Location = new System.Drawing.Point(3, 138);
+            this.gRespostaVerbal.Location = new System.Drawing.Point(3, 116);
             this.gRespostaVerbal.Name = "gRespostaVerbal";
-            this.gRespostaVerbal.Size = new System.Drawing.Size(754, 39);
+            this.gRespostaVerbal.Size = new System.Drawing.Size(754, 50);
             this.gRespostaVerbal.TabIndex = 15;
             this.gRespostaVerbal.TabStop = false;
-            this.gRespostaVerbal.Text = "Melhor Resposta Verbal";
+            this.gRespostaVerbal.Text = "Verbal";
             this.gRespostaVerbal.Visible = false;
             // 
-            // radioButtonExt16
+            // flpRespostaVerbal
             // 
-            this.radioButtonExt16.AutoSize = true;
-            this.radioButtonExt16.Location = new System.Drawing.Point(406, 19);
-            this.radioButtonExt16.Name = "radioButtonExt16";
-            this.radioButtonExt16.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt16.TabIndex = 11101010;
-            this.radioButtonExt16.TabStop = true;
-            this.radioButtonExt16.Text = "Sem Resposta";
-            this.radioButtonExt16.UseVisualStyleBackColor = true;
-            this.radioButtonExt16.Value = "1";
-            // 
-            // radioButtonExt15
-            // 
-            this.radioButtonExt15.AutoSize = true;
-            this.radioButtonExt15.Location = new System.Drawing.Point(283, 19);
-            this.radioButtonExt15.Name = "radioButtonExt15";
-            this.radioButtonExt15.Size = new System.Drawing.Size(114, 17);
-            this.radioButtonExt15.TabIndex = 210100;
-            this.radioButtonExt15.TabStop = true;
-            this.radioButtonExt15.Text = "Sons Ininteligentes";
-            this.radioButtonExt15.UseVisualStyleBackColor = true;
-            this.radioButtonExt15.Value = "2";
-            // 
-            // radioButtonExt14
-            // 
-            this.radioButtonExt14.AutoSize = true;
-            this.radioButtonExt14.Location = new System.Drawing.Point(150, 19);
-            this.radioButtonExt14.Name = "radioButtonExt14";
-            this.radioButtonExt14.Size = new System.Drawing.Size(127, 17);
-            this.radioButtonExt14.TabIndex = 29100;
-            this.radioButtonExt14.TabStop = true;
-            this.radioButtonExt14.Text = "Palavras Inaproriadas";
-            this.radioButtonExt14.UseVisualStyleBackColor = true;
-            this.radioButtonExt14.Value = "3";
-            // 
-            // radioButtonExt13
-            // 
-            this.radioButtonExt13.AutoSize = true;
-            this.radioButtonExt13.Location = new System.Drawing.Point(80, 19);
-            this.radioButtonExt13.Name = "radioButtonExt13";
-            this.radioButtonExt13.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt13.TabIndex = 28100;
-            this.radioButtonExt13.TabStop = true;
-            this.radioButtonExt13.Text = "Confuso";
-            this.radioButtonExt13.UseVisualStyleBackColor = true;
-            this.radioButtonExt13.Value = "4";
-            // 
-            // radioButtonExt12
-            // 
-            this.radioButtonExt12.AutoSize = true;
-            this.radioButtonExt12.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt12.Name = "radioButtonExt12";
-            this.radioButtonExt12.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt12.TabIndex = 27100;
-            this.radioButtonExt12.TabStop = true;
-            this.radioButtonExt12.Text = "Confuso";
-            this.radioButtonExt12.UseVisualStyleBackColor = true;
-            this.radioButtonExt12.Value = "5";
+            this.flpRespostaVerbal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpRespostaVerbal.Location = new System.Drawing.Point(3, 16);
+            this.flpRespostaVerbal.Name = "flpRespostaVerbal";
+            this.flpRespostaVerbal.Size = new System.Drawing.Size(748, 31);
+            this.flpRespostaVerbal.TabIndex = 1014;
             // 
             // gAberturaOcular
             // 
-            this.gAberturaOcular.Controls.Add(this.radioButtonExt11);
-            this.gAberturaOcular.Controls.Add(this.radioButtonExt10);
-            this.gAberturaOcular.Controls.Add(this.radioButtonExt9);
-            this.gAberturaOcular.Controls.Add(this.radioButtonExt8);
-            this.gAberturaOcular.Controls.Add(this.radioButtonExt7);
+            this.gAberturaOcular.Controls.Add(this.flpRespostaOcular);
             this.gAberturaOcular.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gAberturaOcular.Location = new System.Drawing.Point(3, 95);
+            this.gAberturaOcular.Location = new System.Drawing.Point(3, 66);
             this.gAberturaOcular.Name = "gAberturaOcular";
-            this.gAberturaOcular.Size = new System.Drawing.Size(754, 43);
+            this.gAberturaOcular.Size = new System.Drawing.Size(754, 50);
             this.gAberturaOcular.TabIndex = 14;
             this.gAberturaOcular.TabStop = false;
-            this.gAberturaOcular.Text = "Abertura Ocular";
+            this.gAberturaOcular.Text = "Ocular";
             this.gAberturaOcular.Visible = false;
             // 
-            // radioButtonExt11
+            // flpRespostaOcular
             // 
-            this.radioButtonExt11.AutoSize = true;
-            this.radioButtonExt11.Location = new System.Drawing.Point(406, 19);
-            this.radioButtonExt11.Name = "radioButtonExt11";
-            this.radioButtonExt11.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt11.TabIndex = 111000;
-            this.radioButtonExt11.TabStop = true;
-            this.radioButtonExt11.Text = "Sem Resposta";
-            this.radioButtonExt11.UseVisualStyleBackColor = true;
-            this.radioButtonExt11.Value = "0";
-            // 
-            // radioButtonExt10
-            // 
-            this.radioButtonExt10.AutoSize = true;
-            this.radioButtonExt10.Location = new System.Drawing.Point(336, 19);
-            this.radioButtonExt10.Name = "radioButtonExt10";
-            this.radioButtonExt10.Size = new System.Drawing.Size(64, 17);
-            this.radioButtonExt10.TabIndex = 101000;
-            this.radioButtonExt10.TabStop = true;
-            this.radioButtonExt10.Text = "Ausente";
-            this.radioButtonExt10.UseVisualStyleBackColor = true;
-            this.radioButtonExt10.Value = "1";
-            // 
-            // radioButtonExt9
-            // 
-            this.radioButtonExt9.AutoSize = true;
-            this.radioButtonExt9.Location = new System.Drawing.Point(211, 19);
-            this.radioButtonExt9.Name = "radioButtonExt9";
-            this.radioButtonExt9.Size = new System.Drawing.Size(119, 17);
-            this.radioButtonExt9.TabIndex = 1900;
-            this.radioButtonExt9.TabStop = true;
-            this.radioButtonExt9.Text = "Estimulos Dolorosos";
-            this.radioButtonExt9.UseVisualStyleBackColor = true;
-            this.radioButtonExt9.Value = "2";
-            // 
-            // radioButtonExt8
-            // 
-            this.radioButtonExt8.AutoSize = true;
-            this.radioButtonExt8.Location = new System.Drawing.Point(98, 19);
-            this.radioButtonExt8.Name = "radioButtonExt8";
-            this.radioButtonExt8.Size = new System.Drawing.Size(107, 17);
-            this.radioButtonExt8.TabIndex = 1800;
-            this.radioButtonExt8.TabStop = true;
-            this.radioButtonExt8.Text = "Estimulos Verbais";
-            this.radioButtonExt8.UseVisualStyleBackColor = true;
-            this.radioButtonExt8.Value = "3";
-            // 
-            // radioButtonExt7
-            // 
-            this.radioButtonExt7.AutoSize = true;
-            this.radioButtonExt7.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt7.Name = "radioButtonExt7";
-            this.radioButtonExt7.Size = new System.Drawing.Size(82, 17);
-            this.radioButtonExt7.TabIndex = 1700;
-            this.radioButtonExt7.TabStop = true;
-            this.radioButtonExt7.Text = "Espontanea";
-            this.radioButtonExt7.UseVisualStyleBackColor = true;
-            this.radioButtonExt7.Value = "4";
+            this.flpRespostaOcular.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpRespostaOcular.Location = new System.Drawing.Point(3, 16);
+            this.flpRespostaOcular.Name = "flpRespostaOcular";
+            this.flpRespostaOcular.Size = new System.Drawing.Size(748, 31);
+            this.flpRespostaOcular.TabIndex = 1014;
             // 
             // gRespostaMotora
             // 
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt6);
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt5);
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt4);
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt3);
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt2);
-            this.gRespostaMotora.Controls.Add(this.radioButtonExt1);
+            this.gRespostaMotora.Controls.Add(this.flpRespostaMotora);
             this.gRespostaMotora.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gRespostaMotora.Location = new System.Drawing.Point(3, 52);
+            this.gRespostaMotora.Location = new System.Drawing.Point(3, 16);
             this.gRespostaMotora.Name = "gRespostaMotora";
-            this.gRespostaMotora.Size = new System.Drawing.Size(754, 43);
+            this.gRespostaMotora.Size = new System.Drawing.Size(754, 50);
             this.gRespostaMotora.TabIndex = 16;
             this.gRespostaMotora.TabStop = false;
-            this.gRespostaMotora.Text = "Melhor Resposta Motora";
+            this.gRespostaMotora.Text = "Motora";
             this.gRespostaMotora.Visible = false;
             // 
-            // radioButtonExt6
+            // flpRespostaMotora
             // 
-            this.radioButtonExt6.AutoSize = true;
-            this.radioButtonExt6.Location = new System.Drawing.Point(591, 19);
-            this.radioButtonExt6.Name = "radioButtonExt6";
-            this.radioButtonExt6.Size = new System.Drawing.Size(94, 17);
-            this.radioButtonExt6.TabIndex = 1100;
-            this.radioButtonExt6.TabStop = true;
-            this.radioButtonExt6.Text = "Sem Resposta";
-            this.radioButtonExt6.UseVisualStyleBackColor = true;
-            this.radioButtonExt6.Value = "1";
-            // 
-            // radioButtonExt5
-            // 
-            this.radioButtonExt5.AutoSize = true;
-            this.radioButtonExt5.Location = new System.Drawing.Point(482, 19);
-            this.radioButtonExt5.Name = "radioButtonExt5";
-            this.radioButtonExt5.Size = new System.Drawing.Size(103, 17);
-            this.radioButtonExt5.TabIndex = 10000;
-            this.radioButtonExt5.TabStop = true;
-            this.radioButtonExt5.Text = "Padrão Extensor";
-            this.radioButtonExt5.UseVisualStyleBackColor = true;
-            this.radioButtonExt5.Value = "2";
-            // 
-            // radioButtonExt4
-            // 
-            this.radioButtonExt4.AutoSize = true;
-            this.radioButtonExt4.Location = new System.Drawing.Point(386, 19);
-            this.radioButtonExt4.Name = "radioButtonExt4";
-            this.radioButtonExt4.Size = new System.Drawing.Size(90, 17);
-            this.radioButtonExt4.TabIndex = 900;
-            this.radioButtonExt4.TabStop = true;
-            this.radioButtonExt4.Text = "Padrão Flexor";
-            this.radioButtonExt4.UseVisualStyleBackColor = true;
-            this.radioButtonExt4.Value = "3";
-            // 
-            // radioButtonExt3
-            // 
-            this.radioButtonExt3.AutoSize = true;
-            this.radioButtonExt3.Location = new System.Drawing.Point(255, 19);
-            this.radioButtonExt3.Name = "radioButtonExt3";
-            this.radioButtonExt3.Size = new System.Drawing.Size(125, 17);
-            this.radioButtonExt3.TabIndex = 800;
-            this.radioButtonExt3.TabStop = true;
-            this.radioButtonExt3.Text = "Retirada Inespecifica";
-            this.radioButtonExt3.UseVisualStyleBackColor = true;
-            this.radioButtonExt3.Value = "4";
-            // 
-            // radioButtonExt2
-            // 
-            this.radioButtonExt2.AutoSize = true;
-            this.radioButtonExt2.Location = new System.Drawing.Point(138, 19);
-            this.radioButtonExt2.Name = "radioButtonExt2";
-            this.radioButtonExt2.Size = new System.Drawing.Size(111, 17);
-            this.radioButtonExt2.TabIndex = 700;
-            this.radioButtonExt2.TabStop = true;
-            this.radioButtonExt2.Text = "Localiza Estimulos";
-            this.radioButtonExt2.UseVisualStyleBackColor = true;
-            this.radioButtonExt2.Value = "5";
-            // 
-            // radioButtonExt1
-            // 
-            this.radioButtonExt1.AutoSize = true;
-            this.radioButtonExt1.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonExt1.Name = "radioButtonExt1";
-            this.radioButtonExt1.Size = new System.Drawing.Size(122, 17);
-            this.radioButtonExt1.TabIndex = 600;
-            this.radioButtonExt1.TabStop = true;
-            this.radioButtonExt1.Text = "Obedece Comandos";
-            this.radioButtonExt1.UseVisualStyleBackColor = true;
-            this.radioButtonExt1.Value = "6";
-            // 
-            // pFormGlasgow
-            // 
-            this.pFormGlasgow.BackColor = System.Drawing.Color.Silver;
-            this.pFormGlasgow.Controls.Add(this.lblSomaGlasgow);
-            this.pFormGlasgow.Controls.Add(this.label2);
-            this.pFormGlasgow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pFormGlasgow.Location = new System.Drawing.Point(3, 16);
-            this.pFormGlasgow.Name = "pFormGlasgow";
-            this.pFormGlasgow.Size = new System.Drawing.Size(754, 36);
-            this.pFormGlasgow.TabIndex = 13;
-            // 
-            // lblSomaGlasgow
-            // 
-            this.lblSomaGlasgow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSomaGlasgow.AutoSize = true;
-            this.lblSomaGlasgow.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.lblSomaGlasgow.Location = new System.Drawing.Point(664, 4);
-            this.lblSomaGlasgow.Name = "lblSomaGlasgow";
-            this.lblSomaGlasgow.Size = new System.Drawing.Size(81, 22);
-            this.lblSomaGlasgow.TabIndex = 6;
-            this.lblSomaGlasgow.Text = "Total de:";
-            this.lblSomaGlasgow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Indicadores";
+            this.flpRespostaMotora.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpRespostaMotora.Location = new System.Drawing.Point(3, 16);
+            this.flpRespostaMotora.Name = "flpRespostaMotora";
+            this.flpRespostaMotora.Size = new System.Drawing.Size(748, 31);
+            this.flpRespostaMotora.TabIndex = 1014;
             // 
             // gPinard
             // 
@@ -668,7 +436,7 @@ namespace AppInternacao.FrmSae
             this.gPinard.Size = new System.Drawing.Size(760, 60);
             this.gPinard.TabIndex = 11;
             this.gPinard.TabStop = false;
-            this.gPinard.Text = "Globo de Segurança de Pinard ";
+            this.gPinard.Text = "Pinard ";
             this.gPinard.Visible = false;
             // 
             // flpPinard
@@ -712,7 +480,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaUrinario.Size = new System.Drawing.Size(760, 60);
             this.gSistemaUrinario.TabIndex = 9;
             this.gSistemaUrinario.TabStop = false;
-            this.gSistemaUrinario.Text = "Diagnostico de Sistema Urinário";
+            this.gSistemaUrinario.Text = "Urinário";
             this.gSistemaUrinario.Visible = false;
             // 
             // flpsistemaUrinario
@@ -734,7 +502,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaAbdominal.Size = new System.Drawing.Size(760, 60);
             this.gSistemaAbdominal.TabIndex = 8;
             this.gSistemaAbdominal.TabStop = false;
-            this.gSistemaAbdominal.Text = "Diagnostico de Sistema Abdominal";
+            this.gSistemaAbdominal.Text = "Abdominal";
             this.gSistemaAbdominal.Visible = false;
             // 
             // flpSistemaAbdominal
@@ -756,7 +524,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaVascular.Size = new System.Drawing.Size(760, 60);
             this.gSistemaVascular.TabIndex = 7;
             this.gSistemaVascular.TabStop = false;
-            this.gSistemaVascular.Text = "Diagnostico de Sistema Vascular";
+            this.gSistemaVascular.Text = "Vascular";
             this.gSistemaVascular.Visible = false;
             // 
             // flpSistemaVascular
@@ -778,7 +546,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaGastroIntestinal.Size = new System.Drawing.Size(760, 60);
             this.gSistemaGastroIntestinal.TabIndex = 6;
             this.gSistemaGastroIntestinal.TabStop = false;
-            this.gSistemaGastroIntestinal.Text = "Diagnostico de Sistema Gastrointestinal";
+            this.gSistemaGastroIntestinal.Text = "Gastrointestinal";
             this.gSistemaGastroIntestinal.Visible = false;
             // 
             // flpSistemaGastroIntestinal
@@ -799,7 +567,7 @@ namespace AppInternacao.FrmSae
             this.gPele.Size = new System.Drawing.Size(760, 60);
             this.gPele.TabIndex = 5;
             this.gPele.TabStop = false;
-            this.gPele.Text = "Diagnostico de Pele";
+            this.gPele.Text = "Pele";
             this.gPele.Visible = false;
             // 
             // flpPele
@@ -820,7 +588,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaOxigenacao.Size = new System.Drawing.Size(760, 60);
             this.gSistemaOxigenacao.TabIndex = 4;
             this.gSistemaOxigenacao.TabStop = false;
-            this.gSistemaOxigenacao.Text = "Diagnostico do Sistema de Oxigenação";
+            this.gSistemaOxigenacao.Text = "Oxigenação";
             this.gSistemaOxigenacao.Visible = false;
             // 
             // flpOxigenacao
@@ -841,7 +609,7 @@ namespace AppInternacao.FrmSae
             this.gRegulacaoTermica.Size = new System.Drawing.Size(760, 60);
             this.gRegulacaoTermica.TabIndex = 3;
             this.gRegulacaoTermica.TabStop = false;
-            this.gRegulacaoTermica.Text = "Diagnostico de Regulação Térmica";
+            this.gRegulacaoTermica.Text = "Regulação Térmica";
             this.gRegulacaoTermica.Visible = false;
             // 
             // flpRegulacaotermica
@@ -862,7 +630,7 @@ namespace AppInternacao.FrmSae
             this.gPupilas.Size = new System.Drawing.Size(760, 60);
             this.gPupilas.TabIndex = 2;
             this.gPupilas.TabStop = false;
-            this.gPupilas.Text = "Diagnostico de Pupilas";
+            this.gPupilas.Text = "Pupilas";
             this.gPupilas.Visible = false;
             // 
             // flpPupilas
@@ -883,7 +651,7 @@ namespace AppInternacao.FrmSae
             this.gSistemaNeurologico.Size = new System.Drawing.Size(760, 60);
             this.gSistemaNeurologico.TabIndex = 1;
             this.gSistemaNeurologico.TabStop = false;
-            this.gSistemaNeurologico.Text = "Diagnosticos do Sistema Neurológico";
+            this.gSistemaNeurologico.Text = "Neurológico";
             this.gSistemaNeurologico.Visible = false;
             // 
             // flpSistemaNerologico
@@ -895,14 +663,14 @@ namespace AppInternacao.FrmSae
             this.flpSistemaNerologico.Size = new System.Drawing.Size(754, 41);
             this.flpSistemaNerologico.TabIndex = 1001;
             // 
-            // UI015FrmArea
+            // UI020FrmSaeTemplateArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1044, 494);
+            this.ClientSize = new System.Drawing.Size(1044, 548);
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.pnlLateral);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "UI015FrmArea";
+            this.Name = "UI020FrmSaeTemplateArea";
             this.Load += new System.EventHandler(this.UI015FrmArea_Load);
             this.pnlLateral.ResumeLayout(false);
             this.pnlArea.ResumeLayout(false);
@@ -919,13 +687,8 @@ namespace AppInternacao.FrmSae
             this.gCateterSonda.ResumeLayout(false);
             this.gGlasgow.ResumeLayout(false);
             this.gRespostaVerbal.ResumeLayout(false);
-            this.gRespostaVerbal.PerformLayout();
             this.gAberturaOcular.ResumeLayout(false);
-            this.gAberturaOcular.PerformLayout();
             this.gRespostaMotora.ResumeLayout(false);
-            this.gRespostaMotora.PerformLayout();
-            this.pFormGlasgow.ResumeLayout(false);
-            this.pFormGlasgow.PerformLayout();
             this.gPinard.ResumeLayout(false);
             this.gLesaoCompressao.ResumeLayout(false);
             this.gSistemaUrinario.ResumeLayout(false);
@@ -974,27 +737,8 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.FlowLayoutPanel flpLesao;
         private System.Windows.Forms.GroupBox gGlasgow;
         private System.Windows.Forms.GroupBox gRespostaVerbal;
-        private Extend.RadioButtonExt radioButtonExt16;
-        private Extend.RadioButtonExt radioButtonExt15;
-        private Extend.RadioButtonExt radioButtonExt14;
-        private Extend.RadioButtonExt radioButtonExt13;
-        private Extend.RadioButtonExt radioButtonExt12;
         private System.Windows.Forms.GroupBox gAberturaOcular;
-        private Extend.RadioButtonExt radioButtonExt11;
-        private Extend.RadioButtonExt radioButtonExt10;
-        private Extend.RadioButtonExt radioButtonExt9;
-        private Extend.RadioButtonExt radioButtonExt8;
-        private Extend.RadioButtonExt radioButtonExt7;
         private System.Windows.Forms.GroupBox gRespostaMotora;
-        private Extend.RadioButtonExt radioButtonExt6;
-        private Extend.RadioButtonExt radioButtonExt5;
-        private Extend.RadioButtonExt radioButtonExt4;
-        private Extend.RadioButtonExt radioButtonExt3;
-        private Extend.RadioButtonExt radioButtonExt2;
-        private Extend.RadioButtonExt radioButtonExt1;
-        private System.Windows.Forms.Panel pFormGlasgow;
-        private System.Windows.Forms.Label lblSomaGlasgow;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gCateterSonda;
         private System.Windows.Forms.FlowLayoutPanel flpCateteres;
         private System.Windows.Forms.GroupBox gEscalaPressao;
@@ -1009,5 +753,8 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comboBoxPressaoArterial;
         private System.Windows.Forms.RichTextBox richTextBoxObservacao;
+        private System.Windows.Forms.FlowLayoutPanel flpRespostaVerbal;
+        private System.Windows.Forms.FlowLayoutPanel flpRespostaOcular;
+        private System.Windows.Forms.FlowLayoutPanel flpRespostaMotora;
     }
 }

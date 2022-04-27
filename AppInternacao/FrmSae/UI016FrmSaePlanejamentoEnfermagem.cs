@@ -5,8 +5,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static AppInternacao.Model.IntervencaoEnfermagem;
 
 namespace AppInternacao.FrmSae
 {
@@ -19,7 +21,7 @@ namespace AppInternacao.FrmSae
         NandaDiagnostico nandaDiagnostico = null;
 
         List<int> lstCodigoClassificacao = new List<int>();
-        List<KeyValuePair<int, int>> lstCodigoIndicadores = new List<KeyValuePair<int, int>>();
+        List<KeyValuePair<int, IndicadorItem>> lstCodigoIndicadores = new List<KeyValuePair<int, IndicadorItem>>();
         DataRow dataRow = null;
         
         DataTable dataTable, dataTableIdicadores;
@@ -32,6 +34,8 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                intervencaos.Clear();
+
                 new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(btnLimparCampo, "Limpar campo e filtros da classificação");
                 new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(btnLimparIndicadores, "Limpar compo e filtros dos indicadores");
 
@@ -50,11 +54,33 @@ namespace AppInternacao.FrmSae
 
                 presenterGeneric = new PresenterGeneric();
 
+                if (Sessao.Paciente.SaeStatus.DataSae != null && !Sessao.Paciente.Sae.IntervencaoEnfermagem.Any())
+                {
+                    intervencaos = presenterGeneric.GetLista(new IntervencaoEnfermagem { IdSae = Sessao.Paciente.SaeStatus.Id }, Procedure.SP_GET_INTERVENCAO_PRESCRICAO_ENFERMAGEM_SAE);
+                    intervencaos.ForEach(f => {
+                        if (f.AnotacaoPrescricaoEnfermagem != null)
+                            f.KeyPairAnotacaoPrescricaoEnfermagem = JsonConvert.DeserializeObject<List<KeyValuePair<int, string>>>(f.AnotacaoPrescricaoEnfermagem);
+
+                        f.KeyPairIndicadores = JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(f.Indicadores);
+                    });
+                }
+
+                if (Sessao.Paciente.Sae.IntervencaoEnfermagem.Any())
+                {
+                    if (!intervencaos.Any())
+                        intervencaos = Sessao.Paciente.Sae.IntervencaoEnfermagem;
+                }
+
                 Sessao.Paciente.Sae.DiagnosticoEnfermagem.ForEach(d =>
                 {
                     comboBoxDiagnostico.Items.Add(d.Diagnostico);
-                    intervencaos.Add(new IntervencaoEnfermagem { CodigoDiagnostico = d.Diagnostico.Codigo });
+
+                    if (!intervencaos.Any(s => s.CodigoDiagnostico == d.Diagnostico.Codigo))
+                        intervencaos.Add(new IntervencaoEnfermagem { CodigoDiagnostico = d.Diagnostico.Codigo });
                 });
+
+              
+
                 comboBoxDiagnostico.Items.Insert(0, "Selecione um diagnóstico...");
                 comboBoxDiagnostico.SelectedIndex = 0;
 
@@ -89,6 +115,7 @@ namespace AppInternacao.FrmSae
                 dataGridViewIndicadores.ClearSelection();
 
                 UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStepAvanca_Click;               
+                UI011FrmTimeLine.IconButtonVolta.Click += btnButtonBackStep_Click;               
 
             }
             catch (Exception ex)
@@ -97,33 +124,54 @@ namespace AppInternacao.FrmSae
             }
         }
 
+        private void btnButtonBackStep_Click(object sender, EventArgs e)
+        {
+            FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = true;
+            FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+            FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+
+            Form controlForm = new UI010FrmNanda(true) { TopLevel = false };
+            UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem"; ;
+            UI011FrmTimeLine.ctrl.Controls.Clear();
+            UI011FrmTimeLine.ctrl.Controls.Add(controlForm);
+            controlForm.Show();
+        }
+
         private void btnButtonStepAvanca_Click(object sender, EventArgs e)
         {
             try
             {
                 lstCodigoClassificacao.Clear();
-                if (intervencaos.Any(v => string.IsNullOrWhiteSpace(v.Indicadores)))
+                List<NandaDiagnostico> diagnosticos = comboBoxDiagnostico.Items.OfType<NandaDiagnostico>().ToList();
+
+                if (!diagnosticos.All(x => intervencaos.Any(v => x.Codigo == v.CodigoDiagnostico)) || intervencaos.Any(v => string.IsNullOrWhiteSpace(v.Indicadores)))
                 {
                     var obj = intervencaos.FirstOrDefault(v => string.IsNullOrWhiteSpace(v.Indicadores));
-                    var dig = comboBoxDiagnostico.Items.OfType<NandaDiagnostico>().FirstOrDefault(f => f.Codigo == obj.CodigoDiagnostico);
+                    
+                    var dig = obj is null ?  diagnosticos.LastOrDefault() : diagnosticos.FirstOrDefault(f => f.Codigo == obj.CodigoDiagnostico);
+
                     MessageBox.Show($"Não foi definido nenhuma intervenção para o diagnóstico ['{dig.Diagnostico}'].","Aviso",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    if(!intervencaos.Any(y => y.CodigoDiagnostico.Equals(dig.Codigo)))
+                        intervencaos.Add(new IntervencaoEnfermagem { CodigoDiagnostico = dig.Codigo });
+
                     return;
                 }
                 
-                intervencaos.ForEach(f => f.KeyPairIndicadores = JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(f.Indicadores));
+                intervencaos.ForEach(f => f.KeyPairIndicadores = JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(f.Indicadores));
 
                 foreach (IntervencaoEnfermagem item in intervencaos)
                 {
                     lstCodigoClassificacao.Clear();
                     lstCodigoClassificacao.AddRange(item.Classificacao.Split(',').Select(int.Parse).AsEnumerable());
-
-                    //bool isValid = item.KeyPairIndicadores.All(s => lstCodigoClassificacao.Contains(s.Key));
+                    
                     bool isValid = lstCodigoClassificacao.All(s => item.KeyPairIndicadores.Exists(x => s.Equals(x.Key)));
 
                     if (!isValid)
                     {
                         var dig = comboBoxDiagnostico.Items.OfType<NandaDiagnostico>().FirstOrDefault(f => f.Codigo == item.CodigoDiagnostico);
-                        var idClassificacao = lstCodigoClassificacao.SingleOrDefault(c => !item.KeyPairIndicadores.Any(s => s.Key.Equals(c)));
+                        var idClassificacao = lstCodigoClassificacao.FirstOrDefault(c => !item.KeyPairIndicadores.Any(s => s.Key.Equals(c)));
                         string msg = $">> INCONSISTÊNCIA <<\n\n"+
                                         $"Diagnostico: '{dig.Diagnostico}'\n" +
                                         $"Classificação: '{dataTable.Select($"Codigo = {idClassificacao}").FirstOrDefault()[2]}'\n\n" +
@@ -133,9 +181,10 @@ namespace AppInternacao.FrmSae
                         return;
                     }
                 }
-                
-                Sessao.Paciente.Sae.IntervencaoEnfermagem.AddRange(intervencaos.AsEnumerable());
 
+                Sessao.Paciente.Sae.IntervencaoEnfermagem = intervencaos;
+
+                FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
 
@@ -144,7 +193,7 @@ namespace AppInternacao.FrmSae
                 List<int> lstIndicador = new List<int>();
                 lstCodigoClassificacao.Clear();
 
-                intervencaos.ForEach(f => f.KeyPairIndicadores.ForEach(n => { lstIndicador.Add(n.Value); lstCodigoClassificacao.Add(n.Key); }));
+                intervencaos.ForEach(f => f.KeyPairIndicadores.ForEach(n => { lstIndicador.Add(n.Value.Id); lstCodigoClassificacao.Add(n.Key); }));
 
                 Form frm = new UI017FrmSaeImplementacao(new DataTable[] 
                 {
@@ -154,6 +203,10 @@ namespace AppInternacao.FrmSae
 
                 UI011FrmTimeLine.ctrl.Controls.Add(frm);
                 UI011FrmTimeLine.lblRotuloSae.Text = "Implementação - Intervenção de Enfermagem";
+                UI011FrmTimeLine.iconButtonAvanca.Text = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? "INICIAR" : "AVANÇAR";
+                UI011FrmTimeLine.iconButtonAvanca.ForeColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.FromArgb(13, 87, 134);
+                UI011FrmTimeLine.iconButtonAvanca.IconChar = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
+                UI011FrmTimeLine.iconButtonAvanca.IconColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.SteelBlue;
                 frm.Show();
 
             }
@@ -223,8 +276,6 @@ namespace AppInternacao.FrmSae
 
                         var linha = sendGrid.Rows[e.RowIndex].Cells[0].Value;
 
-                        bool isFlag = Convert.ToBoolean(sendGrid.Rows[e.RowIndex].Cells[1].Value);
-
                         if (Convert.ToBoolean(sendGrid.Rows[e.RowIndex].Cells[1].Value))
                             lstCodigoClassificacao.Add(Convert.ToInt32(linha));
                         else
@@ -235,8 +286,12 @@ namespace AppInternacao.FrmSae
 
                         nandaDiagnostico = (NandaDiagnostico)comboBoxDiagnostico.SelectedItem;
                         var obj = intervencaos.Find(i => i.CodigoDiagnostico == nandaDiagnostico.Codigo);
-                        obj.Classificacao = string.Join(",", lstCodigoClassificacao);
-                        obj.Indicadores = JsonConvert.SerializeObject(lstCodigoIndicadores);
+
+                        if (obj != null)
+                        {
+                            obj.Classificacao = string.Join(",", lstCodigoClassificacao);
+                            obj.Indicadores = lstCodigoIndicadores.Any() ? JsonConvert.SerializeObject(lstCodigoIndicadores, Formatting.None) : null;
+                        }
 
                         FilterIndicadores();
                         dataGridViewIndicadores.CellEnter += dataGridViewIndicadores_CellEnter;
@@ -273,13 +328,20 @@ namespace AppInternacao.FrmSae
                     var IdClassificacao = sendGrid.Rows[e.RowIndex].Cells[1].Value;
 
                     if (Convert.ToBoolean(sendGrid.Rows[e.RowIndex].Cells[2].Value))
-                        lstCodigoIndicadores.Add(new KeyValuePair<int, int>(Convert.ToInt32(IdClassificacao), Convert.ToInt32(idIndicador)));
+                        lstCodigoIndicadores.Add(new KeyValuePair<int, IndicadorItem>(Convert.ToInt32(IdClassificacao), new IndicadorItem { Id = Convert.ToInt32(idIndicador) }));
                     else
-                        lstCodigoIndicadores.RemoveAll(i => i.Value.Equals(Convert.ToInt32(idIndicador)));
+                    {
+                        lstCodigoIndicadores.RemoveAll(i => i.Value.Id.Equals(Convert.ToInt32(idIndicador)));
+                        intervencaos.ForEach(f =>
+                        {
+                            f.KeyPairIndicadores.RemoveAll(s => s.Value.Id.Equals(Convert.ToInt32(idIndicador)));
+                            f.KeyPairAnotacaoPrescricaoEnfermagem.RemoveAll(s => s.Key.Equals(Convert.ToInt32(idIndicador)));
+                        });
+                    }
 
                     nandaDiagnostico = (NandaDiagnostico)comboBoxDiagnostico.SelectedItem;
                     var obj = intervencaos.Find(i => i.CodigoDiagnostico == nandaDiagnostico.Codigo);
-                    obj.Indicadores = JsonConvert.SerializeObject(lstCodigoIndicadores);
+                    obj.Indicadores = JsonConvert.SerializeObject(lstCodigoIndicadores, Formatting.None);
                     dataTableIdicadores.AcceptChanges();
                 }
 
@@ -313,6 +375,57 @@ namespace AppInternacao.FrmSae
             foreach (DataRow item in dataTableIdicadores.Rows){item[2] = false;}
             dataGridViewClassificacao.Refresh();
         }
+       
+        void EditInvervencao()
+        {
+            try
+            {
+                (dataGridViewIndicadores.DataSource as DataTable).DefaultView.RowFilter = "Codigo > 0";
+
+                var obj = intervencaos.Find(i => i.CodigoDiagnostico == nandaDiagnostico.Codigo);
+                var isClear = intervencaos.Any(x => x.CodigoDiagnostico == nandaDiagnostico.Codigo
+                     && !string.IsNullOrWhiteSpace(x.Classificacao)
+                     && string.IsNullOrWhiteSpace(x.Indicadores));
+
+                if (string.IsNullOrWhiteSpace(obj?.Classificacao) || isClear)
+                {
+                    CleanFilter();
+                    return;
+                }
+                else
+                {
+                    lstCodigoClassificacao.AddRange(obj.Classificacao.Split(',').Select(int.Parse).AsEnumerable());
+                    foreach (DataRow item in dataTable.Rows)
+                        item[1] = lstCodigoClassificacao.Any(n => n.Equals(item[0]));
+
+
+                    if (!string.IsNullOrWhiteSpace(obj.Indicadores))
+                    {
+                        groupBoxIndicadores.Visible = true;
+
+                        lstCodigoIndicadores.AddRange(JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(obj.Indicadores).AsEnumerable());
+
+                        (dataGridViewIndicadores.DataSource as DataTable).DefaultView.RowFilter = string.Format("Codigo in({0})", string.Join(",", lstCodigoClassificacao.ToArray()));
+
+                        dataTableIdicadores.Select(string.Format("Codigo in({0})", string.Join(",", lstCodigoClassificacao.ToArray()))).ToList()
+                            .ForEach(f => f[2] = lstCodigoIndicadores.Any(n => n.Value.Id == Convert.ToInt32(f[0])));
+
+                    }
+
+                    groupBoxClassificacao.Enabled = groupBoxIndicadores.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
+
+                    if (Sessao.Paciente.SaeStatus.Status != Sae.Edicao)
+                    {
+                        dataTable.DefaultView.RowFilter = "Checked = true";
+                        dataTableIdicadores.DefaultView.RowFilter = $"Checked = true and Codigo in ({string.Join(",", lstCodigoClassificacao.ToArray())})";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+        }
 
         private void textBoxIndicadores_TextChanged(object sender, EventArgs e)
         {
@@ -331,47 +444,5 @@ namespace AppInternacao.FrmSae
             textBoxIndicadores.Text = "";
         }
 
-        void EditInvervencao()
-        {
-            try
-            {
-                (dataGridViewIndicadores.DataSource as DataTable).DefaultView.RowFilter = "Codigo > 0";
-
-                var obj = intervencaos.Find(i => i.CodigoDiagnostico == nandaDiagnostico.Codigo);
-                var isClear = intervencaos.Any(x => x.CodigoDiagnostico == nandaDiagnostico.Codigo
-                     && !string.IsNullOrWhiteSpace(x.Classificacao)
-                     && string.IsNullOrWhiteSpace(x.Indicadores));
-
-                if (string.IsNullOrWhiteSpace(obj.Classificacao) || isClear)
-                {
-                    CleanFilter();
-                    return;
-                }
-                else
-                {
-                    lstCodigoClassificacao.AddRange(obj.Classificacao.Split(',').Select(int.Parse).AsEnumerable());
-                    foreach (DataRow item in dataTable.Rows)
-                        item[1] = lstCodigoClassificacao.Any(n => n.Equals(item[0]));
-
-
-                    if (!string.IsNullOrWhiteSpace(obj.Indicadores))
-                    {
-                        groupBoxIndicadores.Visible = true;
-
-                        lstCodigoIndicadores.AddRange(JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(obj.Indicadores).AsEnumerable());
-
-                        (dataGridViewIndicadores.DataSource as DataTable).DefaultView.RowFilter = string.Format("Codigo in({0})", string.Join(",", lstCodigoClassificacao.ToArray()));
-
-                        dataTableIdicadores.Select(string.Format("Codigo in({0})", string.Join(",", lstCodigoClassificacao.ToArray()))).ToList()
-                            .ForEach(f => f[2] = lstCodigoIndicadores.Any(n => n.Value == Convert.ToInt32(f[0])));
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                FrmMain.Alert(exception: ex);
-            }
-        }
     }
 }

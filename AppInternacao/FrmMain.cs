@@ -232,7 +232,7 @@ namespace AppInternacao
             try
             {
                 panelDropDown.Height = panelDropDownTemplate.Height = 0;
-
+               
                 Presenter = new PresenterMain(this);
                 Presenter.Iniciar();
 
@@ -560,16 +560,6 @@ namespace AppInternacao
             ActivateButton(sender);
         }
 
-        private void btnClinicaMedica_Click_1(object sender, EventArgs e)
-        {
-            if (!isCollapsed[0])
-                timerCollapsed.Start();
-
-            CloseUC();
-            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine());
-            //userControl = new FrmSae.UI014FrmExameFisico();
-            OpenUc();
-        }
 
         private void iconButton1_Click_1(object sender, EventArgs e)
         {
@@ -591,8 +581,70 @@ namespace AppInternacao
                 timerCollapsedTemplate.Start();
             
             CloseUC();
-            userControl = new FrmSae.UI015FrmArea();
+            userControl = new FrmSae.UI020FrmSaeTemplateArea();
             OpenUc();
         }
+
+        private void btnListarModelo_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[1])
+                timerCollapsedTemplate.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI21FrmSaeTemplateList();
+            OpenUc();
+        }
+
+        private void iconBtnClinicaCirurgica_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClinicaCirurgica });
+            OpenUc();
+        }
+
+        private void btnClinicaMedica_Click_1(object sender, EventArgs e)
+        {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClininaMedica });
+            OpenUc();
+        }
+
+        private void iconBtnClinicaPediatrica_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClinicaPediatrica });
+            OpenUc();
+        }
+
+        private void iconBtnClinicaObstetrica_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() {Tag = SetorSae.ClinicaObstetrica });
+            OpenUc();
+        }
+
+        private void iconBtnUrgenciaEmergencia_Click(object sender, EventArgs e)
+        {
+            if (!isCollapsed[0])
+                timerCollapsed.Start();
+
+            CloseUC();
+            userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.UrgenciaEmergencia });
+            OpenUc();
+        }
+
+        
     }
 }

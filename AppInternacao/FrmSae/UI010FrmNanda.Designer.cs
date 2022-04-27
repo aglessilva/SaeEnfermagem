@@ -674,9 +674,9 @@ namespace AppInternacao.FrmSae
             this.BtnVizualizarDiagnostico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.BtnVizualizarDiagnostico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVizualizarDiagnostico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.BtnVizualizarDiagnostico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.BtnVizualizarDiagnostico.ForeColor = System.Drawing.Color.ForestGreen;
             this.BtnVizualizarDiagnostico.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            this.BtnVizualizarDiagnostico.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.BtnVizualizarDiagnostico.IconColor = System.Drawing.Color.ForestGreen;
             this.BtnVizualizarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnVizualizarDiagnostico.IconSize = 28;
             this.BtnVizualizarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -684,7 +684,8 @@ namespace AppInternacao.FrmSae
             this.BtnVizualizarDiagnostico.Name = "BtnVizualizarDiagnostico";
             this.BtnVizualizarDiagnostico.Size = new System.Drawing.Size(165, 28);
             this.BtnVizualizarDiagnostico.TabIndex = 28;
-            this.BtnVizualizarDiagnostico.Text = "Visualizar iten(s)";
+            this.BtnVizualizarDiagnostico.TabStop = false;
+            this.BtnVizualizarDiagnostico.Text = "Visualizar itens";
             this.BtnVizualizarDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnVizualizarDiagnostico.UseVisualStyleBackColor = false;
             this.BtnVizualizarDiagnostico.Visible = false;

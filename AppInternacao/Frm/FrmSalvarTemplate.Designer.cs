@@ -32,19 +32,19 @@ namespace AppInternacao.Frm
             this.panel00title = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxNomeTemplate = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSalvar = new FontAwesome.Sharp.IconButton();
             this.btnCancelar = new FontAwesome.Sharp.IconButton();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDescricaoTemplate = new System.Windows.Forms.TextBox();
+            this.comboBoxSetor = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel00title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,70 +84,48 @@ namespace AppInternacao.Frm
             this.label1.TabIndex = 4;
             this.label1.Text = "Salvar Template de Exame Físico";
             // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.textBoxNomeTemplate);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.btnSalvar);
-            this.panel1.Controls.Add(this.btnCancelar);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBoxDescricaoTemplate);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 208);
-            this.panel1.TabIndex = 4;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(97, 36);
+            this.label4.Location = new System.Drawing.Point(99, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(164, 13);
-            this.label4.TabIndex = 109;
+            this.label4.TabIndex = 118;
             this.label4.Text = "Informe um nome para o template";
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(12, 77);
+            this.panel3.Location = new System.Drawing.Point(14, 78);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(320, 1);
-            this.panel3.TabIndex = 107;
+            this.panel3.TabIndex = 116;
             // 
             // textBoxNomeTemplate
             // 
-            this.textBoxNomeTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.textBoxNomeTemplate.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxNomeTemplate.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxNomeTemplate.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxNomeTemplate.Location = new System.Drawing.Point(42, 62);
+            this.textBoxNomeTemplate.Location = new System.Drawing.Point(44, 63);
             this.textBoxNomeTemplate.MaxLength = 50;
             this.textBoxNomeTemplate.Name = "textBoxNomeTemplate";
             this.textBoxNomeTemplate.Size = new System.Drawing.Size(282, 13);
-            this.textBoxNomeTemplate.TabIndex = 1;
+            this.textBoxNomeTemplate.TabIndex = 110;
             this.textBoxNomeTemplate.WordWrap = false;
             this.textBoxNomeTemplate.TextChanged += new System.EventHandler(this.textBoxNomePrescricao_TextChanged);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.pictureBox1.Image = global::AppInternacao.Properties.Resources.Documents;
-            this.pictureBox1.Location = new System.Drawing.Point(14, 52);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 53);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 108;
+            this.pictureBox1.TabIndex = 117;
             this.pictureBox1.TabStop = false;
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalvar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.btnSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSalvar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -162,10 +140,10 @@ namespace AppInternacao.Frm
             this.btnSalvar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalvar.IconSize = 30;
             this.btnSalvar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvar.Location = new System.Drawing.Point(191, 163);
+            this.btnSalvar.Location = new System.Drawing.Point(193, 200);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(140, 32);
-            this.btnSalvar.TabIndex = 4;
+            this.btnSalvar.TabIndex = 113;
             this.btnSalvar.TabStop = false;
             this.btnSalvar.Text = "Salvar Template";
             this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -174,7 +152,6 @@ namespace AppInternacao.Frm
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -189,47 +166,75 @@ namespace AppInternacao.Frm
             this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancelar.IconSize = 30;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(11, 163);
+            this.btnCancelar.Location = new System.Drawing.Point(13, 200);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(140, 32);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.TabIndex = 112;
             this.btnCancelar.TabStop = false;
             this.btnCancelar.Text = "Cancelar Template";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 7);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 53;
-            this.label3.Text = "Motivos";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 88);
+            this.label2.Location = new System.Drawing.Point(10, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 13);
-            this.label2.TabIndex = 51;
+            this.label2.TabIndex = 114;
             this.label2.Text = "Descrição do Template";
             // 
             // textBoxDescricaoTemplate
             // 
-            this.textBoxDescricaoTemplate.Location = new System.Drawing.Point(11, 106);
-            this.textBoxDescricaoTemplate.MaxLength = 200;
+            this.textBoxDescricaoTemplate.Location = new System.Drawing.Point(13, 155);
+            this.textBoxDescricaoTemplate.MaxLength = 100;
             this.textBoxDescricaoTemplate.Multiline = true;
             this.textBoxDescricaoTemplate.Name = "textBoxDescricaoTemplate";
-            this.textBoxDescricaoTemplate.Size = new System.Drawing.Size(320, 46);
-            this.textBoxDescricaoTemplate.TabIndex = 2;
+            this.textBoxDescricaoTemplate.Size = new System.Drawing.Size(320, 36);
+            this.textBoxDescricaoTemplate.TabIndex = 111;
+            // 
+            // comboBoxSetor
+            // 
+            this.comboBoxSetor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSetor.FormattingEnabled = true;
+            this.comboBoxSetor.Location = new System.Drawing.Point(14, 106);
+            this.comboBoxSetor.Name = "comboBoxSetor";
+            this.comboBoxSetor.Size = new System.Drawing.Size(319, 21);
+            this.comboBoxSetor.TabIndex = 119;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 13);
+            this.label3.TabIndex = 120;
+            this.label3.Text = "Setor destinado:";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(345, 241);
+            this.panel1.TabIndex = 121;
             // 
             // FrmSalvarTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(345, 208);
+            this.ClientSize = new System.Drawing.Size(345, 241);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxSetor);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.textBoxNomeTemplate);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxDescricaoTemplate);
             this.Controls.Add(this.panel00title);
             this.Controls.Add(this.panel1);
             this.Location = new System.Drawing.Point(0, 0);
@@ -240,10 +245,9 @@ namespace AppInternacao.Frm
             this.panel00title.ResumeLayout(false);
             this.panel00title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -252,15 +256,16 @@ namespace AppInternacao.Frm
         private System.Windows.Forms.Panel panel00title;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxDescricaoTemplate;
-        private FontAwesome.Sharp.IconButton btnSalvar;
-        private FontAwesome.Sharp.IconButton btnCancelar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBoxNomeTemplate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconButton btnSalvar;
+        private FontAwesome.Sharp.IconButton btnCancelar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxDescricaoTemplate;
+        private System.Windows.Forms.ComboBox comboBoxSetor;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

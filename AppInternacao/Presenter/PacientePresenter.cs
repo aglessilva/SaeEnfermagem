@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.View;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -121,21 +122,33 @@ namespace AppInternacao.Presenter
         /// Carrega a Sessao com os dados do Paciente
         /// </summary>
         /// <param name="_numeroProntuario"> informe o número de prontuário do paciente</param>
-        public void SessaoPaciente(long _numeroProntuario)
+        public void SessaoPaciente(long _numeroProntuario, int _idSetor)
         {
             try
             {
                 Sessao.Paciente = null;
                 crud = new CRUD();
                 Sessao.Paciente = crud.RetornaObjeto(Procedure.SP_GET_PACIENTE, new Paciente() { Prontuario = _numeroProntuario });
+                Sessao.Paciente.SaeStatus = crud.RetornaObjeto(Procedure.SP_GET_STATUS_SAE, 
+                    new SaeStatus 
+                    { 
+                        Prontuario = Sessao.Paciente.Prontuario, 
+                        DataSae = null, 
+                        IdSetor = _idSetor
+                    });
+
+                if (Sessao.Paciente.SaeStatus.DataSae.HasValue)
+                {
+                    Sessao.Paciente.Sae.ExameFisico = crud.RetornaObjeto(Procedure.SP_GET_EXAME_FISICO_SAE, new ExameFisico { Prontuario = Sessao.Paciente.Prontuario, IdSae = Sessao.Paciente.SaeStatus.Id, IdSetor = _idSetor});
+                    Sessao.Paciente.Sae.ExameFisico.ExameItens = JsonConvert.DeserializeObject<List<AreaCategoriaItem>>(Sessao.Paciente.Sae.ExameFisico.AreasItens);
+                    Sessao.Paciente.Sae.ExameFisico.AreasItens = string.Empty;
+                }
             }
             catch (Exception exC)
             {
                 throw new Exception("Erro ão tentar carregar sessaõ do Usuarios: " + exC.Message);
             }
-
         }
-
 
     }
 }

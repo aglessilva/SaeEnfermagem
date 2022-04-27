@@ -2,7 +2,7 @@
 using AppInternacao.Extend;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
-using FontAwesome.Sharp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +18,12 @@ namespace AppInternacao.FrmSae
         }
         PresenterGeneric presenterGeneric = null;
         List<TemplateNameExameFisico> lstTemplateNamesExamesFisicos = null;
-        List<TemplateExameFisico> lstTemplatesExames = null;
-        List<AreaCategoriaItem> areaCategoriaItems = null;
-        List<Control> lstControles = new List<Control>();
+        TemplateExameFisico templatesExames = new TemplateExameFisico();
+        TemplateNameExameFisico template = null;
+        List<FlowLayoutPanel> flowLayoutPanels = new List<FlowLayoutPanel>();
+        List<GroupBox> groups = new List<GroupBox>();
 
+        bool isBack = false;
         private int somaTotalGlasgow;
         RadioButtonExt radioButtonItem = null;
 
@@ -41,16 +43,40 @@ namespace AppInternacao.FrmSae
             try
             {
                 UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
-                UI011FrmTimeLine.IconButtonVolta.Click += btnButtonStep_Click;
+                flowLayoutPanels.Clear();
 
                 presenterGeneric = new PresenterGeneric();
                 
-                lstTemplateNamesExamesFisicos = presenterGeneric.GetLista(new TemplateNameExameFisico(), Procedure.SP_GET_NAME_EXAME_FISICO);
-                lstTemplateNamesExamesFisicos.Insert(0, new TemplateNameExameFisico { Id = 0, NomeTemplate = "Selecione um modelo de exame físico..." });
+                lstTemplateNamesExamesFisicos = presenterGeneric.GetLista(new TemplateNameExameFisico { SetorAssociado = ((int)Tag).ToString() }, Procedure.SP_GET_NAME_EXAME_FISICO);
+
+               
+                UI011FrmTimeLine.IconButtonVolta.Enabled = false;
+                UI011FrmTimeLine.iconButtonAvanca.Enabled =  lstTemplateNamesExamesFisicos.Any() ;
+
+                if (!lstTemplateNamesExamesFisicos.Any())
+                {
+                    this.Enabled = false;
+                    MessageBox.Show("Não existe nenhum template de exame físico associado para este setor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                lstTemplateNamesExamesFisicos.Insert(0, new TemplateNameExameFisico { Id = 0, NomeTemplate = "Selecione um template de exame físico..." });
                 comboBoxTemplateExameFisico.DataSource = lstTemplateNamesExamesFisicos;
                 comboBoxPressaoArterial.DataSource = pressaoArterial;
 
-                areaCategoriaItems = presenterGeneric.GetLista(new AreaCategoriaItem(), Procedure.SP_GET_CATEGORIAS_AREA_ITEMS);
+                if (Sessao.Paciente.Sae.ExameFisico.ExameItens.Any())
+                {
+                    isBack = true;
+
+                    comboBoxTemplateExameFisico.SelectedItem = lstTemplateNamesExamesFisicos.SingleOrDefault(c => c.Id == Sessao.Paciente.Sae.ExameFisico.IdTemplate);
+                    txtAnotacaoAdicionais.Text = Sessao.Paciente.Sae.ExameFisico.AnotacoesAdicionais;
+                    Populatemplate();
+                    OrdenarGroup();
+                }
+
+                comboBoxTemplateExameFisico.Enabled = Sessao.Paciente.SaeStatus.DataSae is null;
+                txtAnotacaoAdicionais.Enabled = panelBody.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
+
             }
             catch (Exception ex)
             {
@@ -60,8 +86,7 @@ namespace AppInternacao.FrmSae
 
         private void btnButtonStep_Click(object sender, EventArgs e)
         {
-            IconButton btn = (IconButton)sender;
-            if (btn.Tag.Equals("1"))
+            if (!comboBoxTemplateExameFisico.SelectedValue.Equals(0))
             {
                 if (Valida())
                 {
@@ -69,6 +94,8 @@ namespace AppInternacao.FrmSae
                     Avancar();
                 }
             }
+            else
+                MessageBox.Show("Selecione um template para o preenchimento do exame físico", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Avancar()
@@ -76,13 +103,13 @@ namespace AppInternacao.FrmSae
             try
             {
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
-                FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
 
                 UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
                 
                 Form frm = new UI010FrmNanda(true) { TopLevel = false };
                 UI011FrmTimeLine.ctrl.Controls.Add(frm);
                 UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
+                UI011FrmTimeLine.IconButtonVolta.Enabled = true;
                 frm.Show();
             }
             catch (Exception Ex)
@@ -91,24 +118,33 @@ namespace AppInternacao.FrmSae
             }
         }
 
+        void Clear()
+        {
+            groups.ForEach(g => g.Visible = false);
+            groups.Clear();
+            flowLayoutPanels.ForEach(flp => {if(!flp.Name.Equals("flpPressaoArterial")) flp.Controls.Clear(); flp.BackColor = System.Drawing.Color.Transparent;  });
+            flowLayoutPanels.Clear();
+            Sessao.Paciente.Sae.ExameFisico = new ExameFisico();
+            errorProviderExameFisico.Clear();
+            panelBody.Visible = false;
+            templatesExames = new TemplateExameFisico();
+        }
 
         void GetExameFisico()
         {
             try
             {
-                var lstRadios = panelBody.Controls.OfType<GroupBox>().Where(s => s.Visible).Select(f => f.Controls.OfType<FlowLayoutPanel>()).ToList();
-                var radioButtonExtsChecked = lstRadios.SelectMany(x => x.Select(f => f.Controls.OfType<RadioButtonExt>().Where(w => w.Checked))).Select(g => g.ToList());
-                Sessao.Paciente.Sae.ExameFisico.ExameItens = radioButtonExtsChecked.SelectMany(f => f.Select(s => (AreaCategoriaItem)s.Tag)).ToList();
-
-                if(gGlasgow.Visible)
-                {
-                    var areaCategoriaItems = gGlasgow.Controls.OfType<GroupBox>().Where(w => w.Visible).Select(s => (AreaCategoriaItem)s.Tag).ToList();
-                    Sessao.Paciente.Sae.ExameFisico.ExameItens.AddRange(areaCategoriaItems);
-                }
+                Sessao.Paciente.Sae.ExameFisico.ExameItens = flowLayoutPanels
+                    .SelectMany(f => f.Controls.OfType<RadioButtonExt>()
+                    .Where(w => w.Checked)
+                    .Select(s => (AreaCategoriaItem)s.Tag)).ToList();
 
                 Sessao.Paciente.Sae.ExameFisico.AnotacoesAdicionais = txtAnotacaoAdicionais.Text;
+                Sessao.Paciente.Sae.ExameFisico.IdTemplate = Convert.ToInt32(comboBoxTemplateExameFisico.SelectedValue);
+                Sessao.Paciente.Sae.ExameFisico.Prontuario = Sessao.Paciente.Prontuario;
+                Sessao.Paciente.Sae.ExameFisico.IdSetor = (int)Tag;
 
-                if (gEscalaPressao.Visible)
+                if (groups.Any(g => g.Name.Equals(gEscalaPressao.Name)))
                 {
                     Sessao.Paciente.Sae.ExameFisico.AnotacaoPressaoArterial = textBoxAnotacaoPressaoArterial.Text;
                     Sessao.Paciente.Sae.ExameFisico.CodigoPressaoArterial = Convert.ToInt32(comboBoxPressaoArterial.SelectedValue);
@@ -125,18 +161,31 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                TemplateNameExameFisico template = (TemplateNameExameFisico)comboBoxTemplateExameFisico.SelectedItem;
+                template = (TemplateNameExameFisico)comboBoxTemplateExameFisico.SelectedItem;
 
-               if (template.Id > 0)
+                if (template.Id > 0)
                 {
-                    lstTemplatesExames = presenterGeneric.GetLista(new TemplateExameFisico { IdTemplate = template.Id }, Procedure.SP_GET_TEMPLATE_EXAME_FISICO);
+
+                    if (templatesExames.IdTemplate == template.Id)
+                        return;
+
+                    Clear();
+
+                    templatesExames = presenterGeneric.GetItem(new TemplateExameFisico { IdTemplate = template.Id }, Procedure.SP_GET_TEMPLATE_EXAME_FISICO);
+
+                    if (templatesExames is null)
+                        return;
+
                     Populatemplate();
                     OrdenarGroup();
                 }
+                else
+                    Clear();
+                    
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                FrmMain.Alert(exception: ex);
             }
         }
 
@@ -144,9 +193,29 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                foreach (Control item in lstControles)
+                flowLayoutPanels = flowLayoutPanels.OrderBy(o => o.TabIndex).ToList();
+
+                foreach (Control item in flowLayoutPanels)
                 {
-                    if (!item.Controls.OfType<RadioButtonExt>().Any(r => r.Checked) && !item.Name.Equals("flpPressaoArterial"))
+                    if (item.Controls.OfType<Panel>().Select(s => s.Controls.OfType<ComboBox>()).Any())
+                    {
+                        ComboBox comboBox = item.Controls.OfType<Panel>().SelectMany(s => s.Controls.OfType<ComboBox>()).FirstOrDefault();
+
+                        if (comboBox.SelectedIndex == 0)
+                        {
+                            item.BackColor = System.Drawing.Color.LightGray;
+                            errorProviderExameFisico.SetError(item, "preencha ou selecione um item desta categoria!");
+                            errorProviderExameFisico.SetIconPadding(item, -18);
+                            item.Focus();
+                            return false;
+                        }
+                        else
+                        {
+                            errorProviderExameFisico.SetError(item, null);
+                            item.BackColor = System.Drawing.Color.Transparent;
+                        }
+                    }
+                     else if (!item.Controls.OfType<RadioButtonExt>().Any(r => r.Checked))
                     {
                         item.BackColor = System.Drawing.Color.LightGray;
                         errorProviderExameFisico.SetError(item, "preencha ou selecione um item desta categoria!");
@@ -159,28 +228,8 @@ namespace AppInternacao.FrmSae
                         errorProviderExameFisico.SetError(item, null);
                         item.BackColor = System.Drawing.Color.Transparent;
                     }
-
-
-                    if (item.Name.Equals("flpPressaoArterial"))
-                    {
-                        var cb = item.Controls.OfType<Panel>().Where(p => p.Controls.Count > 0).Select(s => s.Controls.OfType<ComboBox>()).FirstOrDefault().FirstOrDefault();
-                        if(cb != null)
-                        {
-                            if (Convert.ToInt32(cb.SelectedValue) == 0)
-                            {
-                                item.BackColor = System.Drawing.Color.SlateGray;
-                                errorProviderExameFisico.SetError(item, "preencha ou selecione um item desta categoria!");
-                                errorProviderExameFisico.SetIconPadding(item, -18);
-                                return false;
-                            }
-                            else
-                            {
-                                errorProviderExameFisico.SetError(item, null);
-                                item.BackColor = System.Drawing.Color.Transparent;
-                            }
-                        }
-                    }
                 }
+
             }
             catch (Exception Ex)
             {
@@ -192,176 +241,224 @@ namespace AppInternacao.FrmSae
 
         void Populatemplate()
         {
-            List<int> lstIdItem = new List<int>();
-            List<RadioButtonExt> radioButtonExts = new List<RadioButtonExt>();
             try
             {
-                foreach (TemplateExameFisico item in lstTemplatesExames)
+                if (isBack && templatesExames.JsonTemplate == null)
+                    templatesExames = presenterGeneric.GetItem(new TemplateExameFisico { IdTemplate = Convert.ToInt32(comboBoxTemplateExameFisico.SelectedValue) }, Procedure.SP_GET_TEMPLATE_EXAME_FISICO);
+
+                List<AreaCategoriaItem> templateAreaCategoriaItems = JsonConvert.DeserializeObject<List<AreaCategoriaItem>>(templatesExames.JsonTemplate);
+
+                foreach (AreaCategoriaItem item in templateAreaCategoriaItems)
                 {
-                    lstIdItem.Clear();
-                    radioButtonExts.Clear();
+                    radioButtonItem = new RadioButtonExt()
+                    {
+                         Value = item.ValorItem.ToString()
+                        ,Text = item.Descricao
+                        ,AutoSize = true
+                        ,Tag = item
+                        ,Checked = isBack ? Sessao.Paciente.Sae.ExameFisico.ExameItens.Any(n => n.Id == item.Id && n.IdArea == item.IdArea) : isBack
+                    };
 
-                    item.IdItem.Split(',').ToList().ForEach(i => { lstIdItem.Add(Convert.ToInt32(i)); });
-                    
-                    var lstItemsArea = areaCategoriaItems.Where(s => lstIdItem.Contains(s.Id)).ToList();
-
-                    lstItemsArea.ForEach(m => {
-                        radioButtonItem = new RadioButtonExt() { Value = m.Id.ToString(), Text = m.Descricao, AutoSize = true, Tag = m };
-                        radioButtonExts.Add(radioButtonItem);
-                    });
-
-                    switch (item.IdArea)
+                    switch ((Area)item.IdArea)
                     {
                         case Area.SistemaNeurologico:
                             {
-                                if (!gSistemaNeurologico.Visible)
-                                    gSistemaNeurologico.Visible = true;
 
-                                flpSistemaNerologico.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpSistemaNerologico);
+                                if (!groups.Any(g => g.Name.Equals(gSistemaNeurologico.Name)))
+                                {
+                                    groups.Add(gSistemaNeurologico);
+                                    flowLayoutPanels.Add(flpSistemaNerologico);
+                                }
+
+                                flpSistemaNerologico.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.Pupilas:
                             {
-                                if (!gPupilas.Visible)
-                                    gPupilas.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gPupilas.Name)))
+                                {
+                                    groups.Add(gPupilas);
+                                    flowLayoutPanels.Add(flpPupilas);
+                                }
 
-                                flpPupilas.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpPupilas);
+                                flpPupilas.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.RegulacaoTermica:
                             {
-                                if (!gRegulacaoTermica.Visible)
-                                    gRegulacaoTermica.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gRegulacaoTermica.Name)))
+                                {
+                                    groups.Add(gRegulacaoTermica);
+                                    flowLayoutPanels.Add(flpRegulacaotermica);
+                                }
 
-                                flpRegulacaotermica.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpRegulacaotermica);
+                                flpRegulacaotermica.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.Oxigenacao:
                             {
-                                if (!gSistemaOxigenacao.Visible)
-                                    gSistemaOxigenacao.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gSistemaOxigenacao.Name)))
+                                {
+                                    groups.Add(gSistemaOxigenacao);
+                                    flowLayoutPanels.Add(flpOxigenacao);
+                                }
 
-                                flpOxigenacao.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpOxigenacao);
+                                flpOxigenacao.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.Pele:
                             {
-                                if (!gPele.Visible)
-                                    gPele.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gPele.Name)))
+                                {
+                                    groups.Add(gPele);
+                                    flowLayoutPanels.Add(flpPele);
+                                }
 
-                                flpPele.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpPele);
+                                flpPele.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.SistemaGastrointestinal:
                             {
-                                if (!gSistemaGastroIntestinal.Visible)
-                                    gSistemaGastroIntestinal.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gSistemaGastroIntestinal.Name)))
+                                {
+                                    groups.Add(gSistemaGastroIntestinal);
+                                    flowLayoutPanels.Add(flpSistemaGastroIntestinal);
+                                }
 
-                                flpSistemaGastroIntestinal.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpSistemaGastroIntestinal);
+                                flpSistemaGastroIntestinal.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.SistemaVascular:
                             {
-                                if (!gSistemaVascular.Visible)
-                                    gSistemaVascular.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gSistemaVascular.Name)))
+                                {
+                                    groups.Add(gSistemaVascular);
+                                    flowLayoutPanels.Add(flpSistemaVascular);
+                                }
 
-                                flpSistemaVascular.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpSistemaVascular);
+                                flpSistemaVascular.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.SistemaAbdominal:
                             {
-                                if (!gSistemaAbdominal.Visible)
-                                    gSistemaAbdominal.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gSistemaAbdominal.Name)))
+                                {
+                                    groups.Add(gSistemaAbdominal);
+                                    flowLayoutPanels.Add(flpSistemaAbdominal);
+                                }
 
-                                flpSistemaAbdominal.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpSistemaAbdominal);
+                                flpSistemaAbdominal.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.SistemaUrinario:
                             {
-                                if (!gSistemaUrinario.Visible)
-                                    gSistemaUrinario.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gSistemaUrinario.Name)))
+                                {
+                                    groups.Add(gSistemaUrinario);
+                                    flowLayoutPanels.Add(flpsistemaUrinario);
+                                }
 
-                                flpsistemaUrinario.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpsistemaUrinario);
+                                flpsistemaUrinario.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.LesaoCompressao:
                             {
-                                if (!gLesaoCompressao.Visible)
-                                    gLesaoCompressao.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gLesaoCompressao.Name)))
+                                {
+                                    groups.Add(gLesaoCompressao);
+                                    flowLayoutPanels.Add(flpLesao);
+                                }
 
-                                flpLesao.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpLesao);
+                                flpLesao.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.GloboPinard:
                             {
-                                if (!gPinard.Visible)
-                                    gPinard.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gPinard.Name)))
+                                {
+                                    groups.Add(gPinard);
+                                    flowLayoutPanels.Add(flpPinard);
+                                }
 
-                                flpPinard.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpPinard);
+                                flpPinard.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.ComaGlasgow:
                             {
-                                if (!gGlasgow.Visible)
-                                    pFormGlasgow.Visible = gGlasgow.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gGlasgow.Name)))
+                                    groups.Add(gGlasgow);
 
-                                radioButtonExts.ForEach(f => {
+                                if (item.IdAreaItem == 86)
+                                {
+                                    if (!groups.Any(g => g.Name.Equals(gRespostaMotora.Name)))
+                                    {
+                                        groups.Add(gRespostaMotora);
+                                        flowLayoutPanels.Add(flpRespostaMotora);
+                                    }
 
-                                    AreaCategoriaItem areaCategoriaItem = (AreaCategoriaItem)f.Tag;
-                                    if (areaCategoriaItem.Id == 86)
+                                    radioButtonItem.Click += RadioBtn_Click;
+                                    flpRespostaMotora.Controls.Add(radioButtonItem);
+                                }
+
+                                if (item.IdAreaItem == 85)
+                                {
+                                    if (!groups.Any(g => g.Name.Equals(gRespostaVerbal.Name)))
                                     {
-                                        gRespostaMotora.Visible = true;
-                                        gRespostaMotora.Tag = areaCategoriaItem;
-                                        lstControles.Add(gRespostaMotora);
+                                        groups.Add(gRespostaVerbal);
+                                        flowLayoutPanels.Add(flpRespostaVerbal);
                                     }
-                                    if (areaCategoriaItem.Id == 85)
+
+                                    radioButtonItem.Click += RadioBtn_Click;
+                                    flpRespostaVerbal.Controls.Add(radioButtonItem);
+                                }
+
+                                if (item.IdAreaItem == 84)
+                                {
+                                    if (!groups.Any(g => g.Name.Equals(gRespostaAberturaOcular.Name)))
                                     {
-                                        gRespostaVerbal.Visible = true;
-                                        gRespostaVerbal.Tag = areaCategoriaItem;
-                                        lstControles.Add(gRespostaVerbal);
+                                        groups.Add(gRespostaAberturaOcular);
+                                        flowLayoutPanels.Add(flpRespostaAberturaOcular);
                                     }
-                                    if (areaCategoriaItem.Id == 84)
-                                    {
-                                        gAberturaOcular.Visible = true;
-                                        gAberturaOcular.Tag = areaCategoriaItem;
-                                        lstControles.Add(gAberturaOcular);
-                                    }
-                                });
+
+                                    radioButtonItem.Click += RadioBtn_Click;
+                                    flpRespostaAberturaOcular.Controls.Add(radioButtonItem);
+                                }
 
                                 break;
                             }
                         case Area.ControleCateteres:
                             {
-                                if (!gCateterSonda.Visible)
-                                    gCateterSonda.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gCateterSonda.Name)))
+                                {
+                                    groups.Add(gCateterSonda);
+                                    flowLayoutPanels.Add(flpCateteres);
+                                }
 
-                                flpCateteres.Controls.AddRange(radioButtonExts.ToArray());
-                                lstControles.Add(flpCateteres);
+                                flpCateteres.Controls.Add(radioButtonItem);
                                 break;
                             }
                         case Area.PressaoArterial:
                             {
-                                if (!gEscalaPressao.Visible)
-                                    gEscalaPressao.Visible = true;
+                                if (!groups.Any(g => g.Name.Equals(gEscalaPressao.Name)))
+                                {
+                                    groups.Add(gEscalaPressao);
+                                    flowLayoutPanels.Add(flpPressaoArterial);
+                                }
 
-                                lstControles.Add(flpPressaoArterial);
+                                comboBoxPressaoArterial.SelectedIndex = (int)Sessao.Paciente.Sae?.ExameFisico.CodigoPressaoArterial;
+                                textBoxAnotacaoPressaoArterial.Text = Sessao.Paciente.Sae?.ExameFisico.AnotacaoPressaoArterial;
+                                if (isBack)
+                                    comboBoxPressaoArterial_SelectionChangeCommitted(null, null);
+
                                 break;
                             }
                         default:
                             break;
                     }
                 }
+
+                groups.ForEach(g => g.Visible = true);
+                panelBody.Visible = true;
             }
             catch (Exception Ex)
             {
@@ -417,34 +514,34 @@ namespace AppInternacao.FrmSae
 
         private void comboBoxPressaoArterial_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            dynamic item = comboBoxPressaoArterial.SelectedItem;
-            string param = item.Valor;
-            if (!param.Equals("0"))
-            {
-                textBoxPas.Text = param.Split('X')[0];
-                textBoxPad.Text = param.Split('X')[1];
-            }
-            else
-            {
-                textBoxPas.Text = string.Empty;
-                textBoxPad.Text = string.Empty;
-            }
+
         }
 
         private void RadioBtn_Click(object sender, EventArgs e)
         {
-            radioButtonItem = gAberturaOcular.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
-            somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+            if (gGlasgow.Visible)
+            {
+                if (gRespostaAberturaOcular.Visible)
+                {
+                    radioButtonItem = flpRespostaAberturaOcular.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
+                    somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+                }
 
-            radioButtonItem = gRespostaVerbal.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
-            somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+                if (gRespostaVerbal.Visible)
+                {
+                    radioButtonItem = flpRespostaVerbal.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
+                    somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+                }
 
-            radioButtonItem = gRespostaMotora.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
-            somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+                if (gRespostaMotora.Visible)
+                {
+                    radioButtonItem = flpRespostaMotora.Controls.OfType<RadioButtonExt>().FirstOrDefault(r => r.Checked);
+                    somaTotalGlasgow = radioButtonItem == null ? 0 + somaTotalGlasgow : somaTotalGlasgow + Convert.ToInt32(radioButtonItem.Value);
+                }
 
-            lblSomaGlasgow.Text = $"Total de: {somaTotalGlasgow}";
-            somaTotalGlasgow = 0;
-            radioButtonItem = null;
+                somaTotalGlasgow = 0;
+                radioButtonItem = null;
+            }
         }
     }
 }

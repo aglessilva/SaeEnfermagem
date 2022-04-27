@@ -1,7 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
-using FontAwesome.Sharp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,22 +38,8 @@ namespace AppInternacao.FrmSae
 
         private void UI010FrmNanda_Load(object sender, EventArgs e)
         {
-            new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(buttonLimpar, "Limpar campo e pesquisa");
-            if (isSAE)
-            {
-                FrmMain.listButtons.ForEach(b => 
-                { 
-                     if(b.Name.Equals("btnAddGeneric"))
-                    {
-                        b.Visible = true;
-                        b.Click += AddDiagnostrico_Click;
-                        b.Text = "Adicionar Diagnóstico".Trim();
-                    }
-                });
-
-                UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
-            }
             presenterGeneric = new PresenterGeneric();
+
             nandaDominios = presenterGeneric.GetLista(new NandaDominio(), Procedure.SP_GET_DOMINIO);
             nandaClasses = presenterGeneric.GetLista(new NandaClasse(), Procedure.SP_GET_CLASSE);
             nandaFatorRelacionados = presenterGeneric.GetLista(new NandaFatorRelacionado(), Procedure.SP_GET_FATORES_RELACIONADOS);
@@ -62,8 +48,32 @@ namespace AppInternacao.FrmSae
             nandaCondicaoAssociadas = presenterGeneric.GetLista(new NandaCondicaoAssociada(), Procedure.SP_GET_CONDICOES_ASSOCIADA);
             nandaFatorRiscos = presenterGeneric.GetLista(new NandaFatorRisco(), Procedure.SP_GET_FATORES_RISCO);
             nandaPopulacaoRiscos = presenterGeneric.GetLista(new NandaPopulacaoRisco(), Procedure.SP_GET_POPULACAO_RISCO);
-
             nRoot = new TreeNode("Diagnósticos Nanda");
+
+            new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(buttonLimpar, "Limpar campo e pesquisa");
+            if (isSAE)
+            {
+                if (Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
+                {
+                    FrmMain.listButtons.ForEach(b =>
+                    {
+                        if (b.Name.Equals("btnAddGeneric"))
+                        {
+                            b.Visible = true;
+                            b.Click += AddDiagnostrico_Click;
+                            b.Text = "Adicionar Diagnóstico".Trim();
+                        }
+                    });
+                }
+
+                UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
+                UI011FrmTimeLine.IconButtonVolta.Click += btnButtonBackStep_Click;
+
+                populaDiagnostico();
+                UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+                BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+            }
+            
             FilterByName();
         }
 
@@ -220,7 +230,7 @@ namespace AppInternacao.FrmSae
 
         private void BtnVizualizarDiagnostico_Click(object sender, EventArgs e)
         {
-            
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
             var f = new UI013FrmSaeViewDiagnostico() { TopLevel = false };
             UI011FrmTimeLine.ctrl.Controls.Add(f);
             f.BringToFront();
@@ -278,8 +288,9 @@ namespace AppInternacao.FrmSae
 
                 Sessao.Paciente.Sae.DiagnosticoEnfermagem.Add(diagnosticoEnfermagem);
                 BtnVizualizarDiagnostico.Visible = true;
-                BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count > 0;
-                BtnVizualizarDiagnostico.Text = $"Visualizar iten(s) {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
+                BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+                UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+                BtnVizualizarDiagnostico.Text = $"Visualizar Itens {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
             }
             catch (Exception ex)
             {
@@ -291,23 +302,75 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
-                FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
-                FrmMain.RemoveClickEvent(FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")));
-                FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+                if (Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any())
+                {
+                    FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+                    FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+                    FrmMain.RemoveClickEvent(FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")));
+                    FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
 
-                UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
+                    UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
 
-                Form frm = new UI016FrmSaePlanejamentoEnfermagem() { TopLevel = false };
-                UI011FrmTimeLine.ctrl.Controls.Add(frm);
-                UI011FrmTimeLine.lblRotuloSae.Text = "Planejamento - Intervenção/Prescrição de Enfermagem";
-                frm.Show();
+                    Form frm = new UI016FrmSaePlanejamentoEnfermagem() { TopLevel = false };
+                    UI011FrmTimeLine.ctrl.Controls.Add(frm);
+                    UI011FrmTimeLine.lblRotuloSae.Text = "Planejamento - Intervenção/Prescrição de Enfermagem";
+                    frm.Show();
+                }
             }
             catch (Exception Ex)
             {
                 FrmMain.Alert(exception: Ex);
             }
 
+        }
+
+        private void btnButtonBackStep_Click(object sender, EventArgs e)
+        {
+            FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+            FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+            FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+
+            Form controlForm = new UI014FrmSaeExameFisico { TopLevel = false , Tag = SetorSae.ClininaMedica };
+            UI011FrmTimeLine.lblRotuloSae.Text = "Investigação (coleta de dados e exame físico)";
+            UI011FrmTimeLine.ctrl.Controls.Clear();
+            UI011FrmTimeLine.ctrl.Controls.Add(controlForm);
+            controlForm.Show();
+        }
+
+        void populaDiagnostico()
+        {
+
+            if (!Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any())
+            {
+                var objDiagnosticoEnfermagem = presenterGeneric.GetLista(new DiagnosticoEnfermagemDTO { IdSae = Sessao.Paciente.SaeStatus.Id, Prontuario = Sessao.Paciente.Prontuario }, Procedure.SP_GET_DIAGNOSTICO_ENFERMAGEM_SAE);
+
+                if (objDiagnosticoEnfermagem.Any())
+                {
+                    DiagnosticoEnfermagem obj = null;
+                    foreach (DiagnosticoEnfermagemDTO item in objDiagnosticoEnfermagem)
+                    {
+                        obj = new DiagnosticoEnfermagem
+                        {
+                            Id = item.Id, 
+                            Diagnostico = JsonConvert.DeserializeObject<NandaDiagnostico>(item.Diagnostico),
+                            CaracteristicaDefinidoras = string.IsNullOrWhiteSpace(item.CaracteristicaDefinidoras) ? new List<NandaCaracteristicaDefinidora>() : JsonConvert.DeserializeObject<List<NandaCaracteristicaDefinidora>>(item.CaracteristicaDefinidoras),
+                            CondicaoAssociadas = string.IsNullOrWhiteSpace(item.CondicaoAssociadas) ? new List<NandaCondicaoAssociada>() : JsonConvert.DeserializeObject<List<NandaCondicaoAssociada>>(item.CondicaoAssociadas),
+                            FatorRelacionados = string.IsNullOrWhiteSpace(item.FatorRelacionados) ? new List<NandaFatorRelacionado>() : JsonConvert.DeserializeObject<List<NandaFatorRelacionado>>(item.FatorRelacionados),
+                            FatorRiscos = string.IsNullOrWhiteSpace(item.FatorRiscos) ?  new List<NandaFatorRisco>() : JsonConvert.DeserializeObject<List<NandaFatorRisco>>(item.FatorRiscos),
+                            PopulacaoRiscos = string.IsNullOrWhiteSpace(item.PopulacaoRiscos) ? new List<NandaPopulacaoRisco>() : JsonConvert.DeserializeObject<List<NandaPopulacaoRisco>>(item.PopulacaoRiscos),
+                        };
+
+                        obj.NomeDominio = nandaDominios.Find(n => n.Id == obj.Diagnostico.IdDominio).Dominio;
+                        obj.NomeClasse = nandaClasses.Find(n => n.IdClasse == obj.Diagnostico.IdClasse).Classe;
+
+                        Sessao.Paciente.Sae.DiagnosticoEnfermagem.Add(obj);
+                    }
+                }
+            }
+
+            BtnVizualizarDiagnostico.Visible = true;
+            BtnVizualizarDiagnostico.Text = $"Visualizar Itens {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
         }
     }
 }

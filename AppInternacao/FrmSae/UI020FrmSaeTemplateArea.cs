@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,13 +10,13 @@ using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
 {
-    public partial class UI015FrmArea : UI000FrmTemplate
+    public partial class UI020FrmSaeTemplateArea : UI000FrmTemplate
     {
         private CRUD dbCrud = null;
         Panel panelAviso =  null;
         Label LabelAvisoPanel = null;
 
-        public UI015FrmArea()
+        public UI020FrmSaeTemplateArea()
         {
             InitializeComponent();
         }
@@ -34,6 +35,7 @@ namespace AppInternacao.FrmSae
         List<AreaCategoria> areaCategorias = null;
         List<AreaCategoriaItem> areaCategoriaItems = null;
         PresenterGeneric presenterGeneric = null;
+        List<FlowLayoutPanel> flowLayoutPanels = new List<FlowLayoutPanel>();
 
         private void UI015FrmArea_Load(object sender, EventArgs e)
         {
@@ -63,7 +65,7 @@ namespace AppInternacao.FrmSae
 
             areaCategorias.ForEach(n =>
             {
-                treeViewCategorias.Nodes.Add(new TreeNode { Text = Name = n.Nome, Tag = n });
+                treeViewCategorias.Nodes.Add(new TreeNode { Text = n.Nome, Name = n.Id.ToString(), Tag = n });
             });
 
             foreach (TreeNode item in treeViewCategorias.Nodes)
@@ -71,7 +73,14 @@ namespace AppInternacao.FrmSae
                 AreaCategoria area = (AreaCategoria)item.Tag;
                 areaCategoriaItems.Where(i => i.IdArea == area.Id).ToList().ForEach(m =>
                 {
-                    item.Nodes.Add(new TreeNode { Text = Name = m.Descricao, Tag = m });
+                    if (m.IdAreaItem != 0)
+                    {
+                        TreeNode nivel3 = item.Nodes.Find(m.IdAreaItem.ToString(), false).FirstOrDefault();
+                        nivel3.Nodes.Add(new TreeNode { Text = m.Descricao, Name = m.Id.ToString(), Tag = m });
+                    }
+                    else
+                        item.Nodes.Add(new TreeNode { Text = m.Descricao, Name = m.Id.ToString(), Tag = m });
+
                 });
             }
 
@@ -86,76 +95,61 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                areaCategoriaItems = null;
+                areaCategorias = null;
+                flowLayoutPanels.Clear();
+
                 Frm.FrmSalvarTemplate frm = new Frm.FrmSalvarTemplate() { TopLevel = true };
                 var retorno = frm.ShowDialog();
 
                 if (retorno == DialogResult.Cancel)
                     return;
 
+                var lstGroupBox = panelBody.Controls.OfType<GroupBox>().Where(g => g.Controls.Count > 0 && g.Visible).ToList();
+
+                if (lstGroupBox.Exists(n => n.Controls.OfType<GroupBox>().Any()))
+                {
+                    foreach (Control gbitem in lstGroupBox.SelectMany(s => s.Controls.OfType<GroupBox>()))
+                    {
+                        if (gbitem is GroupBox)
+                        {
+                            flowLayoutPanels.AddRange(gbitem.Controls.OfType<FlowLayoutPanel>().AsEnumerable());
+                        }
+                    }
+
+                    lstGroupBox.RemoveAll(n => n.Controls.OfType<GroupBox>().Any());
+                }
+
+                var flps = lstGroupBox.SelectMany(s => s.Controls.OfType<FlowLayoutPanel>());
+                flowLayoutPanels.AddRange(flps);
+                areaCategoriaItems = flowLayoutPanels.SelectMany(s => s.Controls.OfType<RadioButton>().Select(t => (AreaCategoriaItem)t.Tag)).ToList();
+
                 dbCrud = new CRUD();
 
-                var codigoTemplate = dbCrud.Executar(new { NomeTemplate = frm.NomeTemplate, DescricaoTemplate = frm.DescricaoTemplate }, Procedure.SP_ADD_NAME_TEMPLATE_EXAME_FISICO, Acao.Inserir);
+                var codigoTemplate = dbCrud.Executar(new { IdSetor = frm.IdSetor, NomeTemplate = frm.NomeTemplate, DescricaoTemplate = frm.DescricaoTemplate }, Procedure.SP_ADD_NAME_TEMPLATE_EXAME_FISICO, Acao.Inserir);
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add(new DataColumn("IdTemplate", typeof(int)));
                 dataTable.Columns.Add(new DataColumn("IdCliente", typeof(int)));
-                dataTable.Columns.Add(new DataColumn("IdItem", typeof(string)));
-                dataTable.Columns.Add(new DataColumn("IdArea", typeof(int)));
+                dataTable.Columns.Add(new DataColumn("JsonTemplate", typeof(string)));
                 
                 DataRow dataRow = null;
-                
-                var flowLayoutPanels = panelBody.Controls.OfType<GroupBox>().Where(g => g.Visible).Select(s => s.Controls.OfType<FlowLayoutPanel>()).ToArray();
-                List<AreaCategoriaItem> lstRadiosButton = null;
-                List<string> lstIdItem = new List<string>();
-                AreaCategoria areaCategoria = null;
 
-
-
-                foreach (var item in flowLayoutPanels)
-                {
-                    lstIdItem.Clear();
-                    lstRadiosButton?.Clear();
-
-                    if (item.FirstOrDefault() == null)
-                    {
-                        areaCategoria = (AreaCategoria)panelBody.Controls.OfType<GroupBox>().Where(g => g.Visible && g.Tag != null).FirstOrDefault(s => ((AreaCategoria)s.Tag).Id == 12).Tag;
-
-                        if (gGlasgow.Visible)
-                        {
-                            gGlasgow.Controls.OfType<GroupBox>().Where(g => g.Visible).ToList()
-                                .ForEach(f =>
-                                {
-                                    AreaCategoriaItem areaItem = (AreaCategoriaItem)f.Tag;
-                                    lstIdItem.Add(areaItem.Id.ToString());
-                                });
-                        }
-                    }
-                    else
-                    {
-                        lstRadiosButton = item.Select(d => d.Controls.OfType<RadioButton>().Select(s => (AreaCategoriaItem)s.Tag).ToList()).Select(s => s).FirstOrDefault().ToList();
-                        if (lstRadiosButton.Count > 0)
-                            foreach (var itemRadio in lstRadiosButton)
-                                lstIdItem.Add(itemRadio.Id.ToString());
-
-                        areaCategoria = (AreaCategoria)item.FirstOrDefault().Tag;
-                    }
-
-                    dataRow = dataTable.NewRow();
-                    dataRow["IdTemplate"] = codigoTemplate;
-                    dataRow["IdCliente"] = Sessao.CodigoCliente;
-                    dataRow["IdItem"] = lstIdItem?.Count > 0 ? string.Join(",", lstIdItem) : areaCategoria.Id.ToString();
-                    dataRow["IdArea"] = lstRadiosButton?.Count > 0 ? lstRadiosButton[0].IdArea : areaCategoria.Id;
-                    dataTable.Rows.Add(dataRow);
-                }
+                dataRow = dataTable.NewRow();
+                dataRow["IdTemplate"] = codigoTemplate;
+                dataRow["IdCliente"] = Sessao.CodigoCliente;
+                dataRow["JsonTemplate"] = JsonConvert.SerializeObject(areaCategoriaItems, Formatting.None);
+                dataTable.Rows.Add(dataRow);
 
                 if (dataTable.Rows.Count > 0)
                 {
-                   var ret = dbCrud.BulkInsert(dataTable, "TB_Template_Exame_Fisico");
+                    var ret = dbCrud.BulkInsert(dataTable, "TB_Template_Exame_Fisico");
 
                     if (ret > 0)
                     {
+                        FrmMain.mySalvar.Visible = false;
                         FrmMain.Alert(Alerts.InsertSuccess);
                         FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
-                        this.Close();
+                        Close();
                     }
                     else
                         FrmMain.Alert((Alerts)ret);
@@ -166,7 +160,6 @@ namespace AppInternacao.FrmSae
                 FrmMain.Alert(exception: ex);
             }
         }
-
 
         private void treeViewCategorias_AfterCheck(object sender, TreeViewEventArgs e)
         {
@@ -179,14 +172,42 @@ namespace AppInternacao.FrmSae
                 {
                     foreach (TreeNode item in e.Node.Nodes)
                     {
-                        item.Checked = e.Node.Checked;
-                        PopularItens(item);
+                        if (item.Nodes.Count > 0)
+                        {
+                            item.Checked = e.Node.Checked;
+
+                            foreach (TreeNode nivel3 in item.Nodes)
+                            {
+                                nivel3.Checked = e.Node.Checked;
+                                PopularItens(nivel3);
+                            }
+                        }
+                        else
+                        {
+                            item.Checked = e.Node.Checked;
+                            PopularItens(item);
+                        }
                     }
                 }
                 else
                 {
-                    e.Node.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(c => c.Checked);
-                    PopularItens(e.Node);
+                    if(new[] {"84","85","86"}.Any(s => s.Equals(e.Node.Parent.Name)))
+                        e.Node.Parent.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(c => c.Checked);
+
+                    if (new[] { "84", "85", "86" }.Any(s => s.Equals(e.Node.Name)))
+                    {
+                        e.Node.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(c => c.Checked);
+                        foreach (TreeNode item in e.Node.Nodes)
+                        {
+                            item.Checked = e.Node.Checked;
+                            PopularItens(item);
+                        }
+                    }
+                    else
+                    {
+                        e.Node.Parent.Checked = e.Node.Parent.Nodes.OfType<TreeNode>().Any(c => c.Checked);
+                        PopularItens(e.Node);
+                    }
                 }
 
                 FrmMain.mySalvar.Visible = panelBody.Controls.OfType<GroupBox>().Any(g => g.Visible);
@@ -251,14 +272,15 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                
+                flowLayoutPanel.Controls.Clear();
+
                 RadioButton radioButton = null;
                 if (treeNode.Level == 0)
                 {
                     foreach (TreeNode item in treeNode.Nodes)
                     {
                         AreaCategoriaItem areaCategoriaItem = (AreaCategoriaItem)item.Tag;
-                        radioButton = new RadioButton { Text = item.Text, Tag = item.Tag, TabIndex = areaCategoriaItem.Id , AutoSize = true };
+                        radioButton = new RadioButton { Text = item.Text ,Tag = item.Tag, TabIndex = areaCategoriaItem.Id , AutoSize = true };
                         flowLayoutPanel.TabIndex = areaCategoriaItem.IdArea;
                         flowLayoutPanel.Controls.Add(radioButton);
                     }
@@ -267,10 +289,16 @@ namespace AppInternacao.FrmSae
                 {
                     foreach (TreeNode item in treeNode.Parent.Nodes)
                     {
+                        if (!treeNode.Parent.Checked)
+                        {
+                            item.Checked = treeNode.Parent.Checked;
+                            continue;
+                        }
+
                         if (item.Checked)
                         {
                             AreaCategoriaItem areaCategoriaItem = (AreaCategoriaItem)item.Tag;
-                            radioButton = new RadioButton { Text = item.Text, Tag = item.Tag , TabIndex = areaCategoriaItem.Id,  AutoSize = true };
+                            radioButton = new RadioButton { Text = item.Text, Tag = item.Tag, TabIndex = areaCategoriaItem.Id, AutoSize = true };
                             flowLayoutPanel.TabIndex = areaCategoriaItem.IdArea;
                             flowLayoutPanel.Controls.Add(radioButton);
                         }
@@ -294,7 +322,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaNeurologico.TabStop = false;
                         gSistemaNeurologico.TabIndex = (int)area;
-                        flpSistemaNerologico.Controls.Clear();
                         
                         AddItensArea(treeNode, flpSistemaNerologico);
                         gSistemaNeurologico.Visible = treeNode.Parent.Checked;
@@ -304,7 +331,6 @@ namespace AppInternacao.FrmSae
                     {
                         gPupilas.TabStop = false;
                         gPupilas.TabIndex = (int)area;
-                        flpPupilas.Controls.Clear();
 
                         AddItensArea(treeNode, flpPupilas);
                         gPupilas.Visible = treeNode.Parent.Checked;
@@ -314,7 +340,6 @@ namespace AppInternacao.FrmSae
                     {
                         gRegulacaoTermica.TabStop = false;
                         gRegulacaoTermica.TabIndex = (int)area;
-                        flpRegulacaotermica.Controls.Clear();
                        
                         AddItensArea(treeNode, flpRegulacaotermica);
                         gRegulacaoTermica.Visible = treeNode.Parent.Checked;
@@ -324,7 +349,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaOxigenacao.TabStop = false;
                         gSistemaOxigenacao.TabIndex = (int)area;
-                        flpOxigenacao.Controls.Clear();
 
                         AddItensArea(treeNode, flpOxigenacao);
                         gSistemaOxigenacao.Visible = treeNode.Parent.Checked;
@@ -334,7 +358,6 @@ namespace AppInternacao.FrmSae
                     {
                         gPele.TabStop = false;
                         gPele.TabIndex = (int)area;
-                        flpPele.Controls.Clear();
 
                         AddItensArea(treeNode, flpPele);
                         gPele.Visible = treeNode.Parent.Checked;
@@ -344,7 +367,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaGastroIntestinal.TabStop = false;
                         gSistemaGastroIntestinal.TabIndex = (int)area;
-                        flpSistemaGastroIntestinal.Controls.Clear();
 
                         AddItensArea(treeNode, flpSistemaGastroIntestinal);
                         gSistemaGastroIntestinal.Visible = treeNode.Parent.Checked;
@@ -354,7 +376,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaVascular.TabStop = false;
                         gSistemaVascular.TabIndex = (int)area;
-                        flpSistemaVascular.Controls.Clear();
 
                         AddItensArea(treeNode, flpSistemaVascular);
                         gSistemaVascular.Visible = treeNode.Parent.Checked;
@@ -364,7 +385,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaAbdominal.TabStop = false;
                         gSistemaAbdominal.TabIndex = (int)area;
-                        flpSistemaAbdominal.Controls.Clear();
 
                         AddItensArea(treeNode, flpSistemaAbdominal);
                         gSistemaAbdominal.Visible = treeNode.Parent.Checked;
@@ -374,7 +394,6 @@ namespace AppInternacao.FrmSae
                     {
                         gSistemaUrinario.TabStop = false;
                         gSistemaUrinario.TabIndex = (int)area;
-                        flpsistemaUrinario.Controls.Clear();
 
                         AddItensArea(treeNode, flpsistemaUrinario);
                         gSistemaUrinario.Visible = treeNode.Parent.Checked;
@@ -384,7 +403,6 @@ namespace AppInternacao.FrmSae
                     {
                         gLesaoCompressao.TabStop = false;
                         gLesaoCompressao.TabIndex = (int)area;
-                        flpLesao.Controls.Clear();
 
                         AddItensArea(treeNode, flpLesao);
                         gLesaoCompressao.Visible = treeNode.Parent.Checked;
@@ -394,7 +412,6 @@ namespace AppInternacao.FrmSae
                     {
                         gPinard.TabStop = false;
                         gPinard.TabIndex = (int)area;
-                        flpPinard.Controls.Clear();
 
                         AddItensArea(treeNode, flpPinard);
                         gPinard.Visible = treeNode.Parent.Checked;
@@ -402,33 +419,65 @@ namespace AppInternacao.FrmSae
                     }
                 case Area.ComaGlasgow:
                     {
-                        gRespostaMotora.Visible = gRespostaVerbal.Visible = gAberturaOcular.Visible = false;
-                        
                         foreach (TreeNode item in treeNode.Parent.Nodes)
                         {
                             areaCategoria = (AreaCategoriaItem)item.Tag;
                             if (item.Checked)
                             {
-                                if (areaCategoria.Id == 86)
+                                if (areaCategoria.IdAreaItem == 86)
                                 {
-                                    gRespostaMotora.Visible = true;
-                                    gRespostaMotora.Tag = areaCategoria;
+                                    gRespostaMotora.TabStop = false;
+                                    gRespostaMotora.TabIndex = (int)area;
+
+                                    gRespostaMotora.Visible = item.Parent.Checked;
+
+                                    if (treeNode.Parent.Checked)
+                                        AddItensArea(item, flpRespostaMotora);
+                                    else
+                                    {
+                                        flpRespostaMotora.Controls.Clear();
+                                        break;
+                                    }
                                 }
-                                if (areaCategoria.Id == 85)
+                                if (areaCategoria.IdAreaItem == 85)
                                 {
-                                    gRespostaVerbal.Visible = true;
-                                    gRespostaVerbal.Tag = areaCategoria;
+                                    gRespostaVerbal.TabStop = false;
+                                    gRespostaVerbal.TabIndex = (int)area;
+
+                                    gRespostaVerbal.Visible = item.Parent.Checked;
+
+                                    if (treeNode.Parent.Checked)
+                                        AddItensArea(item, flpRespostaVerbal);
+                                    else
+                                    {
+                                        flpRespostaVerbal.Controls.Clear();
+                                        break;
+                                    }
                                 }
-                                if (areaCategoria.Id == 84)
+                                if (areaCategoria.IdAreaItem == 84)
                                 {
-                                    gAberturaOcular.Visible = true;
-                                    gAberturaOcular.Tag = areaCategoria;
+                                    gAberturaOcular.TabStop = false;
+                                    gAberturaOcular.TabIndex = (int)area;
+
+                                    gAberturaOcular.Visible = item.Parent.Checked;
+
+                                    if (treeNode.Parent.Checked)
+                                        AddItensArea(item, flpRespostaOcular);
+                                    else
+                                    {
+                                        flpRespostaOcular.Controls.Clear();
+                                        break;
+                                    }
                                 }
                             }
                         }
 
-                        gGlasgow.Visible = treeNode.Parent.Checked;
-                        gGlasgow.Tag = new AreaCategoria { Id = areaCategoria.IdArea, StatusArea = areaCategoria.IsAtivo, Nome = areaCategoria.Descricao };
+                        if (!treeNode.Parent.Parent.Checked)
+                        {
+                            flpRespostaVerbal.Controls.Clear(); flpRespostaOcular.Controls.Clear(); flpRespostaMotora.Controls.Clear();
+                        }
+
+                        gGlasgow.Visible = (flpRespostaVerbal.Controls.Count > 0 || flpRespostaOcular.Controls.Count > 0 || flpRespostaMotora.Controls.Count > 0);
                         break;
                     }
                 case Area.ControleCateteres:
@@ -444,7 +493,12 @@ namespace AppInternacao.FrmSae
                 case Area.PressaoArterial:
                     {
                         gEscalaPressao.Visible = treeNode.Parent.Checked;
-                        flpPressaoArterial.Tag = gEscalaPressao.Tag = (AreaCategoria)treeNode.Parent.Tag;
+
+                        if (treeNode.Parent.Checked)
+                            flpPressaoArterial.Controls.Add(new RadioButton { Tag = (AreaCategoriaItem)treeNode.Tag, Visible = false, Name = treeNode.Name });
+                        else
+                            flpPressaoArterial.Controls.RemoveByKey(treeNode.Name);
+
                         break;
                     }
                 default:

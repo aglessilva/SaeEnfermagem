@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string NomeTemplate { get; set; }
         public string DescricaoTemplate { get; set; }
+        public string SetorAssociado { get; set; }
     }
 }

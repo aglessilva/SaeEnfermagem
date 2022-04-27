@@ -57,6 +57,19 @@ namespace AppInternacao.Presenter
 
         }
 
+        public T GetItem<T>(T obj, Procedure procedure)
+        {
+            try
+            {
+                return crud.RetornaObjeto<T>(procedure, obj);
+            }
+            catch (Exception exS)
+            {
+                throw exS;
+            }
+
+        }
+
         public int InsertCiclo(DataTable dataTable)
         {
             int? ret = null;

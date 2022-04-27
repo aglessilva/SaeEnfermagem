@@ -1,10 +1,6 @@
-﻿using FontAwesome.Sharp;
+﻿using AppInternacao.Enum;
+using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AppInternacao.FrmSae
@@ -15,6 +11,7 @@ namespace AppInternacao.FrmSae
         public static IconButton IconButtonVolta;
         public static Panel ctrl;
         public static Label lblRotuloSae;
+
         public UI011FrmTimeLine()
         {
             InitializeComponent();
@@ -36,7 +33,7 @@ namespace AppInternacao.FrmSae
                 }
                 else
                 {
-                    controlForm = new UI014FrmSaeExameFisico { TopLevel = false };
+                    controlForm = new UI014FrmSaeExameFisico { TopLevel = false, Tag = Tag };
                     lblNameStepSae.Text = "Investigação (coleta de dados e exame físico)";
                 }
                 pFrmBody.Controls.Add(controlForm);

@@ -11,6 +11,7 @@ namespace AppInternacao.Model
         {
             Nome = string.Empty;
             Sae = new SAE();
+            SaeStatus = new SaeStatus();
         }
         public int Id { get; set; }
         public char Sexo { get; set; }
@@ -25,13 +26,13 @@ namespace AppInternacao.Model
         public Enum.StatusInternacao Status { get; set; }
         public string Telefone { get; set; }
         public DateTime? Data { get; set; }
+        public SaeStatus SaeStatus { get; set; }
         public bool? HasDiagnosticoEnfermagem { get; set; }
         public bool? HasPrescricaoEnfermagem { get; set; }
         public bool? HasEnvolucaoEnfermagem { get; set; }
         public bool? HasAvaliacaoEnfermagem { get; set; }
         public bool? HasHistoricoEnfermagem { get; set; }
         public SAE Sae { get;set; }
-       // public Endereco Endereco { get; set; }
     }
 
     public sealed class SAE

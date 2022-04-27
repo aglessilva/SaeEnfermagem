@@ -198,8 +198,7 @@ namespace AppInternacao.Model
 
                 Comando.Parameters.Add(new SqlParameter("@IDCLIENTE", SqlDbType.Int));
                 Comando.Parameters["@IDCLIENTE"].Value = Sessao.CodigoCliente;
-
-
+                
                 if (acao == Acao.Verificar)
                     retorno = (int?)Comando.ExecuteScalar();
                 else if (acao == Acao.Excluir)
@@ -212,6 +211,9 @@ namespace AppInternacao.Model
                 else
                 {
                     retorno = 0;
+                    Comando.Parameters.Add(new SqlParameter("@IDUSUARIO", SqlDbType.Int));
+                    Comando.Parameters["@IDUSUARIO"].Value = Sessao.Usuario.Id;
+
                     var newIdParam = Comando.Parameters.Add("@Identity", SqlDbType.Int);
                     newIdParam.Direction = ParameterDirection.Output;
                     retorno = Comando.ExecuteNonQuery();
