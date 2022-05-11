@@ -8,8 +8,9 @@ namespace AppInternacao.FrmSae
         public UI000FrmTemplate()
         {
             InitializeComponent();
-            //  Dock = DockStyle.Fill;
             TopLevel = false;
         }
+
+       
     }
 }

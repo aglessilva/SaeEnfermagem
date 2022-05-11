@@ -368,7 +368,7 @@ namespace AppInternacao.FrmSae
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.lblDefinicao);
             this.groupBox3.Controls.Add(this.comboBoxDiagnostico);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 8);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1037, 68);
             this.groupBox3.TabIndex = 30;

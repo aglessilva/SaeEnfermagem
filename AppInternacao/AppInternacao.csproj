@@ -362,6 +362,7 @@
     <Compile Include="Model\AreaCategoria.cs" />
     <Compile Include="Model\AreaCategoriaItem.cs" />
     <Compile Include="Model\AvaliacaoEnfermagem.cs" />
+    <Compile Include="Model\AvaliacaoEnfermagemDTO.cs" />
     <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
     <Compile Include="Model\DiagnosticoEnfermagem.cs" />
@@ -384,6 +385,8 @@
     <Compile Include="Model\NandaPopulacaoRisco.cs" />
     <Compile Include="Model\NicClassificacao.cs" />
     <Compile Include="Model\NicIndicador.cs" />
+    <Compile Include="Model\NocIndicador.cs" />
+    <Compile Include="Model\NocResultado.cs" />
     <Compile Include="Model\Paciente.cs" />
     <Compile Include="Model\IntervencaoEnfermagem.cs" />
     <Compile Include="Model\PrescricaoMedica.cs" />
@@ -491,6 +494,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI016FrmSaePlanejamentoEnfermagem.resx">
       <DependentUpon>UI016FrmSaePlanejamentoEnfermagem.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSae\UI017FrmSaeImplementacao.resx">
       <DependentUpon>UI017FrmSaeImplementacao.cs</DependentUpon>

@@ -33,8 +33,10 @@ namespace AppInternacao.FrmSae
                 }
                 else
                 {
-                    controlForm = new UI014FrmSaeExameFisico { TopLevel = false, Tag = Tag };
-                    lblNameStepSae.Text = "Investigação (coleta de dados e exame físico)";
+                   // controlForm = new UI014FrmSaeExameFisico { TopLevel = false, Tag = Tag };
+                   // lblNameStepSae.Text = "Investigação (coleta de dados e exame físico)";
+                    controlForm = new UI018FrmSaeAvaliacao{ TopLevel = false, Tag = Tag };
+                    lblNameStepSae.Text = "NOC - Classificação dos Resultados da Intervenção";
                 }
                 pFrmBody.Controls.Add(controlForm);
                 controlForm.Show();

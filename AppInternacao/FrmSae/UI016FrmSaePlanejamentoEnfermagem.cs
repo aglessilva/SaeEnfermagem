@@ -59,7 +59,7 @@ namespace AppInternacao.FrmSae
                     intervencaos = presenterGeneric.GetLista(new IntervencaoEnfermagem { IdSae = Sessao.Paciente.SaeStatus.Id }, Procedure.SP_GET_INTERVENCAO_PRESCRICAO_ENFERMAGEM_SAE);
                     intervencaos.ForEach(f => {
                         if (f.AnotacaoPrescricaoEnfermagem != null)
-                            f.KeyPairAnotacaoPrescricaoEnfermagem = JsonConvert.DeserializeObject<List<KeyValuePair<int, string>>>(f.AnotacaoPrescricaoEnfermagem);
+                            f.KeyPairAnotacaoPrescricaoEnfermagem = JsonConvert.DeserializeObject<List<KeyValuePair<int, AnotacoesEnfermagem>>>(f.AnotacaoPrescricaoEnfermagem);
 
                         f.KeyPairIndicadores = JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(f.Indicadores);
                     });
@@ -208,7 +208,6 @@ namespace AppInternacao.FrmSae
                 UI011FrmTimeLine.iconButtonAvanca.IconChar = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
                 UI011FrmTimeLine.iconButtonAvanca.IconColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.SteelBlue;
                 frm.Show();
-
             }
             catch (Exception ex)
             {

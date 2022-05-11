@@ -101,7 +101,7 @@ namespace AppInternacao.FrmSae
                 intervencaos.ForEach(f => {
                     pairsIndicadore.AddRange(JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(string.Join(",", f.Indicadores)));
                     f.KeyPairIndicadores = JsonConvert.DeserializeObject<List<KeyValuePair<int, IndicadorItem>>>(f.Indicadores);
-                    f.KeyPairAnotacaoPrescricaoEnfermagem = !string.IsNullOrWhiteSpace(f.AnotacaoPrescricaoEnfermagem) ? JsonConvert.DeserializeObject<List<KeyValuePair<int, string>>>(f.AnotacaoPrescricaoEnfermagem) : new List<KeyValuePair<int, string>>();
+                    f.KeyPairAnotacaoPrescricaoEnfermagem = !string.IsNullOrWhiteSpace(f.AnotacaoPrescricaoEnfermagem) ? JsonConvert.DeserializeObject<List<KeyValuePair<int, AnotacoesEnfermagem>>>(f.AnotacaoPrescricaoEnfermagem) : new List<KeyValuePair<int, AnotacoesEnfermagem>>();
                 });
 
                 KeyValuePair<int, IndicadorItem> indicadorItem = new KeyValuePair<int, IndicadorItem>();
@@ -147,7 +147,7 @@ namespace AppInternacao.FrmSae
                 DataTable[] tables =  { dataTable.DefaultView.ToTable(), dataTableIdicadores.Select($"Id in({filter})").CopyToDataTable() };
 
                 ActivateButton(sender);
-                uc = new UI017FrmSaeImplementacao(tables) { TopLevel = false };
+                uc = new UI017FrmSaeImplementacao(tables) { TopLevel = false, Tag = new { IsSae = false } };
                 OpenUC();
             }
             catch (Exception ex)
