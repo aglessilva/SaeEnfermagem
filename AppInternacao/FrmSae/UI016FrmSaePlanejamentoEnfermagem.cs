@@ -34,6 +34,7 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                UI011FrmTimeLine.lblRotuloSae.Text = "NIC - Planejamento Intervenção/Prescrição de Enfermagem";
                 intervencaos.Clear();
 
                 new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(btnLimparCampo, "Limpar campo e filtros da classificação");
@@ -78,8 +79,6 @@ namespace AppInternacao.FrmSae
                     if (!intervencaos.Any(s => s.CodigoDiagnostico == d.Diagnostico.Codigo))
                         intervencaos.Add(new IntervencaoEnfermagem { CodigoDiagnostico = d.Diagnostico.Codigo });
                 });
-
-              
 
                 comboBoxDiagnostico.Items.Insert(0, "Selecione um diagnóstico...");
                 comboBoxDiagnostico.SelectedIndex = 0;
@@ -127,12 +126,12 @@ namespace AppInternacao.FrmSae
         private void btnButtonBackStep_Click(object sender, EventArgs e)
         {
             FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
-            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = true;
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = (Sessao.Paciente.SaeStatus.Status == Sae.Edicao);
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
 
             Form controlForm = new UI010FrmNanda(true) { TopLevel = false };
-            UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem"; ;
+            UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
             UI011FrmTimeLine.ctrl.Controls.Clear();
             UI011FrmTimeLine.ctrl.Controls.Add(controlForm);
             controlForm.Show();
@@ -202,11 +201,7 @@ namespace AppInternacao.FrmSae
                 }) { TopLevel = false };
 
                 UI011FrmTimeLine.ctrl.Controls.Add(frm);
-                UI011FrmTimeLine.lblRotuloSae.Text = "Implementação - Intervenção de Enfermagem";
-                UI011FrmTimeLine.iconButtonAvanca.Text = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? "INICIAR" : "AVANÇAR";
-                UI011FrmTimeLine.iconButtonAvanca.ForeColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.FromArgb(13, 87, 134);
-                UI011FrmTimeLine.iconButtonAvanca.IconChar = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
-                UI011FrmTimeLine.iconButtonAvanca.IconColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.SteelBlue;
+                
                 frm.Show();
             }
             catch (Exception ex)

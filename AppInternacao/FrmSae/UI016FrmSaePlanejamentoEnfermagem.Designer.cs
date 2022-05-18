@@ -29,8 +29,8 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxClassificacao = new System.Windows.Forms.GroupBox();
             this.dataGridViewClassificacao = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,8 +88,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.AllowUserToDeleteRows = false;
             this.dataGridViewClassificacao.AllowUserToResizeColumns = false;
             this.dataGridViewClassificacao.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -242,8 +242,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.AllowUserToDeleteRows = false;
             this.dataGridViewIndicadores.AllowUserToResizeColumns = false;
             this.dataGridViewIndicadores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -380,7 +380,7 @@ namespace AppInternacao.FrmSae
             this.lblDefinicao.AutoEllipsis = true;
             this.lblDefinicao.AutoSize = true;
             this.lblDefinicao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
-            this.lblDefinicao.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblDefinicao.ForeColor = System.Drawing.Color.Crimson;
             this.lblDefinicao.Location = new System.Drawing.Point(5, 41);
             this.lblDefinicao.Name = "lblDefinicao";
             this.lblDefinicao.Size = new System.Drawing.Size(59, 15);

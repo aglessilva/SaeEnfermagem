@@ -146,7 +146,7 @@ namespace AppInternacao.Presenter
             }
             catch (Exception exC)
             {
-                throw new Exception("Erro ão tentar carregar sessaõ do Usuarios: " + exC.Message);
+                throw new Exception("Erro ao tentar carregar a sessão do Usuarios:\n" + exC.Message);
             }
         }
 

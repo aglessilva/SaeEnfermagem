@@ -42,13 +42,13 @@ namespace AppInternacao.FrmSae
         {
             try
             {
+                UI011FrmTimeLine.lblRotuloSae.Text = "Investigação (coleta de dados e exame físico)";
                 UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
                 flowLayoutPanels.Clear();
 
                 presenterGeneric = new PresenterGeneric();
                 
                 lstTemplateNamesExamesFisicos = presenterGeneric.GetLista(new TemplateNameExameFisico { SetorAssociado = ((int)Tag).ToString() }, Procedure.SP_GET_NAME_EXAME_FISICO);
-
                
                 UI011FrmTimeLine.IconButtonVolta.Enabled = false;
                 UI011FrmTimeLine.iconButtonAvanca.Enabled =  lstTemplateNamesExamesFisicos.Any() ;
@@ -108,7 +108,6 @@ namespace AppInternacao.FrmSae
                 
                 Form frm = new UI010FrmNanda(true) { TopLevel = false };
                 UI011FrmTimeLine.ctrl.Controls.Add(frm);
-                UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
                 UI011FrmTimeLine.IconButtonVolta.Enabled = true;
                 frm.Show();
             }

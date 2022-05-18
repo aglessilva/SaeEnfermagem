@@ -23,14 +23,10 @@ namespace AppInternacao.Model
         public string NomeLeito { get; set; }
         public string NomeQuarto { get; set; }
         public string NomeSetor { get; set; }
-        public Enum.StatusInternacao Status { get; set; }
+        public StatusInternacao Status { get; set; }
         public string Telefone { get; set; }
         public DateTime? Data { get; set; }
         public SaeStatus SaeStatus { get; set; }
-        public bool? HasDiagnosticoEnfermagem { get; set; }
-        public bool? HasPrescricaoEnfermagem { get; set; }
-        public bool? HasEnvolucaoEnfermagem { get; set; }
-        public bool? HasAvaliacaoEnfermagem { get; set; }
         public bool? HasHistoricoEnfermagem { get; set; }
         public SAE Sae { get;set; }
     }
@@ -43,8 +39,7 @@ namespace AppInternacao.Model
             ExameFisico = new ExameFisico();
             DiagnosticoEnfermagem = new List<DiagnosticoEnfermagem>();
             IntervencaoEnfermagem = new List<IntervencaoEnfermagem>();
-            EvolucaoEnfermagem = new EvolucaoEnfermagem();
-            AvaliacaoEnfermagem = new AvaliacaoEnfermagem();
+            AvaliacaoEnfermagem = new List<AvaliacaoEnfermagem>();
         }
        
         public DateTime DataSae { get; set; }
@@ -52,9 +47,7 @@ namespace AppInternacao.Model
         public ExameFisico  ExameFisico { get; set; }
         public List<DiagnosticoEnfermagem> DiagnosticoEnfermagem { get; set; }
         public List<IntervencaoEnfermagem> IntervencaoEnfermagem { get; set; }
-        public EvolucaoEnfermagem EvolucaoEnfermagem { get; set; }
-        public AvaliacaoEnfermagem AvaliacaoEnfermagem { get; set; }
-        public bool IsConcluido { get; set; }
+        public List<AvaliacaoEnfermagem> AvaliacaoEnfermagem { get; set; }
     }
 
     public class StatusInernacaoPaciente

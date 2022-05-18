@@ -47,7 +47,6 @@ namespace AppInternacao.Frm
                 {
                     Id = 0,
                     IdStatusAlteracao = (StatusInternacao)Convert.ToInt32(comboBoxMotivo.SelectedValue),
-                    IdUsuario = Sessao.Usuario.Id,
                     Justificativa = textBoxJustificativa.Text,
                     IdLeito = leito.Id,
                     IdLeitoTransferencia = (new string[] { "1", "2", "4", "16" }.Contains(comboBoxMotivo.SelectedValue)) ? leito.IdLeitoTransferencia : null,

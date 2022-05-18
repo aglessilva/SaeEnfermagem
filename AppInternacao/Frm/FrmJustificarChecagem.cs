@@ -50,7 +50,6 @@ namespace AppInternacao.Frm
                 {
                     IdPrescricao = chavePrescricao.Id,
                     IdPaciente = Sessao.Paciente.Id,
-                    IdUsuario = Sessao.Usuario.Id,
                     TipoMsg = tipo,
                     ItemData = chavePrescricao.StatusPrescricao == 3 ? $"{itemPrescricao}#{textBoxData.Text}" : null
                 };

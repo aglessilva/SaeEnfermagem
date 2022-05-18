@@ -68,6 +68,7 @@ namespace AppInternacao.FrmSae
 
                 UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
                 UI011FrmTimeLine.IconButtonVolta.Click += btnButtonBackStep_Click;
+                UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
 
                 populaDiagnostico();
                 UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
@@ -310,10 +311,8 @@ namespace AppInternacao.FrmSae
                     FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
 
                     UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
-
                     Form frm = new UI016FrmSaePlanejamentoEnfermagem() { TopLevel = false };
                     UI011FrmTimeLine.ctrl.Controls.Add(frm);
-                    UI011FrmTimeLine.lblRotuloSae.Text = "Planejamento - Intervenção/Prescrição de Enfermagem";
                     frm.Show();
                 }
             }
@@ -327,12 +326,11 @@ namespace AppInternacao.FrmSae
         private void btnButtonBackStep_Click(object sender, EventArgs e)
         {
             FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
-            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = (Sessao.Paciente.SaeStatus.Status == Sae.Edicao);
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
 
             Form controlForm = new UI014FrmSaeExameFisico { TopLevel = false , Tag = SetorSae.ClininaMedica };
-            UI011FrmTimeLine.lblRotuloSae.Text = "Investigação (coleta de dados e exame físico)";
             UI011FrmTimeLine.ctrl.Controls.Clear();
             UI011FrmTimeLine.ctrl.Controls.Add(controlForm);
             controlForm.Show();

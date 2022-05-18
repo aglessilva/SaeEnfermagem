@@ -362,12 +362,10 @@
     <Compile Include="Model\AreaCategoria.cs" />
     <Compile Include="Model\AreaCategoriaItem.cs" />
     <Compile Include="Model\AvaliacaoEnfermagem.cs" />
-    <Compile Include="Model\AvaliacaoEnfermagemDTO.cs" />
     <Compile Include="Model\ChavePrescricao.cs" />
     <Compile Include="Model\CicloPrescricao.cs" />
     <Compile Include="Model\DiagnosticoEnfermagem.cs" />
     <Compile Include="Model\DiagnosticoEnfermagemDTO.cs" />
-    <Compile Include="Model\EvolucaoEnfermagem.cs" />
     <Compile Include="Model\HistoricoEnfermagem.cs" />
     <Compile Include="Model\JustificativaAnotacao.cs" />
     <Compile Include="Model\NandaCaracteristicaDefinidora.cs" />

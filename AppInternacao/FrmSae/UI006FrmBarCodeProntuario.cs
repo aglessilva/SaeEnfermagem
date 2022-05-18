@@ -36,7 +36,7 @@ namespace AppInternacao.FrmSae
 
                 if (textBoxProntuario.Text.Length == 12)
                 {
-                    int setorSae = frm.Tag == null ? 0 :(int)frm.Tag;
+                    int setorSae = frm.Tag == null ? 0 : (int)frm.Tag;
 
                     PacientePresenter = new PacientePresenter();
                     PacientePresenter.SessaoPaciente(Convert.ToInt64(textBoxProntuario.Text), setorSae);
@@ -80,7 +80,10 @@ namespace AppInternacao.FrmSae
                     }
                 }
                 else
+                {
                     btnEnviarCodigoBarra.Enabled = textBoxProntuario.Text.Length == 12;
+                    btnLimpar_Click(null, null);
+                }
 
             }
             catch (Exception exL)
@@ -93,7 +96,8 @@ namespace AppInternacao.FrmSae
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             gDadosPaciente.Visible = lblNaoLocaizado.Visible = pbOk.Visible = lblObs.Visible = false;
-            textBoxProntuario.Text = string.Empty;
+            if (!(sender is null))
+                textBoxProntuario.Text = string.Empty;
             btnEnviarCodigoBarra.Enabled = false;
             textBoxProntuario.Focus();
         }

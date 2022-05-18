@@ -66,13 +66,18 @@ namespace AppInternacao.FrmSae
 
             dataRow = null;
 
+            KeyValuePair<int, IndicadorItem> indicadorItem;
+
             foreach (DataRow item in _dataTableIdicadores.Rows)
             {
+                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Trim().Equals(item[1].ToString().Trim()));
+                indicadorItem = intervencao is null ? new KeyValuePair<int, IndicadorItem>() : intervencao.KeyPairIndicadores.FirstOrDefault(f => f.Value.Id == (int)item[0]);
+
                 dataRow = dataTableIdicadores.NewRow();
                 dataRow[0] = item[0];
                 dataRow[1] = item[1];
                 dataRow[2] = item[3];
-                dataRow[3] = (bool)item[2] ? Properties.Resources.check : Properties.Resources.Wait;
+                dataRow[3] = indicadorItem.Value?.Ckecked ?? false  ? Properties.Resources.check : Properties.Resources.Wait;
                 dataRow[4] = item[2];
                 dataTableIdicadores.Rows.Add(dataRow);
             }
@@ -84,7 +89,11 @@ namespace AppInternacao.FrmSae
             bool ret;
             foreach (DataRow item in _dataTable.Rows)
             {
-                ret = dataTableIdicadores.Select($"IdClassificacao = { item[0]}").All(s => (bool)s[4]);
+                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Trim().Equals(item[0].ToString().Trim()));
+                
+                //ret = dataTableIdicadores.Select($"IdClassificacao = { item[0]}").All(s => (bool)s[4]);
+                ret = intervencao?.KeyPairIndicadores.All(f => f.Value.Ckecked) ?? false;
+                
                 dataRow = dataTable.NewRow();
                 dataRow[0] = item[0];
                 dataRow[1] = item[2];
@@ -111,12 +120,24 @@ namespace AppInternacao.FrmSae
 
                 if (Tag is null)
                 {
+                    UI011FrmTimeLine.lblRotuloSae.Text = "Implementação - Intervenção de Enfermagem";
                     UI011FrmTimeLine.IconButtonVolta.Click += btnButtonBackStep_Click;
+                    UI011FrmTimeLine.iconButtonAvanca.Text = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? "INICIAR" : "AVALIAÇÃO";
 
                     if (Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
+                    {
+                        UI011FrmTimeLine.iconButtonAvanca.ForeColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.FromArgb(13, 87, 134);
+                        UI011FrmTimeLine.iconButtonAvanca.IconChar = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
+                        UI011FrmTimeLine.iconButtonAvanca.IconColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.SteelBlue;
                         UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStepAvanca_Click;
+                    }
                     else
+                    {
+                        UI011FrmTimeLine.iconButtonAvanca.ForeColor = Color.Green;
+                        UI011FrmTimeLine.iconButtonAvanca.IconColor = Color.Green;
+                        UI011FrmTimeLine.iconButtonAvanca.IconChar = IconChar.ArrowCircleRight;
                         UI011FrmTimeLine.iconButtonAvanca.Click += btnStepAvaliaacaoEnfermagem_Click;
+                    }
                 }
 
             }
@@ -353,7 +374,6 @@ namespace AppInternacao.FrmSae
 
         private void btnAnotacaoTecnica_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (!string.IsNullOrWhiteSpace(textBoxAnotacaoEquipTecnica.Text))
@@ -397,8 +417,23 @@ namespace AppInternacao.FrmSae
         }
 
         private void btnStepAvaliaacaoEnfermagem_Click(object sender, EventArgs e)
-        { 
+        {
+            try
+            {
+                UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
 
+                Form frm = new UI018FrmSaeAvaliacao{ TopLevel = false};
+                FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
+                FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+                FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
+
+                UI011FrmTimeLine.ctrl.Controls.Add(frm);
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
         }
 
         private void btnButtonStepAvanca_Click(object sender, EventArgs e)

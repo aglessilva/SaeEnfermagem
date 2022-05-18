@@ -81,6 +81,7 @@ namespace AppInternacao.FrmSae
 
                         // Atualiza Statuso de parciente para Internado
                         paciente.Status = Enum.StatusInternacao.Internado;
+                        paciente.NomeLeito = paciente.NomeSetor = paciente.NomeQuarto = null;
                         new PacientePresenter().Salvar(paciente);
                         AtualizaUserControls();
                     }
@@ -91,10 +92,9 @@ namespace AppInternacao.FrmSae
                 Sessao.Paciente = null;
                 paciente = null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                FrmMain.Alert(exception: ex); 
             }
         }
 
