@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label7.Text" xml:space="preserve">
+  <data name="lblTexto.Text" xml:space="preserve">
     <value>A equipe técnica irá promover os cuidados e as prescrições de enfermagem sinalizadas, para que posteriormente, a etapa de AVALIAÇÃO da SAE possa ser concluída pelo enfermeiro considerando o feedback e as anotações da equipe tecnica de enfermagem.</value>
   </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,8 +28,18 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                FrmMain.mySalvar.Visible = !(FrmMain.myNovo.Visible = FrmMain.myImprimir.Visible = false);
-                FrmMain.mySalvar.Click += MySalvar_Click;
+                FrmMain.listButtons.ForEach(b =>
+                {
+                    if (b.Name.Equals("btnSalvar"))
+                    {
+                        b.Visible = b.Enabled = !(FrmMain.myNovo.Visible = FrmMain.myImprimir.Visible = false);
+                        b.IconChar = IconChar.Save;
+                        b.Click += MySalvar_Click;
+                        b.Width = 80;
+                        b.Text = "Salvar".Trim();
+                    }
+                });
+
                 presenterLeito = new LeitoPresenter();
                 leitos = presenterLeito.GetListLeitos();
                 quartos = presenterLeito.GetListQuartos();

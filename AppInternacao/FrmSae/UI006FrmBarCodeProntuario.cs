@@ -13,6 +13,7 @@ namespace AppInternacao.FrmSae
         {
             InitializeComponent();
             frm = _form;
+            Sessao.Paciente = null;
         }
 
         PacientePresenter PacientePresenter = null;
@@ -77,6 +78,14 @@ namespace AppInternacao.FrmSae
                         lblNaoLocaizado.Visible = true;
                         pbOk.Image = Properties.Resources.Childish_Cross_24996;
                         lblNaoLocaizado.Text = "Prontuário do paciente não localizado!";
+                    }
+
+                    if (Sessao.Paciente.SaeStatus.HasSae.GetValueOrDefault())
+                    {
+                        string msg = $"Já existe um SAE em andamento para este paciente, criado na data {DateTime.Now.ToShortDateString()} registrado em outro setor.";      
+                        MessageBox.Show(msg, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnEnviarCodigoBarra.Enabled = false;
+                        Sessao.Paciente.SaeStatus.HasSae = null;
                     }
                 }
                 else

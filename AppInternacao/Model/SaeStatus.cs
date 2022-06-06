@@ -10,5 +10,6 @@ namespace AppInternacao.Model
         public int IdSetor { get; set; }
         public DateTime? DataSae { get; set; }
         public Sae Status { get; set; }
+        public bool? HasSae { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -197,9 +198,10 @@ namespace AppInternacao.FrmSae
                         ImprimirCarcha();
                     }
                     if (PacientePresenter.Salvar() == 1)
+                    {
+                        MyNovo_Click(null, null);
                         FrmMain.Alert(Alerts.InsertSuccess);
-
-                    MyNovo_Click(null, null);
+                    }
                 }
 
             }
@@ -213,10 +215,37 @@ namespace AppInternacao.FrmSae
         private void FrmPaciente_Load(object sender, EventArgs e)
         {
             dataGridViewPaciente.RowEnter -= dataGridViewPaciente_RowEnter;
-            FrmMain.mySalvar.Visible = FrmMain.myNovo.Visible = FrmMain.myImprimir.Visible = true;
-            FrmMain.mySalvar.Click += new EventHandler(Salvar);
-            FrmMain.myNovo.Click += MyNovo_Click;
-            FrmMain.myImprimir.Click += MyImprimir_Click;
+           
+            FrmMain.listButtons.ForEach(b =>
+            {
+                if (b.Name.Equals("btnNovo"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.FileAlt;
+                    b.IconColor = System.Drawing.Color.Yellow;
+                    b.Click += MyNovo_Click;
+                    b.Width = 73;
+                    b.Text = "Novo".Trim();
+                }
+                
+                if (b.Name.Equals("btnSalvar"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.Save;
+                    b.Click += new EventHandler(Salvar);
+                    b.Width = 80;
+                    b.Text = "Salvar".Trim();
+                }
+
+                if (b.Name.Equals("btnImprimir"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.Print;
+                    b.Click += MyImprimir_Click;
+                    b.Width = 87;
+                    b.Text = "Imprimir".Trim();
+                }
+            });
 
             textBoxDataCracha.Text = DateTime.Now.ToShortDateString();
             textBoxCliente.Text = Sessao.Cliente;

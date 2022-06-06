@@ -98,17 +98,18 @@ namespace AppInternacao.FrmSae
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTitulo.BackColor = System.Drawing.Color.White;
             this.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.txtTitulo.Location = new System.Drawing.Point(123, 5);
+            this.txtTitulo.Location = new System.Drawing.Point(52, 5);
             this.txtTitulo.Multiline = true;
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.ReadOnly = true;
             this.txtTitulo.ShortcutsEnabled = false;
-            this.txtTitulo.Size = new System.Drawing.Size(638, 40);
+            this.txtTitulo.Size = new System.Drawing.Size(743, 40);
             this.txtTitulo.TabIndex = 2;
             this.txtTitulo.TabStop = false;
             this.txtTitulo.Text = "titulo";

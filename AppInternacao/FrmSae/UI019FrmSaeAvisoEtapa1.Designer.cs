@@ -31,7 +31,7 @@ namespace AppInternacao.FrmSae
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UI019FrmSaeAvisoEtapa1));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btnConcluir = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@ namespace AppInternacao.FrmSae
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblTexto = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -58,24 +58,24 @@ namespace AppInternacao.FrmSae
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblTitulo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(636, 42);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(165, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(329, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Primeira etapa do processo SAE";
+            this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(165, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(329, 26);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Primeira etapa do processo SAE";
             // 
             // panel2
             // 
@@ -127,7 +127,7 @@ namespace AppInternacao.FrmSae
             this.btnConcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConcluir.Location = new System.Drawing.Point(20, 5);
             this.btnConcluir.Name = "btnConcluir";
-            this.btnConcluir.Size = new System.Drawing.Size(197, 40);
+            this.btnConcluir.Size = new System.Drawing.Size(195, 40);
             this.btnConcluir.TabIndex = 3;
             this.btnConcluir.TabStop = false;
             this.btnConcluir.Text = "Liberar para equipe tecnica";
@@ -268,24 +268,24 @@ namespace AppInternacao.FrmSae
             this.iconPictureBox5.TabIndex = 10;
             this.iconPictureBox5.TabStop = false;
             // 
-            // label7
+            // lblTexto
             // 
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(320, 70);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(304, 73);
-            this.label7.TabIndex = 12;
-            this.label7.Text = resources.GetString("label7.Text");
+            this.lblTexto.BackColor = System.Drawing.Color.Transparent;
+            this.lblTexto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.lblTexto.ForeColor = System.Drawing.Color.White;
+            this.lblTexto.Location = new System.Drawing.Point(320, 70);
+            this.lblTexto.Name = "lblTexto";
+            this.lblTexto.Size = new System.Drawing.Size(304, 73);
+            this.lblTexto.TabIndex = 12;
+            this.lblTexto.Text = resources.GetString("lblTexto.Text");
             // 
             // UI019FrmSaeAvisoEtapa1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(636, 278);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblTexto);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.iconPictureBox5);
             this.Controls.Add(this.label5);
@@ -301,6 +301,7 @@ namespace AppInternacao.FrmSae
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "UI019FrmSaeAvisoEtapa1";
             this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            this.Load += new System.EventHandler(this.UI019FrmSaeAvisoEtapa1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -319,7 +320,7 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnConcluir;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button button1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label2;
@@ -331,6 +332,6 @@ namespace AppInternacao.FrmSae
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private System.Windows.Forms.Label label6;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblTexto;
     }
 }

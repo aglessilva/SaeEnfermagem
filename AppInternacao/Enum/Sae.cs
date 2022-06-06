@@ -2,8 +2,9 @@
 {
     public enum Sae 
     {
-        Edicao = 0,
-        Andamento = 1,
-        Finalizado = 2
+        Nenhum = 0,
+        Edicao = 1,
+        Andamento = 2,
+        Finalizado = 4,
     }
 }

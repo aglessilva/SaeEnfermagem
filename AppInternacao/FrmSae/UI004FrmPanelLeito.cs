@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,9 +54,28 @@ namespace AppInternacao.FrmSae
         {
             comboBoxQuarto.SelectedIndexChanged -= comboBoxQuarto_SelectedIndexChanged;
             dataGridViewLeito.RowEnter -= dataGridViewLeito_RowEnter;
-            FrmMain.mySalvar.Visible = FrmMain.myNovo.Visible = true;
-            FrmMain.mySalvar.Click += MySalvar_Click;
-            FrmMain.myNovo.Click += MyNovo_Click;
+
+            FrmMain.listButtons.ForEach(b =>
+            {
+                if (b.Name.Equals("btnNovo"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.FileAlt;
+                    b.IconColor = System.Drawing.Color.Yellow;
+                    b.Click += MyNovo_Click;
+                    b.Width = 73;
+                    b.Text = "Novo".Trim();
+                }
+
+                if (b.Name.Equals("btnSalvar"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.Save;
+                    b.Click += MySalvar_Click;
+                    b.Width = 80;
+                    b.Text = "Salvar".Trim();
+                }
+            });
 
             presenterLeito = new LeitoPresenter(this);
             presenterLeito.GetQuartos();

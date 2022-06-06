@@ -29,10 +29,10 @@ namespace AppInternacao.FrmSae
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxDiagnostico = new System.Windows.Forms.ComboBox();
             this.groupBoxIndicadores = new System.Windows.Forms.GroupBox();
@@ -50,17 +50,18 @@ namespace AppInternacao.FrmSae
             this.statusImgClass = new System.Windows.Forms.DataGridViewImageColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlButton = new System.Windows.Forms.Panel();
+            this.btnRemoverAnotacao = new FontAwesome.Sharp.IconButton();
+            this.btnAnotacaoTecnica = new FontAwesome.Sharp.IconButton();
             this.btnRemover = new FontAwesome.Sharp.IconButton();
             this.btnAddPrescricao = new FontAwesome.Sharp.IconButton();
             this.groupBoxDescricaoIndicadores = new System.Windows.Forms.GroupBox();
+            this.textBoxAnotacaoEquipTecnica = new System.Windows.Forms.TextBox();
             this.textBoxDescricaoIndicadores = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlTextBox = new System.Windows.Forms.Panel();
+            this.lblResposta = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.textBoxAnotacaoEquipTecnica = new System.Windows.Forms.TextBox();
-            this.btnAnotacaoTecnica = new FontAwesome.Sharp.IconButton();
-            this.lblResposta = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBoxIndicadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewIndicadores)).BeginInit();
@@ -121,8 +122,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.AllowUserToDeleteRows = false;
             this.dataGridViewIndicadores.AllowUserToResizeColumns = false;
             this.dataGridViewIndicadores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
-            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
+            this.dataGridViewIndicadores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewIndicadores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -143,8 +144,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.ReadOnly = true;
             this.dataGridViewIndicadores.RowHeadersVisible = false;
             this.dataGridViewIndicadores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewIndicadores.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewIndicadores.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewIndicadores.RowTemplate.Height = 40;
             this.dataGridViewIndicadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewIndicadores.ShowCellErrors = false;
@@ -153,8 +154,9 @@ namespace AppInternacao.FrmSae
             this.dataGridViewIndicadores.Size = new System.Drawing.Size(525, 293);
             this.dataGridViewIndicadores.TabIndex = 30;
             this.dataGridViewIndicadores.TabStop = false;
-            this.dataGridViewIndicadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_CellClick);
+            this.dataGridViewIndicadores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_RowEnter);
             this.dataGridViewIndicadores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_CellContentDoubleClick);
+            this.dataGridViewIndicadores.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewIndicadores_RowEnter);
             // 
             // Id
             // 
@@ -232,8 +234,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.AllowUserToDeleteRows = false;
             this.dataGridViewClassificacao.AllowUserToResizeColumns = false;
             this.dataGridViewClassificacao.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
-            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(232)))), ((int)(((byte)(239)))));
+            this.dataGridViewClassificacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,8 +254,8 @@ namespace AppInternacao.FrmSae
             this.dataGridViewClassificacao.ReadOnly = true;
             this.dataGridViewClassificacao.RowHeadersVisible = false;
             this.dataGridViewClassificacao.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridViewClassificacao.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewClassificacao.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewClassificacao.RowTemplate.Height = 40;
             this.dataGridViewClassificacao.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewClassificacao.ShowCellErrors = false;
@@ -304,6 +306,7 @@ namespace AppInternacao.FrmSae
             // 
             // pnlButton
             // 
+            this.pnlButton.Controls.Add(this.btnRemoverAnotacao);
             this.pnlButton.Controls.Add(this.btnAnotacaoTecnica);
             this.pnlButton.Controls.Add(this.btnRemover);
             this.pnlButton.Controls.Add(this.btnAddPrescricao);
@@ -314,11 +317,63 @@ namespace AppInternacao.FrmSae
             this.pnlButton.TabIndex = 35;
             this.pnlButton.Visible = false;
             // 
+            // btnRemoverAnotacao
+            // 
+            this.btnRemoverAnotacao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoverAnotacao.BackColor = System.Drawing.Color.Teal;
+            this.btnRemoverAnotacao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRemoverAnotacao.FlatAppearance.BorderSize = 0;
+            this.btnRemoverAnotacao.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnRemoverAnotacao.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnRemoverAnotacao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoverAnotacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRemoverAnotacao.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnRemoverAnotacao.IconColor = System.Drawing.Color.Yellow;
+            this.btnRemoverAnotacao.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRemoverAnotacao.IconSize = 26;
+            this.btnRemoverAnotacao.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnRemoverAnotacao.Location = new System.Drawing.Point(829, 6);
+            this.btnRemoverAnotacao.Name = "btnRemoverAnotacao";
+            this.btnRemoverAnotacao.Size = new System.Drawing.Size(90, 30);
+            this.btnRemoverAnotacao.TabIndex = 38;
+            this.btnRemoverAnotacao.Text = "Remover";
+            this.btnRemoverAnotacao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoverAnotacao.UseVisualStyleBackColor = false;
+            this.btnRemoverAnotacao.Visible = false;
+            this.btnRemoverAnotacao.Click += new System.EventHandler(this.btnRemoverAnotacao_Click);
+            // 
+            // btnAnotacaoTecnica
+            // 
+            this.btnAnotacaoTecnica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAnotacaoTecnica.BackColor = System.Drawing.Color.Teal;
+            this.btnAnotacaoTecnica.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAnotacaoTecnica.FlatAppearance.BorderSize = 0;
+            this.btnAnotacaoTecnica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnAnotacaoTecnica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.btnAnotacaoTecnica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnotacaoTecnica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAnotacaoTecnica.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnAnotacaoTecnica.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAnotacaoTecnica.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAnotacaoTecnica.IconSize = 28;
+            this.btnAnotacaoTecnica.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAnotacaoTecnica.Location = new System.Drawing.Point(934, 6);
+            this.btnAnotacaoTecnica.Name = "btnAnotacaoTecnica";
+            this.btnAnotacaoTecnica.Size = new System.Drawing.Size(123, 30);
+            this.btnAnotacaoTecnica.TabIndex = 37;
+            this.btnAnotacaoTecnica.Text = "Salvar Anotação";
+            this.btnAnotacaoTecnica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAnotacaoTecnica.UseVisualStyleBackColor = false;
+            this.btnAnotacaoTecnica.Visible = false;
+            this.btnAnotacaoTecnica.Click += new System.EventHandler(this.btnAnotacaoTecnica_Click);
+            // 
             // btnRemover
             // 
             this.btnRemover.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemover.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnRemover.BackColor = System.Drawing.Color.Teal;
             this.btnRemover.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemover.FlatAppearance.BorderSize = 0;
             this.btnRemover.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -326,15 +381,15 @@ namespace AppInternacao.FrmSae
             this.btnRemover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemover.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRemover.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnRemover.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnRemover.IconColor = System.Drawing.Color.Yellow;
             this.btnRemover.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRemover.IconSize = 26;
             this.btnRemover.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnRemover.Location = new System.Drawing.Point(300, 5);
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(115, 30);
+            this.btnRemover.Size = new System.Drawing.Size(91, 30);
             this.btnRemover.TabIndex = 36;
-            this.btnRemover.Text = "Remover texto";
+            this.btnRemover.Text = "Remover";
             this.btnRemover.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemover.UseVisualStyleBackColor = false;
             this.btnRemover.Visible = false;
@@ -342,7 +397,7 @@ namespace AppInternacao.FrmSae
             // 
             // btnAddPrescricao
             // 
-            this.btnAddPrescricao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(39)))), ((int)(((byte)(69)))));
+            this.btnAddPrescricao.BackColor = System.Drawing.Color.Teal;
             this.btnAddPrescricao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddPrescricao.FlatAppearance.BorderSize = 0;
             this.btnAddPrescricao.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -377,6 +432,19 @@ namespace AppInternacao.FrmSae
             this.groupBoxDescricaoIndicadores.TabStop = false;
             this.groupBoxDescricaoIndicadores.Text = "Observações / Anotações / Prescrição de Enfermagem sobre o indicador da intervenç" +
     "ão";
+            // 
+            // textBoxAnotacaoEquipTecnica
+            // 
+            this.textBoxAnotacaoEquipTecnica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxAnotacaoEquipTecnica.BackColor = System.Drawing.Color.White;
+            this.textBoxAnotacaoEquipTecnica.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAnotacaoEquipTecnica.Location = new System.Drawing.Point(520, 15);
+            this.textBoxAnotacaoEquipTecnica.Multiline = true;
+            this.textBoxAnotacaoEquipTecnica.Name = "textBoxAnotacaoEquipTecnica";
+            this.textBoxAnotacaoEquipTecnica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAnotacaoEquipTecnica.Size = new System.Drawing.Size(525, 77);
+            this.textBoxAnotacaoEquipTecnica.TabIndex = 1;
             // 
             // textBoxDescricaoIndicadores
             // 
@@ -413,6 +481,16 @@ namespace AppInternacao.FrmSae
             this.pnlTextBox.TabIndex = 37;
             this.pnlTextBox.Visible = false;
             // 
+            // lblResposta
+            // 
+            this.lblResposta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResposta.AutoSize = true;
+            this.lblResposta.Location = new System.Drawing.Point(757, 4);
+            this.lblResposta.Name = "lblResposta";
+            this.lblResposta.Size = new System.Drawing.Size(299, 13);
+            this.lblResposta.TabIndex = 2;
+            this.lblResposta.Text = "(Equipe Técnica) área para resposta do paciente/obervações";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox3);
@@ -431,55 +509,6 @@ namespace AppInternacao.FrmSae
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1075, 359);
             this.panel3.TabIndex = 39;
-            // 
-            // textBoxAnotacaoEquipTecnica
-            // 
-            this.textBoxAnotacaoEquipTecnica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxAnotacaoEquipTecnica.BackColor = System.Drawing.Color.White;
-            this.textBoxAnotacaoEquipTecnica.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAnotacaoEquipTecnica.Location = new System.Drawing.Point(520, 15);
-            this.textBoxAnotacaoEquipTecnica.Multiline = true;
-            this.textBoxAnotacaoEquipTecnica.Name = "textBoxAnotacaoEquipTecnica";
-            this.textBoxAnotacaoEquipTecnica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxAnotacaoEquipTecnica.Size = new System.Drawing.Size(525, 77);
-            this.textBoxAnotacaoEquipTecnica.TabIndex = 1;
-            // 
-            // btnAnotacaoTecnica
-            // 
-            this.btnAnotacaoTecnica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAnotacaoTecnica.BackColor = System.Drawing.Color.Teal;
-            this.btnAnotacaoTecnica.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAnotacaoTecnica.FlatAppearance.BorderSize = 0;
-            this.btnAnotacaoTecnica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnAnotacaoTecnica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.btnAnotacaoTecnica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnotacaoTecnica.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnAnotacaoTecnica.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
-            this.btnAnotacaoTecnica.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnAnotacaoTecnica.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAnotacaoTecnica.IconSize = 28;
-            this.btnAnotacaoTecnica.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnAnotacaoTecnica.Location = new System.Drawing.Point(934, 6);
-            this.btnAnotacaoTecnica.Name = "btnAnotacaoTecnica";
-            this.btnAnotacaoTecnica.Size = new System.Drawing.Size(123, 30);
-            this.btnAnotacaoTecnica.TabIndex = 37;
-            this.btnAnotacaoTecnica.Text = "Salvar Anotação";
-            this.btnAnotacaoTecnica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAnotacaoTecnica.UseVisualStyleBackColor = false;
-            this.btnAnotacaoTecnica.Visible = false;
-            this.btnAnotacaoTecnica.Click += new System.EventHandler(this.btnAnotacaoTecnica_Click);
-            // 
-            // lblResposta
-            // 
-            this.lblResposta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResposta.AutoSize = true;
-            this.lblResposta.Location = new System.Drawing.Point(757, 4);
-            this.lblResposta.Name = "lblResposta";
-            this.lblResposta.Size = new System.Drawing.Size(299, 13);
-            this.lblResposta.TabIndex = 2;
-            this.lblResposta.Text = "(Equipe Técnica) área para resposta do paciente/obervações";
             // 
             // UI017FrmSaeImplementacao
             // 
@@ -541,5 +570,6 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.TextBox textBoxAnotacaoEquipTecnica;
         private FontAwesome.Sharp.IconButton btnAnotacaoTecnica;
         private System.Windows.Forms.Label lblResposta;
+        private FontAwesome.Sharp.IconButton btnRemoverAnotacao;
     }
 }

@@ -49,10 +49,19 @@ namespace AppInternacao.FrmSae
 
         private void btnPrescricaoIntervencaoEnfermagem_Click(object sender, EventArgs e)
         {
+            FrmMain.listButtons.ForEach(b => b.Visible = false);
+            if (Sessao.Paciente.SaeStatus.Status == Sae.Nenhum)
+            {
+                string msg = "Ainda não há Planejamento de intervenção/prescrição de enfermagem para este paciente, favor comunicar ao enfermeiro. ";
+
+                MessageBox.Show(msg, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             if (Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
             {
-                string msg = "Esse paciente ainda não tem prescrição dos cuidados de enfermagem, essa informação deverá ser preenchida na SAE do dia.\n" +
-                    "Assim a equipe tecnica de enfermagem, poderá evoluir com os cuidados prescritos.";
+                string msg = "A intervenção/prescrição de enfermagem está em preparação pelo enfermeiro(a), e deverá ser liberado em breve\n" +
+                    "para a equipe tecnica de enfermagem.";
 
                 MessageBox.Show(msg, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -194,21 +203,27 @@ namespace AppInternacao.FrmSae
             lblPaciente.Text = Sessao.Paciente.Nome;
             lblIdade.Text = Sessao.Paciente.Idade.ToString();
 
+            btnPrescricaoIntervencaoEnfermagem.Visible = (Perfil.Administrador | Perfil.EnfermeiroAdmin | Perfil.Enfermeiro_Assistemcial | Perfil.Tecnico).HasFlag(Sessao.Usuario.Perfil);
+
             MemoryStream ms = new MemoryStream(Sessao.Paciente.Foto);
             pictureBoxExtFoto.Image = Image.FromStream(ms);
 
-            string msg = Sessao.Paciente.SaeStatus.Status == Sae.Edicao 
-                ? "Intervenção de enfermagem/Prescrição está em preparação" 
+            string msg = Sessao.Paciente.SaeStatus.Status == Sae.Nenhum 
+                ? "Intervenção/Prescrição de enfermagem ainda não foi planejado, favor comunicar ao enfermeiro(a)."
+                : Sessao.Paciente.SaeStatus.Status == Sae.Edicao 
+                ? "Intervenção/Prescrição de enfermagem está em preparação."
                 : Sessao.Paciente.SaeStatus.Status == Sae.Andamento 
-                ? "Intervenção de enfermagem/Prescrição liberado para o paciente." : "Finalizado!";
+                ? "Intervenção/Prescrição de enfermagem liberado para o paciente." : "Finalizado!";
 
             new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(btnPrescricaoIntervencaoEnfermagem, msg);
 
-            btnPrescricaoIntervencaoEnfermagem.Image = Sessao.Paciente.SaeStatus.Status == Sae.Edicao
+            btnPrescricaoIntervencaoEnfermagem.Image = Sessao.Paciente.SaeStatus.Status == Sae.Nenhum
+                ? Resources.sinalizadorV1
+                : Sessao.Paciente.SaeStatus.Status == Sae.Edicao
                 ? Resources.sinalizadorManutencao
                 : Sessao.Paciente.SaeStatus.Status == Sae.Andamento
                 ? Resources.sinalizadorVer
-                : Resources.sinalizadorV1;
+                : Resources.sinalizador;
         }
 
 

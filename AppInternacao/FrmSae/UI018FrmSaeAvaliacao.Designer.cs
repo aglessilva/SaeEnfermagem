@@ -30,10 +30,10 @@ namespace AppInternacao.FrmSae
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UI018FrmSaeAvaliacao));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.treeViewNoc = new System.Windows.Forms.TreeView();
@@ -41,6 +41,8 @@ namespace AppInternacao.FrmSae
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBoxPesquisaNoc = new System.Windows.Forms.TextBox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.comboBoxNicClassificacao = new System.Windows.Forms.ComboBox();
             this.lblItemIndicador = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -84,6 +86,8 @@ namespace AppInternacao.FrmSae
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.comboBoxNicClassificacao);
             this.splitContainer1.Panel2.Controls.Add(this.lblItemIndicador);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
@@ -114,7 +118,7 @@ namespace AppInternacao.FrmSae
             this.groupBox2.Size = new System.Drawing.Size(360, 555);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "NOC - Classificação";
+            this.groupBox2.Text = "Resultados de Classificação - NOC";
             // 
             // treeViewNoc
             // 
@@ -202,6 +206,24 @@ namespace AppInternacao.FrmSae
             this.iconPictureBox1.TabIndex = 29;
             this.iconPictureBox1.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Classificação NOC";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 13);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "Classificação NIC";
+            // 
             // comboBoxNicClassificacao
             // 
             this.comboBoxNicClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -211,9 +233,9 @@ namespace AppInternacao.FrmSae
             this.comboBoxNicClassificacao.FormattingEnabled = true;
             this.comboBoxNicClassificacao.Items.AddRange(new object[] {
             "Selecione uma classificação de resultados..."});
-            this.comboBoxNicClassificacao.Location = new System.Drawing.Point(7, 11);
+            this.comboBoxNicClassificacao.Location = new System.Drawing.Point(6, 69);
             this.comboBoxNicClassificacao.Name = "comboBoxNicClassificacao";
-            this.comboBoxNicClassificacao.Size = new System.Drawing.Size(823, 21);
+            this.comboBoxNicClassificacao.Size = new System.Drawing.Size(821, 21);
             this.comboBoxNicClassificacao.TabIndex = 44;
             this.comboBoxNicClassificacao.ValueMember = "Codigo";
             // 
@@ -222,7 +244,7 @@ namespace AppInternacao.FrmSae
             this.lblItemIndicador.AutoSize = true;
             this.lblItemIndicador.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
             this.lblItemIndicador.ForeColor = System.Drawing.Color.Blue;
-            this.lblItemIndicador.Location = new System.Drawing.Point(319, 98);
+            this.lblItemIndicador.Location = new System.Drawing.Point(319, 128);
             this.lblItemIndicador.Name = "lblItemIndicador";
             this.lblItemIndicador.Size = new System.Drawing.Size(12, 15);
             this.lblItemIndicador.TabIndex = 43;
@@ -235,9 +257,9 @@ namespace AppInternacao.FrmSae
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.AutoSize = true;
             this.panel3.BackColor = System.Drawing.Color.DimGray;
-            this.panel3.Location = new System.Drawing.Point(7, 151);
+            this.panel3.Location = new System.Drawing.Point(7, 181);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(823, 1);
+            this.panel3.Size = new System.Drawing.Size(821, 1);
             this.panel3.TabIndex = 42;
             // 
             // panel2
@@ -246,9 +268,9 @@ namespace AppInternacao.FrmSae
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.DimGray;
-            this.panel2.Location = new System.Drawing.Point(7, 121);
+            this.panel2.Location = new System.Drawing.Point(7, 151);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(823, 1);
+            this.panel2.Size = new System.Drawing.Size(821, 1);
             this.panel2.TabIndex = 41;
             // 
             // lblDefinicao
@@ -256,7 +278,7 @@ namespace AppInternacao.FrmSae
             this.lblDefinicao.AutoSize = true;
             this.lblDefinicao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F);
             this.lblDefinicao.ForeColor = System.Drawing.Color.Crimson;
-            this.lblDefinicao.Location = new System.Drawing.Point(7, 68);
+            this.lblDefinicao.Location = new System.Drawing.Point(7, 97);
             this.lblDefinicao.Name = "lblDefinicao";
             this.lblDefinicao.Size = new System.Drawing.Size(62, 15);
             this.lblDefinicao.TabIndex = 38;
@@ -267,7 +289,7 @@ namespace AppInternacao.FrmSae
             this.npdOutros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.npdOutros.Enabled = false;
             this.npdOutros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.npdOutros.Location = new System.Drawing.Point(266, 127);
+            this.npdOutros.Location = new System.Drawing.Point(266, 157);
             this.npdOutros.Maximum = new decimal(new int[] {
             5,
             0,
@@ -294,7 +316,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(8, 129);
+            this.label3.Location = new System.Drawing.Point(8, 159);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(249, 15);
             this.label3.TabIndex = 36;
@@ -305,7 +327,7 @@ namespace AppInternacao.FrmSae
             this.npdEstimativaAlvo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.npdEstimativaAlvo.Enabled = false;
             this.npdEstimativaAlvo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.npdEstimativaAlvo.Location = new System.Drawing.Point(266, 96);
+            this.npdEstimativaAlvo.Location = new System.Drawing.Point(266, 126);
             this.npdEstimativaAlvo.Maximum = new decimal(new int[] {
             5,
             0,
@@ -332,7 +354,7 @@ namespace AppInternacao.FrmSae
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(6, 98);
+            this.label1.Location = new System.Drawing.Point(6, 128);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(259, 15);
             this.label1.TabIndex = 32;
@@ -344,22 +366,22 @@ namespace AppInternacao.FrmSae
             this.dataGridViewAvaliacao.AllowUserToDeleteRows = false;
             this.dataGridViewAvaliacao.AllowUserToResizeColumns = false;
             this.dataGridViewAvaliacao.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewAvaliacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewAvaliacao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewAvaliacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewAvaliacao.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewAvaliacao.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAvaliacao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAvaliacao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewAvaliacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAvaliacao.ColumnHeadersVisible = false;
             this.dataGridViewAvaliacao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -372,29 +394,29 @@ namespace AppInternacao.FrmSae
             this.T4,
             this.T5});
             this.dataGridViewAvaliacao.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewAvaliacao.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAvaliacao.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewAvaliacao.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewAvaliacao.Location = new System.Drawing.Point(7, 158);
+            this.dataGridViewAvaliacao.Location = new System.Drawing.Point(7, 190);
             this.dataGridViewAvaliacao.MultiSelect = false;
             this.dataGridViewAvaliacao.Name = "dataGridViewAvaliacao";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewAvaliacao.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAvaliacao.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewAvaliacao.RowHeadersVisible = false;
             this.dataGridViewAvaliacao.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAvaliacao.Size = new System.Drawing.Size(823, 386);
+            this.dataGridViewAvaliacao.Size = new System.Drawing.Size(821, 355);
             this.dataGridViewAvaliacao.TabIndex = 31;
             this.dataGridViewAvaliacao.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAvaliacao_CellContentClick);
             // 
@@ -513,9 +535,9 @@ namespace AppInternacao.FrmSae
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.DimGray;
-            this.panel1.Location = new System.Drawing.Point(7, 91);
+            this.panel1.Location = new System.Drawing.Point(7, 121);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(823, 1);
+            this.panel1.Size = new System.Drawing.Size(821, 1);
             this.panel1.TabIndex = 30;
             // 
             // comboBoxClassificacao
@@ -527,9 +549,9 @@ namespace AppInternacao.FrmSae
             this.comboBoxClassificacao.FormattingEnabled = true;
             this.comboBoxClassificacao.Items.AddRange(new object[] {
             "Selecione uma classificação de resultados..."});
-            this.comboBoxClassificacao.Location = new System.Drawing.Point(7, 42);
+            this.comboBoxClassificacao.Location = new System.Drawing.Point(6, 25);
             this.comboBoxClassificacao.Name = "comboBoxClassificacao";
-            this.comboBoxClassificacao.Size = new System.Drawing.Size(823, 21);
+            this.comboBoxClassificacao.Size = new System.Drawing.Size(821, 21);
             this.comboBoxClassificacao.TabIndex = 0;
             this.comboBoxClassificacao.ValueMember = "Codigo";
             this.comboBoxClassificacao.SelectionChangeCommitted += new System.EventHandler(this.comboBoxClassificacao_SelectionChangeCommitted);
@@ -586,5 +608,7 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.DataGridViewComboBoxColumn T4;
         private System.Windows.Forms.DataGridViewComboBoxColumn T5;
         private System.Windows.Forms.ComboBox comboBoxNicClassificacao;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
     }
 }

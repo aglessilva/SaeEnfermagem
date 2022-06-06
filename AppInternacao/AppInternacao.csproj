@@ -149,6 +149,7 @@
     <Compile Include="Enum\SetorSae.cs" />
     <Compile Include="Enum\StatusInternacao.cs" />
     <Compile Include="Enum\Sae.cs" />
+    <Compile Include="Enum\StatusPrescricao.cs" />
     <Compile Include="Extend\CheckBoxExt.cs">
       <SubType>Component</SubType>
     </Compile>

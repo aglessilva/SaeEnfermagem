@@ -49,9 +49,9 @@ namespace AppInternacao.Frm
                 var obj = new JustificativaAnotacao()
                 {
                     IdPrescricao = chavePrescricao.Id,
-                    IdPaciente = Sessao.Paciente.Id,
+                    Prontuario = Sessao.Paciente.Prontuario,
                     TipoMsg = tipo,
-                    ItemData = chavePrescricao.StatusPrescricao == 3 ? $"{itemPrescricao}#{textBoxData.Text}" : null
+                    ItemData = chavePrescricao.Status ==  StatusPrescricao.Revisao ? $"{itemPrescricao}#{textBoxData.Text}" : null
                 };
 
                 // Anotação do tecnico de enfermagem (falta de medicamento, material de trabalho etc etc etc)
@@ -67,7 +67,6 @@ namespace AppInternacao.Frm
                     obj.Justificativa = textBoxJustificativa.Text;
 
                 presenterGeneric.Salvar(obj, Procedure.SP_ADD_JUSTIFICATIVA);
-                DialogResult = DialogResult.OK;
                 Dispose(true);
 
             }
@@ -89,12 +88,18 @@ namespace AppInternacao.Frm
             {
                 dataGridViewJustificativa.AutoGenerateColumns = false;
 
+                if (chavePrescricao.Status == StatusPrescricao.Revisao)
+                {
+                    lblTitle.Text = "Devolução da prescrição médica";
+                }
+
                 if (tipo == 0)
                 {
                     dataGridViewJustificativa.Columns["AnotacaoItemPrescricao"].Visible = true;
+                    btnConfirmar.Text = "Justificar item";
                     panelItemData.Visible = true;
                     textBoxItem.Text = itemPrescricao.ToString();
-                    textBoxData.Text = "Note";
+                    textBoxData.Text = DateTime.Now.ToShortDateString() ;
                     lblData.Visible = false;
                 }
                 if (tipo == 1)
@@ -118,8 +123,6 @@ namespace AppInternacao.Frm
                     btnConfirmar.Enabled = DateTime.Now.Date < cicloPrescricao.DataCiclo;
                     btnLimpar.Enabled = DateTime.Now.Date < cicloPrescricao.DataCiclo;
                 }
-
-
             }
             catch (Exception ex)
             {

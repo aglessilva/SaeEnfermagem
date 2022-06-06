@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -53,16 +54,30 @@ namespace AppInternacao.FrmSae
             new ToolTip { IsBalloon = true, ToolTipTitle = "Informação", UseAnimation = true, ToolTipIcon = ToolTipIcon.Info }.SetToolTip(buttonLimpar, "Limpar campo e pesquisa");
             if (isSAE)
             {
-                if (Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
+                if ((Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status))
                 {
                     FrmMain.listButtons.ForEach(b =>
                     {
                         if (b.Name.Equals("btnAddGeneric"))
                         {
-                            b.Visible = true;
+                            b.Visible = b.Enabled = true;
+                            b.IconChar = IconChar.Edit;
+                            b.IconColor = System.Drawing.Color.Yellow;
                             b.Click += AddDiagnostrico_Click;
+                            b.Width = 167;
                             b.Text = "Adicionar Diagnóstico".Trim();
+
                         }
+
+                        if (b.Name.Equals("btnSalvar"))
+                        {
+                            b.Visible = b.Enabled = true;
+                            b.IconChar = IconChar.Clone;
+                            b.Click += ClonarDiagnostico_Click;
+                            b.Width = 188;
+                            b.Text = "Clonar último Diagnóstico".Trim();
+                        }
+                        
                     });
                 }
 
@@ -71,8 +86,6 @@ namespace AppInternacao.FrmSae
                 UI011FrmTimeLine.lblRotuloSae.Text = "Diagnóstico de Enfermagem";
 
                 populaDiagnostico();
-                UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
-                BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
             }
             
             FilterByName();
@@ -231,7 +244,8 @@ namespace AppInternacao.FrmSae
 
         private void BtnVizualizarDiagnostico_Click(object sender, EventArgs e)
         {
-            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Visible = false;
+            
             var f = new UI013FrmSaeViewDiagnostico() { TopLevel = false };
             UI011FrmTimeLine.ctrl.Controls.Add(f);
             f.BringToFront();
@@ -307,8 +321,12 @@ namespace AppInternacao.FrmSae
                 {
                     FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
                     FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
-                    FrmMain.RemoveClickEvent(FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")));
-                    FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+
+                    FrmMain.listButtons.ForEach(b =>
+                    {
+                        b.Visible = false;
+                        FrmMain.RemoveClickEvent(b);
+                    });
 
                     UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
                     Form frm = new UI016FrmSaePlanejamentoEnfermagem() { TopLevel = false };
@@ -326,22 +344,23 @@ namespace AppInternacao.FrmSae
         private void btnButtonBackStep_Click(object sender, EventArgs e)
         {
             FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
-            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = (Sessao.Paciente.SaeStatus.Status == Sae.Edicao);
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Visible = false;
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
             FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
 
-            Form controlForm = new UI014FrmSaeExameFisico { TopLevel = false , Tag = SetorSae.ClininaMedica };
+            Form controlForm = new UI014FrmSaeExameFisico { TopLevel = false , Tag = (SetorSae)Sessao.Paciente.SaeStatus.IdSetor };
             UI011FrmTimeLine.ctrl.Controls.Clear();
             UI011FrmTimeLine.ctrl.Controls.Add(controlForm);
             controlForm.Show();
         }
 
-        void populaDiagnostico()
+        void populaDiagnostico(DateTime? _dataInclusao = null)
         {
 
             if (!Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any())
             {
-                var objDiagnosticoEnfermagem = presenterGeneric.GetLista(new DiagnosticoEnfermagemDTO { IdSae = Sessao.Paciente.SaeStatus.Id, Prontuario = Sessao.Paciente.Prontuario }, Procedure.SP_GET_DIAGNOSTICO_ENFERMAGEM_SAE);
+                var objDiagnosticoEnfermagem = presenterGeneric.GetLista(new DiagnosticoEnfermagemDTO { IdSae = Sessao.Paciente.SaeStatus.Id, Prontuario = Sessao.Paciente.Prontuario, DataInclusao = _dataInclusao  }, Procedure.SP_GET_DIAGNOSTICO_ENFERMAGEM_SAE);
 
                 if (objDiagnosticoEnfermagem.Any())
                 {
@@ -350,7 +369,7 @@ namespace AppInternacao.FrmSae
                     {
                         obj = new DiagnosticoEnfermagem
                         {
-                            Id = item.Id, 
+                            Id = _dataInclusao is null ? item.Id : 0, 
                             Diagnostico = JsonConvert.DeserializeObject<NandaDiagnostico>(item.Diagnostico),
                             CaracteristicaDefinidoras = string.IsNullOrWhiteSpace(item.CaracteristicaDefinidoras) ? new List<NandaCaracteristicaDefinidora>() : JsonConvert.DeserializeObject<List<NandaCaracteristicaDefinidora>>(item.CaracteristicaDefinidoras),
                             CondicaoAssociadas = string.IsNullOrWhiteSpace(item.CondicaoAssociadas) ? new List<NandaCondicaoAssociada>() : JsonConvert.DeserializeObject<List<NandaCondicaoAssociada>>(item.CondicaoAssociadas),
@@ -367,8 +386,28 @@ namespace AppInternacao.FrmSae
                 }
             }
 
-            BtnVizualizarDiagnostico.Visible = true;
             BtnVizualizarDiagnostico.Text = $"Visualizar Itens {Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count }";
+            UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+            BtnVizualizarDiagnostico.Visible = BtnVizualizarDiagnostico.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Visible = !Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
+        }
+
+        private void ClonarDiagnostico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                populaDiagnostico(DateTime.Now.Date.AddDays(-1));
+
+                if(!Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any())
+                {
+                    MessageBox.Show("Não existe rgistro de Diagnosticos do dia anterior deste paciente", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
         }
     }
 }

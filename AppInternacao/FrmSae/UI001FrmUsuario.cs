@@ -2,6 +2,7 @@
 using AppInternacao.Model;
 using AppInternacao.Presenter;
 using AppInternacao.View;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,7 +20,7 @@ namespace AppInternacao.FrmSae
             dataGridViewUsuarios.AutoGenerateColumns = false;
         }
 
-
+        private List<Usuario> lista = null;
         private UsuarioPresenter usuarioPresenter = null;
         public Usuario usuario
         {
@@ -64,7 +65,7 @@ namespace AppInternacao.FrmSae
         void Carregar()
         {
             usuarioPresenter = new UsuarioPresenter();
-            var lista = usuarioPresenter.Carregar();
+            lista = usuarioPresenter.Carregar();
             dataGridViewUsuarios.DataSource = lista;
         }
 
@@ -73,9 +74,28 @@ namespace AppInternacao.FrmSae
             dataGridViewUsuarios.RowEnter -= dataGridViewUsuarios_RowEnter;
             new ToolTip().SetToolTip(btnImparPesquisa, "Limpar Pesquisa");
 
-            FrmMain.myNovo.Visible = FrmMain.mySalvar.Visible = true;
-            FrmMain.mySalvar.Click += new EventHandler(Salvar);
-            FrmMain.myNovo.Click += MyNovo_Click;
+            FrmMain.listButtons.ForEach(b =>
+            {
+                if (b.Name.Equals("btnNovo"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.FileAlt;
+                    b.IconColor = System.Drawing.Color.Yellow;
+                    b.Click += MyNovo_Click;
+                    b.Width = 73;
+                    b.Text = "Novo".Trim();
+                }
+
+                if (b.Name.Equals("btnSalvar"))
+                {
+                    b.Visible = b.Enabled = true;
+                    b.IconChar = IconChar.Save;
+                    b.Click += new EventHandler(Salvar);
+                    b.Width = 80;
+                    b.Text = "Salvar".Trim();
+                }
+
+            });
             textBoxNome.Focus();
             try
             {
@@ -296,12 +316,19 @@ namespace AppInternacao.FrmSae
         private void btnImparPesquisa_Click(object sender, EventArgs e)
         {
             textBoxPesquisaUsario.Text = string.Empty;
+            dataGridViewUsuarios.DataSource = lista;
         }
 
         private void FrmUsuario001_FormClosing(object sender, FormClosingEventArgs e)
         {
             FrmMain.mySalvar.Click -= Salvar;
             FrmMain.myNovo.Click -= MyNovo_Click;
+        }
+
+        private void textBoxPesquisaUsario_TextChanged(object sender, EventArgs e)
+        {
+            var filter = textBoxPesquisaUsario.Text.Trim();
+            dataGridViewUsuarios.DataSource = (filter.Length > 2 && !string.IsNullOrWhiteSpace(filter)) ? lista.Where(f => f.Nome.StartsWith(filter)).ToList() : lista;
         }
     }
 }

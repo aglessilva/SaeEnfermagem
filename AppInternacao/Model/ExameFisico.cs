@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AppInternacao.Model
 {
@@ -18,6 +19,7 @@ namespace AppInternacao.Model
         public string AnotacaoPressaoArterial { get; set; }
         public int CodigoPressaoArterial { get; set; }
         public string AreasItens { get; set; }
+        public DateTime? DataExameFisico { get; set; }
         public List<AreaCategoriaItem> ExameItens { get; set; }
     }
 

@@ -126,7 +126,6 @@ namespace AppInternacao.Presenter
         {
             try
             {
-                Sessao.Paciente = null;
                 crud = new CRUD();
                 Sessao.Paciente = crud.RetornaObjeto(Procedure.SP_GET_PACIENTE, new Paciente() { Prontuario = _numeroProntuario });
                 Sessao.Paciente.SaeStatus = crud.RetornaObjeto(Procedure.SP_GET_STATUS_SAE, 
@@ -137,11 +136,17 @@ namespace AppInternacao.Presenter
                         IdSetor = _idSetor
                     });
 
+
                 if (Sessao.Paciente.SaeStatus.DataSae.HasValue)
                 {
-                    Sessao.Paciente.Sae.ExameFisico = crud.RetornaObjeto(Procedure.SP_GET_EXAME_FISICO_SAE, new ExameFisico { Prontuario = Sessao.Paciente.Prontuario, IdSae = Sessao.Paciente.SaeStatus.Id, IdSetor = _idSetor});
+                    Sessao.Paciente.Sae.ExameFisico = crud.RetornaObjeto(Procedure.SP_GET_EXAME_FISICO_SAE, new ExameFisico { Prontuario = Sessao.Paciente.Prontuario, IdSae = Sessao.Paciente.SaeStatus.Id, IdSetor = _idSetor });
                     Sessao.Paciente.Sae.ExameFisico.ExameItens = JsonConvert.DeserializeObject<List<AreaCategoriaItem>>(Sessao.Paciente.Sae.ExameFisico.AreasItens);
                     Sessao.Paciente.Sae.ExameFisico.AreasItens = string.Empty;
+                }
+                else
+                {
+                    Sessao.Paciente.SaeStatus.IdSetor = _idSetor;
+                    Sessao.Paciente.SaeStatus.HasSae = crud.Executar(new { Prontuario = _numeroProntuario }, Procedure.SP_GET_CHECK_COUNT_SAE, Acao.Verificar) > 0;
                 }
             }
             catch (Exception exC)

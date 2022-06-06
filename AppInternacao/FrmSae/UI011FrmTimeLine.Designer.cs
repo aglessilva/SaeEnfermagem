@@ -63,10 +63,12 @@ namespace AppInternacao.FrmSae
             // 
             // lblNameStepSae
             // 
-            this.lblNameStepSae.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblNameStepSae.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNameStepSae.BackColor = System.Drawing.Color.Silver;
-            this.lblNameStepSae.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameStepSae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
+            this.lblNameStepSae.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.lblNameStepSae.ForeColor = System.Drawing.Color.Navy;
             this.lblNameStepSae.Location = new System.Drawing.Point(6, 16);
             this.lblNameStepSae.Name = "lblNameStepSae";
             this.lblNameStepSae.Size = new System.Drawing.Size(557, 24);
@@ -86,6 +88,7 @@ namespace AppInternacao.FrmSae
             this.BtnAvancar.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
             this.BtnAvancar.IconColor = System.Drawing.Color.SteelBlue;
             this.BtnAvancar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnAvancar.IconSize = 40;
             this.BtnAvancar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnAvancar.Location = new System.Drawing.Point(709, 0);
             this.BtnAvancar.Name = "BtnAvancar";
@@ -109,6 +112,7 @@ namespace AppInternacao.FrmSae
             this.btnVoltar.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleLeft;
             this.btnVoltar.IconColor = System.Drawing.Color.SteelBlue;
             this.btnVoltar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVoltar.IconSize = 40;
             this.btnVoltar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVoltar.Location = new System.Drawing.Point(0, 0);
             this.btnVoltar.Name = "btnVoltar";

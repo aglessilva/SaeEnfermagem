@@ -2,6 +2,7 @@
 using AppInternacao.Extend;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,22 @@ namespace AppInternacao.FrmSae
                 UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStep_Click;
                 flowLayoutPanels.Clear();
 
+                FrmMain.listButtons.ForEach(b =>
+                {
+                    if (b.Name.Equals("btnAddGeneric"))
+                    {
+                        b.Visible = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
+                        b.Width = 193;
+                        b.IconColor = System.Drawing.Color.Chartreuse;
+                        b.Click += BtnReplicarExameFisico_Click;
+                        b.Text = "Clonar último exame físico".Trim();
+                        b.IconChar = IconChar.Clone;
+                    }
+
+                    if (b.Name.Equals("btnSalvar"))
+                        b.Visible = false;
+                });
+
                 presenterGeneric = new PresenterGeneric();
                 
                 lstTemplateNamesExamesFisicos = presenterGeneric.GetLista(new TemplateNameExameFisico { SetorAssociado = ((int)Tag).ToString() }, Procedure.SP_GET_NAME_EXAME_FISICO);
@@ -57,6 +74,7 @@ namespace AppInternacao.FrmSae
                 {
                     this.Enabled = false;
                     MessageBox.Show("Não existe nenhum template de exame físico associado para este setor.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmMain.listButtons.ForEach(b => b.Visible = false);
                     return;
                 }
 
@@ -75,8 +93,8 @@ namespace AppInternacao.FrmSae
                 }
 
                 comboBoxTemplateExameFisico.Enabled = Sessao.Paciente.SaeStatus.DataSae is null;
-                txtAnotacaoAdicionais.Enabled = panelBody.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
-
+                txtAnotacaoAdicionais.Enabled = panelBody.Enabled = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
+                FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = !Sessao.Paciente.Sae.ExameFisico.ExameItens.Any();
             }
             catch (Exception ex)
             {
@@ -103,6 +121,7 @@ namespace AppInternacao.FrmSae
             try
             {
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
+                FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
 
                 UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
                 
@@ -446,8 +465,6 @@ namespace AppInternacao.FrmSae
 
                                 comboBoxPressaoArterial.SelectedIndex = (int)Sessao.Paciente.Sae?.ExameFisico.CodigoPressaoArterial;
                                 textBoxAnotacaoPressaoArterial.Text = Sessao.Paciente.Sae?.ExameFisico.AnotacaoPressaoArterial;
-                                if (isBack)
-                                    comboBoxPressaoArterial_SelectionChangeCommitted(null, null);
 
                                 break;
                             }
@@ -511,11 +528,6 @@ namespace AppInternacao.FrmSae
 
         }
 
-        private void comboBoxPressaoArterial_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-
-        }
-
         private void RadioBtn_Click(object sender, EventArgs e)
         {
             if (gGlasgow.Visible)
@@ -540,6 +552,60 @@ namespace AppInternacao.FrmSae
 
                 somaTotalGlasgow = 0;
                 radioButtonItem = null;
+            }
+        }
+
+        private void BtnReplicarExameFisico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clear();
+
+               var objStatus = presenterGeneric.GetItem(
+                    new SaeStatus
+                    {
+                        Prontuario = Sessao.Paciente.Prontuario,
+                        DataSae = DateTime.Now.Date.AddDays(- 1),
+                        IdSetor = Sessao.Paciente.SaeStatus.IdSetor
+                    }, Procedure.SP_GET_STATUS_SAE);
+
+
+                if (objStatus.DataSae is null)
+                {
+                    comboBoxTemplateExameFisico.SelectedIndex = 0;
+                    MessageBox.Show("Não existe rgistro de exame fisico do dia anterior deste paciente", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = false;
+                    return;
+                }
+
+                Sessao.Paciente.Sae.ExameFisico = presenterGeneric.GetItem(new ExameFisico
+                {
+                    Prontuario = objStatus.Prontuario,
+                    IdSae = objStatus.Id,
+                    IdSetor = objStatus.IdSetor,
+                    DataExameFisico = DateTime.Now.Date.AddDays(-1)
+                },
+                Procedure.SP_GET_EXAME_FISICO_SAE);
+
+                Sessao.Paciente.Sae.ExameFisico.ExameItens = JsonConvert.DeserializeObject<List<AreaCategoriaItem>>(Sessao.Paciente.Sae.ExameFisico.AreasItens);
+
+                Sessao.Paciente.Sae.ExameFisico.Id = 0;
+                Sessao.Paciente.Sae.ExameFisico.IdSae = 0;
+                Sessao.Paciente.Sae.ExameFisico.AreasItens = string.Empty;
+
+                Sessao.Paciente.Sae.ExameFisico.DataExameFisico = null;
+                isBack = true;
+
+                comboBoxTemplateExameFisico.SelectedItem = lstTemplateNamesExamesFisicos.SingleOrDefault(c => c.Id == Sessao.Paciente.Sae.ExameFisico.IdTemplate);
+                txtAnotacaoAdicionais.Text = Sessao.Paciente.Sae.ExameFisico.AnotacoesAdicionais;
+                
+                Populatemplate();
+                OrdenarGroup();
+                
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex); 
             }
         }
     }

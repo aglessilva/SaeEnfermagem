@@ -42,7 +42,7 @@ namespace AppInternacao.FrmSae
         public UI012FrmSaeHistoricoEnfermagem()
         {
             InitializeComponent();
-            txtTitulo.Text = $"HISTÓRICO DE ENFERMAGEM – ADMISSÃO DE CRITÉRIOS E AVALIAÇÃO DE PADRÕES FUNCIONAIS DE SAÚDE";
+            txtTitulo.Text = $"ADMISSÃO DE PACIENTES - CRITÉRIOS E AVALIAÇÃO DE PADRÕES FUNCIONAIS DE SAÚDE";
         }
 
         private void btnButtonStep_Click(object sender, EventArgs e)

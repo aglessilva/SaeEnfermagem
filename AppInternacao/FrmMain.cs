@@ -26,7 +26,10 @@ namespace AppInternacao
         public static IconButton mySalvar;
         public static IconButton myNovo;
         public static IconButton myImprimir;
+        public static Label lbltitleMain;
+        public static IconPictureBox iconTitleMain;
         public static List<IconButton> listButtons = null;
+
         public Main Main { get => new Main() { Dominio = Environment.UserDomainName };
             set
             {
@@ -43,6 +46,8 @@ namespace AppInternacao
             mySalvar = btnSalvar;
             myNovo = btnNovo;
             myImprimir = btnImprimir;
+            lbltitleMain = lblTitleForm;
+            iconTitleMain = iconCurrentChildForm;
             listButtons = new List<IconButton>() { myImprimir, mySalvar, myNovo, btnAddGeneric };
         }
 
@@ -90,7 +95,7 @@ namespace AppInternacao
                 if (tt.Count > 0)
                     tt[0].Dispose();
 
-                listButtons.ForEach(b => RemoveClickEvent(b));
+                listButtons.ForEach(b => { RemoveClickEvent(b); b.Visible = false; b.Width = 100; });
 
                 splitContainerMain.Panel1.Controls.Clear();
                 if (!splitContainerMain.Panel1.Controls.OfType<Control>().Any(f => f is Form))
@@ -402,16 +407,6 @@ namespace AppInternacao
             }
         }
 
-        private void btnClinicaMedica_Click(object sender, EventArgs e)
-        {
-            if (!isCollapsed[0])
-                timerCollapsed.Start();
-
-            CloseUC();
-           // userControl = new FrmSae.UCTimeLine();
-            OpenUc();
-        }
-
         private void btnAdmUsuario_Click(object sender, EventArgs e)
         {
             if (!isCollapsed[0])
@@ -560,7 +555,6 @@ namespace AppInternacao
             ActivateButton(sender);
         }
 
-
         private void iconButton1_Click_1(object sender, EventArgs e)
         {
             if (!isCollapsed[0])
@@ -579,7 +573,8 @@ namespace AppInternacao
         {
             if (!isCollapsed[1])
                 timerCollapsedTemplate.Start();
-            
+
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI020FrmSaeTemplateArea();
             OpenUc();
@@ -590,6 +585,7 @@ namespace AppInternacao
             if (!isCollapsed[1])
                 timerCollapsedTemplate.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI21FrmSaeTemplateList();
             OpenUc();
@@ -600,6 +596,7 @@ namespace AppInternacao
             if (!isCollapsed[0])
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClinicaCirurgica });
             OpenUc();
@@ -610,6 +607,7 @@ namespace AppInternacao
             if (!isCollapsed[0])
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClininaMedica });
             OpenUc();
@@ -620,6 +618,7 @@ namespace AppInternacao
             if (!isCollapsed[0])
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.ClinicaPediatrica });
             OpenUc();
@@ -630,6 +629,7 @@ namespace AppInternacao
             if (!isCollapsed[0])
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() {Tag = SetorSae.ClinicaObstetrica });
             OpenUc();
@@ -640,11 +640,10 @@ namespace AppInternacao
             if (!isCollapsed[0])
                 timerCollapsed.Start();
 
+            ActivateButton(sender);
             CloseUC();
             userControl = new FrmSae.UI006FrmBarCodeProntuario(new FrmSae.UI011FrmTimeLine() { Tag = SetorSae.UrgenciaEmergencia });
             OpenUc();
         }
-
-        
     }
 }

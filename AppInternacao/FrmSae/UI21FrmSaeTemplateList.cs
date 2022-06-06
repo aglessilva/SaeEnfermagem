@@ -2,6 +2,7 @@
 using AppInternacao.Extend;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,17 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                FrmMain.mySalvar.Click += MySalvar_Click;
+                FrmMain.listButtons.ForEach(b =>
+                {
+                    if (b.Name.Equals("btnSalvar"))
+                    {
+                        b.Visible = false;
+                        b.IconChar = IconChar.Save;
+                        b.Click += MySalvar_Click;
+                        b.Width = 80;
+                        b.Text = "Salvar".Trim();
+                    }
+                });
 
                 checkBoxExts = new List<CheckBoxExt> { checkBoxExt1, checkBoxExt2, checkBoxExt3, checkBoxExt4, checkBoxExt5 };
 
@@ -79,8 +90,6 @@ namespace AppInternacao.FrmSae
                     CheckBoxExt checkBox = checkBoxExts.Find(c => c.Value.Equals(templateNameExameFisico.SetorAssociado.Split(',')[0].ToString()));
                     checkBox.Checked = true;
                     checkBox.Enabled = false;
-
-
                 }
             }
             catch (Exception ex)

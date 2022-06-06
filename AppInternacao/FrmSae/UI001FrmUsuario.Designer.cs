@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.textBoxPwdEncripit = new System.Windows.Forms.TextBox();
@@ -94,7 +94,7 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(17, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 32);
             this.pictureBox1.TabIndex = 22;
@@ -202,8 +202,8 @@
             // 
             // comboBoxPerfil
             // 
+            this.comboBoxPerfil.BackColor = System.Drawing.SystemColors.Control;
             this.comboBoxPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxPerfil.FormattingEnabled = true;
             this.comboBoxPerfil.Location = new System.Drawing.Point(423, 65);
@@ -275,7 +275,7 @@
             this.btnImparPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImparPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImparPesquisa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnImparPesquisa.Location = new System.Drawing.Point(335, 24);
+            this.btnImparPesquisa.Location = new System.Drawing.Point(814, 26);
             this.btnImparPesquisa.Name = "btnImparPesquisa";
             this.btnImparPesquisa.Size = new System.Drawing.Size(29, 24);
             this.btnImparPesquisa.TabIndex = 11;
@@ -340,10 +340,10 @@
             // gPesquisausuario
             // 
             this.gPesquisausuario.BackColor = System.Drawing.Color.Transparent;
-            this.gPesquisausuario.Controls.Add(this.btnImparPesquisa);
             this.gPesquisausuario.Controls.Add(this.pictureBox1);
             this.gPesquisausuario.Controls.Add(this.panel9);
             this.gPesquisausuario.Controls.Add(this.textBoxPesquisaUsario);
+            this.gPesquisausuario.Controls.Add(this.btnImparPesquisa);
             this.gPesquisausuario.Dock = System.Windows.Forms.DockStyle.Top;
             this.gPesquisausuario.Location = new System.Drawing.Point(0, 185);
             this.gPesquisausuario.Name = "gPesquisausuario";
@@ -356,9 +356,9 @@
             // 
             this.panel9.BackColor = System.Drawing.Color.DimGray;
             this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(19, 50);
+            this.panel9.Location = new System.Drawing.Point(19, 49);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(345, 1);
+            this.panel9.Size = new System.Drawing.Size(820, 1);
             this.panel9.TabIndex = 21;
             // 
             // panel10
@@ -376,11 +376,12 @@
             this.textBoxPesquisaUsario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxPesquisaUsario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPesquisaUsario.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxPesquisaUsario.Location = new System.Drawing.Point(51, 34);
+            this.textBoxPesquisaUsario.Location = new System.Drawing.Point(57, 34);
             this.textBoxPesquisaUsario.MaxLength = 18;
             this.textBoxPesquisaUsario.Name = "textBoxPesquisaUsario";
-            this.textBoxPesquisaUsario.Size = new System.Drawing.Size(313, 14);
+            this.textBoxPesquisaUsario.Size = new System.Drawing.Size(704, 14);
             this.textBoxPesquisaUsario.TabIndex = 10;
+            this.textBoxPesquisaUsario.TextChanged += new System.EventHandler(this.textBoxPesquisaUsario_TextChanged);
             // 
             // gUsuario
             // 
@@ -537,18 +538,18 @@
             this.dataGridViewUsuarios.AllowUserToAddRows = false;
             this.dataGridViewUsuarios.AllowUserToDeleteRows = false;
             this.dataGridViewUsuarios.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.dataGridViewUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.dataGridViewUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -557,17 +558,18 @@
             this.Telefone,
             this.TipoPerfil,
             this.Editar});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewUsuarios.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewUsuarios.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewUsuarios.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridViewUsuarios.Location = new System.Drawing.Point(0, 245);
+            this.dataGridViewUsuarios.MultiSelect = false;
             this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
             this.dataGridViewUsuarios.ReadOnly = true;
             this.dataGridViewUsuarios.RowHeadersVisible = false;
@@ -621,7 +623,7 @@
             // 
             this.errorProviderFields.ContainerControl = this;
             // 
-            // FrmUsuario001
+            // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(849, 555);
@@ -629,7 +631,7 @@
             this.Controls.Add(this.gPesquisausuario);
             this.Controls.Add(this.gUsuario);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "FrmUsuario001";
+            this.Name = "FrmUsuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUsuario001_FormClosing);
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

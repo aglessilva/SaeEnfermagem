@@ -53,8 +53,6 @@
 
         SP_DEL_PRESCRICAO = 27,
 
-        SP_ADD_DATE = 28,
-
         SP_DEL_DATE_PRESCRICAO = 29,
 
         SP_GET_PRESCRICAO = 30,
@@ -62,8 +60,6 @@
         SP_GET_CHAVE_PRESCRICAO = 31,
 
         SP_ADD_CHAVE_PRESCRICAO = 32,
-
-        SP_GET_CICLO = 33,
 
         SP_DEL_CHAVE_PRESCRICAO = 34,
 
@@ -129,6 +125,12 @@
 
         SP_GET_NOC_INDICADORES = 67,
 
-        SP_GET_NOC_CABECALHO = 68
+        SP_GET_NOC_CABECALHO = 68,
+
+        SP_ADD_OR_UPDT_AVALIACAO_ENFERMAGEM_SAE = 69,
+
+        SP_GET_AVALIACAO_ENFERMAGEM_SAE = 70,
+
+        SP_GET_CHECK_COUNT_SAE = 71,
     }
 }

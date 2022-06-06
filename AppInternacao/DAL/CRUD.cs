@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -146,13 +147,26 @@ namespace AppInternacao.Model
                                         }
                                     case TypeCode.Object:
                                         {
-                                            byte[] valor = null;
+                                            if (item.PropertyType.Namespace.Equals("System.Collections.Generic"))
+                                                break;
+
+                                            int tipoParam;
+                                            dynamic valor = null;
+
                                             if (item.PropertyType.IsArray)
+                                            {
                                                 valor = (byte[])item.GetValue(obejto, null);
+                                                tipoParam = 1;
+                                            }
+                                            else
+                                            {
+                                                valor = (TimeSpan)item.GetValue(obejto, null);
+                                                tipoParam = 2;
+                                            }
 
                                             if (valor != null)
                                             {
-                                                Comando.Parameters.Add(new SqlParameter("@" + item.Name, SqlDbType.VarBinary));
+                                                Comando.Parameters.Add(new SqlParameter("@" + item.Name, tipoParam == 1 ? SqlDbType.Binary : SqlDbType.Time));
                                                 Comando.Parameters["@" + item.Name].Value = item.GetValue(obejto, null);
                                             }
                                             break;
@@ -273,8 +287,8 @@ namespace AppInternacao.Model
                 command.Parameters.Add(new SqlParameter("@Id", prescricaoMedica.Id));
                 command.Parameters.Add(new SqlParameter("@IdCliente", Sessao.CodigoCliente));
                 command.Parameters.Add(new SqlParameter("@IdChavePrescricao", prescricaoMedica.IdChavePrescricao ));
-                command.Parameters.Add(new SqlParameter("@IdPaciente", prescricaoMedica.IdPaciente));
-                command.Parameters.Add(new SqlParameter("@Horario", prescricaoMedica.Horario));
+                command.Parameters.Add(new SqlParameter("@Prontuario", prescricaoMedica.Prontuario));
+                //command.Parameters.Add(new SqlParameter("@DataHorario", prescricaoMedica.DataHorario));
                 command.Parameters.Add(new SqlParameter("@Intervalo", prescricaoMedica.Intervalo));
                 command.Parameters.Add(new SqlParameter("@Prescricao", prescricaoMedica.Prescricao));
                 var newIdParam = command.Parameters.Add("@Indentity", SqlDbType.Int);

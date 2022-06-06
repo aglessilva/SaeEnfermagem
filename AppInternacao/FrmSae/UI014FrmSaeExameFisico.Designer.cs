@@ -31,7 +31,6 @@ namespace AppInternacao.FrmSae
         {
             this.components = new System.ComponentModel.Container();
             this.gTemplateSae = new System.Windows.Forms.GroupBox();
-            this.BtnReplicarExameFisico = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAnotacaoAdicionais = new System.Windows.Forms.TextBox();
             this.comboBoxTemplateExameFisico = new System.Windows.Forms.ComboBox();
@@ -109,7 +108,6 @@ namespace AppInternacao.FrmSae
             // 
             // gTemplateSae
             // 
-            this.gTemplateSae.Controls.Add(this.BtnReplicarExameFisico);
             this.gTemplateSae.Controls.Add(this.label1);
             this.gTemplateSae.Controls.Add(this.txtAnotacaoAdicionais);
             this.gTemplateSae.Controls.Add(this.comboBoxTemplateExameFisico);
@@ -119,29 +117,6 @@ namespace AppInternacao.FrmSae
             this.gTemplateSae.Size = new System.Drawing.Size(992, 111);
             this.gTemplateSae.TabIndex = 1;
             this.gTemplateSae.TabStop = false;
-            // 
-            // BtnReplicarExameFisico
-            // 
-            this.BtnReplicarExameFisico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnReplicarExameFisico.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnReplicarExameFisico.FlatAppearance.BorderSize = 0;
-            this.BtnReplicarExameFisico.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.BtnReplicarExameFisico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.BtnReplicarExameFisico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnReplicarExameFisico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.BtnReplicarExameFisico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.BtnReplicarExameFisico.IconChar = FontAwesome.Sharp.IconChar.Copy;
-            this.BtnReplicarExameFisico.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(87)))), ((int)(((byte)(134)))));
-            this.BtnReplicarExameFisico.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnReplicarExameFisico.IconSize = 28;
-            this.BtnReplicarExameFisico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReplicarExameFisico.Location = new System.Drawing.Point(746, 19);
-            this.BtnReplicarExameFisico.Name = "BtnReplicarExameFisico";
-            this.BtnReplicarExameFisico.Size = new System.Drawing.Size(223, 32);
-            this.BtnReplicarExameFisico.TabIndex = 29;
-            this.BtnReplicarExameFisico.Text = "Clonar Ultimo Exame Físico";
-            this.BtnReplicarExameFisico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnReplicarExameFisico.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -160,6 +135,7 @@ namespace AppInternacao.FrmSae
             this.txtAnotacaoAdicionais.Location = new System.Drawing.Point(3, 64);
             this.txtAnotacaoAdicionais.Multiline = true;
             this.txtAnotacaoAdicionais.Name = "txtAnotacaoAdicionais";
+            this.txtAnotacaoAdicionais.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtAnotacaoAdicionais.Size = new System.Drawing.Size(966, 37);
             this.txtAnotacaoAdicionais.TabIndex = 2;
             // 
@@ -784,7 +760,6 @@ namespace AppInternacao.FrmSae
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxAnotacaoPressaoArterial;
         private System.Windows.Forms.ErrorProvider errorProviderExameFisico;
-        private FontAwesome.Sharp.IconButton BtnReplicarExameFisico;
         private System.Windows.Forms.FlowLayoutPanel flpRespostaVerbal;
         private System.Windows.Forms.FlowLayoutPanel flpRespostaAberturaOcular;
         private System.Windows.Forms.FlowLayoutPanel flpRespostaMotora;

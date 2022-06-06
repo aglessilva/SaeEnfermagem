@@ -1,6 +1,7 @@
 ﻿using AppInternacao.Enum;
 using AppInternacao.Model;
 using AppInternacao.Presenter;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,17 @@ namespace AppInternacao.FrmSae
             comboBoxPressaoArterial.DisplayMember = "Titulo";
             comboBoxPressaoArterial.DataSource = pressaoArterial;
 
-            FrmMain.mySalvar.Click += Salvar_Click;
+            FrmMain.listButtons.ForEach(b =>
+            {
+                if (b.Name.Equals("btnSalvar"))
+                {
+                    b.Enabled = true;
+                    b.IconChar = IconChar.Save;
+                    b.Click += Salvar_Click;
+                    b.Width = 80;
+                    b.Text = "Salvar".Trim();
+                }
+            });
         }
 
         private void Salvar_Click(object sender, EventArgs e)
@@ -126,7 +137,7 @@ namespace AppInternacao.FrmSae
 
                 dbCrud = new CRUD();
 
-                var codigoTemplate = dbCrud.Executar(new { IdSetor = frm.IdSetor, NomeTemplate = frm.NomeTemplate, DescricaoTemplate = frm.DescricaoTemplate }, Procedure.SP_ADD_NAME_TEMPLATE_EXAME_FISICO, Acao.Inserir);
+                var codigoTemplate = dbCrud.Executar(new { SetorAssociado = frm.IdSetor, NomeTemplate = frm.NomeTemplate, DescricaoTemplate = frm.DescricaoTemplate }, Procedure.SP_ADD_NAME_TEMPLATE_EXAME_FISICO, Acao.Inserir);
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add(new DataColumn("IdTemplate", typeof(int)));
                 dataTable.Columns.Add(new DataColumn("IdCliente", typeof(int)));

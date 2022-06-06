@@ -67,7 +67,7 @@ namespace AppInternacao.FrmSae
                     return;
                 }
 
-                btnRemover.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
+                btnRemover.Enabled = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
 
                 lblDominio.Text = $"Domínio: {Sessao.Paciente.Sae.DiagnosticoEnfermagem.FirstOrDefault(d => d.Diagnostico.IdDominio == nandaDiagnostico.IdDominio).NomeDominio}";
                 lblClasse.Text = $"Classe: {Sessao.Paciente.Sae.DiagnosticoEnfermagem.FirstOrDefault(d => d.Diagnostico.IdDominio == nandaDiagnostico.IdDominio).NomeClasse}";
@@ -118,7 +118,7 @@ namespace AppInternacao.FrmSae
             Dispose(true);
             Close();
 
-            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = Sessao.Paciente.SaeStatus.Status == Sae.Edicao; 
+            FrmMain.listButtons.Find(b => b.Name.Equals("btnAddGeneric")).Visible = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
 
             UI011FrmTimeLine.IconButtonVolta.Enabled = true;
             UI011FrmTimeLine.iconButtonAvanca.Enabled = Sessao.Paciente.Sae.DiagnosticoEnfermagem.Any();
@@ -130,6 +130,7 @@ namespace AppInternacao.FrmSae
             if (Sessao.Paciente.Sae.DiagnosticoEnfermagem.Count == 0)
             {
                 btnVisualizar.Visible = false;
+                FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Enabled = FrmMain.listButtons.Find(b => b.Name.Equals("btnSalvar")).Visible = true;
                 btnVisualizar.Text = "Visualizar Itens"; 
             }
             else

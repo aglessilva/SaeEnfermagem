@@ -70,7 +70,7 @@ namespace AppInternacao.FrmSae
 
             foreach (DataRow item in _dataTableIdicadores.Rows)
             {
-                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Trim().Equals(item[1].ToString().Trim()));
+                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Split(',').Any(c => c.Trim().Equals(item[1].ToString().Trim())));
                 indicadorItem = intervencao is null ? new KeyValuePair<int, IndicadorItem>() : intervencao.KeyPairIndicadores.FirstOrDefault(f => f.Value.Id == (int)item[0]);
 
                 dataRow = dataTableIdicadores.NewRow();
@@ -82,18 +82,17 @@ namespace AppInternacao.FrmSae
                 dataTableIdicadores.Rows.Add(dataRow);
             }
 
-            _dataTableIdicadores = null;
+          //  _dataTableIdicadores = null;
 
             dataGridViewIndicadores.DataSource = dataTableIdicadores;
 
             bool ret;
             foreach (DataRow item in _dataTable.Rows)
             {
-                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Trim().Equals(item[0].ToString().Trim()));
-                
-                //ret = dataTableIdicadores.Select($"IdClassificacao = { item[0]}").All(s => (bool)s[4]);
-                ret = intervencao?.KeyPairIndicadores.All(f => f.Value.Ckecked) ?? false;
-                
+                intervencao = Sessao.Paciente.Sae.IntervencaoEnfermagem.FirstOrDefault(f => f.Classificacao.Split(',').Any(c => c.Trim().Equals(item[0].ToString().Trim())));
+
+                ret = intervencao?.KeyPairIndicadores.Where(w => w.Key == Convert.ToInt32(item[0])).All(a => a.Value.Ckecked) ?? false;
+
                 dataRow = dataTable.NewRow();
                 dataRow[0] = item[0];
                 dataRow[1] = item[2];
@@ -102,7 +101,7 @@ namespace AppInternacao.FrmSae
                 dataTable.Rows.Add(dataRow);
             }
 
-            _dataTable = null;
+         //   _dataTable = null;
 
             dataGridViewClassificacao.DataSource = dataTable;
             dataGridViewClassificacao.Cursor = Cursors.Hand;
@@ -122,13 +121,15 @@ namespace AppInternacao.FrmSae
                 {
                     UI011FrmTimeLine.lblRotuloSae.Text = "Implementação - Intervenção de Enfermagem";
                     UI011FrmTimeLine.IconButtonVolta.Click += btnButtonBackStep_Click;
-                    UI011FrmTimeLine.iconButtonAvanca.Text = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? "INICIAR" : "AVALIAÇÃO";
+                    dataGridViewIndicadores.CellContentDoubleClick -= dataGridViewIndicadores_CellContentDoubleClick;
+                    UI011FrmTimeLine.iconButtonAvanca.Text = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status) ? "INICIAR" : "AVALIAÇÃO";
+                    UI011FrmTimeLine.iconButtonAvanca.Visible = UI011FrmTimeLine.iconButtonAvanca.Enabled = true;
 
-                    if (Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
+                    if ((Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status))
                     {
-                        UI011FrmTimeLine.iconButtonAvanca.ForeColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.FromArgb(13, 87, 134);
-                        UI011FrmTimeLine.iconButtonAvanca.IconChar = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
-                        UI011FrmTimeLine.iconButtonAvanca.IconColor = Sessao.Paciente.SaeStatus.Status == Sae.Edicao ? Color.SeaGreen : Color.SteelBlue;
+                        UI011FrmTimeLine.iconButtonAvanca.ForeColor = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status) ? Color.SeaGreen : Color.FromArgb(13, 87, 134);
+                        UI011FrmTimeLine.iconButtonAvanca.IconChar = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status) ? FontAwesome.Sharp.IconChar.Check : FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
+                        UI011FrmTimeLine.iconButtonAvanca.IconColor = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status) ? Color.SeaGreen : Color.SteelBlue;
                         UI011FrmTimeLine.iconButtonAvanca.Click += btnButtonStepAvanca_Click;
                     }
                     else
@@ -212,69 +213,20 @@ namespace AppInternacao.FrmSae
                     }
                     else
                     {
+                        var strAnotacao = intervencao.KeyPairAnotacaoPrescricaoEnfermagem.FirstOrDefault(t => t.Key == idIndicador);
+                        if (strAnotacao.Value != null)
+                            textBoxDescricaoIndicadores.Text = strAnotacao.Value.AnotacaoEnfermeiro;
+
                         pnlButton.Visible = pnlTextBox.Visible = true;
                         pnlButton.BringToFront();
-                        btnAddPrescricao.Text = sender != null ? "Adicionar ítem" : "Atualizar ítem";
+                        btnAddPrescricao.Text = sender != null && strAnotacao.Value is null ?  "Adicionar ítem" : "Atualizar ítem";
                         btnAddPrescricao.IconChar = IconChar.Edit;
                         btnAddPrescricao.Size = new Size(115, 30);
                         btnRemover.Location = new Point(150, 5);
+                        btnRemover.Visible = strAnotacao.Value != null;
+
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                FrmMain.Alert(exception: ex);
-            }
-        }
-
-        private void dataGridViewIndicadores_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex < 0)
-                    return;
-
-                var sendGrid = (DataGridView)sender;
-
-                btnAnotacaoTecnica.Visible = Tag != null;
-                textBoxAnotacaoEquipTecnica.Enabled = Tag != null;
-                textBoxDescricaoIndicadores.Enabled = Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
-
-                if (!(sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn))
-                {
-                    idIndicador = Convert.ToInt32(sendGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    btnAddPrescricao.Text = "Inserir Observação/Prescrição de Enfermagem";
-                    btnAddPrescricao.Size = new Size(270, 30);
-                    textBoxDescricaoIndicadores.Text = textBoxAnotacaoEquipTecnica.Text = string.Empty;
-
-                    if (intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Any(n => n.Key == idIndicador))
-                    {
-                        btnRemover.Visible = btnAddPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Administrador & Perfil.EnfermeiroAdmin & Perfil.Enfermeiro_Assistemcial) && Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
-                        
-                        btnAnotacaoTecnica.Text = "Salvar Anotação";
-                        btnAnotacaoTecnica.IconChar = IconChar.Save;
-                        btnAddPrescricao_Click(null, null);
-                    }
-                    else
-                    {
-                        pnlTextBox.Visible =  false;
-                        pnlButton.Visible =  true;
-                        btnAnotacaoTecnica.Text = "Inserir Anotação";
-                        btnAnotacaoTecnica.IconChar = IconChar.PlusCircle;
-                    }
-
-                    AnotacoesEnfermagem anotacoesEnfermagem = intervencao.KeyPairAnotacaoPrescricaoEnfermagem.FirstOrDefault(n => n.Key == idIndicador).Value;
-
-                    textBoxDescricaoIndicadores.Text = anotacoesEnfermagem is null ? null : anotacoesEnfermagem.AnotacaoEnfermeiro;
-
-                    textBoxAnotacaoEquipTecnica.Text = anotacoesEnfermagem is null ? null : anotacoesEnfermagem.AnotacaoEquipeTecnica;
-
-                    btnRemover.Visible = !string.IsNullOrWhiteSpace(textBoxDescricaoIndicadores.Text) && Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
-                    btnAddPrescricao.Visible = Tag is null && Sessao.Paciente.SaeStatus.Status == Sae.Edicao;
-                    btnAnotacaoTecnica.Visible = Tag != null;
-                   
-                }
-
             }
             catch (Exception ex)
             {
@@ -286,8 +238,17 @@ namespace AppInternacao.FrmSae
         {
             try
             {
-                if (e.RowIndex < 0 || Sessao.Paciente.SaeStatus.Status == Sae.Edicao)
+                if (e.RowIndex < 0 || e.ColumnIndex != 3)
                     return;
+
+                if (Sessao.Paciente.SaeStatus.Status.HasFlag(Sae.Finalizado))
+                {
+                    string msg = $"Este SAE da data: {DateTime.Now.ToShortDateString()}, já foi realizada a Avaliação pelo enfermeiro(a).\n" +
+                        $"Neste caso, não será possivel fazer qualquer checagem ou anotações destes indicadores.\n" +
+                        $"A Previsão do próximo SAE para checagens e anotações será na data: {DateTime.Now.AddDays(1).ToShortDateString()}";
+                    MessageBox.Show(msg, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
                 var sendGrid = (DataGridView)sender;
 
@@ -325,6 +286,8 @@ namespace AppInternacao.FrmSae
                         }
                     }
                 }
+
+                sendGrid.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -372,40 +335,52 @@ namespace AppInternacao.FrmSae
             }
         }
 
-        private void btnAnotacaoTecnica_Click(object sender, EventArgs e)
+        private void dataGridViewIndicadores_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(textBoxAnotacaoEquipTecnica.Text))
+                if (e.RowIndex < 0 || e.ColumnIndex != 2)
+                    return;
+
+                var sendGrid = (DataGridView)sender;
+
+                if (!(sendGrid.Columns[e.ColumnIndex] is DataGridViewImageColumn))
                 {
-                    Sessao.Paciente.Sae.IntervencaoEnfermagem.ForEach(n =>
+                    btnAnotacaoTecnica.Visible = Tag != null;
+                    textBoxAnotacaoEquipTecnica.Enabled = Tag != null && Sessao.Paciente.SaeStatus.Status == Sae.Andamento;
+                    textBoxDescricaoIndicadores.Enabled = (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
+
+                    idIndicador = Convert.ToInt32(sendGrid.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    btnAddPrescricao.Text = "Inserir Observação/Prescrição de Enfermagem";
+                    btnAddPrescricao.Size = new Size(270, 30);
+                    textBoxDescricaoIndicadores.Text = textBoxAnotacaoEquipTecnica.Text = string.Empty;
+
+                    if (intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Any(n => n.Key == idIndicador && (!string.IsNullOrWhiteSpace(n.Value.AnotacaoEnfermeiro) ||!string.IsNullOrWhiteSpace(n.Value.AnotacaoEquipeTecnica))))
                     {
-                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.RemoveAll(r => r.Key == idIndicador);
-                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Add(new KeyValuePair<int, AnotacoesEnfermagem>(idIndicador,
-                            new AnotacoesEnfermagem
-                            {
-                                AnotacaoEnfermeiro = string.IsNullOrWhiteSpace(textBoxDescricaoIndicadores.Text) ? null : textBoxDescricaoIndicadores.Text,
-                                AnotacaoEquipeTecnica = textBoxAnotacaoEquipTecnica.Text
-                            }));
+                        btnRemover.Visible = btnAddPrescricao.Visible = Sessao.Usuario.Perfil.HasFlag(Perfil.Administrador & Perfil.EnfermeiroAdmin & Perfil.Enfermeiro_Assistemcial) && (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
 
-                        n.AnotacaoPrescricaoEnfermagem = (n.KeyPairAnotacaoPrescricaoEnfermagem is null || !n.KeyPairAnotacaoPrescricaoEnfermagem.Any()) ? null : JsonConvert.SerializeObject(n.KeyPairAnotacaoPrescricaoEnfermagem, Formatting.None);
-                        n.Indicadores = (n.KeyPairIndicadores is null || !n.KeyPairIndicadores.Any()) ? null : JsonConvert.SerializeObject(n.KeyPairIndicadores, Formatting.None);
-                        n.Prontuario = Sessao.Paciente.Prontuario;
-                        n.IdSae = Sessao.Paciente.SaeStatus.Id;
+                        btnAnotacaoTecnica.Text = "Salvar Anotação";
+                        btnAnotacaoTecnica.IconChar = IconChar.Save;
+                        btnAddPrescricao_Click(null, null);
+                    }
+                    else
+                    {
+                        pnlTextBox.Visible = false;
+                        pnlButton.Visible = true;
+                        btnAnotacaoTecnica.Text = "Inserir Anotação";
+                        btnAnotacaoTecnica.IconChar = IconChar.PlusCircle;
+                    }
 
-                        presenterGeneric.Salvar(n, Procedure.SP_ADD_OR_UPDT_INTERVENCAO_PRESCRICAO_ENFERMAGEM_SAE, n.Id == 0 ? Acao.Inserir : Acao.Atualizar);
-                    });
+                    AnotacoesEnfermagem anotacoesEnfermagem = intervencao.KeyPairAnotacaoPrescricaoEnfermagem.FirstOrDefault(n => n.Key == idIndicador).Value;
 
-                    pnlTextBox.Visible = false;
-                    pnlButton.Visible = true;
-                    btnAnotacaoTecnica.Text = "Inserir Anotação";
-                    btnAnotacaoTecnica.IconChar = IconChar.PlusCircle;
-                }
-                else
-                {
-                    pnlTextBox.Visible = pnlButton.Visible = true;
-                    btnAnotacaoTecnica.Text = "Salvar Anotação";
-                    btnAnotacaoTecnica.IconChar = IconChar.Save;
+                    textBoxDescricaoIndicadores.Text = anotacoesEnfermagem is null ? null : anotacoesEnfermagem.AnotacaoEnfermeiro;
+
+                    textBoxAnotacaoEquipTecnica.Text = anotacoesEnfermagem is null ? null : anotacoesEnfermagem.AnotacaoEquipeTecnica;
+
+                    btnRemover.Visible = !string.IsNullOrWhiteSpace(textBoxDescricaoIndicadores.Text) && (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
+                    btnAddPrescricao.Visible = Tag is null && (Sae.Edicao | Sae.Nenhum).HasFlag(Sessao.Paciente.SaeStatus.Status);
+                    btnAnotacaoTecnica.Visible = Tag != null && Sessao.Paciente.SaeStatus.Status == Sae.Andamento;
+                    btnRemoverAnotacao.Visible = Tag != null && Sessao.Paciente.SaeStatus.Status == Sae.Andamento && !string.IsNullOrWhiteSpace(textBoxAnotacaoEquipTecnica.Text);
                 }
 
             }
@@ -413,7 +388,6 @@ namespace AppInternacao.FrmSae
             {
                 FrmMain.Alert(exception: ex);
             }
-
         }
 
         private void btnStepAvaliaacaoEnfermagem_Click(object sender, EventArgs e)
@@ -422,7 +396,7 @@ namespace AppInternacao.FrmSae
             {
                 UI011FrmTimeLine.ctrl.Controls.RemoveAt(0);
 
-                Form frm = new UI018FrmSaeAvaliacao{ TopLevel = false};
+                Form frm = new UI018FrmSaeAvaliacao(new DataTable[] {_dataTable, _dataTableIdicadores }) { TopLevel = false};
                 FrmMain.listButtons.ForEach(b => FrmMain.RemoveClickEvent(b));
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.iconButtonAvanca);
                 FrmMain.RemoveClickEvent(UI011FrmTimeLine.IconButtonVolta);
@@ -434,6 +408,11 @@ namespace AppInternacao.FrmSae
             {
                 FrmMain.Alert(exception: ex);
             }
+        }
+
+        private void btnRemoverAnotacao_Click(object sender, EventArgs e)
+        {
+            btnAnotacaoTecnica_Click(null, null);
         }
 
         private void btnButtonStepAvanca_Click(object sender, EventArgs e)
@@ -545,6 +524,50 @@ namespace AppInternacao.FrmSae
             controlForm.Show();
         }
 
+        private void btnAnotacaoTecnica_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(textBoxAnotacaoEquipTecnica.Text))
+                {
+                    Sessao.Paciente.Sae.IntervencaoEnfermagem.ForEach(n =>
+                    {
+                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.RemoveAll(r => r.Key == idIndicador);
+                        intervencao.KeyPairAnotacaoPrescricaoEnfermagem.Add(new KeyValuePair<int, AnotacoesEnfermagem>(idIndicador,
+                            new AnotacoesEnfermagem
+                            {
+                                AnotacaoEnfermeiro = string.IsNullOrWhiteSpace(textBoxDescricaoIndicadores.Text) ? null : textBoxDescricaoIndicadores.Text,
+                                AnotacaoEquipeTecnica = sender is null ? null : textBoxAnotacaoEquipTecnica.Text 
+                            }));
+
+                        n.AnotacaoPrescricaoEnfermagem = (n.KeyPairAnotacaoPrescricaoEnfermagem is null || !n.KeyPairAnotacaoPrescricaoEnfermagem.Any()) ? null : JsonConvert.SerializeObject(n.KeyPairAnotacaoPrescricaoEnfermagem, Formatting.None);
+                        n.Indicadores = (n.KeyPairIndicadores is null || !n.KeyPairIndicadores.Any()) ? null : JsonConvert.SerializeObject(n.KeyPairIndicadores, Formatting.None);
+                        n.Prontuario = Sessao.Paciente.Prontuario;
+                        n.IdSae = Sessao.Paciente.SaeStatus.Id;
+
+                        presenterGeneric.Salvar(n, Procedure.SP_ADD_OR_UPDT_INTERVENCAO_PRESCRICAO_ENFERMAGEM_SAE, n.Id == 0 ? Acao.Inserir : Acao.Atualizar);
+                    });
+
+                    pnlTextBox.Visible = btnAnotacaoTecnica.Visible = btnRemoverAnotacao.Visible = false;
+                    pnlButton.Visible = true;
+                    btnAnotacaoTecnica.Text = "Inserir Anotação";
+                    btnAnotacaoTecnica.IconChar = IconChar.PlusCircle;
+                }
+                else
+                {
+                    pnlTextBox.Visible = pnlButton.Visible = btnAnotacaoTecnica.Visible = true;
+                    pnlButton.BringToFront();
+                    btnAnotacaoTecnica.Text = "Salvar Anotação";
+                    btnAnotacaoTecnica.IconChar = IconChar.Save;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                FrmMain.Alert(exception: ex);
+            }
+
+        }
     
     }
 }
